@@ -1,0 +1,1070 @@
+                                                                                                    CHAPTER
+
+Formulation and Solution                                                                            5
+Strategies
+
+The previous chapters developed the basic field equations of elasticity theory. These results comprise a
+system of differential and algebraic relations among the stresses, strains, and displacements that express
+particular physics at all points within the body under investigation. In this chapter we now wish to
+complete the general formulation by first developing boundary conditions appropriate for use with the
+field equations. These conditions specify the physics that occur on the boundary of the body, and
+generally provide the loading inputs that physically create the interior stress, strain, and displacement
+fields. Although the field equations are the same for all problems, boundary conditions are different for
+each problem. Therefore, proper development of boundary conditions is essential for problem solution,
+and thus it is important to acquire a good understanding of such development procedures. Combining
+field equations with boundary conditions establishes the fundamental boundary-value problems of the
+theory. This eventually leads us into two different formulations: one in terms of displacements and the
+other in terms of stresses. Because boundary-value problems are difficult to solve, many different
+strategies have been developed to aid in problem solution. We review in a general way several of these
+strategies, and later chapters incorporate many of them into the solution of specific problems.
+
+5.1 Review of field equations
+
+We list here the basic field equations for linear isotropic elasticity before beginning our discussion on
+boundary conditions. Appendix A includes a more comprehensive listing of all field equations in
+Cartesian, cylindrical, and spherical coordinate systems. Because of its ease of use and compact
+properties, our formulation uses index notation.
+Strain­displacement relations
+
+                                                                  eij  ¼  1  À       þ     Á        (5.1.1)
+                                                                          2   ui; j     uj; i
+
+Compatibility relations
+
+                         eij; kl þ ekl; ij À eik; jl À ejl; ik ¼ 0                                  (5.1.2)
+
+Equilibrium equations
+
+                                                                       sij; j þ Fi ¼ 0              (5.1.3)
+
+Elastic constitutive law (Hooke's law)
+
+                         sij ¼ lekkdij þ 2meij
+
+                                                                  ¼    1  þ  n       À  n           (5.1.4)
+                                                                          E             E
+                                        eij                                     sij        skk dij
+
+Elasticity. http://dx.doi.org/10.1016/B978-0-12-408136-9.00005-2                                    95
+Copyright © 2014 Elsevier Inc. All rights reserved.
+96 CHAPTER 5 Formulation and Solution Strategies
+
+As mentioned in Section 2.6, the compatibility relations ensure that the displacements are continuous
+
+and single-valued, and are necessary only when the strains are arbitrarily specified. If, however, the
+
+displacements are included in the problem formulation, the solution normally generates single-valued
+
+displacements and strain compatibility is automatically satisfied. Thus, in discussing the general
+
+system of equations of elasticity, the compatibility relations (5.1.2) are normally set aside, to be used
+
+only with the stress formulation that we discuss shortly. Therefore, the general system of elasticity field
+
+equations refers to the 15 relations (5.1.1), (5.1.3), and (5.1.4). It is convenient to define this entire
+
+system using a generalized operator notation as
+
+                                                  È        É
+                                                  J ui; eij; sij; l; m; Fi ¼ 0                     (5.1.5)
+
+This system involves 15 unknowns including three displacements ui, six strains eij, and six stresses sij to
+be determined. The terms after the semicolon indicate that the system is also dependent on two elastic
+material constants (for isotropic materials) and on the body force density, and these are to be given a
+priori with the problem formulation. It is reassuring that the number of equations matches the number of
+unknowns to be determined. However, for a general three-dimensional problem, this general system of
+equations is of such complexity that solutions using analytical methods are normally impossible and
+further simplification is required to solve problems of interest. Before proceeding with the development
+of such simplifications, it is useful to discuss typical boundary conditions connected with the elasticity
+model, and this leads us to the classification of the fundamental problems.
+
+5.2 Boundary conditions and fundamental problem classifications
+
+Similar to other field problems in engineering science (e.g., fluid mechanics, heat conduction, diffu-
+sion, electromagnetics), the solution of system (5.1.5) requires appropriate boundary conditions on the
+body under study. The common types of boundary conditions for elasticity applications normally
+include specification of how the body is being supported or loaded. This concept is mathematically
+formulated by specifying either the displacements or tractions at boundary points. Figure 5.1 illus-
+trates this general idea for three typical cases including tractions, displacements, and a mixed case for
+which tractions are specified on boundary St and displacements are given on the remaining portion Su
+such that the total boundary is given by S ¼ St þ Su.
+
+             T (n)                                   S                           St     Su
+S                                                       R
+                                                                                     R
+     R
+
+                             Traction Conditions                              u  Mixed Conditions
+FIGURE 5.1 Typical Boundary Conditions.              Displacement Conditions
+5.2 Boundary conditions and fundamental problem classifications 97
+
+    Another type of mixed boundary condition can also occur. Although it is generally not possible to
+specify completely both the displacements and tractions at the same boundary point, it is possible to
+prescribe part of the displacement and part of the traction. Typically, this type of mixed condition in-
+volves the specification of a traction and displacement in two different orthogonal directions. A common
+example of this situation is shown in Figure 5.2 for a case involving a surface of problem symmetry
+where the condition is one of a rigid-smooth boundary with zero normal displacement and zero
+tangential traction. Notice that in this example the body under study was subdivided along the symmetry
+line, thus creating a new boundary surface and resulting in a smaller region to analyze. Minimizing the
+size of the domain under study is commonly useful in computational modeling. However, determining
+expected symmetry properties in the solution can often be useful to simplify analytical analyses as well.
+
+    Because boundary conditions play a very essential role in properly formulating and solving
+elasticity problems, it is important to acquire a clear understanding of their specification and use.
+Improper specification results in either no solution or a solution to a different problem than what was
+originally sought. Boundary conditions are normally specified using the coordinate system describing
+the problem, and thus particular components of the displacements and tractions are set equal to pre-
+scribed values. For displacement-type conditions, such a specification is straightforward, and a
+common example includes fixed boundaries where the displacements are to be zero. For traction
+boundary conditions, the specification can be a bit more complex.
+
+    Figure 5.3 illustrates particular cases in which the boundaries coincide with Cartesian or polar
+coordinate surfaces. By using results from Section 3.2, the traction specification can be reduced to a
+stress specification. For the Cartesian example in which y ¼ constant, the normal traction becomes
+simply the stress component sy, while the tangential traction reduces to sxy. For this case, sx exists only
+inside the region; thus, this component of stress cannot be specified on the boundary surface y ¼
+constant. A similar situation exists on the vertical boundary x ¼ constant, where the normal traction is
+now sx, the tangential traction is sxy, and the stress component sy exists inside the domain. Similar
+arguments can be made for polar coordinate boundary surfaces as shown. Drawing the appropriate
+element along the boundary as illustrated allows a clear visualization of the particular stress com-
+ponents that act on the surface in question. Such a sketch also allows determination of the positive
+directions of these boundary stresses, and this is useful to properly match with boundary loadings that
+
+Symmetry Line                                         Rigid-Smooth
+                    y                                 Boundary Condition
+
+                                                    u=0
+                                                 Ty(n) = 0
+
+                       x
+
+FIGURE 5.2 Line of Symmetry Boundary Condition.
+98 CHAPTER 5 Formulation and Solution Strategies
+
+FIGURE 5.3 Boundary Stress Components on Coordinate Surfaces.
+
+might be prescribed. It is recommended that sketches similar to Figure 5.3 be used to aid in the proper
+development of boundary conditions during problem formulation in later chapters.
+
+    Consider the pair of two-dimensional example problems with mixed conditions as shown in
+Figure 5.4. For the rectangular plate problem, all four boundaries are coordinate surfaces, and this
+simplifies specification of particular boundary conditions. The fixed conditions on the left edge simply
+require that x and y displacement components vanish on x ¼ 0, and this specification would not change
+even if this were not a coordinate surface. However, as per our previous discussion, the traction
+conditions on the other three boundaries simplify because they are coordinate surfaces. These sim-
+plifications are shown in the figure for each of the traction specified surfaces.
+
+    The second problem of a tapered cantilever beam has an inclined face that is not a coordinate
+surface. For this problem, the fixed end and top surface follow similar procedures as in the first
+
+y     Fixed Condition Traction Condition                              Traction Condition
+
+      u=v=0            T (n)  =x         =  S,    T (n)  =  xy  =  0  T (n)                T (n)
+                         x                          y                   x                    y
+                                                                             = - xy  = 0,         = - y  =S
+
+                                                                                                             S
+
+                                                                   x                   l
+
+   b                                        S
+
+                                                                                               T (n)  =  0
+                                                                                                 x
+
+             a                                                               T (n)         =0            y
+                                              x                                 y
+
+                                                                      Fixed Condition
+
+      Traction-Free Condition                                         u=v=0            Traction-Free Condition
+
+   T (n)  =  T (n)  =  0 y    =   xy     =     0
+      x         y
+
+   (Coordinate Surface Boundaries)                                    (Noncoordinate Surface Boundary)
+
+FIGURE 5.4 Example Boundary Conditions.
+                 5.2 Boundary conditions and fundamental problem classifications 99
+
+example and are specified in the figure. However, on the inclined face, the traction is to be zero and this
+will not reduce to a simple specification of the vanishing of individual stress components. On this face
+each traction component is set to zero, giving the result
+
+                                              TxðnÞ ¼ sxnx þ sxyny ¼ 0
+                                              TyðnÞ ¼ sxynx þ syny ¼ 0
+
+where nx and ny are the components of the unit normal vector to the inclined face. This is the more
+general type of specification, and it should be clearly noted that none of the individual stress components
+in the x,y system will vanish along this surface. It should also be pointed out for this problem that the unit
+normal vector components will be constants for all points on the inclined face. However, for curved
+boundaries the normal vector will change with surface position. Note that using strain­displacement
+relations in Hooke's law allows the stresses and hence tractions to be expressed in terms of displacement
+gradients. Thus, traction boundary conditions can actually be expressed in terms of displacements if so
+desired (see Exercise 5.4).
+
+    Another type of boundary condition formulation occurs for composite bodies that are composed of
+two or more pieces of different material with different elastic moduli. Examples of such situations are
+common and include many types of composite materials and structures as shown in Figure 5.5. For such
+problems, the elasticity solution must be developed independently for each material body, thus requiring
+specification of external boundary conditions and internal interface conditions that exist between each
+material phase (see Figure 5.6). These interface conditions specify how the various composite pieces are
+joined together. Common simple examples include the perfectly bonded interface where both the dis-
+placements and tractions are continuous at the interface. With respect to the case shown in Figure 5.6, a
+two-dimensional perfectly bonded model would specify the following interface conditions
+
+                                              sðn1Þ ¼ snð2Þ; sðs1Þ ¼ sðs2Þ
+                                              uðn1Þ ¼ uðn2Þ; uðs1Þ ¼ usð2Þ
+
+Another common interface model is the slip interface that prescribes continuity of normal components
+of displacement and traction, vanishing of the tangential traction, and allows for a discontinuity in the
+tangential displacement. Other more complicated interface conditions have been proposed in the
+literature in an effort to model more sophisticated contact behavior between real material systems.
+Exercise 5.5 further explores interface formulations for some specific problems.
+
+                 Embedded Fiber or Rod  Layered Composite Plate  Composite Cylinder or Disk
+FIGURE 5.5 Typical Composite Bodies.
+100 CHAPTER 5 Formulation and Solution Strategies
+
+Material                                 (1):  (ij1) ,    (1)
+
+                                                        ui     Interface Conditions:
+                                                               Perfectly Bonded,
+                                         n                     Slip Interface, etc.
+
+                                               s
+
+Material (2): i(j2), u(i2)
+
+FIGURE 5.6 Composite Elastic Continuum.
+
+    Although these examples provide some background on typical boundary conditions, many other
+types will be encountered throughout the text. Several exercises at the end of this chapter provide
+additional examples that will prove to be useful for students new to the elasticity formulation.
+
+    We are now in the position to formulate and classify the three fundamental boundary-value
+problems in the theory of elasticity that are related to solving the general system of field equations
+(5.1.5). Our presentation is limited to the static case.
+
+    Problem 1: Traction problem. Determine the distribution of displacements, strains, and stresses
+in the interior of an elastic body in equilibrium when body forces are given and the distribution of
+tractions is prescribed over the surface of the body
+
+                                         TiðnÞðxðisÞÞ ¼ fiðxðisÞÞ                     (5.2.1)
+
+where xðisÞ denotes boundary points and fiðxðisÞÞ are the prescribed traction values.
+    Problem 2: Displacement problem. Determine the distribution of displacements, strains, and
+
+stresses in the interior of an elastic body in equilibrium when body forces are given and the distribution
+
+of displacements is prescribed over the surface of the body
+
+                                         uiðxðisÞÞ ¼ giðxðisÞÞ                        (5.2.2)
+
+where xðisÞ denotes boundary points and giðxðisÞÞ are the prescribed displacement values.
+    Problem 3: Mixed problem. Determine the distribution of displacements, strains, and stresses in
+
+the interior of an elastic body in equilibrium when body forces are given and the distribution of
+
+tractions is prescribed as per (5.2.1) over the surface St and the distribution of displacements is pre-
+scribed as per (5.2.2) over the surface Su of the body (see Figure 5.1).
+
+    As mentioned previously, the solution to any of these types of problems is formidable, and further
+
+reduction and simplification of (5.1.5) is required for the development of analytical solution methods.
+
+Based on the description of Problem 1 with only traction boundary conditions, it would appear to be
+desirable to express the fundamental system solely in terms of stress, that is, J(t){sij; l, m, Fi}, thereby
+
+reducing the number of unknowns in the system. Likewise for Problem 2, a displacement-only
+formulation of the form J(u){ui; l, m, Fi} would appear to simplify the problem. We now pursue such
+
+specialized formulations and explicitly determine these reduced field equation systems.
+                                                                                       5.3 Stress formulation 101
+
+5.3 Stress formulation
+
+For the first fundamental problem in elasticity, the boundary conditions are to be given only in terms of
+the tractions or stress components. In order to develop solution methods for this case, it is very helpful
+to reformulate the general system (5.1.5) by eliminating the displacements and strains and thereby
+casting a new system solely in terms of the stresses. We now develop this reformulated system. By
+eliminating the displacements, we must now include the compatibility equations in the fundamental
+system of field equations. We start by using Hooke's law (5.1.4)2 and eliminating the strains in the
+compatibility relations (5.1.2) to get
+
+               sij; kk þ skk ; ij À sik; jk þ sjk; ik ¼
+
+                  n     À               kk dij  þ  smm; ijdkk      À  smm;    jk dik  À   smm;        Á                (5.3.1)
+                  þ      smm;                                                                    ik djk
+               1     n
+
+where we have used the arguments of Section 2.6, that the six meaningful compatibility relations are
+found by setting k ¼ l in (5.1.2). Although equations (5.3.1) represent the compatibility in terms of
+stress, a more useful result is found by incorporating the equilibrium equations into the system. Recall
+that from (5.1.3), sij, j ¼ ÀFi, and also note that dkk ¼ 3. Substituting these results into (5.3.1) gives
+
+                  sij; kk  þ  1         1  n skk; ij  ¼   1  n  n smm; kkdij        À  Fi; j  À  Fj; i                 (5.3.2)
+                                        þ                    þ
+                                                                              þ  n
+For the case   i ¼ j, relation (5.3.2)  reduces       to  sii; kk  ¼     À1   À  n  Fi;i.  Substituting  this  result  back  into
+(5.3.2) gives  the desired relation                                        1
+
+                  sij; kk  þ  1         1  n skk; ij  ¼   À  1  n     n  dijFk; k   À  Fi; j  À  Fj; i                 (5.3.3)
+                                        þ                       À
+
+This result gives the compatibility relations in terms of the stress; these relations are commonly called
+the Beltrami­Michell compatibility equations. For the case with no body forces, these relations can be
+expressed as the following six scalar equations
+
+                        ð1  þ           nÞV2sx     þ  v2     À     þ     sy   þ    Á   ¼   0
+                                                      vx2     sx                 sz
+
+                        ð1  þ           nÞV2sy     þ  v2     À     þ     sy   þ    Á   ¼   0
+                                                      vy2     sx                 sz
+
+                        ð1  þ           nÞV2sz     þ  v2     À     þ     sy  þ     Á   ¼   0
+                                                      vz2     sx                 sz
+
+                                                       v2    À                        Á                                (5.3.4)
+                                                      vxvy    sx                    sz
+                        ð1  þ           nÞV2sxy    þ                  þ  sy     þ          ¼  0
+
+                        ð1  þ           nÞV2syz    þ   v2    À        þ  sy   þ    sz  Á  ¼   0
+                                                      vyvz    sx
+
+                        ð1  þ           nÞV2szx    þ   v2    À        þ  sy   þ    sz  Á  ¼   0
+                                                      vzvx    sx
+102 CHAPTER 5 Formulation and Solution Strategies
+
+Recall that the six developed relations (5.3.3) or (5.3.4) actually represent three independent results as
+per our discussion in Section 2.6. Thus, combining these results with the three equilibrium equations
+(5.1.3) provides the necessary six relations to solve for the six unknown stress components for the
+general three-dimensional case.
+
+    This system constitutes the stress formulation for elasticity theory and is appropriate for use with
+traction boundary condition problems. Once the stresses have been determined, the strains may be
+found from Hooke's law (5.1.4)2, and the displacements can be then be computed through integration
+of (5.1.1). As per our previous discussion in Section 2.2, such an integration process determines the
+displacements only up to an arbitrary rigid-body motion, and the displacements obtained are single-
+valued only if the region under study is simply connected.
+
+    The system of equations for the stress formulation is still rather complex, and analytical solutions
+are commonly determined for this case by making use of stress functions. This concept establishes a
+representation for the stresses that automatically satisfies the equilibrium equations. For the two-
+dimensional case, this concept represents the in-plane stresses in terms of a single function. The
+representation satisfies equilibrium, and the remaining compatibility equations yield a single partial
+differential equation (biharmonic equation) in terms of the stress function. Having reduced the system
+to a single equation we can employ many analytical methods to find solutions of interest. Further
+discussion on these techniques is presented in subsequent chapters.
+
+5.4 Displacement formulation
+
+We now wish to develop the reduced set of field equations solely in terms of the displacements. This
+
+system is referred to as the displacement formulation and is most useful when combined with
+
+displacement-only boundary conditions found in the Problem 2 statement. This development is
+
+somewhat more straightforward than our previous discussion for the stress formulation. For this case,
+
+we wish to eliminate the strains and stresses from the fundamental system (5.1.5). This is easily
+
+accomplished by using the strain­displacement relations in Hooke's law to give
+
+                                                      À       Á
+           sij ¼ luk; kdij þ m ui; j þ uj; i                                      (5.4.1)
+
+which can be expressed as six scalar equations
+
+         vu þ vv þ vw                             vu
+         vx vy vz                                 vx
+sx ¼ l                          þ  2m
+
+         vu þ vv þ vw           þ 2m vv
+         vx vy vz                     vy
+sy ¼ l
+
+                                                                                  (5.4.2)
+
+sz ¼ l   vu þ vv þ vw           þ 2m vw
+         vx vy vz                      vz
+
+          vu þ vv                                 vv þ vw              vw þ vu  
+          vy vx                                   vz vy                vx vz
+sxy ¼ m            ;  syz ¼ m                              ;  szx ¼ m
+                                                          5.5 Principle of superposition 103
+
+Using these relations in the equilibrium equations gives the result
+
+mui; kk þ ðl þ mÞuk; ki þ Fi ¼ 0                                             (5.4.3)
+
+which is the equilibrium equations in terms of the displacements and is referred to as Navier's or
+Lame´ 's equations. This system can be expressed in vector form as
+
+mV2u þ ðl þ mÞVðV $ uÞ þ F ¼ 0                                               (5.4.4)
+
+or written out in terms of three scalar equations
+
+mV2u þ ðl þ mÞ v                                   vu þ vv þ vw  
+                    vx                             vx vy vz
+                                                                   þ Fx ¼ 0
+
+mV2v þ ðl þ mÞ v          vu                          vv     vw  
+                   vy     vx                          vy     vz
+                                                   þ      þ        þ Fy ¼ 0  (5.4.5)
+
+mV2w þ ðl þ mÞ v                                   vu þ vv þ vw  
+                    vz                             vx vy vz
+                                                                   þ Fz ¼ 0
+
+where the Laplacian is given by V2 ¼ (v2/vx2) þ (v2/vy2) þ (v2/vz2). It should be noted that for the case
+with no body forces, Navier's equations are expressible in terms of a single elastic constant (Poisson's
+ratio)dsee Exercise 5.10.
+
+    Navier's equations are the desired formulation for the displacement problem, and the system
+represents three equations for the three unknown displacement components. Similar to the stress
+formulation, this system is still difficult to solve, and additional mathematical techniques have been
+developed to further simplify these equations for problem solution. Common methods normally
+employ the use of displacement potential functions. It is shown in Chapter 13 that several such
+schemes can be developed that allow the displacement vector to be expressed in terms of particular
+potentials. These schemes generally simplify the problem by yielding uncoupled governing equa-
+tions in terms of the displacement potentials. This then allows several analytical methods to be
+employed to solve problems of interest. Several of these techniques are discussed in later sections of
+the text.
+
+    To help acquire a general understanding of these results, a summary flow chart of the developed
+stress and displacement formulations is shown in Figure 5.7. Note that for the stress formulation, the
+resulting system J(t){sij; l, m, Fi} is actually dependent on only the single material constant Poisson's
+ratio, and thus it could be expressed as J(t){sij; n, Fi}.
+
+5.5 Principle of superposition
+
+A very useful tool for the solution to many problems in engineering science is the principle of
+superposition. This technique applies to any problem that is governed by linear equations. Under the
+assumption of small deformations and linear elastic constitutive behavior, all elasticity field equations
+(see Figure 5.7) are linear. Furthermore, the usual boundary conditions specified by relations (5.2.1)
+and (5.2.2) are also linear. Thus, under these conditions all governing equations are linear, and the
+104 CHAPTER 5 Formulation and Solution Strategies
+
+FIGURE 5.7 Schematic of Elasticity Field Equations.
+
+superposition concept can be applied. It can be easily proved (see Chou and Pagano, 1967) that the
+general statement can be expressed as:
+
+    Principle of Superposition: For a given problem domain, if the state fsðij1Þ; eðij1Þ; uði1Þg is a solution
+    to the fundamental elasticity equations with prescribed body forces Fið1Þ and surface tractions Tið1Þ,
+    and the state fsðij2Þ; eðij2Þ; uði2Þg is a solution to the fundamental equations with prescribed body forces
+    Fið2Þ and surface tractions Tið2Þ, then the state fsðij1Þ þ sðij2Þ; eiðj1Þ þ eðij2Þ; uði1Þ þ uði2Þg will be a
+    solution to the problem with body forces Fið1Þ þ Fið2Þ and surface tractions Tið1Þ þ Tið2Þ:
+
+To see a more direct application of this principle, consider a simple two-dimensional case with no body
+forces as shown in Figure 5.8. It can be observed that the solution to the more complicated biaxial
+
+        (1) + (2)          =                           (1)                  +      (2)
+
+                                                   ij{ , e , u } (1) (1) (1)iji
+
+                                                                                        (2)
+{ +  , e + e , u + u } (1)(2)                                                  { , e , u } (2) (2)
+    (2) (1)  (2) (1)
+                                                                               ij  ij   i
+ij  ij  ij   ij    i  i
+
+FIGURE 5.8 Two-Dimensional Superposition Example.
+                                                             5.6 Saint-Venant's principle 105
+
+loading case (1) þ (2) is thus found by adding the two simpler problems. This is a common application
+of the superposition principle, and we make repeated use of it throughout the text. Thus, once the
+solutions to some simple problems are generated, we can combine these results to generate a solution
+to a more complicated case with similar geometry.
+
+5.6 Saint-Venant's principle
+
+Consider the set of three identical rectangular strips under compressive loadings as shown in
+Figure 5.9. As indicated, the only difference between each problem is the loading. Because the total
+resultant load applied to each problem is identical (statically equivalent loadings), it is expected that
+the resulting stress, strain, and displacement fields near the bottom of each strip would be approxi-
+mately the same.
+
+    This behavior can be generalized by considering an elastic solid with an arbitrary loading T(n) over
+a boundary portion S*, as shown in Figure 5.10. Based on experience from other field problems in
+engineering science, it seems logical that the particular boundary loading would produce detailed and
+
+                                                     PP      P PP
+
+                                            P        22      3 33
+
+                                            (1)         (2)  (3)
+
+FIGURE 5.9 Statically Equivalent Loadings.
+
+                                       FR        T (n)
+
+                                                 S*
+
+FIGURE 5.10 Saint-Venant's Principle.
+106 CHAPTER 5 Formulation and Solution Strategies
+
+characteristic effects only in the vicinity of S*. In other words, we expect that at points far away from
+S* the stresses generally depend more on the resultant FR of the tractions rather than on the exact
+distribution. Thus, the characteristic signature of the generated stress, strain, and displacement fields
+from a given boundary loading tend to disappear as we move away from the boundary loading points.
+These concepts form the principle of Saint-Venant, which can be stated as follows:
+
+    Saint-Venant's Principle: The stress, strain, and displacement fields caused by two different stati-
+    cally equivalent force distributions on parts of the body far away from the loading points are approx-
+    imately the same.
+
+This statement of the principle includes qualitative terms such as far away and approximately the
+same, and thus does not provide quantitative estimates of the differences between the two elastic fields
+in question. Quantitative results have been developed by von Mises (1945), Sternberg (1954), and
+Toupin (1965), while Horgan (1989) has presented a recent review of related work. Some of this work
+is summarized in Boresi and Chong (2010).
+
+    If we restrict our solution to points away from the boundary loading, Saint-Venant's principle will
+allows us to change the given boundary conditions to a simpler statically equivalent statement and not
+affect the resulting solution. For example, the fixed boundary condition in the tapered beam problem
+shown in Figure 5.4 could be replaced by a statically equivalent resultant force system of a zero
+horizontal load, a vertical force equal to Sl, and a resultant counterclockwise moment of Sl2/2. Such
+simplifications of boundary conditions will greatly increase our chances of finding analytical solutions
+to problems. This concept proves to be very useful for many beam and rod problems presented in
+Chapters 8 and 9, and some additional discussion will be given in the next section.
+
+    We close with a few comments of warning on using Saint-Venant's principle for structures that are
+not isotropic and homogeneous. Studies investigating elastic behaviors of anisotropic and inhomo-
+geneous materials have found that for certain cases routine application of Saint-Venant's principle is
+not justified. For example, Horgan (1982) has shown that rates of decay of end effects in anisotropic
+materials were found to be much slower when compared to isotropic solids. Thus, for anisotropic
+materials the characteristic decay length over which end effects are significant can be several times
+larger than for isotropic solids. The example problems shown in Section 11.7 illustrate some of these
+behaviors. Similar findings have also been presented for nonhomogeneous materials; see, for example,
+Chan and Horgan (1998).
+
+5.7 General solution strategies
+
+Having completed our formulation and related solution principles, we now wish to examine some
+general solution strategies commonly used to solve elasticity problems. At this stage we categorize
+particular methods and outline only typical techniques that are commonly used. As we move further
+along in the text, many of these methods are developed in detail and are applied in specific problem
+solution. We first distinguish three general methods of solution called direct, inverse, and semi-inverse.
+Then we briefly discuss analytical, approximate, and numerical solution procedures.
+
+5.7.1 Direct method
+
+This method seeks to determine the solution by direct integration of the field equations (5.1.5) or
+equivalently the stress and/or displacement formulations given in Figure 5.7. Boundary conditions are
+                                           5.7 General solution strategies 107
+
+to be satisfied exactly. This method normally encounters significant mathematical difficulties, thus
+limiting its application to problems with simple geometry.
+
+EXAMPLE 5.1: DIRECT INTEGRATIONdSTRETCHING OF PRISMATIC BAR UNDER ITS
+OWN WEIGHT
+As an example of a simple direct integration problem, consider the case of a uniform prismatic
+
+bar stretched by its own weight, as shown in Figure 5.11. The body forces for this problem are
+Fx ¼ Fy ¼ 0, Fz ¼ Àrg, where r is the material mass density and g is the acceleration of gravity.
+
+    Assuming that on each cross-section we have uniform tension produced by the weight of the
+
+lower portion of the bar, the stress field would take the form
+
+                 sx ¼ sy ¼ sxy ¼ syz ¼ szx ¼ 0                                   (5.7.1)
+
+The equilibrium equations reduce to the simple result
+
+                        vsz   ¼  À  Fz  ¼  rg                                    (5.7.2)
+                        vz
+
+    This equation can be integrated directly, and applying the boundary condition sz ¼ 0 at z ¼ 0 gives
+the result sz(z) ¼ rgz. Next, by using Hooke's law, the strains are easily calculated as
+
+                 ez  ¼  rgz;  ex  ¼  ey  ¼  À          nrgz                      (5.7.3)
+                         E                              E
+
+                 exy ¼ eyz ¼ exz ¼ 0
+
+    The displacements follow from integrating the strainedisplacement relations (5.1.1), and for the
+case with boundary conditions of zero displacement and rotation at point A (x ¼ y ¼ 0, z ¼ l), the
+
+final result is
+
+                 u ¼ À nrgxz; v ¼ À nrgyz
+                        E                              E
+                                                                                 (5.7.4)
+                 w ¼ rg Âz2 þ nÀx2 þ y2Á À l2Ã
+                       2E
+
+                                                                z
+                                                               A
+
+                                                                         l
+
+                                                                              y
+FIGURE 5.11 Prismatic Bar under Self-Weight.
+108 CHAPTER 5 Formulation and Solution Strategies
+
+                                                                     y
+                                                                                                  x
+
+FIGURE 5.12 Pure Bending Problem.
+
+5.7.2 Inverse method
+
+For this technique, particular displacements or stresses are selected that satisfy the basic field equa-
+tions. A search is then conducted to identify a specific problem that would be solved by this solution
+field. This amounts to determining appropriate problem geometry, boundary conditions, and body
+forces that would enable the solution to satisfy all conditions on the problem. Using this scheme it is
+sometimes difficult to construct solutions to a specific problem of practical interest.
+
+EXAMPLE 5.2: INVERSEdPURE BEAM BENDING
+Consider the case of an elasticity problem under zero body forces with the following stress field
+
+sx ¼ Ay; sy ¼ sz ¼ sxy ¼ syz ¼ szx ¼ 0                                                               (5.7.5)
+
+where A is a constant. It is easily shown that this simple linear stress field satisfies the equations of
+equilibrium and compatibility, and thus the field is a solution to an elasticity problem.
+
+    The question is, what problem would be solved by such a field? A common scheme to answer
+this question is to consider some trial domains and investigate the nature of the boundary conditions
+that would occur using the given stress field. Therefore, consider the two-dimensional rectangular
+domain shown in Figure 5.12. Using the field (5.7.5), the tractions (stresses) on each boundary face
+give rise to zero loadings on the top and bottom and a linear distribution of normal stresses on the
+right and left sides as shown. Clearly, this type of boundary loading is related to a pure bending
+problem, whereby the loadings on the right and left sides produce no net force and only a pure
+bending moment.
+
+5.7.3 Semi-inverse method
+
+In this scheme part of the displacement and/or stress field is specified, and the other remaining portion
+is determined by the fundamental field equations (normally using direct integration) and the boundary
+conditions. It is often the case that constructing appropriate displacement and/or stress solution fields
+can be guided by approximate strength of materials theory. The usefulness of this approach is greatly
+enhanced by employing Saint-Venant's principle, whereby a complicated boundary condition can be
+replaced by a simpler statically equivalent distribution.
+                    5.7 General solution strategies 109
+
+EXAMPLE 5.3: SEMI-INVERSEdTORSION OF PRISMATIC BARS
+A simple semi-inverse example may be borrowed from the torsion problem that is discussed in
+detail in Chapter 9. Skipping for now the developmental details, we propose the following displace-
+ment field
+
+u ¼ À ayz; v ¼ axz; w ¼ wðx; yÞ                                                  (5.7.6)
+
+where a is a constant. The assumed field specifies the x and y components of displacement, while
+the z component is left to be determined as a function of the indicated spatial variables. By using the
+strainedisplacement relations and Hooke's law, the stress field corresponding to (5.7.6) is given by
+
+sx ¼ sy ¼ sz ¼ sxy ¼ 0
+                    
+         vw
+sxz ¼ m  vx  À  ay                                                               (5.7.7)
+
+         vw þ ax    
+         vy
+syz ¼ m
+
+Using these stresses in the equations of equilibrium gives the following result
+
+v2w      þ  v2w  ¼  0                                                            (5.7.8)
+vx2         vy2
+
+which is actually the form of Navier's equations for this case. This result represents a single equa-
+tion (Laplace's equation) to determine the unknown part of the assumed solution form. It should be
+apparent that by assuming part of the solution field, the remaining equations to be solved are greatly
+simplified. A specific domain in the x, y plane along with appropriate boundary conditions is needed
+to complete the solution to a particular problem. Once this has been accomplished, the assumed
+solution form (5.7.6) has been shown to satisfy all the field equations of elasticity.
+
+There are numerous mathematical techniques used to solve the elasticity field equations. Many
+techniques involve the development of exact analytical solutions, while others involve the construction
+of approximate solution schemes. A third procedure involves the establishment of numerical solution
+methods. We now briefly provide an overview of each of these techniques.
+
+5.7.4 Analytical solution procedures
+
+A variety of analytical solution methods are used to solve the elasticity field equations. The following
+sections outline some of the more common methods.
+
+Power series method
+For many two-dimensional elasticity problems, the stress formulation leads to the use of a stress
+function f(x, y). It is shown that the entire set of field equations reduces to a single partial differential
+equation (biharmonic equation) in terms of this stress function. A general mathematical scheme to
+solve this equation is to look for solutions in terms of a power series in the independent variables, that
+110 CHAPTER 5 Formulation and Solution Strategies
+
+is, f(x, y) ¼ PCmnxmyn (see Neou, 1957). Use of the boundary conditions determines the coefficients
+and number of terms to be used in the series. This method is employed to develop two-dimensional
+solutions in Section 8.1.
+
+Fourier method
+A general scheme to solve a large variety of elasticity problems employs the Fourier method. This
+procedure is normally applied to the governing partial differential equations by using separation of
+variables, superposition, and Fourier series or Fourier integral theory. Although this is an ad hoc
+method, it has been shown to provide solutions to a large class of problems (see, for example, Pickett,
+1944; Little, 1973). We make use of this scheme for two-dimensional problem solution in Chapter 8,
+for a torsion problem in Chapter 9, and for several three-dimensional solutions in Chapter 13.
+
+Integral transform method
+A very useful mathematical technique to solve partial differential equations is the use of integral
+transforms. By applying a particular linear integral transformation to the governing equations, certain
+differential forms can be simplified or eliminated, thus allowing simple solution for the unknown
+transformed variables. Through appropriate inverse transformation, the original unknowns are
+retrieved, giving the required solution. Typical transforms that have been successfully applied to
+elasticity problems include Laplace, Fourier, and Hankel transforms. We do not make specific use of
+this technique in the text, but example applications can be found in Sneddon (1978) and Sneddon and
+Lowengrub (1969).
+
+Complex variable method
+Several classes of problems in elasticity can be formulated in terms of functions of a complex variable.
+These include two-dimensional plane problems, the torsion problem, and some particular thermoelastic
+cases. The complex variable formulation is very powerful and useful because many solutions can be
+found that would be intractable by other techniques. Most of the original development of this method
+was done by a series of Russian elasticians and is summarized in the classic work of Muskhelishvili
+(1963). Chapter 10 formally develops this technique and employs the method to construct several
+solutions for plane isotropic elasticity problems. We also use the method in Chapter 11 to determine
+solutions of plane anisotropic problems and in Chapter 12 for some thermoelastic applications.
+
+5.7.5 Approximate solution procedures
+
+With the recognized difficulty in finding exact analytical solutions, considerable work has been done to
+develop approximate solutions to elasticity problems. Much of this work has been in the area of
+variational methods, which are related to energy theorems (see Chapter 6). The principal idea of this
+approach is the connection of the elasticity field equations with a variational problem of finding an
+extremum of a particular integral functional. One specific technique is outlined in the following
+section.
+
+Ritz method
+This scheme employs a set of approximating functions to solve elasticity problems by determining
+stationary values of a particular energy integral. The set of approximating functions is chosen to satisfy
+the boundary conditions on the problem, but only approximately make the energy integral take on an
+                                                              5.7 General solution strategies 111
+
+extremum. By including more terms in the approximating solution set, accuracy of the scheme is
+improved. Specific examples of this and related methods can be found in Reismann and Pawlik (1980),
+Reddy (1984), and Mura and Koya (1992). Because of the difficulty in finding proper approximating
+functions for problems of complex geometry, variational techniques have made only limited contri-
+butions to the solution of general problems. However, they have made very important applications in
+the finite element method.
+
+5.7.6 Numerical solution procedures
+
+Over the past several decades numerical methods have played a primary role in developing solutions to
+elasticity problems of complex geometry. Various schemes have been theoretically developed, and
+numerous private and commercial codes have been written for implementation on a variety of com-
+puter platforms. Several of the more important methods are briefly discussed here.
+
+Finite difference method
+The finite difference method (FDM) replaces derivatives in the governing field equations by difference
+quotients, which involve values of the solution at discrete mesh points in the domain under study.
+Repeated applications of this representation set up algebraic systems of equations in terms of unknown
+mesh point values. The method is a classical one, having been established almost a century ago, and
+Timoshenko and Goodier (1970) provide some details on its applications in elasticity. The major
+difficulty with this scheme lies in the inaccuracies in dealing with regions of complex shape, although
+this problem can be eliminated through the use of coordinate transformation techniques.
+
+Finite element method
+The fundamental concept of the finite element method (FEM) lies in dividing the body under study into
+a finite number of pieces (subdomains) called elements. Particular assumptions are then made on the
+variation of the unknown dependent variable(s) across each element using so-called interpolation or
+shape functions. This approximated variation is quantified in terms of solution values at special
+locations within the element called nodes. Through this discretization process, the method sets up an
+algebraic system of equations for unknown nodal values that approximates the continuous solution.
+Because element size and shape are variable, the finite element method can handle problem domains of
+complicated shape, and thus it has become a very useful and practical tool (see Reddy, 2006). We
+briefly present an introduction to finite element methods in Chapter 16.
+
+Boundary element method
+The boundary element method (BEM) is based upon an integral statement of the governing equations
+of elasticity. The integral statement may be cast into a form that contains unknowns only over the
+boundary of the body domain. This boundary integral equation may then be solved by using concepts
+from the finite element method; that is, the boundary may be discretized into a number of elements and
+the interpolation approximation concept can then be applied. This method again produces an algebraic
+system of equations to solve for the unknown boundary nodal values, and the system is generally much
+smaller than that generated by internal discretization such as the finite element method. By avoiding
+interior discretization, the boundary element method has significant advantages over finite element
+schemes for infinite or very large domains and for cases in which only boundary information is sought
+(see Brebbia and Dominguez, 1992). A brief discussion of this technique is given in Chapter 16.
+112 CHAPTER 5 Formulation and Solution Strategies
+
+    The previously mentioned numerical schemes are generally based on various discretization and
+approximation concepts, and ultimately require computers to carry out the very extensive computa-
+tions necessary for problem solution. With the rapid development of computational methods involving
+symbolic manipulation, there has been a new trend in engineering analysis that has included elasticity.
+Using such computer tools, many analytical schemes and evaluations that had been previously
+abandoned because of their impractical algebraic complexity are now being evaluated using symbolic
+codes such as Maple or Mathematica. Such an approach is especially interesting, since it incorporates
+the fundamentals connected with exact closed-form analytical solutions and allows direct determi-
+nation of solution details without having to resort to any further approximations or special limiting
+cases as was often done. Examples of such work can be found in Rand and Rovenski (2005), Con-
+stantinescu and Korsunsky (2007), and Barber (2010). Currently we will not pursue these solution
+techniques in the text.
+
+    Elasticity is a mature field and thus analytical solutions have been developed for a large number of
+problems. Kachanov, Shafiro, and Tsukrov (2003) have published an interesting compilation handbook
+of elasticity solutions collected from textbooks and journal articles.
+
+References
+
+Barber JR: Elasticity, ed 3, Dordrecht, 2010, Springer.
+Boresi AP, Chong KP: Elasticity in Engineering Mechanics, ed 3, New York, 2010, Wiley.
+Brebbia CA, Dominguez J: Boundary Elements: An Introductory Course, ed 2, Boston, 1992, Computational
+
+     Mechanics Publications.
+Chan MM, Horgan CO: End effects in anti-plane shear for an inhomogeneous isotropic linear elastic semi-infinite
+
+     strip, J Elasticity vol 51:227­242, 1998.
+Chou PC, Pagano NJ: Elasticity Tensor, Dyadic and Engineering Approaches, Princeton, NJ, 1967, D. Van
+
+     Nostrand.
+Constantinescu A, Korsunsky A: Elasticity with Mathematica, Cambridge, UK, 2007, Cambridge University
+
+     Press.
+Horgan CO: Saint-Venant end effects in composites, J Comp Mater 16:411­422, 1982.
+Horgan CO: Recent developments concerning Saint-Venant's principle: An update, Appl Mech Rev 42:295­302,
+
+     1989.
+Kachanov M, Shafiro B, Tsukrov I: Handbook of Elasticity Solutions, Dordrecht, Netherlands, 2003, Kluwer.
+Little RW: Elasticity, Englewood Cliffs, NJ, 1973, Prentice Hall.
+Mura T, Koya T: Variational Methods in Mechanics, New York, 1992, Oxford University Press.
+Muskhelishvili NI: Some Basic Problems of the Theory of Elasticity, trans, Groningen, Netherlands, 1963, JRM
+
+     Radok, P Noordhoff.
+Neou CY: Direct method for determining Airy polynomial stress functions, J Appl Mech 24:387­390, 1957.
+Parameswaran V, Shukla A: Crack-tip stress fields for dynamic fracture in functionally gradient materials, Mech
+
+     Mater 31:579­596, 1999.
+Pickett G: Application of the Fourier method to the solution of certain boundary problems in the theory of
+
+     elasticity, J Appl Mech 11:176­182, 1944.
+Rand O, Rovenski V: Analytical Methods in Anisotropic Elasticity, Boston, 2005, Birkhauser.
+Reddy JN: Energy and Variational Methods in Applied Mechanics, New York, 1984, Wiley.
+Reddy JN: An Introduction to the Finite Element Method, New York, 2006, McGraw-Hill.
+Reismann H, Pawlik PS: Elasticity Theory and Applications, New York, 1980, Wiley.
+                                                                                Exercises 113
+
+Sneddon IN: Applications of Integral Transforms in the Theory of Elasticity, New York, 1978, Springer-Verlag.
+Sneddon IN, Lowengrub M: Crack Problems in the Mathematical Theory of Elasticity, New York, 1969, Wiley.
+Sternberg E: On Saint-Venant's principle, Quart J Appl Math 11:393­402, 1954.
+Timoshenko SP, Goodier JN: Theory of Elasticity, New York, 1970, McGraw-Hill.
+Toupin RA: Saint-Venant's principle, Arch Rat Mech Anal 18:83­96, 1965.
+Von Mises R: On Saint-Venant's principle, Bull Am Math Soc 51:555­562, 1945.
+
+EXERCISES
+
+   5.1 Using Cartesian coordinates, express all boundary conditions for each of the illustrated
+         problems.
+
+                                      y
+                                            S
+
+            y
+                       p
+
+40°
+
+                                      h
+
+      b
+
+                  a             x           w                             x
+
+                  (a)                       (b)
+
+y
+
+                             x     y
+
+                                            T
+
+         l 30°
+
+                                   h                                            x
+
+                                                   h
+                                                                       l
+
+              P
+
+             (c)                           (d)
+   y p = kx                              y
+
+                                             Ny
+
+   b                                  Nx h
+
+         a                x
+
+                                               w                             x
+
+         (e)                                (f )
+114 CHAPTER 5 Formulation and Solution Strategies
+
+5.2 Using polar coordinates, express all boundary conditions for each of the illustrated problems.
+
+                                    p2                                          p
+
+                             r1                                     
+                 p1                                                r
+                                                           a
+                                                                 b
+
+                      r2
+
+Rigid            (a)                                       (b)
+Material              p
+                                                           N
+                     r1                                                    
+                         r2
+                                                           r
+                                                                           
+
+                                                               S
+
+                 (c)                                       (d)
+
+5.3 The tapered cantilever beam shown in the following figure is to have zero tractions on the
+
+bottom inclined surface. As discussed in the text (see Figure 5.4), this may be specified by
+requiring TxðnÞ ¼ TyðnÞ ¼ 0: This condition can
+normal and tangential to the boundary surface    also be   expressed  in  terms of components
+                                                 as TnðnÞ  ¼ TsðnÞ ¼  0;  thus implying that the
+
+normal and shearing stress on this surface should vanish. Show that these two specifications
+
+are equivalent.
+
+                 y
+                                                                x
+
+                                              
+                                              s
+
+                                            n
+                                                      Exercises 115
+
+5.4 The following two-dimensional problems all have mixed boundary conditions involving both
+      traction and displacement specifications. Using various field equations, formulate all
+      boundary conditions for each problem solely in terms of displacements.
+
+y
+
+                S        y
+
+      a                               S            x
+
+                                 a
+
+   a
+
+                   x
+
+      (a)                        (b)
+
+5.5 For problems involving composite bodies composed of two or more materials, the elasticity
+      solution requires both boundary conditions and interface conditions between each material
+      system. The solution process is then developed independently for each material by satisfying
+      how the various material parts are held together. The composite bodies shown are composed
+      of two different materials, (1) and (2), that are perfectly bonded thereby requiring
+      displacement and stress continuity across the interface. Establish the required boundary and
+      interface conditions for each problem.
+
+                                                                                                 p
+
+y               S                     r1      (2)
+     (2) a
+     (1)        h2          (1)
+
+           (a)  h1                        r2
+                      x
+
+                                 (b)
+
+5.6 Solve Exercise 5.5 using slip interface conditions, where the normal components of
+      displacement and traction are continuous, the tangential traction vanishes, and the tangential
+      displacement can be discontinuous.
+
+5.7 As mentioned in Section 5.6, Saint-Venant's principle will allow particular boundary con-
+      ditions to be replaced by their statically equivalent resultant. For problems (b), (c), (d), and (f)
+      in Exercise 5.1, the support boundaries that had fixed displacement conditions can be
+      modified to specify the statically equivalent reaction force and moment loadings. For each
+      case, determine these reaction loadings and then relate them to particular integrals of the
+      tractions over the appropriate boundary.
+116 CHAPTER 5 Formulation and Solution Strategies
+
+5.8 Go through the details and explicitly develop the BeltramieMichell compatibility equations
+      (5.3.3).
+
+5.9 For the displacement formulation, use relations (5.4.1) in the equilibrium equations and
+      develop the Navier equations (5.4.3).
+
+5.10 For the general displacement formulation with no body forces, show that Navier's equations
+
+(5.4.3) reduce to the form                     1
+                                              À 2n uk;ki
+                                ui;kk   þ  1              ¼  0
+
+and thus the field equation formulation will now only depend on the single elastic constant,
+Poisson's ratio. For the case with only displacement boundary conditions, this fact would
+imply that the solution would also only depend on Poisson's ratio.
+
+5.11 Carry out the integration details to develop the displacements (5.7.4) in Example 5.1.
+
+5.12 Using the inverse method, investigate which problem can be solved by the two-dimensional
+        stress distribution sx ¼ Axy, sxy ¼ B þ Cy2, sy ¼ 0, where A, B, and C are constants. First
+        show that the proposed stress field (with zero body force) satisfies the stress formulation field
+        equations under the condition that C ¼ ÀA/2. Note that for this two-dimensional plane stress
+        case, the BeltramieMichell compatibility equations reduce to the form given by (7.2.7). Next
+        choose a rectangular domain 0 x l and Àh y h, with l [ h, and investigate the
+        interior and boundary stresses. Finally use strength of materials theory to show that these
+
+        stresses could represent the solution to a cantilever beam under end loading. Explicitly
+
+        determine the required constants A, B, and C to solve the beam problem.
+
+5.13 Show that the following stress components satisfy the equations of equilibrium with zero
+
+body forces, but are not the solution to a problem in elasticity
+
+                            sx  ¼  cÂy2  þ    nÀx2  À  y2ÁÃ
+                            sy  ¼  cÂx2  þ    nÀy2  À  x2ÁÃ
+
+                                     À           Á
+                            sz ¼ cn x2 þ y2
+
+                            sxy ¼ À2cnxy
+
+                            syz ¼ szx ¼ 0; c ¼ constant s 0
+
+5.14* Consider the problem of a concentrated force acting normal to the free surface of a semi-
+         infinite solid as shown in case (a) of the following figure. The two-dimensional stress field for
+         this problem is given by equations (8.4.36) as
+
+                                   sx   ¼  À     2Px2y
+                                              pðx2 þ y2Þ2
+
+                                   sy   ¼  À      2Py3
+                                              pðx2 þ y2Þ2
+
+                                   sxy  ¼  À     2Pxy2
+                                              pðx2 þ y2Þ2
+                                                                   Exercises 117
+
+Using this solution with the method of superposition, solve the problem with two concentrated
+
+forces as shown in case (b). Because problems (a) and (b) have the same resultant boundary
+
+loading, explicitly show that at distances far away from the loading points the stress fields for
+each case give approximately the same values. Explicitly plot and compare sy and sxy for each
+problem on the surface y ¼ 10a and y ¼ 100a (see Figure 8.20).
+
+                                                        P/ 2 P/ 2
+   P
+
+                                                              a
+
+x         x
+
+       y         y
+   (a)       (b)
+

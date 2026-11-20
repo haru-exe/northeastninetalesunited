@@ -1,0 +1,900 @@
+Two-Dimensional Formulation                                                                               CHAPTER
+
+                                                                                                          7
+
+Because of the complexity of the elasticity field equations, analytical closed-form solutions to fully
+three-dimensional problems are very difficult to accomplish. Thus, most solutions are developed for
+reduced problems that typically include axisymmetry or two-dimensionality to simplify particular
+aspects of the formulation and solution. We now wish to examine in detail the formulation of two-
+dimensional problems in elasticity. Our initial formulation will result in a boundary-value problem
+cast within a two-dimensional domain in the x,y-plane using Cartesian coordinates. This work will
+then be reformulated in polar coordinates to allow for the development of important solutions in that
+coordinate system. Because all real elastic structures are three-dimensional, the theories set forth here
+will be approximate models. The nature and accuracy of the approximation depends on problem and
+loading geometry. Although four different formulations are developed, the two basic theories of plane
+strain and plane stress represent the fundamental plane problem in elasticity. These two theories apply
+to significantly different types of two-dimensional bodies; however, their formulations yield very
+similar field equations. It will be shown that these two theories can be reduced to one governing
+equation in terms of a single unknown stress function. This reduction then allows many solutions to be
+generated to problems of engineering interest, and such solutions are presented in the following
+chapter. A detailed account of the history and development of plane elasticity theory has been given by
+Teodorescu (1964).
+
+7.1 Plane strain
+
+Consider an infinitely long cylindrical (prismatic) body shown in Figure 7.1. If the body forces and
+tractions on the lateral boundaries are independent of the z-coordinate and have no z component, then
+the deformation field within the body can be taken in the reduced form
+
+                      u ¼ uðx; yÞ; v ¼ vðx; yÞ; w ¼ 0                                                     (7.1.1)
+
+This deformation is referred to as a state of plane strain in the x,y-plane. It should be obvious that for
+such a case all cross-sections R will have identical displacements, and thus the three-dimensional
+problem is reduced to a two-dimensional formulation in region R in the x,y-plane.
+
+    Using the strain­displacement relations (2.2.5), the strains corresponding to this plane problem
+
+become
+
+                         vu                                              vv             1    vu     vv  
+                         vx                                              vy             2    vy     vx
+                  ex  ¼      ;                                    ey  ¼      ;  exy  ¼           þ        (7.1.2)
+
+                                                                  ez ¼ exz ¼ eyz ¼ 0
+
+Elasticity. http://dx.doi.org/10.1016/B978-0-12-408136-9.00007-6                                          141
+Copyright © 2014 Elsevier Inc. All rights reserved.
+142 CHAPTER 7 Two-Dimensional Formulation
+
+FIGURE 7.1 Long Cylindrical Body Representing Plane Strain Conditions.
+
+From the isotropic form of Hooke's law (4.2.8), the allowable stresses reduce to
+
+               À          Á
+     sx ¼ lÀex þ eyÁ þ 2mex
+     sy ¼ lÀex þ eyÁ þ 2mÀ ey
+     sz ¼ l ex þ ey ¼ v sx þ sy               Á                                   (7.1.3)
+
+     sxy ¼ 2mexy; sxz ¼ syz ¼ 0
+
+Note that the second expression for sz has used the first two relations of (7.1.3) to write sz in terms of
+the in-plane stress components. Thus, once sx and sy are determined, sz is easily found from Hooke's
+law. For this case, although ez ¼ 0, the corresponding normal stress sz will not in general vanish. It
+should be recognized that all strain and stress components will be functions of only the in-plane
+
+coordinates x and y.
+
+    For plane strain, the equilibrium equations (3.6.5) reduce to
+
+           vsx    þ   vsxy  þ   Fx  ¼      0
+           vx          vy
+                                                                                  (7.1.4)
+           vsxy       vsy
+            vx    þ   vy    þ   Fy  ¼      0
+
+where the third equation will vanish identically. Using relations (7.1.2) and (7.1.3), the equilibrium
+
+relations can be expressed in terms of displacement, yielding Navier equations
+
+                      v     vu      vv     
+                      vx    vx      vy
+mV2  u  þ  ðl  þ  mÞ            þ             þ Fx ¼ 0
+
+                      v     vu      vv                                            (7.1.5)
+                      vy    vx      vy
+mV2  v  þ  ðl  þ  mÞ            þ             þ Fy ¼ 0
+
+where V2 is the two-dimensional Laplacian operator V2 ¼ (v2/vx2) þ (v2/vy2).
+                                                                                           7.1 Plane strain 143
+
+With regard to strain compatibility for plane strain, the Saint-Venant relations (2.6.2) reduce to
+
+         v2ex    þ  v2ey    ¼                                           2  v2exy               (7.1.6)
+         vy2        vx2                                                    vxvy
+
+Expressing this relation in terms of stress gives the corresponding Beltrami­Michell equation
+
+V2  À    þ    Á  ¼  À    1  1                                                     þ            (7.1.7)
+     sx     sy              À       vFx                                              vFy
+                                                                                     vy
+                                n vx
+
+Thus, the plane strain problem is formulated in the two-dimensional region R with boundary S as
+shown in Figure 7.2. The displacement formulation is given by relations (7.1.5) with boundary
+conditions
+
+    u ¼ ubðx; yÞ; v ¼ vbðx; yÞ on S                                                            (7.1.8)
+
+while the stress or traction formulation includes field relations (7.1.4) and (7.1.7) with boundary
+conditions
+
+Txn ¼ TxðbÞðx; yÞ ¼ sðxbÞnx þ sðxbyÞny                                                         (7.1.9)
+Tyn ¼ TyðbÞðx; yÞ ¼ sðxbyÞnx þ sðybÞny on S
+
+Note that from our initial assumptions for plane strain, Tzn ¼ 0. The solution to the plane strain
+problem involves the determination of the in-plane displacements, strains, and stresses {u, v, ex, ey , exy,
+sx, sy, sxy} in R. The out-of-plane stress sz can be determined from the in-plane stresses by using
+relation (7.1.3)3. This then completes our formulation of plane strain.
+
+    Before moving on to another case, let us consider the situation in which the cylindrical body in
+
+Figure 7.1 is now of finite length. First consider the situation in which the body has fixed and fric-
+tionless ends at say (z ¼ Æl ). This case leads to end conditions
+
+wðx; y; ÆlÞ ¼ 0; sxzðx; y; ÆlÞ ¼ syzðx; y; ÆlÞ ¼ 0
+
+But these conditions are identically satisfied by the original plane strain formulation, and thus the
+original formulation also satisfies this finite length problem. Note that the restraining forces at the ends
+
+                            Si                                                    So
+
+    y                                                                      R
+
+            S = Si + So
+
+                                                                     x
+FIGURE 7.2 Typical Domain for the Plane Elasticity Problem.
+144 CHAPTER 7 Two-Dimensional Formulation
+
+can be determined by integrating sz over the cross-section R. Although this specific problem has
+limited practical applications, the solution can be applied in an approximate sense for a long cylinder
+with any end conditions using Saint-Venant's principle.
+
+    If we wish to find the solution to a long but finite cylindrical body with no end tractions, a corrective
+solution must be added to the usual plane strain solution to remove the unwanted end loadings. Such a
+corrective solution must have zero tractions on the lateral sides of the body and prescribed end
+tractions equal but opposite to that obtained from the plane strain solution. Finding such a corrective
+solution to satisfy exact pointwise traction conditions on the ends is normally quite difficult.
+Commonly the Saint-Venant principle is invoked and the exact conditions are replaced by a simpler,
+statically equivalent distribution. Exercise 7.4 considers a specific problem of this type.
+
+7.2 Plane stress
+
+The second type of two-dimensional theory applies to domains bounded by two parallel planes separated
+by a distance that is small in comparison to other dimensions in the problem. Again, choosing the x,
+y-plane to describe the problem, the domain is bounded by two planes z ¼ Æh, as shown in Figure 7.3.
+The theory further assumes that these planes are stress free, and thus sz ¼ sxz ¼ syz ¼ 0 on each
+face. Because the region is thin in the z direction, there can be little variation in these stress com-
+ponents through the thickness, and thus they will be approximately zero throughout the entire domain.
+Finally, because the region is thin in the z direction it can be argued that the other nonzero stress
+components will have little variation with z. These arguments can then be summarized by the stress
+state
+
+sx ¼ sxðx; yÞ; sy ¼ syðx; yÞ; sxy ¼ sxyðx; yÞ; sz ¼ sxz ¼ syz ¼ 0                          (7.2.1)
+
+and this form constitutes a state of plane stress in an elastic solid. In order to maintain a stress field
+independent of z, there can be no body forces or surface tractions in the z direction. Furthermore, the
+nonzero body forces and tractions must be independent of z or distributed symmetrically about the
+midplane through the thickness, thus allowing average values to be used. Therefore, plane stress
+problems may be thought of as in-plane deformation of thin elastic plates.
+
+                  y
+
+                                           2h
+
+                                                                      R
+                                                      z
+
+                                                                                        x
+
+FIGURE 7.3 Thin Elastic Plate Representing Plane Stress Conditions.
+                                                            7.2 Plane stress 145
+
+Using the simplified plane stress state, the corresponding strain field follows from Hooke's law
+
+ex   ¼  1  À     À       Á
+        E   sx       nsy
+
+ey   ¼  1  À     À       Á
+        E   sy       nsx
+
+           n  À           Á             n      À         Á  (7.2.2)
+           E   sx       sy              À       ex     ey
+ez   ¼  À           þ          ¼  À  1      n       þ
+
+exy  ¼  1  þ  v  sxy;   exz ¼ eyz ¼ 0
+           E
+
+Similar to the previous plane strain theory, the second expression for ez has used the first two relations
+of (7.2.2) to write the out-of-plane strain in terms of in-plane components. Note that although ez ¼ 0 for
+plane strain, it will not in general vanish for plane stress. It should be apparent from (7.2.2) that all
+strains will be independent of z. Relations (7.2.2) can be inverted to express the stresses in terms of the
+strains (see Exercise 7.6).
+
+    The strain­displacement equations for plane stress reduce to
+
+        ex   ¼   vu  ;  ey  ¼  vv  ;    ez  ¼  vw
+                 vx            vy              vz
+
+                 1      vu     vv  
+                 2      vy     vx
+        exy  ¼              þ
+
+                                                            (7.2.3)
+
+        eyz  ¼   1      vv  þ  vw     ¼0
+                 2      vz     vy
+
+                 1      vu     vw  
+                 2      vz     vx
+        exz  ¼              þ         ¼0
+
+The relations involving the three out-of-plane strains ez, exz, and eyz produce some unwanted
+results. For example, the last two relations of (7.2.3) imply that the in-plane displacements u and v
+are functions of z, thus making the theory three-dimensional. Likewise, the relation for ez when
+viewed with equation (7.2.2)3 implies that w is a linear function of z. Exercise 7.8 investigates these
+issues in more detail, and further discussion is given in Timoshenko and Goodier (1970), Article 98.
+Normally, these results are not used in the theory and this leads to an approximation in the
+formulation.
+
+    Under plane stress conditions, the equilibrium equations reduce to the identical form as in plane
+strain theory
+
+              vsx    þ  vsxy   þ   Fx   ¼   0
+              vx         vy
+                                                            (7.2.4)
+              vsxy      vsy
+               vx    þ  vy     þ   Fy   ¼   0
+146 CHAPTER 7 Two-Dimensional Formulation
+
+where Fx and Fy are functions of x and y and Fz ¼ 0. Expressing these equilibrium equations in terms of
+
+the displacements yields the Navier equations for plane stress
+
+             E        v     vu      vv     
+         2ð1 À        vx    vx      vy
+mV2u  þ           nÞ            þ            þ Fx ¼ 0
+
+                                                                                               (7.2.5)
+
+mV2n  þ      E    nÞ  v     vu  þ   vv       þ Fy ¼ 0
+         2ð1 À        vy    vx      vy
+
+Notice that the corresponding system for plane strain (7.1.5) is similar but not identical to this plane
+stress result.
+
+    To develop the plane stress reduction in the compatibility relations (2.6.2), the three relations
+involving the out-of-plane strain component ez are commonly neglected. This again brings out the
+approximate nature of the plane stress formulation. The neglected compatibility relations are further
+examined in Exercise 7.9. Under these conditions, the only remaining compatibility relation for plane
+stress is identical to that found in plane strain
+
+            v2ex  þ   v2ey  ¼   2   v2exy                                                      (7.2.6)
+            vy2       vx2           vxvy
+
+Expressing this relation in terms of stress gives the corresponding Beltrami­Michell equation
+
+V2Àsx         Á                     vFx                             
+            sy                      vx                          vFy
+         þ        ¼   Àð1   þ   nÞ           þ                  vy                             (7.2.7)
+
+Notice that this result is again similar but not identical to the corresponding plane strain relation.
+    Similar to plane strain, the plane stress problem is formulated in the two-dimensional region R with
+
+boundary S (see Figure 7.2). The displacement formulation is specified by the governing Navier
+relations (7.2.5) with boundary conditions of the form given by equations (7.1.8). The stress or traction
+formulation includes the governing equations (7.2.4) and (7.2.7) with boundary conditions of the form
+(7.1.9). The solution to the plane stress problem then involves the determination of the in-plane dis-
+placements, strains, and stresses {u, v, ex, ey , exy , sx, sy , sxy} in R. The out-of-plane strain ez can be
+determined from the in-plane strains by using relation (7.2.2)3. This completes our formulation of
+plane stress.
+
+    In following the formulation developments of plane strain and plane stress, it should be
+apparent that although unfortunately the two theories do not have identical governing equations,
+many relations are quite similar. Note that each theory has identical equilibrium equations (7.1.4)
+and (7.2.4) and boundary condition specifications. Furthermore, each theory has similar Navier
+equations (7.1.5) and (7.2.5) and compatibility relations (7.1.7) and (7.2.7). Focusing attention on
+these similar relations, it is observed that the basic difference between these equations is simply
+some coefficients involving the elastic material constants. This leads to the idea that perhaps a
+simple change in elastic moduli would bring one set of relations into an exact match with the
+corresponding result from the other plane theory. This in fact is the case, and it is easily shown that
+through transformation of the elastic moduli E and n, as specified in Table 7.1, all plane stress
+problems can be transformed into the corresponding plane strain model and vice versa. Thus, solving
+one type of plane problem automatically gives the other solution through a simple transformation of
+                                                     7.3 Generalized plane stress 147
+
+Table 7.1 Elastic Moduli Transformation Relations for Conversion
+Between Plane Stress and Plane Strain Problems
+
+                                                     E                     n
+
+Plane stress to plane strain                            E                    n
+                                                     1 À n2                1Àn
+
+Plane strain to plane stress                         Eð1 þ 2nÞ               n
+                                                      ð1 þ nÞ2             1þn
+
+elastic moduli in the final answer. It should be noted that for the particular value of Poisson's ratio
+n ¼ 0, plane strain and plane stress solutions will be identical.
+
+7.3 Generalized plane stress
+
+Recall that the approximate nature of the plane stress formulation produced some inconsistencies, in
+particular out-of-plane behavior, and this resulted in some three-dimensional effects in which the in-
+plane displacements were functions of z. In order to avoid this situation, elasticians have developed an
+alternate approach commonly referred to as generalized plane stress. This theory is based on aver-
+aging the field quantities through the thickness of the domain shown in Figure 7.3. The averaging
+operator is defined by
+
+                         4ðx; yÞ ¼ 1 ðh 4ðx; y; zÞdz                            (7.3.1)
+                                     2h Àh
+
+and it is noted that this operation removes the z dependency from the function. We again assume that h
+
+is much smaller than other dimensions associated with the problem.
+
+The tractions on surfaces z ¼ Æh are again taken to be zero, while the loadings on the edge of the
+
+plate have no z component and are either independent of z or are symmetrically distributed through the
+
+thickness. Likewise, any body forces cannot have a z component and they must also be either inde-
+
+pendent of z or symmetrically distributed through the thickness. Under these assumptions, the out-of-
+
+plane displacement will be an odd function of z, implying w(x,y,z) ¼ Àw(x,y,Àz), and points on the
+
+middle plane will have no z displacement; that is, w(x,y,0) ¼ 0. These conditions imply that the average
+
+value of w will be zero
+
+                         w ¼ 1 ðh wðx; y; zÞdz ¼ 0                              (7.3.2)
+                               2h Àh
+
+The assumed tractions on z ¼ Æh can be expressed as
+
+                         szðx; y; ÆhÞ ¼ sxzðx; y; ÆhÞ ¼ syzðx; y; ÆhÞ ¼ 0       (7.3.3)
+148 CHAPTER 7 Two-Dimensional Formulation
+
+The equilibrium equation in the z direction becomes
+
+                                          vsxz  þ  vsyz   þ  vsz   ¼  0
+                                           vx       vy       vz
+
+Evaluating this relation at z ¼ Æh and using (7.3.3) drops the first two derivatives and gives
+
+                                            vszðx; y;    ÆhÞ  ¼    0
+                                                  vz
+
+Thus, both sz and its normal derivative vanish at z ¼ Æh. A simple Taylor series expansion of sz
+through the thickness would then imply that this stress is of order h2, and this further justifies the
+assumption that sz vanishes throughout the interior of the thin plate.
+
+    If we now take the average value of all remaining field equations, the resulting system is given by
+
+     u ¼ uðx; yÞ; v ¼ vðx; yÞ; w ¼ 0
+
+sz ¼ sxz ¼ syz ¼ 0
+                                       lÃÀex          Á
+sx       ¼                                      þ   ey    þ  2mex
+                                       lÃÀex          Á
+sy       ¼                                      þ   ey    þ  2mey                               (7.3.4)
+                                                                                                (7.3.5)
+sxy ¼ 2mexy
+
+     ez  ¼                             Àl    l      À     þ     Á
+                                            þ 2m     ex       ey
+
+where lÃ ¼ ðl 2þlm2mÞ: The equilibrium equations become
+
+                                          vsx   þ   vsxy  þ  Fx   ¼   0
+                                          vx         vy
+
+                                          vsxy  þ   vsy   þ  Fy   ¼   0
+                                           vx       vy
+
+and written in terms of displacements
+
+                                                    v     vu      vv  
+                                                    vx    vx      vy
+mV2  u  þ                              ðlÃ  þ   mÞ            þ          þ Fx ¼ 0
+
+                                                    v     vu      vv                            (7.3.6)
+                                                    vy    vx      vy
+mV2  v  þ   ðlÃ                             þ   mÞ            þ          þ Fy ¼ 0
+
+Note the coefficient lÃ þ m ¼ E/2(1 À n). Finally, in terms of the averaged variables, all compatibility
+
+relations reduce to the single statement                                        
+                                                                    vFx     vFy
+V2Àsx    þ                               Á  ¼   À   2ðlÃ þ mÞ        vx  þ  vy                  (7.3.7)
+                                       sy            lÃ þ 2m
+
+and again the coefficient reduces as 2(lÃ þ m)/(lÃ þ 2m) ¼ 1 þ n. It is then evident that generalized
+plane stress relations (7.3.4)­(7.3.7) in terms of the averaged values are the same as the original plane
+stress results in terms of the actual values.
+                                                                             7.4 Antiplane strain 149
+
+    The only advantage of pursuing the generalized plane stress formulation lies in the fact that all
+equations are satisfied exactly by these average variables, thereby eliminating the inconsistencies
+found in the previous plane stress formulation. However, this gain in rigor does not generally
+contribute much to applications, and thus we normally use only the plane strain and plane stress
+formulations from Sections 7.1 and 7.2.
+
+7.4 Antiplane strain
+
+One additional plane theory of elasticity involves a formulation based on the existence of only out-of-
+plane deformation. This theory is sometimes used in geomechanics applications to model de-
+formations of portions of the earth's interior. The formulation begins with the assumed displacement
+field
+
+                                              u ¼ v ¼ 0; w ¼ wðx; yÞ             (7.4.1)
+For such a system of displacements, the strain field becomes
+
+                                      ex ¼ ey ¼ ez ¼ exy ¼ 0
+
+                                           ¼  1  vw  ;       ¼  1  vw            (7.4.2)
+                                              2  vx             2  vy
+                                      exz               eyz
+
+and from Hooke's law the stresses reduce to
+
+sx ¼ sy ¼ sz ¼ sxy ¼ 0
+
+sxz  ¼  2mexz                              ¼  m  vw  ;  syz  ¼  2meyz  ¼  m  vw  (7.4.3)
+                                                 vx                          vy
+
+The equilibrium equations imply that
+
+                                      Fx ¼ Fy ¼ 0
+
+                                      vsxz    þ  vsyz   þ       ¼  0             (7.4.4)
+                                       vx         vy
+                                                           Fz
+
+and written out in terms of the single displacement component, the equilibrium statement becomes
+
+                                           mV2w þ Fz ¼ 0                         (7.4.5)
+
+where again V2 is the two-dimensional Laplacian operator. It is observed that for zero body forces, the
+single displacement component satisfies Laplace's equation. Because many solution schemes can be
+applied to this equation, the displacement formulation provides a convenient method to solve this type
+of problem.
+
+    Similar to the other plane problems, antiplane strain is formulated in the two-dimensional region R
+with boundary S (see Figure 7.2). The boundary conditions associated with the problem would take
+either the displacement form
+
+                                           w ¼ wbðx; yÞ on S                     (7.4.6)
+150 CHAPTER 7 Two-Dimensional Formulation
+
+or traction form:
+
+                          Tzn ¼ TzðbÞðx; yÞ ¼ sðxbzÞnx þ sðybzÞny
+
+                                vw            vw    ðbÞ                                         (7.4.7)
+                                vx            vy  ny
+                          ¼  m         nx  þ                on  S
+
+The solution to the antiplane strain problem then involves the determination of the out-of-plane
+displacement, strains, and stresses {w, exz, eyz, sxz, syz} in R.
+
+7.5 Airy stress function
+
+Numerous solutions to plane strain and plane stress problems can be determined through the use of
+a particular stress function technique. The method employs the Airy stress function and will reduce
+the general formulation to a single governing equation in terms of a single unknown. The resulting
+governing equation is then solvable by several methods of applied mathematics, and thus many
+analytical solutions to problems of interest can be generated. The stress function formulation is based
+on the general idea of developing a representation for the stress field that satisfies equilibrium and
+yields a single governing equation from the compatibility statement.
+
+    The method is started by reviewing the equilibrium equations for the plane problem, either re-
+lations (7.1.4) or (7.2.4). For now, we retain the body forces but assume that they are derivable from a
+potential function V such that
+
+                          Fx ¼ ÀvvVx ; Fy ¼ ÀvvVy                                               (7.5.1)
+
+This assumption is not very restrictive because many body forces found in applications (e.g.,
+gravity loading) fall into this category. Under form (7.5.1), the plane equilibrium equations can be
+written as
+
+                             vðsx À    VÞ  þ  vsxy    ¼  0
+                                 vx            vy
+                                       À           Á                                            (7.5.2)
+                             vsxy  þv      sy À V
+                              vx             vy       ¼0
+
+It is observed that these equations will be identically satisfied by choosing a representation
+
+                                   sx  ¼   v2f  þ  V
+                                           vy2
+
+                                   sy  ¼   v2f  þ  V                                            (7.5.3)
+                                           vx2
+
+                                sxy ¼ Àvvx2vfy
+
+where f ¼ f(x,y) is an arbitrary form called the Airy stress function.
+                                                                       7.5 Airy stress function 151
+
+With equilibrium now satisfied, we focus attention on the remaining field equations in the stress
+
+formulation, that is, the compatibility relations in terms of stress. These equations were given by
+
+(7.1.7) for plane strain and (7.2.7) for plane stress, and it is noted that they differ only by the coefficient
+
+in front of the body force terms. Substituting the stress function form (7.5.3) into these compatibility
+
+relations gives the following pair
+
+v4f  þ  2   v4f                     þ  v4f  ¼  À11ÀÀ2nn   v2V     þ  v2 V    /  plane strain
+vx4        vx2vy2                      vy4                  vx2      vy2
+
+                                                       nÞvv2xV2                               (7.5.4)
+
+v4f  þ  2   v4f                     þ  v4f  ¼  Àð1  À             þ  v2V     /  plane stress
+vx4        vx2vy2                      vy4                           vy2
+
+which can also be written as
+
+                              V4f ¼ À11ÀÀ2nn V2V / plane strain                               (7.5.5)
+                              V4f ¼ Àð1 À nÞV2V / plane stress
+
+The form V4 ¼ V2V2 is called the biharmonic operator. If the body force vanishes or the potential
+function satisfies Laplace's equation V2V ¼ 0, then both the plane strain and plane stress forms reduce
+
+to
+
+                                    v4f  þ  2   v4f    þ  v4f  ¼  V4f  ¼  0                   (7.5.6)
+                                    vx4        vx2vy2     vy4
+
+This relation is called the biharmonic equation, and its solutions are known as biharmonic functions.
+Thus, the plane problem of elasticity has been reduced to a single equation in terms of the Airy stress
+function f. This function is to be determined in the two-dimensional region R bounded by the
+boundary S, as shown in Figure 7.2. Appropriate boundary conditions over S are necessary to complete
+a solution. Using relations (7.5.3), traction boundary conditions would involve the specification of
+second derivatives of the stress function. However, this general traction condition can be reformulated
+to relate the resultant boundary loadings to first-order derivatives; see Section 11.5 or Sokolnikoff
+(1956) for details. An interesting review article by Meleshko (2003) gives a detailed historical
+overview of the formulation and solution methods for the two-dimensional biharmonic equation.
+Applications to specific boundary-value problems are demonstrated in the next chapter. Displacement
+boundary conditions require more development and are postponed until Chapter 10. Further general
+details on stress functions are given in Chapter 13.
+
+    It is interesting to observe that for the case of zero body forces, the governing Airy stress function
+equation (7.5.6) is the same for both plane strain and plane stress and is independent of elastic con-
+stants. Therefore, if the region is simply connected (see Figure 2.9) and the boundary conditions
+specify only tractions, the stress fields for plane strain and plane stress will be identical and inde-
+pendent of elastic constants. Note, however, that the resulting strains and displacements calculated
+from these common stresses would not be the same for each plane theory. This occurs because plane
+strain and plane stress have different forms for Hooke's law and strain­displacement relations. Of
+course, because the two plane elasticity problems represent significantly different models, we would
+not expect that all parts of the solution field would be identical. Problems with multiply connected
+152 CHAPTER 7 Two-Dimensional Formulation
+
+regions or displacement boundary conditions bring additional displacement relations into the
+formulation, and thus we can no longer make the argument that the stress fields will be the same and
+remain independent of elastic moduli.
+
+7.6 Polar coordinate formulation
+
+Because we will make use of polar coordinates in the solution of many plane problems in elasticity, the
+previous governing equations will now be developed in this curvilinear system. Polar coordinates were
+originally presented in Figure 1.8, and Example 1.5 developed the basic vector differential operations.
+For such a coordinate system, the solution to plane strain and plane stress problems involves the
+determination of the in-plane displacements, strains, and stresses {ur , uq, er , eq, erq, sr , sq, srq} in R
+subject to prescribed boundary conditions on S (see Figure 7.2).
+
+    The polar coordinate form of the strain­displacement relations can be extracted from developments
+of Section 2.7 or results of Exercise 2.19. Dropping the z dependency in the cylindrical coordinate
+forms (2.7.3) directly gives the following desired results
+
+              er        ¼   vur
+                            vr
+
+                            1            vuq  
+                            r            vq
+              eq        ¼        ur  þ                                                     (7.6.1)
+
+                            1    1  vur     vuq        uq  
+                            2    r  vq      vr         r
+              erq       ¼                þ          À
+
+These relations can also be developed using displacement and strain transformation laws (see
+Exercise 7.16). As per the discussion in Section 4.3, the basic form of Hooke's law will not change
+when moving to an orthogonal curvilinear system, and the cylindrical form given by relation (4.3.2)
+can be applied to the plane problem in polar coordinates. Thus, the original plane strain and plane
+stress forms for Hooke's law do not change other than a simple transformation of the subscripts from x
+and y to r and q
+
+Plane strain                        Plane stress
+
+sr ¼ lðer þ eqÞ þ 2mer              er   ¼  1  ðsr   À  nsqÞ
+                                            E
+
+sq ¼ lðer þ eqÞ þ 2meq              eq   ¼  1  ðsq   À  nsr Þ                              (7.6.2)
+sz ¼ lðer þ eqÞ ¼ nðsr þ sqÞ                E
+
+                                    ez   ¼  Àn   ðsr   þ   sqÞ  ¼  À    n  n  ðer  þ  eqÞ
+                                              E                      1  À
+
+srq ¼ 2merq; sqz ¼ srz ¼ 0          erq  ¼  1  þ  n  srq;  eqz ¼ erz ¼ 0
+                                               E
+
+Likewise, the results of Section 3.7 or Exercise 3.23 provide the appropriate forms for the equilibrium
+equations
+                                                                7.6 Polar coordinate formulation 153
+
+                          vsr   þ        1 vsrq    þ  ðsr    À   sqÞ  þ   Fr  ¼   0
+                          vr             r vq                r
+                                                                                                            (7.6.3)
+                          vsrq           1  vsq       2srq
+                           vr    þ       r  vq     þ   r      þ   Fq   ¼  0
+
+Expressing the preceding relations in terms of displacements gives the following set of Navier
+equations
+
+                                               Plane strain
+
+                 2   vuq       ur                          v       vur      ur       1  vuq  
+                 r2  vq        r2                          vr      vr       r        r  vq
+   m    V2ur  À            À             þ     ðl  þ  mÞ                 þ       þ              þ Fr ¼ 0
+
+                 2   vur     uq                           1  v      vur       ur     1  vuq  
+                 r2  vq      r2                           r  vq     vr        r      r  vq
+m     V2uq  þ             À              þ  ðl   þ    mÞ                  þ       þ             þ Fq ¼ 0
+
+                                                                                                            (7.6.4)
+
+                                               Plane stress
+
+                 2   vuq      ur                 E           v     vur       ur      1  vuq  
+                 r2  vq       r2             2ð1 À           vr    vr        r       r  vq
+   m  V2ur    À           À              þ            nÞ                 þ        þ             þ Fr ¼ 0
+
+               2   vur     uq                   E          1  v      vur      ur        1  vuq  
+               r2  vq      r2               2ð1 À          r  vq     vr       r         r  vq
+m     V2uq  þ           À                þ            nÞ                  þ       þ               þ Fq ¼ 0
+
+                                   q
+
+where we have used results from Example 1.5, and the two-dimensional Laplacian is given by
+
+                                 V2      ¼     v2     þ  1v      þ  1   v2                                  (7.6.5)
+                                               vr2       r vr       r2  vq2
+
+Again using results from Example 1.5 and the fact that sx þ sy ¼ sr þ sq, the compatibility equations
+
+(7.1.7) and (7.2.7) can be expressed as
+
+                                         1       vFr         Fr     1   vFq  
+                                         À       vr          r      r   vq
+        V2ðsr  þ     sqÞ  ¼  À   1          n         þ          þ                . plane strain
+
+                                                   vFr        Fr      1  vFq                                (7.6.6)
+                                                   vr         r       r  vq
+        V2ðsr þ sqÞ ¼ Àð1 þ nÞ                            þ        þ              . plane stress
+
+Relations (7.5.3) between the stress components and Airy function can be easily transformed to polar
+form using results from Exercise 3.3 and the chain rule to convert spatial derivatives. For the case of
+zero body forces, this yields
+
+                                         sr    ¼   1  vf  þ    1   v2f
+                                                   r  vr       r2  vq2
+
+                                         sq    ¼   v2f                                                      (7.6.7)
+                                                   vr2
+                                                           
+                                                      v       1 vf
+                                         srq   ¼   À  vr      r vq
+154 CHAPTER 7 Two-Dimensional Formulation
+
+It can be verified that this form will satisfy the equilibrium equations (7.6.3) identically, and in the
+
+absence of body forces the compatibility relations (7.6.6) reduce to the biharmonic equation in polar
+
+coordinates           v2                     v2  v2                              
+                       vr2                   vq2 vr2                               f
+             V4f  ¼         þ  1  v   þ  1              þ     1  v   þ  1   v2        ¼  0  (7.6.8)
+                               r  vr     r2                   r  vr     r2  vq2
+
+Again, the plane problem is then formulated in terms of an Airy function f(r, q) with a single governing
+biharmonic equation. Referring to Figure 7.2, this function is to be determined in the two-dimensional
+region R bounded by the boundary S. Appropriate boundary conditions over S are necessary to
+complete a solution. Several example solutions in polar coordinates are given in the next chapter.
+
+References
+
+Meleshko VV: Selected topics in the history of the two-dimensional biharmonic problem, Appl Mech Rev 56:
+    33­85, 2003.
+
+Sokolnikoff IS: Mathematical Theory of Elasticity, New York, 1956, McGraw-Hill.
+Teodorescu PP: One hundred years of investigations in the plane problem of the theory of elasticity, Appl Mech
+
+    Rev 17:175­186, 1964.
+Timoshenko SP, Goodier JN: Theory of Elasticity, New York, 1970, McGraw-Hill.
+
+EXERCISES
+
+7.1 Invert the plane strain form of Hooke's law (7.1.3) and express the strains in terms of the
+
+stresses as
+
+                            ex    ¼   1  þ   n  Â    À  nÞsx  À      Ã
+                                         E       ð1              nsy
+
+                            ey    ¼   1  þ   n  Â    À  nÞsy  À      Ã
+                                         E       ð1              nsx
+
+                            exy   ¼   1  þ   n  sxy
+                                         E
+
+7.2 For the plane strain case, develop Navier equations (7.1.5) and the BeltramieMichell
+      compatibility relation (7.1.7).
+
+7.3 Verify the following relations for the case of plane strain with constant body forces
+
+                                      v   V2u   ¼    vvxV2n
+                                      vy
+
+                                      v   V2u   ¼    À  vvyV2n
+                                      vx
+
+                                          V4u ¼ V4n ¼ 0
+
+7.4 At the end of Section 7.1, it was pointed out that the plane strain solution to a cylindrical
+      body of finite length with zero end tractions could be found by adding a corrective
+                                                                           Exercises 155
+
+solution to remove the unwanted end loadings being generated from the axial stress relation
+sz ¼ n(sx þ sy). Using Saint-Venant's principle, show that such a corrective solution may
+be generated using a simple strength of materials approximation incorporating axial
+and bending stresses of the form szðcÞ ¼ Ax þ By þ C, where A, B, and C are constants.
+Using principal centroidal x,y-axes, show how these constants could be determined.
+
+7.5 In the absence of body forces, show that the following stresses
+
+                   sx ¼ kxy; sy ¼ kx; sz ¼ nkxð1 þ yÞ
+
+                   sxy  ¼  À  1  ky2;      sxz ¼ syz ¼ 0;    k ¼ constant
+                              2
+
+satisfy the plane strain stress formulation relations.
+
+7.6 Invert the plane stress form of Hooke's law (7.2.2) and express the stresses in terms of the
+
+strain components
+
+                                 sx    ¼   1  E  n2  À    þ     Á
+                                              À       ex     ney
+
+                                 sy    ¼   1  E  n2  À    þ     Á
+                                              À       ey     nex
+
+                                 sxy   ¼   1  E  n  exy
+                                              þ
+
+7.7 Using the results from Exercise 7.6, eliminate the stresses from the plane stress
+      equilibrium equations and develop Navier equations (7.2.5). Also, formally establish the
+      BeltramieMichell equation (7.2.7).
+
+7.8 For plane stress, investigate the unwanted three-dimensional results coming from integration
+      of the strainedisplacement relations involving the out-of-plane strains ez, exz, and eyz.
+
+7.9 For the plane stress problem, show that the neglected nonzero compatibility relations
+      involving the out-of-plane component ez are
+
+                           v2ez  ¼     0;  v2ez     ¼    0;  v2ez  ¼  0
+                           vx2             vy2               vxvy
+
+Next integrate these relations to show that the most general form for this component is given by
+                                         ez ¼ ax þ by þ c
+
+where a, b, and c are arbitrary constants. In light of relation (7.2.2)3, will this result for ez be
+satisfied in general? Explain your reasoning.
+
+7.10 Using the transformation results shown in Table 7.1, determine the required corresponding
+        changes in Lame´'s constant l and the shear modulus m.
+
+7.11 Verify the validity of the transformation relations given in Table 7.1 by:
+        (a) Transforming the plane strain equations (7.1.5) and (7.1.7) into the corresponding plane
+             stress results.
+
+(b) Transforming the plane stress equations (7.2.5) and (7.2.7) into the corresponding plane
+     strain results.
+156 CHAPTER 7 Two-Dimensional Formulation
+
+7.12 Verify the validity of the transformation relations given in Table 7.1 by:
+        (a) Transforming the plane strain Hooke's law (7.1.3) into the corresponding plane stress
+             results given in Exercise 7.6.
+
+       (b) Transforming the plane stress Hooke's law (7.2.2) into the corresponding plane strain
+            results given in Exercise 7.1.
+
+7.13*  For the pure bending problem shown in Example 8.2, the plane stress displacement field was
+       determined and given by relations (8.1.22)2 as
+
+               u ¼ À Mxy ; v ¼ M Âvy2 þ x2 À l2Ã; À l x l
+                               EI         2EI
+
+       Using the appropriate transformation relations from Table 7.1, determine the corresponding
+
+       displacements for the plane strain case. Next develop a comparison plot for each case of the
+       y-displacement along the x-axis (y ¼ 0) with Poisson's ratio n ¼ 0.4. Use dimensionless
+       variables and plot n(x, 0)/(Ml2/EI) versus x/l. Which displacement is larger and what happens
+
+       as Poisson's ratio goes to zero?
+
+7.14*  Consider the problem of a stress-free hole in an infinite domain under equal and uniform far-
+
+       field loading T, as shown in Figure 8.11. The plane strain radial displacement solution for this
+
+       problem is found to be
+
+                                   ur  ¼  Tð1 þ  nÞ  ð1 À 2nÞr þ r12!
+                                              E                     r
+
+       where r1 is the hole radius. Using the appropriate transformation relations from Table 7.1,
+       determine the corresponding displacement for the plane stress case. Next develop a com-
+
+       parison plot for each case of the radial displacement versus radial distance r with Poisson's
+       ratio n ¼ 0.4. Use dimensionless variables and plot ur / (Tr1/E) versus r/r1 over the range
+       0 r/r1 10. Which displacement is larger and what happens as Poisson's ratio goes to
+       zero? Finally plot the dimensionless radial displacement on the hole boundary r ¼ r1 versus
+       Poisson's ratio over the range 0 n 0.5.
+
+7.15 Explicitly develop the governing equations (7.5.4) in terms of the Airy function for plane
+        strain and plane stress.
+
+7.16 Derive the polar coordinate strainedisplacement relations (7.6.1) by using the transformation
+        equations
+
+       u ¼ ur cos q À uq sin q
+
+       v ¼ ur sin q þ uq cos q
+
+       er ¼ ex cos2 q þ ey sin2 q þ 2exy sin q cos q
+
+       eq ¼ ex sin2 q þ ey cos2 q À 2exy sin q cos q                                    Á
+                                                                    À                  q
+       erq  ¼  Àex  sin        q   cos  q þ ey  sin  q cos  q þ exy    cos2  qÀ  sin2
+                                                                    Exercises 157
+
+7.17 Using the polar strainedisplacement relations (7.6.1), derive the strainecompatibility
+
+relation
+
+          v         verq  À              þ  r   ver  À  v2er  ¼  0
+          vr    2r   vq      r2vverq            vr      vq2
+
+7.18 For the axisymmetric polar case where all field functions depend only on the radial coor-
+        dinate r, show that a strain compatibility statement can expressed as
+
+                             er  ¼   d   ðreqÞ
+                                     dr
+
+while the shear strain-displacement relation becomes
+
+                             erq  ¼  1   r  d   uq
+                                     2      dr    r
+
+7.19 For the plane strain case, starting with the equilibrium equations (7.6.3), develop Navier
+        equations (7.6.4)1,2. Also verify the compatibility relation (7.6.6)1.
+
+7.20 For the plane stress case, starting with the equilibrium equations (7.6.3), develop Navier
+        equations (7.6.4)3,4. Also verify the compatibility relation (7.6.6)2.
+
+7.21 Using the chain rule and stress transformation theory, develop the stresseAiry function
+        relations (7.6.7). Verify that this form satisfies equilibrium identically.
+
+7.22 For rigid-body motion, the strains will vanish. Under these conditions, integrate the
+        strainedisplacement relations (7.6.1) to show that the most general form of a rigid-body
+        motion displacement field in polar coordinates is given by
+
+                                           urÃ ¼ a sin q þ b cos q
+                                           uqÃ ¼ a cos q À b sin q þ cr
+
+        where a, b, c are constants. Also show that this result is consistent with the Cartesian form
+        given by relation (2.2.9).
+
+7.23 Consider the antiplane strain problem of a distributed loading F (per unit length) along the
+        entire z-axis of an infinite medium. This will produce an axisymmetric deformation field.
+        Using cylindrical coordinates, show that in the absence of body forces, governing equation
+        (7.4.5) will reduce to
+
+                          d2w     þ  1  dw  ¼   0
+                          dr2        r  dr
+
+Solve this equation to determine the form of the displacement and then show that the stresses
+are given by srz ¼ ÀF=2pr; sqz ¼ 0.
+

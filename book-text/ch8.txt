@@ -1,0 +1,3720 @@
+Two-Dimensional Problem Solution                                                              CHAPTER
+
+                                                                                              8
+
+The previous chapter developed the general formulation for the plane problem in elasticity. This
+formulation results in two types of in-plane problemsdplane strain and plane stress. It was
+further shown that solution to each of these problem types could be conveniently handled using
+the Airy stress function approach. This scheme reduces the field equations to a single partial
+differential equation, and for the case of zero body forces, this result was the biharmonic
+equation. Thus, the plane elasticity problem was reduced to finding the solution to the bihar-
+monic equation in a particular domain of interest. Such a solution must also satisfy the given
+boundary conditions associated with the particular problem under study. Several general solution
+techniques were briefly discussed in Section 5.7. These include the use of power series or
+polynomials and Fourier methods. We now pursue the solution to several two-dimensional
+problems using these methods. Our formulation and solution are conducted using both Carte-
+sian and polar coordinate systems. In many cases we use MATLABÒ software to plot the stress
+and displacement field distributions in order to better understand the nature of the solution.
+Plane problems can also be solved using complex variable theory, and this powerful method is
+discussed in Chapter 10.
+
+8.1 Cartesian coordinate solutions using polynomials
+
+We begin the solution to plane elasticity problems with no body forces by considering
+problems formulated in Cartesian coordinates. When taking boundary conditions into account,
+this formulation is most useful for problems with rectangular domains. The method is based
+on the inverse solution concept where we assume a form of the solution to the biharmonic
+equation
+
+v4f                                                               þ  2   v4f    þ  v4f  ¼  0  (8.1.1)
+vx4                                                                     vx2vy2     vy4
+
+and then try to determine which problem may be solved by this solution. The assumed solution form
+for the Airy stress function is taken to be a general polynomial of the in-plane coordinates, and this
+form can be conveniently expressed in the power series
+
+fðx;yÞ ¼                                                                X N X N    Amnxmyn
+
+                                                                                              (8.1.2)
+
+                                                                        m¼0 n¼0
+
+where Amn are constant coefficients to be determined. This representation was given by Neou (1957),
+who proposed a systematic scheme to solve such plane problems.
+
+Elasticity. http://dx.doi.org/10.1016/B978-0-12-408136-9.00008-8                              159
+Copyright © 2014 Elsevier Inc. All rights reserved.
+160 CHAPTER 8 Two-Dimensional Problem Solution
+
+Using the stress­stress function relations (7.5.3) with zero body forces
+
+                sx  ¼  v2f  ;  sy  ¼  v2f  ;  sxy  ¼  À v2f                  (8.1.3)
+                       vy2            vx2               vxvy
+
+Note that in the Airy function form the three lowest-order terms with m þ n 1 do not contribute
+to the stresses and therefore are dropped. It is observed that second-order terms produce a constant
+
+stress field, third-order terms give a linear distribution of stress, and so on for higher-order
+
+polynomials.
+    Terms with m þ n 3 automatically satisfy the biharmonic equation (8.1.1) for any choice of
+
+constants Amn. However, for higher-order terms with m þ n > 3, the constants Amn must be related in
+order to have the polynomial satisfy the biharmonic equation. For example, the fourth-order poly-
+nomial terms A40x4 þ A22x2y2 þ A04y4 will not satisfy the biharmonic equation unless 3A40 þ A22 þ
+3A04 ¼ 0. This condition specifies one constant in terms of the other two, thus leaving two constants to
+be determined by the boundary conditions.
+
+    Considering the general case, substituting the series form (8.1.2) into the governing biharmonic
+
+equation (8.1.1) yields
+
+X N X N
+          mðm À 1Þðm À 2Þðm À 3ÞAmnxmÀ4yn
+
+m¼4 n¼0
+
+þ2           X N X N   mðm À 1Þnðn À 1ÞAmnxmÀ2ynÀ2
+
+                                                                             (8.1.4)
+
+             m¼2 n¼2
+
+þ            X N X N   nðn À 1Þðn À 2Þðn À 3ÞAmnxmynÀ4 ¼ 0
+
+             m¼0 n¼4
+
+Collecting like powers of x and y, the preceding equation may be written as
+
+X N X N Â                                                                    (8.1.5)
+           ðm þ 2Þðm þ 1Þmðm À 1ÞAmþ2; nÀ2 þ 2mðm À 1Þnðn À 1ÞAmn
+
+m¼2 n¼2      þ  1Þnðn  À  1ÞAmÀ2; nþ2ÃxmÀ2ynÀ2        ¼  0
+
+þ ðn þ 2Þðn
+
+Because this relation must be satisfied for all values of x and y, the coefficient in brackets must vanish,
+giving the result
+
+ðm þ 2Þðm þ 1Þmðm À 1ÞAmþ2; nÀ2 þ 2mðm À 1Þnðn À 1ÞAmn                       (8.1.6)
+   þðn þ 2Þðn þ 1Þnðn À 1ÞAmÀ2; nþ2 ¼ 0
+
+For each m,n pair, (8.1.6) is the general relation that must be satisfied to ensure that the polynomial
+grouping is biharmonic. Note that the fourth-order case (m ¼ n ¼ 2) was discussed previously.
+
+    Because this method produces polynomial stress distributions, we would not expect the scheme to
+satisfy general boundary conditions. However, this limitation can be circumvented by modifying
+boundary conditions on the problem using the Saint-Venant principle. This is accomplished by
+replacing a complicated nonpolynomial boundary condition with a statically equivalent polynomial
+condition. The solution to the modified problem would then be accurate at points sufficiently far away
+8.1 Cartesian coordinate solutions using polynomials 161
+
+from the boundary where adjustments were made. Normally, this method has applications to problems
+of rectangular shape in which one dimension is much larger than the other. This would include a
+variety of beam problems, and we shall now consider three such examples. Solutions to each of these
+problems are made under plane stress conditions. The corresponding plane strain solutions can easily
+be determined by using the simple change in elastic constants given in Table 7.1. Of course, for the
+case with zero body forces and traction boundary conditions, the stress fields will be identical in either
+theory.
+
+EXAMPLE 8.1: UNIAXIAL TENSION OF A BEAM
+As a simple example, consider the two-dimensional plane stress case of a long rectangular beam
+under uniform tension T at each end, as shown in Figure 8.1. This problem could be considered
+the SainteVenant approximation to the more general case with nonuniformly distributed tensile
+forces at the ends x ¼ Æl. For such an interpretation, the actual boundary conditions are replaced
+by the statically equivalent uniform distribution, and the solution to be developed will be valid at
+points away from these ends.
+
+    The boundary conditions on this problem may be written as
+
+sxðÆ l; yÞ ¼ T; syðx; ÆcÞ ¼ 0                                                           (8.1.7)
+sxyðÆ l; yÞ ¼ sxyðx; ÆcÞ ¼ 0
+
+    These conditions should be carefully verified by making reference to Figure 5.3. Because the
+boundary conditions specify constant stresses on each of the beam's boundaries, we are motivated
+to try a second-order stress function of the form
+
+f ¼ A02y2                                                                               (8.1.8)
+
+and this gives the following constant stress field
+
+sx ¼ 2A02; sy ¼ sxy ¼ 0                                                                 (8.1.9)
+
+    The first boundary condition (8.1.7) implies that A02 ¼ T/2 and all other boundary conditions are
+identically satisfied. Therefore, the stress field solution to this problem is given by
+
+sx ¼ T; sy ¼ sxy ¼ 0                                                                    (8.1.10)
+
+    Next we wish to determine the displacement field associated with this stress distribution. This is
+accomplished by a standard procedural technique. First, the strain field is calculated using Hooke's
+
+                                                                             y
+
+                                    T                                           T
+                                                 2c                                  x
+
+                                                                         2l
+FIGURE 8.1 Uniaxial Tension Problem.
+162 CHAPTER 8 Two-Dimensional Problem Solution
+
+law. Then the strainedisplacement relations are used to determine various displacement gradients,
+and these expressions are integrated to find the individual displacements. Using this scheme, the
+in-plane displacement gradients are found to be
+
+       vu  ¼  ex    ¼  1                    À    À      Á  ¼   T
+       vx              E                     sx     nsy        E
+
+       vv              1                    À           Á          T           (8.1.11)
+       vy              E                     sy     nsx            E
+           ¼  ey    ¼                            À         ¼   Àn
+
+These results are easily integrated to get
+
+              u ¼ T x þ f ðyÞ                                                  (8.1.12)
+                   E
+
+              v ¼ Àn T y þ gðxÞ
+                       E
+
+where f(y) and g(x) are arbitrary functions of the indicated variable coming from the integration
+process. To complete the problem solution, these functions must be determined, and this is accom-
+plished using the remaining Hooke's law and the strainedisplacement relation for the shear stress
+and strain
+
+vu  þ  vv  ¼  2exy  ¼                       sxy  ¼  00f  0ðyÞ  þ  g0ðxÞ  ¼  0  (8.1.13)
+vy     vx                                   m
+
+    This result can be separated into two independent relations g0(x) ¼ Àf 0( y) ¼ constant and
+integrated to get
+
+              f ðyÞ ¼ Àuoy þ uo                                                (8.1.14)
+              gðxÞ ¼ uox þ vo
+
+where uo, uo, vo are arbitrary constants of integration. The expressions given by relation (8.1.14)
+represent rigid-body motion terms where uo is the rotation about the z-axis and uo and vo are the
+translations in the x and y directions. Such terms will always result from the integration of the
+strainedisplacement relations, and it is noted that they do not contribute to the strain or stress
+fields. Thus, the displacements are determined from the strain field only up to an arbitrary
+rigid-body motion. Additional displacement boundary conditions, referred to here as fixity
+conditions, are needed to explicitly determine these rigid-body motion terms. For two-
+dimensional problems, fixity conditions would require three independent statements commonly
+involving specification of the x- and y-displacements and rotation at a particular point. The choice
+of such conditions is normally made based on the expected deformation of the physical problem.
+For example, if we agree that the center of the beam does not move and the x-axis does not rotate,
+all rigid-body terms will vanish and f ¼ g ¼ 0.
+       8.1 Cartesian coordinate solutions using polynomials 163
+
+EXAMPLE 8.2: PURE BENDING OF A BEAM
+As a second plane stress example, consider the case of a straight beam subjected to end moments as
+shown in Figure 8.2. The exact pointwise loading on the ends is not considered, and only the stat-
+ically equivalent effect is modeled. Hence, the boundary conditions on this problem are written as
+
+   syðx;ÆcÞ ¼ 0; sxyðx;ÆcÞ ¼ sxyðÆl;yÞ ¼ 0
+   ðc                                                                      ðc
+                                                                                                                (8.1.15)
+       sxðÆl;yÞdy ¼ 0; sxðÆl;yÞydy ¼ ÀM
+
+   Àc                                                                      Àc
+
+    Thus, the boundary conditions on the ends of the beam have been relaxed, and only the statically
+
+equivalent condition will be satisfied. This fact leads to a solution that is not necessarily valid near
+
+the ends of the beam.
+    The choice of stress function is based on the fact that a third-order function will give rise to a
+
+linear stress field, and a particular linear boundary loading on the ends x ¼ Æl will reduce to a pure
+moment. Based on these two concepts, we choose
+
+                                               f ¼ A03y3                                                        (8.1.16)
+
+and the resulting stress field takes the form
+
+              sx ¼ 6A03y; sy ¼ sxy ¼ 0                                                                          (8.1.17)
+
+    This field automatically satisfies the boundary conditions on y ¼ Æc and gives zero net forces at
+the ends of the beam. The remaining moment conditions at x ¼ Æl are satisfied if A03 ¼ ÀM/4c3,
+
+and thus the stress field is determined as
+
+           sx ¼ À32Mc3 y; sy ¼ sxy ¼ 0                                                                          (8.1.18)
+
+    The displacements are again calculated in the same fashion as in the previous example.
+Assuming plane stress, Hooke's law will give the strain field, which is then substituted into the
+strainedisplacement relations and integrated, yielding the result
+
+       vu  ¼  À23EMc3  y0u                                                 ¼   À23EMc3   xy  þ  f  ðyÞ
+       vx
+                                                                                                                (8.1.19)
+       vv        3M                                                            3Mv
+       vy  ¼  n  2Ec3  y0v                                                 ¼   2Ec3  y2  þ  gðxÞ
+
+                                                                           y
+
+M      2c                                                                                               M
+                                                                                                             x
+
+                                                                       2l
+FIGURE 8.2 Beam Under End Moments.
+164 CHAPTER 8 Two-Dimensional Problem Solution
+
+where f and g are arbitrary functions of integration. Using the shear stressestrain relations
+
+vu  þ   vv  ¼  00     À  3M      x  þ  f  0ðyÞ  þ  g0ðxÞ  ¼  0  (8.1.20)
+vy      vx               2Ec3
+
+this result can again be separated into two independent relations in x and y, and upon integration the
+arbitrary functions f and g are determined as
+
+            f ðyÞ ¼ Àuoy þ uo
+
+                      3M     x2                                 (8.1.21)
+                      4Ec3
+            gðxÞ   ¼             þ  uo    x  þ  vo
+
+    Again, rigid-body motion terms are brought out during the integration process. For this problem,
+
+the beam would normally be simply supported, and thus the fixity displacement boundary condi-
+tions could be specified as v(Æl,0) ¼ 0 and u(Àl,0) ¼ 0. This specification leads to determination
+of the rigid-body terms as uo ¼ uo ¼ 0, vo ¼ À3Ml2/4Ec3.
+
+    We now wish to compare this elasticity solution with that developed by elementary
+
+strength of materials (often called mechanics of materials). Appendix D, Section D.3, conve-
+
+niently provides a brief review of this undergraduate theory. Introducing the cross-sectional
+area moment of inertia I ¼ 2c3/3 (assuming unit thickness), our stress and displacement field
+
+can be written as
+
+    sx  ¼   ÀM    y;  sy ¼ sxy ¼ 0
+               I
+                                                                (8.1.22)
+    u ¼ ÀMxy; v ¼ M Âny2 þ x2 À l2Ã
+               EI            2EI
+
+    Note that for this simple moment-loading case, we have verified the classic assumption
+from elementary beam theory that plane sections remain plane. Note, however, that this will
+not be the case for more complicated loadings. The elementary strength of materials solution is ob-
+tained using EulereBernoulli beam theory and gives the bending stress and deflection of the beam
+centerline as
+
+        sx     ¼  ÀM     y;  sy ¼ sxy ¼ 0
+                     I
+                                                                (8.1.23)
+            v ¼ vðx;0Þ ¼ M Âx2 À l2Ã
+                            2EI
+
+    Comparing these two solutions, it is observed that they are identical, with the exception
+of the x displacements. In general, however, the two theories will not match for other beam
+problems with more complicated loadings, and we investigate such a problem in the next
+example.
+       8.1 Cartesian coordinate solutions using polynomials 165
+
+EXAMPLE 8.3: BENDING OF A BEAM BY UNIFORM TRANSVERSE LOADING
+Our final example in this section is that of a beam carrying a uniformly distributed transverse
+loading w along its top surface, as shown in Figure 8.3. Again, plane stress conditions are chosen,
+and we relax the boundary conditions on the ends and consider only statically equivalent effects.
+Exact pointwise boundary conditions will be specified on the top and bottom surfaces, while at
+the ends the resultant horizontal force and moment are set to zero and the resultant vertical force
+will be specified to satisfy overall equilibrium. Thus, the boundary conditions on this problem
+can be written as
+
+              sxyðx;ÆcÞ ¼ 0
+
+              syðx;cÞ ¼ 0
+
+              syðx;ÀcÞ ¼ Àw                                                                                (8.1.24)
+
+              ðc
+                  sxðÆl;yÞdy ¼ 0
+
+               Àc
+
+              ðc
+                  sxðÆl;yÞydy ¼ 0
+
+               Àc
+
+              ðc
+                  sxyðÆl;yÞdy ¼ Hwl
+
+               Àc
+
+Again, it is suggested that these conditions be verified, especially the last statement.
+    Using the polynomial solution format, we choose a trial Airy stress function including second-,
+
+third-, and fifth-order terms
+
+f  ¼   A20x2  þ  A21x2y  þ  A03y3                                                þ  A23x2y3  À  A23    y5  (8.1.25)
+                                                                                                 5
+
+                                                                                                w
+
+   wl                                                                                           wl
+
+       2c
+
+                                                                                                    x
+
+                                                                              y
+                                                                          2l
+
+FIGURE 8.3 Beam Carrying Uniformly Transverse Loading.
+166 CHAPTER 8 Two-Dimensional Problem Solution
+
+It is noted that the fifth-order term has been generated to satisfy the biharmonic equation. The
+
+resulting stress field from this stress function is given by                  
+                                                               
+                                                               x2y À 2y3
+                               sx ¼ 6A03y þ 6A23                      3
+
+                               sy ¼ 2A20 þ 2A21y þ 2A23y3                           (8.1.26)
+
+                               sxy ¼ À2A21x À 6A23xy2
+
+    Applying the first three boundary conditions in the set (8.1.24) gives three equations among
+the unknown coefficients A20, A21, and A23. Solving this system determines these constants, giving
+the result
+
+                          A20      ¼    Àw;      A21   ¼  3w;       A23 ¼ À8wc3     (8.1.27)
+                                          4               8c
+
+Using these results, it is found that the stress field will now also satisfy the fourth and sixth con-
+
+ditions in (8.1.24). The remaining condition of vanishing end moments gives the following
+
+                          A03  ¼                    À          ¼     w l2     À     (8.1.28)
+                                   ÀA23 l2             2 c2          8c c2       2
+                                                       5                         5
+
+This completes determination of the four constants in the trial Airy stress function, and the
+
+resulting stress field is now given by
+
+                          sx   ¼   3w    l2      À        À    3w          À      
+                                   4c     c2        2          4c3    x2y     2y3
+                                                                              3
+                                                       y
+                                                    5
+
+                          sy   ¼   Àw   þ      3w   y  À  4wc3y3                    (8.1.29)
+                                     2         4c
+
+                          sxy  ¼   À3w      x  þ  3w   xy2
+                                     4c           4c3
+
+We again wish to compare this elasticity solution with that developed by elementary strength of
+
+materials, and thus the elasticity stress field is rewritten in terms of the cross-sectional area moment
+
+of inertia I ¼ 2c3/3, as
+
+                               sx  ¼    w   Àl2  À  x2Áy  þ    w  y3   À   c2y
+                                        2I                     I    3       5
+
+                               sy  ¼    Àw     y3      À  c2y  þ  2                 (8.1.30)
+                                          2I     3                3  c3
+
+                          sxy      ¼    Àw     xÀc2    À  y2Á
+                                          2I
+                                         8.1 Cartesian coordinate solutions using polynomials 167
+
+The corresponding results from strength of materials for this case (see Appendix D, Section D.3)
+
+are given by                                                              Àl2     x2Áy
+
+                                         sx             ¼     My   ¼  w        À
+                                                               I      2I
+
+                                         sy ¼ 0                                                           (8.1.31)
+
+                                         sxy            ¼     VQ   ¼  Àw    xÀc2  À  y2Á
+                                                               It       2I
+
+where the bending moment M ¼ w(l2 À x2)/2, the shear force V ¼ Àwx, the first moment of a
+sectioned cross-sectional area is Q ¼ (c2 À y2)/2, and the thickness t is taken as unity.
+
+    Comparing the two theories, we see that the shear stresses are identical, while the two normal
+
+stresses are not. The two normal stress distributions are plotted in Figures 8.4 and 8.5. The normal-
+ized bending stress sx for the case x ¼ 0 is shown in Figure 8.4. Note that the elementary theory
+predicts linear variation, while the elasticity solution indicates nonlinear behavior. The maximum
+
+difference between the two theories exists at the outer fibers (top and bottom) of the beam, and the
+
+actual difference in the stress values is simply w/5, a result independent of the beam dimensions. For
+most common beam problems where l >> c, the bending stresses will be much greater than w, and
+thus the differences between elasticity theory and strength of materials will be relatively small. For
+example, the set of curves in Figure 8.4 for l/c ¼ 4 gives a maximum difference of about only 1%.
+Figure 8.5 illustrates the behavior of the stress sy; the maximum difference between the two theories
+is given by w and this occurs at the top of the beam. Again, this difference will be negligibly small
+for most beam problems where l >> c. These results are generally true for beam problems with
+other transverse loadings. That is, for the case with l >> c, approximate bending stresses deter-
+mined from strength of materials will generally closely match those developed from theory of
+
+elasticity.
+
+                                    15
+
+                                    10
+
+              Dimensionless Stress  5
+
+                                    0 l/c = 2
+
+                                    ­5
+                                             l/c = 3
+
+                                    ­10                                   x/w - Elasticity
+                                               l/c = 4                    x/w - Strength of Materials
+
+                                    ­15
+                                    ­1                  ­0.5              0               0.5          1
+
+                                                        Dimensionless Distance, y/c
+
+FIGURE 8.4 Comparison of Bending Stress in the Beam.
+168 CHAPTER 8 Two-Dimensional Problem Solution
+
+                                      0.1
+
+                                         0
+
+                                      -0.1
+
+                Dimensionless Stress  -0.2
+
+                                      -0.3
+
+                                      -0.4
+
+                                      -0.5
+
+                                      -0.6
+
+                                      -0.7
+
+                                      -0.8                            y/w - Elasticity
+                                      -0.9                            y/w - Strength of Materials
+
+                                        -1             -0.5           0               0.5             1
+                                         -1
+
+                                                       Dimensionless Distance, y/c
+
+FIGURE 8.5 Comparison of sy Stress in the Beam.
+
+Next let us determine the displacement field for this problem. As in the previous examples, the
+
+displacements are developed through integration of the strainedisplacement relations. Integrating
+
+the first two normal strainedisplacement relations gives the result
+
+u¼ w         x  À                     x3     þ   2y3   À     2c2      þ    y3     À   c2y  þ  2c3!    þ     f  ðyÞ
+         l2                               y     x                 y      nx
+
+2EI                                   3                35                      3               3
+
+       y4                                       2c3y                               y4         c2y2!                 (8.1.32)
+                                                                                  n
+v¼À w              À                  c2y2   þ         þ     nÀl2  À  x2Á  y2  þ           À             þ  gðxÞ
+
+2EI 12 2 3                                                                 2          65
+
+where f(y) and g(x) are arbitrary functions of integration. Using these results in the shear
+
+strainedisplacement equation gives the relation
+
+                w                     l2x    À  x3  þ         À   2c2    þ  nxÀy2     À  c2Á!  þ   f  0ðyÞ
+                                                       x 2y2
+             2EI                                3                  5
+
+             þ w nxy2 þ g0ðxÞ ¼ À w xÀc2 À y2Á                                                                      (8.1.33)
+
+                2EI                                           2mI
+
+    This result can again be rewritten in a separable form and integrated to determine the arbitrary
+functions
+
+             f ðyÞ ¼ uoy þ uo
+
+                                                                       !                                            (8.1.34)
+             gðxÞ ¼ w x4 À w                                          8þn
+                      24EI 4EI                                l2 À    5           c2  x2 À uox þ vo
+                                 8.2 Cartesian coordinate solutions using Fourier methods 169
+
+Choosing the fixity conditions u(0,y) ¼ v(Æl,0) ¼ 0, the rigid-body motion terms are found to be
+
+                                                            5wl 4           12             c3  !
+                                                            24EI            5     4     n  l2
+                                  uo ¼ uo ¼ 0;      vo   ¼            1  þ        5  þ  2                               (8.1.35)
+
+Using these results, the final form of the displacements is given by
+
+u¼ w                   x  À  x3       þ   2y3  À    2c2     þ    y3   À  c2y    þ  2c3!
+                   l2              y     x               y     vx
+
+         2EI                  3           35                       3                 3
+
+v ¼ À w y4 À c2y2 þ 2c3y þ v Àl2 À x2Á y2 þ y4 À c2y2! À x4 þ                                     l2              !       
+                                                                                                           4     n c2 x2
+                                                                                                      þ       þ
+            2EI 12 2 3                                         2 6 5 12 2 5 2
+
+         þ 5wl4        1  þ   12       þ       c2!
+            24EI              5     4     n    l2
+                                    5     2
+
+                                                                                                                        (8.1.36)
+
+The maximum deflection of the beam axis is given by
+
+                                      vð0; 0Þ  ¼  vmax   ¼  5wl4   1  þ  12       þ  nc2!                               (8.1.37)
+                                                            24EI         5     4     2 l2
+                                                                               5
+
+while the corresponding value calculated from strength of materials is
+
+                                                         vmax  ¼  5wl4                                                  (8.1.38)
+                                                                  24EI
+
+wl4Th4e  þdif2nferecl2n2c, eanbdettwhiesetnertmheistwcaoutsheedobriyesthgeivperensbenycreeloaftitohnessh(8e.a1r.3fo7r)caen. dFo(r8b.1e.a3m8)siws hspeerecilfi>ed>bcy,
+2EI 5
+
+this difference is very small. Thus, we again find that for long beams, strength of materials predic-
+
+tions match closely to theory of elasticity results. Note from equation (8.1.36) that the x component
+
+of displacement indicates that plane sections undergo nonlinear deformation and do not remain
+
+plane.  It  can  also     be  shown      that  the  EulereBernoulli      relation    M  ¼  EI  d2vðx;0Þ       used  in  strength
+                                                                                                  dx2
+
+of materials theory is not satisfied by this elasticity solution. Timoshenko and Goodier (1970) pro-
+
+vide additional discussion on such differences.
+
+Additional rectangular beam problems of this type with different support and loading conditions can be
+solved using various polynomial combinations. Several of these are given in the exercises.
+
+8.2 Cartesian coordinate solutions using Fourier methods
+
+A more general solution scheme for the biharmonic equation may be found by using Fourier methods.
+Such techniques generally use separation of variables along with Fourier series or Fourier integrals.
+170 CHAPTER 8 Two-Dimensional Problem Solution
+
+Use of this method began over a century ago, and the work of Pickett (1944), Timoshenko and Goodier
+(1970), and Little (1973) provides details on the technique.
+
+    In Cartesian coordinates, the method may be initiated by looking for an Airy stress function of the
+separable form
+
+          fðx;yÞ ¼ XðxÞYðyÞ                                                 (8.2.1)
+
+Although the functions X and Y could be left somewhat general, the solution is obtained more directly
+if exponential forms are chosen as X ¼ eax, Y ¼ ebg. Substituting these results into the biharmonic
+
+equation (8.1.1) gives
+                                           Àa4 þ 2a2b2 þ b4Áeaxeby ¼ 0
+
+and this result implies that the term in parentheses must be zero, giving the auxiliary or characteristic
+
+equation
+
+          Àa2 þ b2Á2 ¼ 0                                                    (8.2.2)
+
+The solution to this equation gives double roots of the form                (8.2.3)
+                                                        a ¼ Æib
+
+The general solution to the problem then includes the superposition of the zero root cases plus the
+general roots. For the zero root condition with b ¼ 0, there is a fourfold multiplicity of the roots,
+yielding a general solution of the form
+
+          fb¼0 ¼ C0 þ C1x þ C2x2 þ C3x3                                     (8.2.4)
+
+while for the case with a ¼ 0, the solution is given by
+
+          fa¼0 ¼ C4y þ C5y2 þ C6y3 þ C7xy þ C8x2y þ C9xy2                   (8.2.5)
+
+Expressions (8.2.4) and (8.2.5) represent polynomial solution terms satisfying the biharmonic equa-
+
+tion. For the general case given by equation (8.2.3), the solution becomes
+
+          f ¼ eibxÂAeby þ BeÀby þ Cyeby þ DyeÀbyÃ                           (8.2.6)
+               þeÀibxÂA0eby þ B0eÀby þ C0yeby þ D0yeÀbyÃ
+
+The parameters Ci, A, B, C, D, A0, B0, C0, and D0 represent arbitrary constants to be determined from
+boundary conditions. The complete solution is found by the superposition of solutions (8.2.4), (8.2.5),
+and (8.2.6). Realizing that the final solution must be real, the exponentials are replaced by equivalent
+trigonometric and hyperbolic forms, thus giving
+
+          f ¼ sin bx½ðA þ CbyÞ sinh by þ ðB þ DbyÞ cosh by                  (8.2.7)
+               þ cos bx½ðA0 þ C0byÞ sinh by þ ðB0 þ D0byÞ cosh by
+               þ sin ay½ðE þ Gax sinh ax þ ðF þ HaxÞ cosh ax
+               þ cos ay½ðE0 þ G0ax sinh ax þ ðF0 þ H0axÞ cosh ax
+               þ fa¼0 þ fb¼0
+8.2 Cartesian coordinate solutions using Fourier methods 171
+
+Using this solution form along with superposition and Fourier series concepts, many problems with
+complex boundary loadings can be solved. Two particular problems are now presented.
+
+EXAMPLE 8.4: BEAM SUBJECT TO TRANSVERSE SINUSOIDAL LOADING
+Consider the simply supported beam carrying a sinusoidal loading along its top edge as shown in
+
+Figure 8.6.
+    The boundary conditions for this problem can be written as
+
+              sxð0;yÞ ¼ sxðl; yÞ ¼ 0
+              sxyðx;ÆcÞ ¼ 0
+
+              syðx;ÀcÞ ¼ 0
+
+              syðx;cÞ ¼ Àqo sinðpx=lÞ                                                             (8.2.8)
+              ðc
+
+                  sxyð0;yÞdy ¼ Àqol=p
+
+               Àc
+
+              ðc
+
+                  sxyðl;yÞdy ¼ qol=p
+
+               Àc
+
+    Note that these conditions do not specify the pointwise distribution of shear stress on the ends of
+the beam, but rather stipulate the resultant condition based on overall problem equilibrium. Thus,
+we again are generating a solution valid away from the ends that would be most useful for the case
+where l >> c. Because the vertical normal stress has a sinusoidal variation in x along y ¼ c, an
+appropriate trial solution from the general case is
+
+f ¼ sin bx½ðA þ CbyÞ sinh by þ ðB þ DbyÞ cosh by                                                  (8.2.9)
+
+The stresses from this trial form are
+
+sx ¼ b2 sin bx½A sinh by þ Cðby sinh by þ 2 cosh byÞ þ B cosh by þ Dðby cosh by þ 2 sinh byÞ
+sy ¼ Àb2 sin bx½ðA þ CbyÞ sinh by þ ðB þ DbyÞ cosh by
+sxy ¼ Àb2 cos bx½A þ cosh by þ Cðby cosh by þ sinh byÞ þ B sinh by þ Dðby sinh by þ cosh byÞ
+
+                                                                                                              (8.2.10)
+
+y                                                                              qo sin  x/l
+
+qol/                                                                                        qol/
+          2c                                                                                x
+
+                                                                            l
+FIGURE 8.6 Beam Carrying Sinusoidal Transverse Loading.
+172 CHAPTER 8 Two-Dimensional Problem Solution
+
+  Condition (8.2.8)2 implies that
+½A cosh by þ Cðby cosh by þ sinh byÞ þ B sinh by þ Dðby sinh by þ cosh byÞy¼Æc ¼ 0 (8.2.11)
+
+    This condition can be equivalently stated by requiring that the even and odd functions of y inde-
+pendently vanish at the boundary, thus giving the result
+
+    A cosh bc þ Dðbc sinh bc þ cosh bcÞ ¼ 0                                           (8.2.12)
+    B sinh bc þ Cðbc cosh bc þ sinh bcÞ ¼ 0
+
+    Solving for the constants A and B gives                                           (8.2.13)
+                                            A ¼ ÀDðbc tanh bc þ 1Þ                    (8.2.14)
+                                            B ¼ ÀCðbc coth bc þ 1Þ
+
+and thus the vertical normal stress becomes
+                        sy ¼ À b2 sin bxfD½by cosh by À ðbc tanh bc þ 1Þ sinh by
+                              þ C½by sinh by À ðbc coth bc þ 1Þ cosh byg
+
+Applying boundary condition (8.2.8)3 to this result gives the relation between C and D
+
+                                                   bc À sinh bc cosh bc  !
+                                                   bc þ sinh bc cosh bc
+    C ¼ Àtanh bc                                                             D        (8.2.15)
+
+while condition (8.2.8)4 gives
+
+                                px                     bc À sinh bc cosh bc     !
+                                 l                             cosh bc
+qo  sin                             ¼  2b2    sin  bx                              D  (8.2.16)
+
+    In order for relation (8.2.16) to be true for all x, b ¼ p/l, and so the constant D is thus
+determined as
+
+                                                       pc
+                                                   qo cosh l
+                                D   ¼     p2  hpc  À sinh pc            pci           (8.2.17)
+                                          l2    l                        l
+                                       2                     l  cosh
+
+This result can be substituted into (8.2.15) to give the remaining constant C
+
+                                C   ¼     p2  hpcÀþqsoisnihnhppclccosh  pci           (8.2.18)
+                                          l2                             l
+                                       2      l        l
+
+    Using these results, the remaining boundary conditions (8.2.8)1 and (8.2.8)5,6 will now be satis-
+fied. Thus, we have completed the determination of the stress field for this problem. Following our
+8.2 Cartesian coordinate solutions using Fourier methods 173
+
+usual solution steps, we now wish to determine the displacements, and these are again developed
+through integration of the plane stress strainedisplacement relations. Skipping the details, the final
+results are given by
+
+                       u ¼ À b cos bxfAð1 þ vÞ sinh by þ Bð1 þ vÞ cosh by
+                                E
+
+                             þ C½ð1 þ vÞby sinh by þ 2 cosh by
+
+     þ D½ð1 þ vÞby cosh by þ 2 sinh byg À uoy þ uo                             (8.2.19)
+v ¼ Àb sin bxfAð1 þ vÞ cosh by þ Bð1 þ vÞ sinh by
+
+       E
+     þ C½ð1 þ vÞby cosh by À ð1 þ vÞ sinh by
+
+                        þ D½ð1 þ vÞby sinh by À ð1 À vÞ cosh byg þ uoy þ vo    (8.2.20)
+To model a simply supported beam, we choose displacement fixity conditions as
+
+                                     uð0;0Þ ¼ vð0;0Þ ¼ vðl;0Þ ¼ 0
+
+These conditions determine the rigid-body terms, giving the result
+
+uo ¼ vo ¼ 0;              uo   ¼   b  ½Bð1  þ  nÞ  þ  2C                       (8.2.21)
+                                   E
+
+    To compare with strength of materials theory, the vertical centerline displacement is determined.
+Using (8.2.19)2 and (8.2.13)1, the deflection of the beam axis reduces to
+
+vðx;0Þ ¼ Db sin bx½2 þ ð1 þ nÞbc tanh bc                                       (8.2.22)
+            E
+
+For the case l >> c, D z À3qol5/4c3p5, and so the previous relation becomes
+                                                                       !
+            À23c3qpol44E       px  1 þ 1 þ n pc tanh pc
+vðx; 0Þ  ¼                sin   l           2l                      l          (8.2.23)
+
+The corresponding deflection from strength of materials theory is given by
+
+            vðx;0Þ  ¼     À23c3qpol44E  sin  px                                (8.2.24)
+                                              l
+
+Considering again the case l >> c, the second term in brackets in relation (8.2.23) can be
+
+neglected, and thus the elasticity result matches with that found from strength of materials.
+
+8.2.1 Applications involving Fourier series
+
+More sophisticated applications of the Fourier solution method commonly incorporate Fourier
+series theory. This is normally done by using superposition of solution forms to enable more
+general boundary conditions to be satisfied. For example, in the previous problem the solution was
+174 CHAPTER 8 Two-Dimensional Problem Solution
+
+obtained for a single sinusoidal loading. However, this solution form could be used to generate a
+series of solutions with sinusoidal loadings having different periods; that is, b ¼ bn ¼ np/l, (n ¼
+1, 2, 3,/). Invoking the principle of superposition, we can form a linear combination of these
+sinusoidal solutions, thus leading to a Fourier series representation for a general transverse boundary
+loading on the beam.
+
+    In order to use such a technique, we shall briefly review some basic concepts of Fourier
+series theory. Further details may be found in Kreyszig (2011) or Churchill (1963). A function
+f (x) periodic with period 2l can be represented on the interval (Àl, l) by the Fourier trigonometric
+series
+
+       f  ðxÞ  ¼  1  ao   þ    X N       cos    npx  þ  bnsin  npx           (8.2.25)
+                  2                  an          l              l            (8.2.26)
+
+                               n¼1
+
+where
+
+       an  ¼   1  ðl   f  ðxÞ  cos    npx    dx;  n ¼ 0; 1; 2; /
+               l                       l
+                   Àl
+
+       bn  ¼   1  ðl   f  ðxÞ  sin    npx  dx;    n ¼ 1; 2; 3; /
+               l                       l
+                   Àl
+
+This representation simplifies for some special cases that often arise in applications. For
+example, if f (x) is an even function, f (x) ¼ f (Àx), then representation (8.2.25) reduces to the Fourier
+cosine series
+
+                  f  ðxÞ    ¼  1  ao  þ  X N  an  cos   npx
+                               2                         l
+                                         n¼1
+
+                                  ðl                                         (8.2.27)
+
+                     an     ¼  2   0  f ðxÞ  cos  npx   dx;  n ¼ 0; 1; 2; /
+                               l                   l
+
+on the interval (0, l). If f (x) is an odd function, f (x) ¼ Àf (Àx), then representation (8.2.25) reduces to
+the Fourier sine series
+
+       f  ðxÞ  ¼  X N  bn   sin   npx
+                                   l
+                  n¼1
+
+                     ðl                                                      (8.2.28)
+
+          bn   ¼  2   0  f  ðxÞ  sin  npx  dx;    n ¼ 1; 2; 3; /
+                  l                    l
+
+on interval (0,l). We now develop the solution to a specific elasticity problem using these tools.
+8.2 Cartesian coordinate solutions using Fourier methods 175
+
+EXAMPLE 8.5: RECTANGULAR DOMAIN WITH ARBITRARY BOUNDARY LOADING
+Consider again a rectangular domain with arbitrary compressive boundary loading on the top and
+bottom of the body, as shown in Figure 8.7. Although a more general boundary loading could be
+considered on all four sides, the present case will sufficiently demonstrate the use of Fourier series
+theory for problem solution. For this problem, dimensions a and b are to be of the same order, and
+thus we cannot use the Saint-Venant principle to develop an approximate solution valid away from a
+particular boundary. Thus, the solution is developed using the exact pointwise boundary conditions
+
+                                  sxðÆa;yÞ ¼ 0                       (8.2.29)
+                                  sxyðÆa;yÞ ¼ 0
+                                  sxyðx;ÆbÞ ¼ 0
+                                   syðx;ÆbÞ ¼ ÀpðxÞ
+
+    To ease the solution details, we shall assume that the boundary loading p(x) is an even function;
+that is, p(x) ¼ p(Àx). Normal stresses are expected to be symmetric about the x- and y-axes, and this
+leads to a proposed stress function of the form
+
+     X N                                                             (8.2.30)
+f ¼ cos bnx½Bn cosh bny þ Cnbny sinh bny
+
+        n¼1
+
+         X N
+      þ cos amy½Fmcosh amx þ Gmamx sinh amx þ C0x2
+
+           m¼1
+
+The stresses derived from this Airy stress function become
+
+      X N                                                            (8.2.31)
+sx ¼ bn2 cos bnx½Bn cosh bny þ Cnðbny sinh bny þ 2 cosh bnyÞ
+
+         n¼1
+
+          X N
+       À a2m cos amy½Fm cosh amx þ Gmamx sinh amx
+
+             m¼1
+
+          X N
+sy ¼ À b2n cos bnx½bn cosh bny þ Cnbny sinh bny þ 2C0
+
+             n¼1
+
+            X N
+          þ am2 cos amy½Fm cosh amx þ Gmðamx sinh amx þ 2 cosh amxÞ
+
+                 m¼1
+
+       X N
+sxy ¼ b2n sin bnx½bnsinh bny þ Cnðbny cosh bny þ sinh bnyÞ
+
+          n¼1
+
+          X N
+       þ a2m sin amy½Fm sinh amx þ Gmðamx cosh amx þ sinh amxÞ
+
+             m¼1
+
+To satisfy the homogeneous boundary conditions (8.2.29)1,2,3,
+                                     am ¼ mp=b and bn ¼ np=a
+
+Condition (8.2.29)2 implies that
+
+Fm ¼ ÀGmð1 þ ama coth amaÞ                                           (8.2.32)
+176 CHAPTER 8 Two-Dimensional Problem Solution
+
+                                                       y
+                                                                     p(x)
+
+                         b                 a                 a
+
+                                                                                 x
+
+                         b
+
+                                                                                          p(x)
+FIGURE 8.7 General Boundary Loading on a Rectangular Elastic Plate.
+
+while (8.3.29)3 gives                                                                                                      (8.2.33)
+
+                                          Bn ¼ ÀCnð1 þ bnb coth bnbÞ
+
+    Boundary condition (8.2.29)1 gives
+
+                       X N
+                            b2n cos bna½Bn cosh bny þ Cnðbny sinh bny þ 2 cosh bnyÞ
+
+                               n¼1
+
+                          X N
+                       ¼ a2m cos amy½Fm cosh ama þ Gmama sinh ama
+
+                                   m¼1
+
+which can be written as
+
+X N Am cos amy ¼ X N bn2ðÀ1Þnþ1½Bn cosh bny þ Cnðbny sinh bny þ 2 cosh bnyÞ                                                (8.2.34)
+
+m¼1                      n¼1
+
+where
+
+                         Am   ¼     a2m       ðama  þ  sinh  ama  cosh                          amaÞGm                     (8.2.35)
+                                 sinh ama
+
+The expression given by (8.2.34) can be recognized as the Fourier cosine series for the terms on
+
+the right-hand side of the equation. Thus, using Fourier series theory from relations (8.2.27), the
+
+coefficients may be expressed as
+
+Am     ¼  2  X N  bn2ðÀ1Þnþ1  ðb     cosh  bnx  þ  Cnðbnx  sinh  bnx  þ                         2  cosh  bnxÞ  cos  amxdx  (8.2.36)
+          b                     ½Bn
+             n¼1
+                               0
+
+Carrying out the integrals and using (8.2.35) gives
+
+                  Gm  ¼          À4 sinh ama               X N   Cnbn3ðÀÀa1Þm2mþþnbs2ninÁ2h                    bn  b       (8.2.37)
+                                þ sinh ama cosh amaÞ
+                         bðama                             n¼1
+              8.2 Cartesian coordinate solutions using Fourier methods 177
+
+    The final boundary condition (8.2.29)4 involves the specification of the nonzero loading p(x) and
+implies
+
+                X N
+             À bn2 cos bnx½Bn cosh bnb þ Cnbnb sinh bnb þ 2C0
+
+                      n¼1
+
+                X N
+             þ a2m cos amb½Fm cosh amx þ Gmðamx sinh amx þ 2 cosh amxÞ ¼ ÀpðxÞ
+
+                      m¼1
+
+and this can be written in more compact form as
+
+       X N                                                                             (8.2.38)
+           AÃn cos bnx ¼ ÀpðxÞ
+
+       n¼0
+
+       þ X N a2mðÀ1Þmþ1½Fm cosh amx þ Gmðamx sinh amx þ 2 cosh amxÞ
+
+          m¼1
+
+where
+
+                 AnÃ  ¼      b2n    ðbnb  þ      sinh  bnb  cosh  bnbÞCn
+                          sinh bnb
+                                                                                       (8.2.39)
+
+                                 AÃ0 ¼ 2C0
+
+    As before, (8.2.38) is a Fourier cosine series form, and so the series coefficients AnÃ can be easily
+determined from the theory given in relations (8.2.27). This then determines the coefficients Cn
+to be
+
+       Cn  ¼           À4 sinh bnb               X N   Gm   a3mð  À1Þmþn sinh     ama
+                      þ sinh bnb cosh                             À        bn2Á2
+              aðbnb                    bnbÞ      m¼1               a2m  þ
+
+              À  abn2ðbnb   2 sinh bnb           bnbÞ  ða   pðxÞ  cos   bnxdx;    n ¼ 1; 2; 3; /
+                           þ sinh bnb cosh
+                                                        0
+
+       C0  ¼  À1      ða  pðxÞdx
+                2a
+                       0
+
+                                                                                       (8.2.40)
+
+    The rather formidable systems of equations given by (8.2.37) and (8.2.40)1 can be written in
+compact form as
+
+                                  X N                                                  (8.2.41)
+                           Gm þ RmnCn ¼ 0
+
+                                     n¼1
+
+                                  X N
+                           Cn þ SnmGm ¼ Tn
+
+                                    m¼1
+
+with appropriate definitions of Rmn, Snm, and Tn. The system (8.2.41) then represents a doubly
+infinite set of equations in the doubly infinite set of unknowns Cn and Gm. An approximate
+178 CHAPTER 8 Two-Dimensional Problem Solution
+
+  solution may be found by truncating the system to a finite number of equations, which can be
+  solved for the remaining unknowns. Improved accuracy in the solution is achieved by including
+  more equations in the truncated system. Thus, all unknown coefficients in the solution (8.2.30) are
+  now determined, and the problem solution is completed. Little (1973) provides additional details
+  on this solution.
+
+8.3 General solutions in polar coordinates
+
+As discussed in Section 7.6, the geometry of many two-dimensional problems requires the use of polar
+coordinates to develop a solution. We now wish to explore the general solutions to such problems using
+the field equations developed in polar coordinates.
+
+8.3.1 General Michell solution
+
+Employing the Airy stress function approach, the governing biharmonic equation was given by
+
+        V4         f  ¼                v2     þ   1   v   þ  1   v2 2  f     ¼  0                (8.3.1)
+                                        vr2       r   vr     r2  vq2
+
+We shall first look for a general solution to this equation by assuming a separable form f(r,q) ¼ f(r)ebq,
+
+where b is a parameter to be determined. Substituting this form into the biharmonic equation and
+
+canceling the common ebq term yields
+
+f 0000  þ 2 f 000  À  1  À 2b2           f    00  þ   1   À 2b2  f  0     b2À4 þ b2Á    ¼     0  (8.3.2)
+           r              r2                               r3          þ r4 f
+
+To solve this equation, we make the change of variable r ¼ ex, and this will transform (8.3.2) into the
+
+differential equation with constant coefficients
+
+f 0000  À 4f 000   þ     À            þ  2b2      Á   00  À 4b2f 0  þ  b2À4  þ  b2  Á   ¼  0     (8.3.3)
+                          4                        f                                 f
+
+where primes now denote d/dx. The solution to this equation is found by employing the usual scheme
+
+of substituting in f ¼ eax, and this generates the following characteristic equation
+
+                   Àa2 þ b2ÁÀa2 À 4a þ 4 þ b2Á ¼ 0                                               (8.3.4)
+
+The roots to this equation may be written as
+
+                         a ¼ Æib; a ¼ 2 Æ ib                                                     (8.3.5)
+                                    or
+
+                         b ¼ Æia; b ¼ Æiða À 2Þ
+
+We shall consider only periodic solutions in q, and these are obtained by choosing b ¼ in, where n is an
+integer. Note this choice also implies that a is an integer. For particular values of n, repeated roots
+occur, and these require special consideration in the development of the solution. Details of the
+                                     8.3 General solutions in polar coordinates 179
+
+complete solution have been given by Little (1973), although the original development is credited to
+Michell (1899). The final form (commonly called the Michell solution) can be written as
+
+    f ¼ a0 þ a1 log r þ a2r2 þ a3r2 log r
+             À                                                  Á
+          þ a4 þ a5 log r þ a6r2 þ a7r2 log r q
+                                                                                           
+          þ   a11r    þ  a12r   log  r  þ    a13  þ  a14r3      þ   a15rq  þ  a16rq  log  r  cosq
+                                              r
+                                                                                           
+          þ b11r      þ  b12r   log  r  þ  b13    þ  b14r3     þ   b15rq   þ  b16rq  log  r sinq     (8.3.6)
+                                            r
+
+            þ  X N À         þ  an2r2þn       þ   an3rÀn    þ    an4r2ÀnÁ     cosnq
+                    an1rn
+
+                n¼2
+
+            þ  X N À         þ  bn2r2þn      þ    bn3rÀn    þ    bn4r2ÀnÁsinnq
+                    bn1rn
+
+               n¼2
+
+where an, anm, and bnm are constants to be determined. Note that this general solution is restricted to the
+periodic case, which has the most practical applications because it allows the Fourier method to be
+applied to handle general boundary conditions. Various pieces of the general solution (8.3.6) will now
+be used in many of the upcoming example problems. Since any/all pieces of (8.3.6) will automatically
+satisfy the governing equation, we will only have to satisfy the boundary conditions on the problem
+under study to determine the solution.
+
+8.3.2 Axisymmetric solution
+
+For the axisymmetric case, field quantities are independent of the angular coordinate, and this can be
+accomplished by choosing an Airy function solution from (8.3.6) by dropping all q-terms, giving
+
+                      f ¼ a0 þ a1 log r þ a2r2 þ a3r2 log r                                          (8.3.7)
+
+Using relations (7.6.7), the resulting stresses for this case are
+
+                         sr  ¼  2a3     log  r  þ   a1  þ   a3  þ   2a2
+                                                    r2
+
+                         sq  ¼  2a3     log  r  À   a1  þ   3a3    þ  2a2                            (8.3.8)
+                                                    r2
+
+                         srq ¼ 0
+
+The displacements corresponding to these stresses can be determined by the usual methods of inte-
+
+grating the strain­displacement relations. For the case of plane stress, the result is
+
+       1     ð1  þ   nÞ                                                                           !
+       E         r
+ur  ¼     À              a1  þ  2ð1  À  nÞa3r       log  r  À   ð1  þ  nÞa3r  þ  2a2ð1    À  nÞr
+
+       þ A sinq þ B cosq                                                                             (8.3.9)
+
+uq  ¼  4rq  a3  þ  A  cosq   À  B  sinq    þ    Cr
+        E
+180 CHAPTER 8 Two-Dimensional Problem Solution
+
+where A, B, and C are arbitrary constants associated with the rigid-body motion terms (see
+Exercise 7.22).
+
+    Plane strain results follow by simple change of elastic constants as per Table 7.1. If the body in-
+cludes the origin, then a3 and a1 must be set to zero for the stresses to remain finite, and thus the stress
+field would be constant. Also note that the a3 term in the tangential displacement relation leads to
+multivalued behavior if the domain geometry is such that the origin can be encircled by any contour
+lying entirely in the body. Exercise 8.24 is concerned with a particular problem that requires such
+multivalued behavior in the tangential displacement.
+
+    It should be pointed out that not all axisymmetric stress fields come from the Airy stress function
+given by (8.3.7). Reviewing the general form (8.3.6) indicates that the a4q term generates the stress field
+sr ¼ sq ¼ 0, srq ¼ a4/r2, which is also axisymmetric. This solution could be used to solve problems
+with shear fields that produce tangential displacements that are independent of q. Exercise 8.14
+demonstrates such an example.
+
+    It has been previously pointed out that for multiply connected regions, the compatibility equations
+are not sufficient to guarantee single-valued displacements. With this in mind, we can investigate the
+displacement solution directly from the Navier equations. With zero body forces, Navier equations
+(5.4.4) or (7.6.4) for the axisymmetric case u ¼ ur(r)er reduce to
+
+d2ur                                       þ   1 dur  À   1   ur  ¼  0  (8.3.10)
+dr2                                            r dr       r2
+
+The solution to this equation is given by
+
+                                           ur  ¼  C1r  þ     1          (8.3.11)
+                                                          C2 r
+
+where C1 and C2 are constants. Notice this solution form is not the same as that given by (8.3.9),
+because we have a priori assumed that uq ¼ 0. Furthermore, the stresses corresponding to displacement
+solution (8.3.11) do not contain the logarithmic terms given in relations (8.3.8). Thus, these terms are
+
+not consistent with single-valued displacements.
+
+8.4 Example polar coordinate solutions
+
+With the general solution forms determined, we now explore the solution to several specific problems
+of engineering interest, including cases with both axisymmetric and general geometries.
+
+EXAMPLE 8.6: THICK-WALLED CYLINDER UNDER UNIFORM BOUNDARY PRESSURE
+The first example to be investigated involves a hollow thick-walled cylinder under the action of uni-
+form internal and external pressure loadings, as shown in Figure 8.8. We shall assume that the cyl-
+inder is long and this problem may be modeled under plane strain conditions.
+
+    Using the stress solution (8.3.8) without the log terms, the nonzero stresses are given by the form
+
+                                           sr  ¼  A    þ  B
+                                                  r2
+                                                                        (8.4.1)
+                                           sq ¼ ÀrA2 þ B
+                                                  8.4 Example polar coordinate solutions 181
+
+                                                                         p2
+
+                                                  p1              r1
+
+                                                              r2
+
+FIGURE 8.8 Thick-Walled Cylinder Problem.
+
+    Applying the boundary conditions sr(r1) ¼ Àp1, sr(r2) ¼ Àp2 creates two equations for the two
+unknown constants A and B. Solving for these constants gives the result
+
+                                           A  ¼  r12r22ðp2 À p1Þ
+                                                    r22 À r12
+                                                                                                             (8.4.2)
+                                                 r12p1  À  r22p2
+                                           B  ¼    r22  À  r12
+
+Substituting these values back into relation (8.4.1) gives the final result for the stress field
+
+                             sr  ¼   r12r22ðp2 À p1Þ 1     þ   r12p1     À  r22p2
+                                        r22 À r12 r2             r22     À  r12
+
+                                        r12r22ðp2 À p1Þ              r12p1  À  r22p2                         (8.4.3)
+                                           r22 À r12                   r22  À  r12
+                             sq  ¼   À                     1   þ
+                                                           r2
+
+From plane strain theory, the out-of-plane longitudinal stress is given by
+
+                                 sz  ¼  nðsr  À  sqÞ    ¼  2n  r12p1     À  r22p2                            (8.4.4)
+                                                                 r22     À  r12
+
+Using the strainedisplacement relations (7.6.1) and Hooke's law (7.6.2), the radial displacement
+
+is easily determined as                                           !
+
+                         ur  ¼ 1þnr        ð1  À  2nÞB     À  A
+                                  E                           r2
+
+                                        "     r12r22ðp2 À p1Þ                         r12p1     r22p2     #  (8.4.5)
+                                                 r22 À r12                              r22     r12
+                             ¼1þn          À                      1   þ  ð1  À  2nÞ          À         r
+                                  E                               r                          À
+
+    Reviewing this solution, it is noted that for the traction boundary-value problem with no body
+forces, the stress field does not depend on the elastic constants. However, the resulting displace-
+ments do depend on both E and n.
+182 CHAPTER 8 Two-Dimensional Problem Solution
+
+    For the case of only internal pressure ( p2 ¼ 0 and p1 ¼ p) with r1/r2 ¼ 0.5, the nondimensional
+stress distribution through the wall thickness is shown in Figure 8.9. The radial stress decays from
+
+Àp to zero, while the hoop stress is always positive with a maximum value at the inner radius
+ðsqÞmax ¼ ðr12 þ r22Þ=ðr22 À r12Þp ¼ ð5=3Þp.
+
+    For the case of a thin-walled tube, it can be shown that the hoop stress reduces to the well-known
+
+relation found from strength of materials theory (see Appendix D, Section D.5)
+
+                                     sq          z  pro                               (8.4.6)
+                                                     t
+
+where t ¼ r2 À r1 is the thickness and r0 ¼ (r1 þ r2)/2 is the mean radius.
+    The general solution to this example can be used to generate the solution to other problems
+
+through appropriate limiting processes. Two such cases are now presented.
+
+8.4.1 Pressurized hole in an infinite medium
+
+Consider the problem of a hole under uniform pressure in an infinite medium, as shown in Figure 8.10.
+The solution to this problem can be easily determined from the general case of Example 8.6 by
+choosing p2 ¼ 0 and r2 / N. Taking these limits in relations (8.4.3) and (8.4.4) gives
+
+                            sr ¼ Àp1rr122; sq ¼ p1rr122; sz ¼ 0                       (8.4.7)
+
+and the displacement field follows from (8.4.5)
+
+                                 ur  ¼           1  þ  n p1r12                        (8.4.8)
+                                                    E     r
+
+                      2
+
+                      1.5                                             r1/r2 = 0.5
+
+Dimensionless Stress  1                                
+
+                      0.5
+
+                      0
+
+                      -0.5                             r /p
+
+                      -1                                     0.8
+                      0.5   0.6      0.7                              0.9          1
+
+                                 Dimensionless Distance, r/r2
+
+FIGURE 8.9 Stress Distribution in the Thick-Walled Cylinder Example.
+8.4 Example polar coordinate solutions 183
+
+                                                                             r1
+                                                                           p
+
+FIGURE 8.10 Pressurized Hole in an Infinite Medium.
+
+Although both the stress and displacement fields decrease to zero as r / N, there is a fundamental
+difference in their rate of decay. The stress field decays at a higher rate, of order O(1/r2), while the
+displacement field behaves as O(1/r). Because stresses are proportional to displacement gradients, this
+behavior is to be expected.
+
+8.4.2 Stress-free hole in an infinite medium under equal biaxial loading
+        at infinity
+
+Another example that can be generated from the general thick-walled cylinder problem is that of a
+stress-free hole in an unbounded medium with equal and uniform tensile loadings in the horizontal and
+vertical directions, as shown in Figure 8.11. This particular case can be found from the general solution
+
+                                                                      T
+
+r1                                                                     T
+
+FIGURE 8.11 Stress-Free Hole Under Uniform Biaxial Far-Field Loading.
+184 CHAPTER 8 Two-Dimensional Problem Solution
+
+by letting r2 / N and taking p2 ¼ ÀT and p1 ¼ 0. Note that the far-field stress in this problem is a
+hydrostatic state with sx ¼ sy ¼ T and this is identical to the condition sr ¼ sq ¼ T. Thus, our limiting
+
+case matches with the far conditions shown in Figure 8.11.
+
+Under these conditions, the general stress results (8.4.3) give
+
+   sr  ¼      À      rr122;  sq   ¼                            þ  r12                        (8.4.9)
+          T1                          T1                          r2
+
+The maximum stress sq occurs at the boundary of the hole r ¼ r1 and is given by
+
+       smax ¼ ðsqÞmax ¼ sqðr1Þ ¼ 2T                                                          (8.4.10)
+
+and thus the stress concentration factor smax/T for a stress-free circular hole in an infinite medium
+under uniform all-around tension is 2. This result is of course true for plane strain or plane stress.
+Because of their importance, we shall next study several other stress concentration problems involving
+a stress-free hole under different far-field loading.
+
+EXAMPLE 8.7: INFINITE MEDIUM WITH A STRESS-FREE HOLE UNDER UNIFORM
+FAR-FIELD TENSION LOADING
+Consider now an infinite medium with a circular stress-free hole subjected to a uniform far-field
+
+tension in a single direction, as shown in Figure 8.12. Note that this problem will not be axisym-
+metric; it requires particular q-dependent terms from the general Michell solution.
+
+    The boundary conditions on this problem are
+
+          srða;qÞ ¼ srqða;qÞ ¼ 0
+
+          sr ðN; qÞ  ¼  T    ð1  þ  cos                     2qÞ
+                        2
+
+          sq ðN; qÞ  ¼  T    ð1  À                          2qÞ                              (8.4.11)
+                        2
+                                    cos
+
+       srq  ðN;  qÞ  ¼  T    sin  2q
+                        2
+
+                             y
+
+T                            a                                         T
+
+                                                            x
+
+FIGURE 8.12 Stress-Free Hole in an Infinite Medium Under Uniform Far-Field Tension Loading.
+                                             8.4 Example polar coordinate solutions 185
+
+where the far-field conditions have been determined using the transformation laws established in
+
+Exercise 3.3 (or see Appendix B).
+    We start the solution to this example by considering the state of stress in the medium if there
+
+were no hole. This stress field is simply sx ¼ T, sy ¼ sxy ¼ 0 and can be derived from the Airy stress
+function
+
+                   f ¼ 1 Ty2 ¼ Tr2 sin2q ¼ Tr2ð1 À cos 2qÞ
+                            2           2               4
+
+    The presence of the hole acts to disturb this uniform field. We expect that this disturbance will be
+local in nature; the disturbed field will decay to zero as we move far away from the hole. Based on
+this, we choose a trial solution that includes the axisymmetric and cos 2q terms from the general
+Michell solution (8.3.6)
+
+                        f   ¼   a0Àþ a1 log     ra2þ2ra42þr2aþ23ar3Àr22þloga2r4Á            (8.4.12)
+                                þ a21r2 þ
+                                                                                  cos  2q
+
+The stresses corresponding to this Airy function are
+                                                                           
+                                        a1                 6a23     4a24
+sr  ¼  a3ð1  þ  2 log   rÞ  þ  2a2  þ   r2  À     2a21  þ   r4   þ   r2    cos 2q
+
+                                        a1                             6a23       
+                                        r2                              r4
+sq  ¼  a3ð3  þ  2  log  rÞ  þ  2a2  À       þ     2a21  þ  12a22r4  þ               cos 2q  (8.4.13)
+
+                                6a23       2a24  
+                                 r4         r2
+srq ¼  2a21  þ     6a22r2   À           À          sin 2q
+
+    For finite stresses at infinity, we must take a3 ¼ a22 ¼ 0. Applying the five boundary conditions
+in (8.4.11) gives
+
+                                   2a2  þ   a1  ¼  0
+                                            a2
+
+                                2a21    þ   6a23   þ  4a24  ¼  0
+                                             a4        a2
+
+                                2a21    À   6a23   À  2a24  ¼  0                            (8.4.14)
+                                             a4        a2
+
+                                2a21    ¼   ÀT
+                                              2
+
+                                   2a2  ¼   T
+                                            2
+
+This system is easily solved for the constants, giving
+
+         a1  ¼  Àa2 T ;     a2  ¼   T;  a21    ¼  ÀT ;  a23  ¼    Àa4 T ;  a24      ¼  a2T
+                   2                4               4                4                  2
+
+Substituting these values back into (8.4.13) gives the stress field
+186 CHAPTER 8 Two-Dimensional Problem Solution
+
+sr   ¼  T       À  a2  þ   T       þ  3a4  À  4a2                          2q
+        2    1     r2      2    1     r4      r2 cos
+
+sq   ¼  T       þ  a2  À   T       þ  3a4        2q                            (8.4.15)
+        2    1     r2      2    1     r4 cos
+
+srq  ¼  ÀT         À  3a4  þ  2a2     2q
+          2    1      r4      r2 sin
+
+    The strain and displacement field can then be determined using the standard procedures used
+
+previously.
+    The hoop stress variation around the boundary of the hole is given by
+
+             sqða;qÞ ¼ Tð1 À 2 cos 2qÞ                                         (8.4.16)
+
+and this is shown in the polar plot in Figure 8.13. This distribution indicates that the stress actually
+vanishes at q ¼ 30 and leads to a maximum value at q ¼ 90
+
+             smax ¼ sqða;Æ p=2Þ ¼ 3T                                           (8.4.17)
+
+    Therefore, the stress concentration factor for this problem is 3, a result that is higher than that
+found in the previous example shown in Figure 8.11 for uniform tension in two orthogonal direc-
+tions. This illustrates an interesting, nonintuitive point that additional vertical loading to the prob-
+lem of Figure 8.12 actually reduces the stress concentration.
+
+    The effects of the hole in perturbing the uniform stress field can be shown by plotting the vari-
+ation of the stress with radial distance. Considering the case of the hoop stress at an angle p/2,
+Figure 8.14 shows the distribution of sq(r,p/2)/T versus nondimensional radial distance r/a. It is
+seen that the stress concentration around the hole is highly localized and decays very rapidly, essen-
+tially disappearing when r > 5a.
+
+                  120      90 3       60
+           150                2
+        180                  1         (a,)/T
+                                              30
+
+                                            - (a,)/T
+
+                                              0
+
+           210                             330
+
+                   240 270            300
+
+FIGURE 8.13 Variation of Hoop Stress Around Hole Boundary in Example 8.7.
+                        8.4 Example polar coordinate solutions 187
+
+FIGURE 8.14 Variation in Hoop Stress with Radial Distance from Hole.
+
+8.4.3 Biaxial and shear loading cases
+
+Another interesting stress concentration problem is shown in Figure 8.15. For this case, the far-field
+stress is biaxial, with tension in the horizontal and compression in the vertical. This far-field loading is
+equivalent to a pure shear loading on planes rotated 45 as shown in case (b). Thus, the solution to this
+case would apply to either the biaxial or shear-loading problems as shown.
+
+    The biaxial problem solution can be easily found from the original solution (8.4.15). This is
+done by adding to the original state another stress field with loading replaced by ÀT and having
+coordinate axes rotated 90. Details of this process are left as an exercise, and the final result is
+given by
+
+   T
+
+                                                               T                  T
+
+                        T                                         45°
+
+T
+
+                           T                                                      T
+
+                  T                                            (b) Shear Loading
+
+   (a) Biaxial Loading
+
+FIGURE 8.15 Stress-Free Hole Under Biaxial and Shear Loading.
+188 CHAPTER 8 Two-Dimensional Problem Solution
+
+sr   ¼      þ  3a4  À  4a2                                2q
+        T1     r4      r2 cos
+
+sq   ¼         þ  3a4     2q                                                            (8.4.18)
+        ÀT 1      r4 cos
+
+srq  ¼         À  3a4  þ  2a2                             2q
+        ÀT 1      r4      r2 sin
+
+The maximum stress is found to be the hoop stress on the boundary of the hole given by
+
+sqða;0Þ ¼ sqða;pÞ ¼ À4T; sqða;p=2Þ ¼ sqða;3p=2Þ ¼ 4T
+
+and thus the stress concentration factor for this case is 4. It is interesting to compare this case with our
+previous examples shown in Figures 8.11 and 8.12. The equal biaxial tension in Figure 8.11 gives a
+stress concentration factor of 2, while the uniaxial far-field loading in Figure 8.12 produces a factor of
+3. It therefore appears that the equal but opposite biaxial loadings in Figure 8.15(a) enhance the local
+stress field, thus giving the highest concentration effect.
+
+    Other loading cases of stress concentration around a stress-free hole in an infinite medium can be
+developed by these techniques. The problem of determining such stress distributions for the case where
+the hole is in a medium of finite size poses a much more difficult boundary-value problem that would
+generally require Fourier methods using a series solution; see Little (1973). However, as shown in the
+stress plot in Figure 8.14, the localized concentration effects decay rapidly. Thus, these infinite domain
+solutions could be used as a good approximation to finite size problems with boundaries located
+greater than about five hole radii away from the origin. Numerical techniques employing finite and
+boundary element methods are applied to these stress concentration problems in Chapter 16 (see
+Examples 16.2 and 16.5).
+
+EXAMPLE 8.8: WEDGE AND SEMI-INFINITE DOMAIN PROBLEMS
+In this example, we shall develop the solution to several problems involving the wedge domain
+shown in Figure 8.16. The two boundaries are defined by the lines q ¼ a and q ¼ b. By making
+special choices for angles a and b and the boundary loadings on each face, many different problems
+
+can be generated.
+    Using the general Michell solution (8.3.6), we first choose an Airy stress function to include
+
+terms that are bounded at the origin and give uniform stresses on the boundaries
+
+f ¼ r2ða2 þ a6q þ a21 cos 2q þ b21 sin 2qÞ                                              (8.4.19)
+
+The stresses corresponding to this solution are given by
+
+sr ¼ 2a2 þ 2a6q À 2a21 cos 2q À 2b21 sin 2q                                             (8.4.20)
+sq ¼ 2a2 þ 2a6q þ 2a21 cos 2q þ 2b21 sin 2q
+srq ¼ Àa6 À 2b21 cos 2q þ 2a21 sin 2q
+
+Note that this general stress field is independent of the radial coordinate.
+                   8.4 Example polar coordinate solutions 189
+
+y
+
+     r
+
+   
+
+        
+
+                                                                                                           x
+FIGURE 8.16 Wedge Domain Geometry.
+
+8.4.4 Quarter-plane example
+
+Consider the specific case of a quarter-plane (a ¼ 0 and b ¼ p/2) as shown in Figure 8.17. The problem
+has a uniform shear loading along one boundary (y-axis) and no loading on the other boundary.
+
+    The boundary conditions on this problem are
+
+   sqðr;0Þ ¼ srqðr;0Þ ¼ 0                                                                                     (8.4.21)
+sqðr;p=2Þ ¼ 0; srqðr;p=2Þ ¼ S
+
+Using the general stress solution (8.4.20), these boundary conditions give the following four equations
+
+   2a2 þ 2a21 ¼ 0                                                                                             (8.4.22)
+   Àa6 þ 2b21 ¼ 0
+   2a2 À 2a21 þ a6p ¼ 0
+   Àa6 þ 2b21 ¼ S
+
+y
+
+                                                S
+
+                                                                  r
+                                                                            
+                                                                                                       x
+
+FIGURE 8.17 Quarter-Plane Example.
+190 CHAPTER 8 Two-Dimensional Problem Solution
+
+These are easily solved for the unknown constants, giving
+
+      a2  ¼                           Sp;   a6   ¼  ÀS;     a21   ¼  ÀSp;       b21  ¼  S           (8.4.23)
+                                      8               2                 8               4
+
+Back-substituting these results determines the stress field solution
+
+          sr                          ¼  S  p    À  2q   þ  p  cos   2q   À  sin    
+                                         2   2              2                     2q
+
+          sq                          ¼  S  p    À  2q   À  p  cos   2q   þ  sin                    (8.4.24)
+                                         2   2              2                     2q
+
+          srq                         ¼  S       À  cos  2q  À    p  sin    
+                                         2   1                    2       2q
+
+It has been pointed out that this problem has an apparent inconsistency in the shear stress component at
+
+the origindthat is, sxy s syx at x ¼ y ¼ 0. To further investigate this, let us reformulate the problem in
+
+Cartesian coordinates. The stress function can be expressed as
+
+f  ¼   pÀx2                        þ    Á   À    À    þ    Á         y    À  p  Àx2  À  y2Á  þ      (8.4.25)
+      S                               y2          x2     y2 tanÀ1                               xy
+
+                                   8                  2              x8                         2
+
+The shear stress is then given by
+
+                                            sxy  ¼  À v2f      ¼   ÀSy2                             (8.4.26)
+                                                      vxvy        x2 þ y2
+
+Excluding the origin, this expression tends to zero for y / 0 and to ÀS for x / 0, and thus has the
+
+proper limiting behavior for r s 0. However, it has been shown by Barber (2010) that the stress
+gradients in the tangential direction are of order O(rÀ1).
+
+8.4.5 Half-space examples
+
+Let us next consider the solution to several half-space examples with a domain specified by a ¼ 0 and
+b ¼ p. We shall investigate examples with uniform loadings over portions of the boundary surface and
+also cases with concentrated forces.
+
+8.4.6 Half-space under uniform normal stress over x £ 0
+
+The problem of a half-space with uniform normal stress over the negative x-axis is shown in
+Figure 8.18. For the particular angles of a and b that create the half-space domain, the general Airy
+stress function solution form (8.4.19) can be reduced to
+
+                                         f ¼ a6r2q þ b21r2 sin 2q                                   (8.4.27)
+
+The hoop and shear stresses corresponding to this function are
+
+                                         sq ¼ 2a6q þ 2b21 sin 2q                                    (8.4.28)
+                                         srq ¼ Àa6 À 2b21 cos 2q
+              8.4 Example polar coordinate solutions 191
+
+                                  T
+
+x  
+
+           r
+
+                                                                                  y
+FIGURE 8.18 Half-Space Under Uniform Loading Over Half of the Free Surface.
+
+Applying boundary conditions sq(r,0) ¼ srq(r,0) ¼ srq(r,p) ¼ 0, sq(r,p) ¼ ÀT determines constants a6
+¼ ÀT/2p, b21 ¼ T/4p. Thus, the stress field solution is now determined as
+
+   sr ¼ À2Tp ðsin 2q þ 2qÞ
+
+   sq   ¼  T   ðsin  2q   À  2qÞ                                                     (8.4.29)
+           2p
+
+   srq  ¼  T   ð1  À   cos  2qÞ
+           2p
+
+It is again noted that this field depends only on the angular coordinate. Because of the discontinuity of
+the boundary loading, there is a lack of continuity of the stress at the origin. This can be seen by
+considering the behavior of the Cartesian shear stress component. Using the transformation relations in
+Appendix B, the Cartesian shear stress for this problem is found to be
+
+   sxy  ¼  ÀT      ð1  À  cos  2qÞ                                                   (8.4.30)
+             2p
+
+Along the positive x-axes (q ¼ 0) sxy ¼ 0, while on the y-axes (q ¼ p/2) sxy ¼ ÀT/p. Thus, as we
+approach the origin along these two different paths, the values will not coincide.
+
+8.4.7 Half-space under concentrated surface force system (Flamant problem)
+
+As another half-space example, consider the case of a concentrated force system acting at the origin, as
+shown in Figure 8.19. This example is commonly called the Flamant problem.
+
+    Specifying boundary conditions for such problems with only concentrated loadings requires some
+modification of our previous methods. For this example, the tractions on any semicircular arc C
+enclosing the origin must balance the applied concentrated loadings. Because the area of such an arc is
+proportional to the radius r, the stresses must be of order 1/r to allow such an equilibrium statement to
+hold on any radius. The appropriate terms in the general Michell solution (8.3.6) that will give stresses
+of order 1/r are specified by
+192 CHAPTER 8 Two-Dimensional Problem Solution
+
+                                                         Y
+
+     x                      X
+
+                 
+
+                      r
+                                             C
+
+                                                                                  y
+FIGURE 8.19 Flamant Problem.
+
+f ¼ ða12r log r þ a15rqÞ cos q þ ðb12r log r þ b15rqÞ sin q                                                  (8.4.31)
+
+The stresses resulting from this stress function are
+
+sr   ¼  1  ½ða12   þ  2b15Þ  cos                      q  þ                           ðb12  À  2a15Þ  sin  q
+        r
+
+sq   ¼  1  ½a12  cos  q  þ  b12  sin                     q                                                   (8.4.32)
+        r
+
+srq  ¼  1  ½a12  sin  q  À  b12  cos                     q
+        r
+
+With zero normal and shear stresses on q ¼ 0 and p, a12 ¼ b12 ¼ 0, and thus sq ¼ srq ¼ 0 everywhere.
+
+Therefore, this state of stress is sometimes called a radial distribution. Note that this result is also true
+
+for the more general case of a wedge domain with arbitrary angles of a and b (see Exercise 8.30). To
+
+determine the remaining constants a15 and b15, we apply the equilibrium statement that the summation
+
+of the tractions over the semicircular arc C of radius a must balance the applied loadings
+
+                ðp                                                                                           (8.4.33)
+
+        X ¼ À srða;qÞa cosqdq ¼ Àpb15
+
+                     0
+
+                ðp
+
+        Y ¼ À srða;qÞa sinqdq ¼ pa15
+
+                    0
+
+Thus, the constants are determined as a15 ¼ Y/p and b15 ¼ ÀX/p, and the stress field is now given by
+
+           sr      ¼  À2    ½X   cosq                       þ                        Y  sinq
+                        pr
+                                                                                                             (8.4.34)
+
+           sq ¼ srq ¼ 0
+
+As expected, the stress field is singular at the origin directly under the point loading. However, what is
+not expected is the result that sq and srq vanish even for the case of tangential loading.
+                                                      8.4 Example polar coordinate solutions 193
+
+                      0.3
+
+                      0.2
+
+                      0.1                                 xy /(Y/a)
+
+Dimensionless Stress  0
+
+                      -0.1
+
+                      -0.2
+
+                      -0.3
+
+                                                 y/(Y/a)
+
+                      -0.4
+
+                      -0.5
+
+                      -0.6
+
+                      -0.-75  -4       -3  -2         -1  0          1      2      3  4  5
+
+                                           Dimensionless Distance, x/a
+
+FIGURE 8.20 Normal and Shear Stress Distributions Below the Free Surface for the Flamant Problem.
+
+    To investigate this problem further, we will restrict the case to only normal loading and set X ¼ 0.
+For this loading, the stresses are
+
+                                           sr       ¼  À 2Y  sin  q                                (8.4.35)
+                                                         pr
+
+                                           sq ¼ srq ¼ 0
+
+The Cartesian components corresponding to this stress field are determined using the transformation
+relations given in Appendix B. The results are found to be
+
+                                  sx ¼ sr cos2 q ¼ Àpðx22Yþx2yy2Þ2
+
+                                  sy   ¼   sr sin2 q  ¼   À 2Yy3        Þ2                         (8.4.36)
+                                                            pðx2 þ y2
+
+                                  sxy  ¼   sr sinq  cosq  ¼  À 2Yxy2           Þ2
+                                                               pðx2 þ y2
+
+The distribution of the normal and shearing stresses on a horizontal line located a distance a below the
+free surface of the half-space is shown in Figure 8.20. The maximum normal stress directly under the
+load is given by jsyj ¼ 2Y/pa. It is observed that the effects of the concentrated loading are highly
+localized, and the stresses are vanishingly small for distances where x > 5a. Stress contours of sr are
+shown in Figure 8.21. From solution (8.4.35), lines of constant radial stress are circles tangent to the
+half-space surface at the loading point.
+
+    We now wish to determine the displacements for the normal concentrated force problem. Assuming
+plane stress conditions, Hooke's law and the strain­displacement relations give
+194 CHAPTER 8 Two-Dimensional Problem Solution
+
+                                                                                 Y
+                                          x
+
+                                                                                              r = constant
+
+                                                                                   y
+FIGURE 8.21 Radial Stress Contours for the Flamant Problem.
+
+    er                           ¼  vur  ¼     1  ðsr  À  nsqÞ   ¼                    À 2Y        sin  q
+                                    vr         E                                        pEr
+
+    eq                           ¼  ur  þ   1  vuq  ¼   1  ðsq   À                    nsr Þ    ¼  2nY     sin  q  (8.4.37)
+                                    r       r  vq       E                                         pEr
+
+2erq                             ¼  1  vur  þ  vuq     À  uq  ¼  1                    srq   ¼  0
+                                    r  vq      vr         r      m
+
+Integrating (8.4.37)1 yields the radial displacement
+
+                                        ur  ¼     À2Y   sinq  log                     r  þ  f  ðqÞ                (8.4.38)
+                                                    pE
+
+where f is an arbitrary function of the angular coordinate.
+    Substituting (8.4.38) into (8.4.37)2 allows separation of the derivative of the tangential displace-
+
+ment component
+
+                                 vuq ¼ 2nY sinq þ 2Y sinq log r À f ðqÞ
+                                 vq pE                     pE
+
+Integrating this equation gives
+
+       À2nY                                       2Y                                        ð
+         pE                                       pE
+uq  ¼                                   cosq   À        cosq  log                     r  À     f ðqÞdq þ gðrÞ     (8.4.39)
+
+where g(r) is an arbitrary function of the indicated variable. Determination of the arbitrary functions f
+and g is accomplished by substituting equations (8.4.38) and (8.4.39) into (8.4.37)3. Similar to our
+previous Cartesian examples, the resulting equation can be separated into the two relations
+
+    gðrÞ À rg0ðrÞ ¼ K                                                                                             (8.4.40)
+                                      ð
+
+    Àð1 À nÞ 2Y cosq þ f 0ðqÞ þ f ðqÞdq ¼ K
+               pE
+                                      8.4 Example polar coordinate solutions 195
+
+where K is an arbitrary constant. The solutions to this system are
+
+              gðrÞ ¼ Cr þ K
+
+                         ð1  À nÞY                                                           (8.4.41)
+                             pE
+              f  ðqÞ  ¼               q  cosq  þ    A  sinq   þ   B   cosq
+
+where A, B, and C are constants of integration.
+    Collecting these results, the displacements thus can be written as
+
+    ur  ¼  ð1    À nÞY   q  cosq   À  2Y    log  r  sinq  þ   A   sinq   þ   B  cosq
+                 pE                   pE
+
+    uq  ¼  Àð1   À nÞY       q  sinq  À  2Y    log  r  cosq  À    ð1  þ nÞY     cosq         (8.4.42)
+                 pE                      pE                           pE
+
+           þ A cosq À B sinq þ Cr þ K
+
+The terms involving the constants A, B, and C represent rigid-body motion (see Exercise 7.21). These
+terms can be set to any arbitrary value without affecting the stress distribution. Rather than setting them
+all to zero, they will be selected to satisfy the expected symmetry condition that the horizontal dis-
+placements along the y-axis should be zero. This condition can be expressed by uq(r,p/2) ¼ 0, and this
+relation requires
+
+                      C ¼ K ¼ 0; B ¼ Àð1 À nÞY
+                                                  2E
+
+The vertical rigid-body motion may be taken as zero, thus implying that A ¼ 0. Values for all constants
+
+are now determined, and the final result for the displacement field is
+
+ur  ¼  Y   h     À          À   p           À  2 log   r       i
+       pE   ð1        nÞ q         cosq                   sinq
+
+                                2                                                            (8.4.43)
+           h                       p                                                      i
+       Y                 nÞ q         sinq                                           cosq
+uq  ¼  pE     Àð1     À         À              À  2  log  r  cosq    À   ð1  þ   nÞ
+                                   2
+
+It should be pointed out that these results contain unbounded logarithmic terms that would lead to
+unrealistic predictions at infinity. This unpleasant situation is a result of the two-dimensional model.
+The corresponding three-dimensional problem (Boussinesq's problem) is solved in Chapter 13. The
+resulting displacement field does not have logarithmic terms and is bounded at infinity; see equations
+(13.4.16).
+
+    The radial displacement along the free surface is given by
+
+                    ur ðr; 0Þ   ¼  ur ðr; pÞ   ¼    ÀY    ð1  À   nÞ                         (8.4.44)
+                                                      2E
+
+Since (1 À n) > 0, we see an unexpected result in that the horizontal displacement of all points on the
+half-space surface move an equal amount toward the loading point. The tangential displacement
+component on the surface is given by
+
+        uqðr;0Þ       ¼  Àuqðr;pÞ        ¼  ÀY       ½ð1  þ  nÞ   þ   2  log  r              (8.4.45)
+                                              pE
+196 CHAPTER 8 Two-Dimensional Problem Solution
+
+                                                                               Y
+
+FIGURE 8.22 Displacement Field for the Flamant Problem.
+
+which as expected is singular at the origin under the point loading. Again, the corresponding three-
+
+dimensional solution in Chapter 13 predicts quite different surface displacements. For example, the
+
+three-dimensional result corresponding to equation (8.4.45) gives a vertical displacement of order O(1/r).
+A MATLABÒ vector distribution plot of the general displacement field resulting from solution (8.4.43)
+
+is shown in Figure 8.22. The total displacement vectors are illustrated using suitable units for the near-
+
+field case (0 < r < 0.5) with a Poisson's ratio of 0.3, and Y/E ¼ 1. The field pattern would significantly
+
+change for r > 1.
+
+Some authors (for example, Timoshenko and Goodier, 1970) have tried to remove the unpleasant
+
+logarithmic effects by invoking a somewhat arbitrary condition ur(ro,p/2) ¼ 0, where ro is some
+
+arbitrary distance from the loading point. This condition may be used to determine the vertical rigid-
+
+body term, thus determining the constant A ¼ (2Y/pE)log ro. Under this condition, the displacement
+
+solution can then be written as
+
+ur                 ¼  Y   h    À        À  p        À  2  logrosinqi
+                      pE   ð1     nÞ q        cosq              r
+
+                          h                2                                                            (8.4.46)
+                                              p              logro                                   i
+uq                 ¼  Y      Àð1  À  nÞ q  À     sinq  þ  2        r  cosq        À  ð1  þ  nÞ  cosq
+                      pE
+                                              2
+
+8.4.8 Half-space under a surface concentrated moment
+
+Other half-space problems with concentrated loadings can be generated from the previous single-force
+
+solution. For example, the concentrated moment problem can be found from the superposition of two
+equal but opposite forces separated by a distance d, as shown in Figure 8.23. The limit is taken with d / 0
+but with the product Pd / M. Details are left as an exercise, and the final resulting stress field is given by
+
+                                        sr ¼ Àp4Mr2 sin q cos q                                         (8.4.47)
+                                        sq ¼ 0
+                                        srq ¼ Àp2Mr2 sin2 q
+                           8.4 Example polar coordinate solutions 197
+
+      Pd P                                                                                   M
+
+x                                   x
+
+      y                                                                                      y
+
+FIGURE 8.23 Half-Space with a Concentrated Surface Moment Loading.
+
+8.4.9 Half-space under uniform normal loading over La  x  a
+
+As a final half-space example, consider the case of a uniform normal loading acting over a finite
+portion (Àa ! x ! a) of the free surface, as shown in Figure 8.24. This problem can be solved by using
+the superposition of the single normal force solution developed previously. Using the Cartesian stress
+solution (8.4.36) for the single-force problem
+
+      sx   ¼  sr  cos2  q  ¼  À2Y   sinq  cos2                                         q
+                                pr
+
+      sy   ¼  sr  sin2  q  ¼  À2Y   sin3  q                                                     (8.4.48)
+                                pr
+
+      sxy  ¼  sr  sinq  cosq  ¼  À2Y   sin2                                         q  cosq
+                                   pr
+
+For the distributed loading case, a differential load acting on the free surface length dx may be
+expressed by dY ¼ pdx. Using the geometry in Figure 8.25, dx ¼ rdq/sinq, and thus the differential
+loading is given by dY ¼ prdq/sinq.
+
+                                 p
+
+   x
+
+                      a                a 1
+              2
+
+                                                                                 y
+FIGURE 8.24 Half-Space Under Uniform Loading Over La  x  a.
+198 CHAPTER 8 Two-Dimensional Problem Solution
+
+FIGURE 8.25 Surface Geometry for the Distributed Loading Example.
+
+Using the differential loading in relations (8.4.48) gives the differential stress field
+
+                          dsx   ¼   À2p  cos2  q  dq
+                                      p
+
+                          dsy   ¼   À2p  sin2  q  dq                                        (8.4.49)
+                                      p
+
+                          dsxy  ¼   À2p  sinq  cosq    dq
+                                      p
+
+Integrating this result over the entire load distribution gives the total stress field
+
+sx   ¼  À2p  ð q2  cos2q  dq  ¼  Àp    ½2ðq2   À  q1Þ  þ           ðsin  2q2  À  sin  2q1Þ
+          p                        2p
+              q1
+
+sy   ¼  À2p  ð q2  sin2q  dq  ¼  Àp    ½2ðq2   À  q1Þ  À           ðsin  2q2  À  sin  2q1Þ  (8.4.50)
+          p                        2p
+              q1
+
+sxy  ¼  À2p  ð q2  sin q  cosq  dq  ¼  p   ½cos   2q2  À           cos  2q1
+          p                            2p
+              q1
+
+with q1 and q2 defined in Figure 8.24. The distribution of the normal and shearing stresses on a
+horizontal line located a distance a below the free surface is shown in Figure 8.26. This distribution is
+similar to that in Figure 8.20 for the single concentrated force, thus again justifying the Saint-Venant
+principle. The solution of the corresponding problem of a uniformly distributed shear loading is given
+in Exercise 8.37. The more general surface loading case, with arbitrary normal and shear loading over
+the free surface (Àa s a), is included in Exercise 8.38.
+
+    Distributed loadings on an elastic half-space are commonly used to simulate contact mechanics
+problems, which are concerned with the load transfer and local stress distribution in elastic bodies in
+contact. Problems of this type were first investigated by Hertz (1882), and numerous studies have been
+conducted over the last century (see text by Johnson, 1985). Because interest in these problems is
+                            8.4 Example polar coordinate solutions 199
+
+                      0.4
+
+                      0.2         xy /p
+
+Dimensionless Stress  0
+
+                      -0.2
+
+                      -0.4  y /p
+                      -0.6
+
+                      -0.8
+
+                                        -1
+                                          -5 -4 -3 -2 -1 0 1 2 3 4 5
+                                                              Dimensionless Distance, x/a
+
+FIGURE 8.26 Normal and Shear Stress Distributions for the Distributed Loading Example.
+
+normally restricted to near-field behavior, boundary dimensions and curvatures can often be neglected
+and a distributed loading on a half-space can provide an estimate of the local stress distribution. Of
+course, the simple uniform normal load distribution in Figure 8.24 would only provide an approxi-
+mation to the actual nonuniform loading generated by bodies in contact.
+
+    The high local stresses commonly generated in such problems have been found to cause material
+failure under repeated loading conditions found in rotating wheels, gears, and bearings. Because
+failure of ductile materials can be related to the maximum shear stress, consider the behavior of smax
+under the loading in Figure 8.24. Along the y-axis below the loading, sxy ¼ 0, thus the x- and y-axes are
+principal at these points and the maximum shear stress is given by smax ¼ 1/2jsx À syj. A plot of this
+stress versus depth below the surface is shown in Figure 8.27. It is interesting to observe that smax takes
+on a maximum value of p/p below the free surface at y ¼ a, and thus initial material failure is expected
+to start at this subsurface location. The corresponding stress distribution for the concentrated loading
+problem of Figure 8.21 is also shown. In contrast, it is seen that the concentrated loading produces
+monotonically decreasing behavior from the singular value directly under the load.
+
+    To compare these theoretical results with actual material behavior, photoelastic contact examples
+(taken from Johnson, 1985) are shown in Figure 8.28. The figure illustrates and compares near-field
+photoelastic fringe patterns in a rectangular plate with four different contact loadings. The photoe-
+lastic model (plate) is made of a transparent material that exhibits isochromatic fringe patterns when
+viewed under polarized light. As mentioned in Section 3.6, these fringes represent lines of constant
+maximum shear stress and can be used to determine the nature of the local stress field. Under point
+loading, the maximum stress appears to be located directly under the load, while for the uniform
+distributed loading case the maximum contour occurs at a small distance below the contact surface.
+These results provide qualitative agreement with the theoretical predictions shown in Figure 8.27, and
+Exercise 8.36 involves the development and plotting of the maximum shear stress contours.
+
+    Figure 8.28 also shows surface loading from a flat punch and circular cylinder. The flat punch
+loading generates high local stresses at the edges of the punch, and this is caused by the singularity of
+200 CHAPTER 8 Two-Dimensional Problem Solution
+
+                                    0.5
+
+                                    0.45
+
+Dimensionless Maximum Shear Stress  0.4   Concentrated Loading
+
+                                          max /(Y/a)
+
+                                    0.35
+
+                                    0.3
+
+                                    0.25
+
+                                                           Distributed Loading
+
+                                    0.2                         max /p
+
+                                    0.15
+
+                                    0.1
+
+                                    0.05
+
+                                  0
+                                    0 1 2 3 4 5 6 7 8 9 10
+                                                              Dimensionless Distance, y/a
+
+FIGURE 8.27 Comparison of Maximum Shear Stress Variation in an Elastic Half-Space Under Point and Distributed
+Surface Loadings.
+
+                                          (Point Loading)               (Uniform Loading)
+
+                                    (Flat Punch Loading)        (Cylinder Contact Loading)
+
+FIGURE 8.28 Isochromatic Photoelastic Fringe Patterns for Several Contact Loadings on a Half-Plane.
+
+(Taken from Contact Mechanics by KL Johnson, reprinted with the permission of Cambridge University Press.)
+                                                      8.4 Example polar coordinate solutions 201
+
+the loading at these two points. Although the stress fields of the cylinder and uniform loading cases
+look similar, the detailed stresses will not be the same. The cylinder case will create a nonuniform
+contact loading profile that decreases to zero at the ends of the contact area. We will explore in more
+detail some of these contact mechanics solution behaviors in Section 8.5. Other distributed loading
+problems can be solved in a similar superposition fashion, and the solution to several cases have been
+given by Timoshenko and Goodier (1970), Poulos and Davis (1974), and Kachanov, Shafiro, and
+Tsukrov (2003).
+
+8.4.10 Notch and crack problems
+
+Consider the original wedge problem shown in Figure 8.16 for the case where angle a is small and b is
+2p À a. This case generates a thin notch in an infinite medium, as shown in Figure 8.29. We pursue the
+case where a z 0, and thus the notch becomes a crack. The boundary surfaces of the notch are taken to
+be stress free and thus the problem involves only far-field loadings.
+
+    Starting with the Michell solution (8.3.6), the Airy stress function is chosen from the generalized
+form
+
+f ¼ rl½A sin lq þ B cos lq þ C sinðl À 2Þq þ D cosðl À 2Þq                                (8.4.51)
+
+where we are now allowing l to be a noninteger. The boundary stresses corresponding to this stress
+function are
+
+sq ¼ lðl À 1ÞrlÀ2½A sin lq þ B cos lq þ C sinðl À 2Þq þ D cosðl À 2Þq                     (8.4.52)
+srq ¼ Àðl À 1ÞrlÀ2½Al cos lq À Bl sin lq þ Cðl À 2Þcosðl À 2Þq À Dðl À 2Þsinðl À 2Þq
+
+The stress-free boundary conditions at q ¼ a z 0 give
+
+                                                      BþD¼0                               (8.4.53)
+                                                      lA þ ðl À 2ÞC ¼ 0
+
+                                                      y
+
+                                                           r
+FIGURE 8.29 Crack Problem Geometry.                              
+                                                                         
+                                                                                       x
+
+                                                          = 2 - 
+202 CHAPTER 8 Two-Dimensional Problem Solution
+
+while the identical conditions at q ¼ b ¼ 2p À a z 2p produce
+
+                                                               l  À  2                 !
+                                                                  l
+                              sin       2pðl        À   2Þ  À           sin  2pl           C
+
+                           þ½cos 2pðl À 2Þ À cos 2plD ¼ 0                                                            (8.4.54)
+                           ½ðl À 2Þcos 2pðl À 2Þ À ðl À 2Þcos 2plC
+
+                              À½ðl À 2Þsin 2pðl À 2Þ À l sin 2plD ¼ 0
+
+where we have used relations (8.4.53) to reduce the form of (8.4.54). These relations represent a
+system of four homogeneous equations for the four unknowns A, B, C, and D. Thus, the determinant of
+the coefficient matrix must vanish, and this gives the result
+
+                                                        sin 2pðl À 1Þ ¼ 0
+
+This relation implies that 2p(l À 1) ¼ np, with n ¼ 0, 1, 2, ., thus giving
+
+                                               l ¼ n þ 1; n ¼ 0; 1; 2; .                                             (8.4.55)
+                                                    2
+
+Near the tip of the notch r / 0 and the stresses will be of order O(rlÀ2), while the displacements are
+O(rlÀ1). At this location the displacements are expected to be finite, thus implying l > 1, while the
+
+stresses are expected to be singular, requiring l < 2. Therefore, we find that the allowable range for l is
+
+given by 1 < l  < 2. In light of relation           (8.4.55), we need only             tchoenscirdaecrkthtiepcwasiellwbiethOnð¼1=1p, ffirgffiÞivainngd  l¼
+3/2. Thus, for  OthðepcffirffirÞa:ck problem the    local stresses around                                                                               the
+displacements
+
+Using these results, the stress field can then be written as
+
+                                                                                                                  !
+                        À3    p1ffiffi           sin 3 q þ 5 sin q         þ B cos 3 q þ 5 cos q
+                sr   ¼    4     r       A               2              2              2 32
+
+                                               sin 3 q À 3 sin q                                              !
+                        3  p1ffiffi                                       þ B cos 3 q À cos q
+                sq   ¼  4    r       A              2               2                         2            2         (8.4.56)
+
+                        À3    p1ffiffi           cos 3 q À cos q                       sin 3 q À 1 sin q        !
+                          4     r                                                          2 32
+                srq  ¼                  A               2            2    ÀB
+
+Such relations play an important role in fracture mechanics by providing information on the nature of
+the singular state of stress near crack tips. In fracture mechanics it is normally more convenient to
+express the stress field in terms of the angle w measured from the direction of crack propagation, as
+shown in Figure 8.29. Making the change in angular coordinate, the stress field now becomes
+
+                sr   ¼     À3        pAffiffi  cos  w   ð3  À  cos  wÞ  À   pB ffiffi  sin    w  ð1  À  3  cos  wÞ
+                             2         r            2                      2r                 2
+
+                sq      ¼  À3        pAffiffi  cos  w   ð1  þ  cos  wÞ  À  3pBffiffi   sin    w  ð1  þ  cos   wÞ     (8.4.57)
+                             2         r            2                      2r                 2
+
+                srq     ¼  3  pAffiffi  sin    w    ð1  þ   cos  wÞ  þ     pB ffiffi  cos  w  ð1  À  3  cos   wÞ
+                           2    r              2                          2r               2
+                                                   8.4 Example polar coordinate solutions 203
+
+The remaining constants A and B are determined from the far-field boundary conditions. However, an
+important observation is that the form of this crack-tip stress field is not dependent on such boundary
+conditions. With respect to the angle w, it is noted that terms with the A coefficient include symmetric
+normal stresses, while the remaining terms containing B have antisymmetric behavior. The symmetric
+terms are normally referred to as opening or mode I behavior, while antisymmetric terms correspond to
+shear or mode II. Constants A and B can be related to the stress intensity factors commonly used in
+fracture mechanics studies. Further information on stress analysis around cracks can be found in the
+classic monograph by Tada, Paris, and Irwin (2000). Other cases of notch problems with different
+geometry and boundary conditions have been presented by Little (1973). Additional stress analysis
+around cracks is investigated in Chapters 10­12 using the powerful method of complex variable theory.
+
+ EXAMPLE 8.9: CURVED BEAM PROBLEMS
+ We shall now investigate the solution to some curved beam problems defined by an annular region
+ cut by two radial lines. Similar to the previous beam examples, we use resultant force boundary
+ conditions at the ends and exact pointwise specifications along the lateral curved boundaries. Com-
+ parisons with strength of materials predictions are made for specific cases.
+
+8.4.11 Pure bending example
+
+The first example is the simple case of a curved beam loaded by end moments, as shown in Figure 8.30.
+The solution to such a problem is independent of the angular coordinate. As usual, we satisfy the
+pointwise boundary conditions on the sides of the beam but address only the resultant effects at each
+cross-sectional end. Thus, the boundary conditions on this problem are formulated as
+
+                             srðaÞ ¼ srðbÞ ¼ 0
+
+                             srqðaÞ ¼ srqðbÞ ¼ 0         (8.4.58)
+
+                             ðb
+                                sqdr ¼ 0
+
+                              a
+
+                             ðb
+                                sqrdr ¼ ÀM
+
+                              a
+
+                                           b
+
+                                                  ar
+
+M                                                     M
+
+FIGURE 8.30 Curved Beam with End Moments.
+204 CHAPTER 8 Two-Dimensional Problem Solution
+
+Using the general axisymmetric stress solution (8.3.8) in boundary relations (8.4.58) gives
+
+       2A    log  a       þ  C   þ   A  þ  2B   ¼   0
+                             a2
+
+       2A    log  b       þ  C   þ   A  þ  2B   ¼   0
+                             b2
+                                                                                                  
+                                 C                                               C                            (8.4.59)
+                                 b2                                              a2
+       b   2A   log       b  þ       þ  A  þ    2B     Àa       2A  log  a   þ       þ  A  þ  2B    ¼0
+
+       ÀC                    þ    À        log  b  À   a2  log   Á  þ   À       À      Á  ¼  ÀM
+                    b            A b2                           a      B b2          a2
+
+              log
+                          a
+
+Because the third equation is a linear combination of the first two, only three of these four relations are
+
+independent. Solving these equations for the three constants gives
+
+                             A ¼ À2M Àb2 À a2Á
+                                      N
+
+                             B   ¼   M  Âb2  À  a2    þ    2Àb2  log  b  À   a2  log   ÁÃ                     (8.4.60)
+                                                                                      a
+                                     N
+                                                         
+                             C ¼ À4Ma2b2 log b
+                                        N                  a
+
+where
+
+                                 N ¼ Àb2 À a2Á2 À 4a2b2                   b!2
+                                                                       log
+                                                                                a
+
+The stresses thus become
+
+       sr  ¼  À4M            a2b2               þ   b2      r       þ    a2     a!
+                 N            r2           b             log                 log
+
+                                     log                      b                   r
+                                           a
+
+              À4M                a2b2                            r                  a                      !  (8.4.61)
+                 N                r2          b               log                log
+       sq  ¼                 À                        þ  b2              þ   a2              þ  b2  À  a2
+                                        log                        b                  r
+                                              a
+
+       srq ¼ 0
+
+The bending stress distribution sq through the beam thickness is shown in Figure 8.31 for the case of
+b/a ¼ 4. Also shown in the figure is the corresponding result from strength of materials theory (see
+Appendix D, Section D.4, and Exercise 8.43). Both theories predict nonlinear stress distributions with
+maximum values on the inner fibers. For this problem, differences between elasticity and strength of
+materials predictions are very small.
+
+8.4.12 Curved cantilever under end loading
+
+Consider the curved cantilever beam carrying an end loading, as shown in Figure 8.32. For this
+problem, the stress field depends on the angular coordinate. The boundary conditions require zero
+                                            8.4 Example polar coordinate solutions 205
+
+                             1.2
+
+                             1
+
+Dimensionless Stress,  a2/M                                      b/a = 4
+
+                             0.8
+
+                                                                                            Theory of Elasticity
+
+                             0.6                           Strength of Materials
+
+                             0.4
+
+                             0.2
+
+                             0
+
+                             -0.2
+
+                             -0.4
+
+                             -0.61  1.5  2            2.5  3           3.5                                        4
+
+                                         Dimensionless Distance, r/a
+
+FIGURE 8.31 Bending Stress Results of a Curved Beam with End Moments.
+
+                                                              P
+
+                                                 
+                                                 r
+
+                                         a
+
+                                               b
+
+FIGURE 8.32 Curved Cantilever Beam with End Loading.
+206 CHAPTER 8 Two-Dimensional Problem Solution
+
+stress on r ¼ a and b and a resultant shear load on the end q ¼ 0. These conditions are thus formulated
+as follows
+
+                                         srða;qÞ ¼ srðb;qÞ ¼ 0
+
+       srqða;qÞ ¼ srqðb;qÞ ¼ 0
+
+       ðb
+
+          srqðr;0Þdr ¼ P
+
+        a
+
+       ðb                                         ðb
+
+           sqðr;0Þdr ¼ sqðr;0Þrdr ¼ 0
+
+       a                                           a                  (8.4.62)
+
+       ðb
+
+          sqðr;p=2Þdr ¼ ÀP
+
+        a
+
+       ðb
+
+          sqðr;p=2Þrdr ¼ Pða þ bÞ=2
+
+        a
+
+       ðb
+
+          srqðr;p=2Þdr ¼ 0
+
+        a
+
+Based on the required angular dependence of the stress field, the Airy stress function for this problem
+
+is selected from the general Michell solution (8.3.6), including only terms with sin q dependence
+
+                                                                   
+       f ¼ Ar3 þ B þ Cr þ Dr log r sinq
+                                            r                         (8.4.63)
+
+This form gives the following stresses
+
+                                                  2B      D  
+                                                  r3      r
+       sr ¼                             2Ar    À       þ     sinq
+
+                                                   2B     D  
+                                                   r3     r
+       sq ¼                               6Ar  þ       þ       sinq   (8.4.64)
+
+                                                      2B     D  
+                                                      r3     r
+       srq ¼ À                              2Ar   À       þ     cosq
+
+Using these results in the boundary condition relations (8.4.62) generates three equations for the
+unknown constants. Solving these equations gives the results
+
+       A ¼ P ; B ¼ ÀPa2b2; D ¼ ÀP Àa2 þ b2Á
+       2N                                      2N               N
+
+where
+
+       N ¼ a2 À b2 þ Àa2 þ b2Álogb
+                                            a
+                                                    8.4 Example polar coordinate solutions 207
+
+                           2
+
+Dimensionless Stress, a/P  1
+
+                           0
+
+                           -1
+
+                           -2
+                                                                          = /2 b/a = 4
+
+                                                                    Theory of Elasticity
+
+                           -3                                       Strength of Materials
+
+                           -41       1.5         2        2.5          3          3.5      4
+
+                                           Dimensionless Distance, r/a
+
+FIGURE 8.33 Stress Results of a Curved Cantilever Beam with End Loading.
+
+Substituting these forms into (8.4.64) gives the stress field solution
+
+                                sr   ¼  P       þ   a2b2  À  a2  þ  b2
+                                        N    r       r3          r       sinq
+
+                                sq   ¼  P        À  a2b2    À  a2   þ  b2                     (8.4.65)
+                                        N    3r      r3             r       sinq
+
+                                srq  ¼  ÀP         þ  a2b2   À  a2  þ  b2
+                                          N    r       r3           r       cosq
+
+These elasticity results can again be compared with the corresponding predictions from
+strength of materials. Figure 8.33 illustrates the comparison of the hoop stress component through
+the beam thickness at q ¼ p/2 (fixed end) for the case of b/a ¼ 4. As in the previous example,
+results from the two theories are similar, but for this case differences are more sizeable.
+Other problems of end-loaded cantilever beams can be solved using similar methods (see
+Exercise 8.44).
+
+EXAMPLE 8.10: DISK UNDER DIAMETRICAL COMPRESSION
+Let us now investigate the solution to the plane problem shown in Figure 8.34 of a circular disk or
+cylinder loaded by equal but opposite concentrated forces along a given diameter. This particular
+problem is of special interest since this geometry is used in standard testing (ASTM D-4123,
+1987) of bituminous and other brittle materials such as concrete, asphalt, rock, and ceramics. Nor-
+mally referred to as the Brazilian or indirect tension test, the sample and loading geometry create a
+tension zone along the loaded diameter, thus allowing determination of the tensile strength of the
+208 CHAPTER 8 Two-Dimensional Problem Solution
+
+                                                      P
+
+              D                               =
+
+                     P
+                                                       Flamant Solution (1)
+
++                                                  +
+
+   Flamant Solution (2)                                       Radial Tension Solution (3)
+
+FIGURE 8.34 Disk Under Diametrical CompressiondSuperposition Solution.
+
+specimen material. Standard direct tension testing on such brittle materials has led to difficulty in
+
+establishing a failure region in the sample's central interior away from the gripping locations (see
+
+the simple tension sample geometry in Figure 4.2).
+    This problem can be solved by more than one method, but perhaps the most interesting tech-
+
+nique employs a clever superposition scheme, as shown in Figure 8.34. The method uses super-
+
+position of three particular stress fields, including two Flamant solutions along with a uniform
+
+radial tension loading. As will be shown, the Flamant solutions provide the required singular behav-
+
+iors at the top and bottom of an imaginary disk within each half-space, while the radial loading
+
+removes the resulting boundary tractions on the disk that were created by the two point loadings.
+    To combine the two Flamant solutions, it is more convenient to redefine the angular coordinate
+
+as shown in Figure 8.35. Using the previous results from equation (8.4.36), the stress fields for each
+
+Flamant solution can be written as
+
+   sðx1Þ   ¼  À 2P   cos            q1  sin2  q1;  sðx2Þ   ¼  À 2P   cos q2  sin2   q2
+                pr1                                             pr2
+
+   sðy1Þ   ¼  À 2P   cos3q1;                       sðy2Þ   ¼  À 2P   cos3q2                (8.4.66)
+                pr1                                             pr2
+
+   sðx1yÞ  ¼  À 2P   cos2           q1  sin   q1;  sðx2yÞ  ¼  À 2P   cos2  q2  sin  q2
+                pr1                                             pr2
+                                              8.4 Example polar coordinate solutions 209
+
+                                              y
+                                                   P
+
+                                                 1 r1
+
+                                                                      x
+                                                       r2
+                                                 2
+
+                                                                            P
+FIGURE 8.35 Disk Under Diametrical Compression.
+
+    From the general solution (8.4.35), each Flamant solution produces only a constant radial stress
+of sr ¼ À2P/pD on the circular boundary of the disk (see Figure 8.21). The resultant boundary trac-
+tion from the two combined Flamant loadings is found to be normal to the disk surface with a
+
+magnitude given by  Tn ¼ Àrffiffiffisffiffiffiðrffi1ffiffiÞffifficffiffioffiffisffiffiffiqffiffi1ffiffiffiffiffi2ffiffiffiþffiffiffiffiffiffiffiffisffiffiffiðrffi2ffiffiÞffisffiffiiffiffinffiffiffiqffiffi1ffiffiffiffiffi2ffiffi
+
+                       ÀsffiffiffiffiÀffiffiffiffiffipffi2ffiffiPDffiffiffifficffiffioffiffiffisffiffiqffiffiffi1ffiffiffiffiffi2ffiffiffiþffiffiffiffiffiffiffiffiffiffiÀffiffiffiffipffi2ffiffiPDffiffiffiffiffisffiffiiffinffiffiffiqffiffi1ffiffiffiffiffiffi2ffi           (8.4.67)
+
+                    ¼                                                                                                                                                                                                                                                  ¼  À 2P
+                                                                                                                                                                                                                                                                            pD
+
+    Thus, the final superposition of a uniformly loaded disk with the opposite tractions of (8.4.67)
+removes the boundary forces and yields the solution to the desired problem. The uniformly loaded
+disk problem creates a simple hydrostatic state of stress given by
+
+                            sðx3Þ  ¼      sðy3Þ    ¼    2P ;                       sðx3yÞ ¼ 0                                                                                                                                                                                   (8.4.68)
+                                                        pD
+
+Applying the superposition of states (1), (2), and (3), relations (8.4.66) and (8.4.68) are added,
+
+giving the final stress field solution "      À yÞx2                                  þ yÞx2                                                                                                                                            #
+                                              r14                                     r24
+                    sx   ¼  À2P           ðR                                   þ  ðR            À                                                                                                                                    1
+                               p                                                                                                                                                                                                     D
+
+                                   "               yÞ3                                  yÞ3                                                                                                                                          #
+
+                    sy   ¼  À2P           ðR  À         þ                      ðR  þ         À  1                                                                                                                                                                               (8.4.69)
+                               p              r14                                  r24          D
+
+                                "         À yÞ2x                                   þ yÞ2x    #
+                                          r14                                      r24
+                    sxy  ¼  2P     ðR                 À                        ðR
+                            p
+210 CHAPTER 8 Two-Dimensional Problem Solution
+
+                qffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
+where r1;2 ¼ x2 þ ðRHyÞ2: On the x-axis (y ¼ 0) these results simplify to give
+
+sx  ðx;    0Þ  ¼  2P                               D2 À 4x2!2
+                  pD                               D2 þ 4x2
+
+                                                   "         4D4                                                                         #     (8.4.70)
+                                                             þ 4x2Þ2
+sy  ðx;    0Þ  ¼  À 2P                                ðD2             À                                                               1
+                    pD
+
+                                     sxyðx;0Þ ¼ 0
+while on the y-axis (x ¼ 0) the stresses are
+
+sxð0;  yÞ  ¼   2P
+               pD
+
+               À2P                                    2            2                                                                     1  !
+                  p                                   À            þ                                                                     D
+syð0;  yÞ  ¼                                                 þ                                                                        À        (8.4.71)
+
+                                                   D     2y     D     2y
+
+sxyð0;yÞ ¼ 0
+
+    Thus, along the loaded diameter (x ¼ 0), the body will have a uniform tensile stress of sx ¼
+2P/pD, and this result is the primary basis of using the geometry for indirect tension testing.
+
+Knowing the sample size and failure (fracture) loading, the simple stress relation allows the deter-
+
+mination of the failing tensile stress or material strength. Plots of the stress distribution along the x-
+axis (y ¼ 0) are left as an exercise. Additional applications of this problem can be found in models
+of granular materials in which particles are simulated by circular disks loaded by several contact
+forces (see Exercise 8.46).
+
+    The maximum shearing stresses in the disk can be calculated by the relation
+
+       smax ¼ sffiffiffiffisffiffiffixffiffiffiÀ2ffiffiffiffisffiffiffiyffiffiffiffiffi2ffiffiffiþffiffiffiffiffisffiffi2xffiffiyffi           (8.4.72)
+
+    Using the stress results (8.4.69) in this relation, the smax distribution may be determined,
+and these results are illustrated in Figure 8.36. The theoretical maximum shear stress contours
+are plotted using MATLABÒ. The corresponding photoelastic results are also shown in the
+figure. In general, the theoretical contours match quite well with the experimental results except
+for the regions near the loading points at the top and bottom of the disk. This lack of correspon-
+dence is caused by the fact that the photoelastic isochromatics were generated with a loading
+distributed over a small but finite contact area, and thus the maximum shear stress occurs slightly
+below the contact surface, as per earlier discussions of Figure 8.28. A numerical analysis of this
+problem using the finite element method is developed in Chapter 16 (see Example 16.3 and
+Figure 16.6).
+                                               8.4 Example polar coordinate solutions 211
+
+(Theoretical Contours)                                   (Photoelastic Contours)
+                                                  (Courtesy of Dynamic Photomechanics
+                                                  Laboratory, University of Rhode Island)
+
+FIGURE 8.36 Maximum Shear Stress Contours and Corresponding Photoelastic Isochromatics for a Disk Under
+Diametrical Compression.
+
+EXAMPLE 8.11: ROTATING DISK PROBLEM
+As a final example in this section, consider the problem of a thin uniform circular disk subject to
+constant rotation u, as shown in Figure 8.37. The rotational motion generates centrifugal acceler-
+ation on each particle of the disk, and this then becomes the source of external loading for the prob-
+lem. No other additional external loadings are considered.
+
+    It is convenient to handle the centrifugal force loading by relating it to a body force density
+through the disk. For the case of constant angular velocity, the body force is only in the radial di-
+rection given by
+
+                                            Fr ¼ ru2r                                      (8.4.73)
+
+where r is the material mass density. This problem is axisymmetric, and thus the equilibrium equa-
+tions reduce to
+
+                                     dsr þ sr À sq þ ru2r ¼ 0                              (8.4.74)
+                                     dr        r
+
+                                            y
+
+                                                  
+
+                                         a             x
+
+FIGURE 8.37 Rotating Circular Disk.
+212 CHAPTER 8 Two-Dimensional Problem Solution
+
+    The solution can be efficiently handled by using a special stress function that automatically sat-
+isfies the equilibrium equation. The particular stressestress function relation with this property is
+given by
+
+                                              sr ¼ 4=r
+
+                                                  ¼   d4     þ  ru2r2                        (8.4.75)
+                                                      dr
+                                              sq
+
+where 4 ¼ 4(r) is the stress function.
+    As usual, the governing equation for the stress function is determined from the compatibility
+
+statement. For this axisymmetric case, the displacement field is of the form ur ¼ ur(r) and uq ¼ 0.
+Therefore, the strain field is given by
+
+                                       er  ¼  dur ;   eq  ¼     ur ;   erq ¼ 0
+                                              dr                r
+
+Eliminating ur from these equations develops the simple compatibility statement
+
+                                              d   ðreqÞ   À  er     ¼    0                   (8.4.76)
+                                              dr
+
+Recall that the more general polar coordinate case was given as Exercise 7.17. Using Hooke's
+
+law for plane stress, the strains are given by                                             
+
+                         er  ¼  1  ðsr     À  nsqÞ   ¼    1  4 À n d4 À nru2r2
+                                E                         E  r dr
+                                                                                             (8.4.77)
+                                1                         1     d4 þ ru2r2 À n 4           
+                                E                         E
+                         eq  ¼     ðsq     À  nsr Þ  ¼          dr                      r
+
+Using this result in the compatibility relation (8.4.76) generates the desired governing equation
+
+                                d24    þ   1  d4  À   4   þ  ð3  þ    nÞru2r     ¼   0
+                                dr2        r  dr      r2
+
+which can be written as
+
+                                                      
+                                   d 1 d ðr4Þ ¼ Àð3 þ nÞru2r
+                                   dr r dr                                                   (8.4.78)
+
+This equation is easily integrated, giving the result
+
+                                4  ¼   Àð3    þ   nÞ  ru2r3     þ     1  C1r  þ     1        (8.4.79)
+                                              8                       2          C2 r
+
+where C1 and C2 are constants. The stresses corresponding to this solution are
+
+                                   sr  ¼   Àð3    þ   nÞ  ru2r2       þ  C1   þ  C2
+                                                  8                      2       r2
+                                                                                             (8.4.80)
+                                           À1  þ     3n                  C1      C2
+                                   sq  ¼        8         ru2r2     þ    2   À   r2
+                                                                       8.5 Simple plane contact problems 213
+
+                                            0.45
+
+                                            0.4                                                   = 0.3
+
+                                            0.35
+
+                      Dimensionless Stress   0.3                                                 /2a2
+                                            0.25
+
+                                            0.2
+
+                                            0.15                                         r / 2a2
+                                             0.1
+
+                                            0.05
+
+                                        0
+                                          0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1
+                                                               Dimensionless Distance, r/a
+
+FIGURE 8.38 Stresses in a Rotating Disk.
+
+    For a solid disk, the stresses must be bounded at the origin and so C2 ¼ 0. The condition that the
+disk is stress free at r ¼ a gives the remaining constant C1 ¼ (3 þ n)ru2a2/4. The final form of the
+
+stress field is then                                              ru2Àa2      r2Á
+
+                                                  sr  ¼  3  þ  n          À
+                                                            8
+                                                                                                         (8.4.81)
+                                                         ru2   Â                        3nÞr2Ã
+                                                  sq  ¼   8     ð3  þ  nÞa2   À  ð1  þ
+
+The stress distribution within the disk is shown in Figure 8.38 for the case n ¼ 0.3. Notice that
+
+even though the body force is largest at the disk's outer boundary, the maximum stress occurs at the
+center of the disk where Fr ¼ 0. The maximum stress is given by
+
+                                                  smax  ¼   sr ð0Þ  ¼  sqð0Þ  ¼  3   þ  n  ru2a2
+                                                                                     8
+
+    For an annular disk with a < r < b, the maximum stress occurs on the inner boundary, and for
+the case of a very small inner hole with a << b, the maximum stress is approximately twice that of
+
+the solid disk (see Exercise 8.48).
+    The solution to this problem could also be obtained by formulation in terms of the radial
+
+displacement, thus generating the Navier equation, which can be easily integrated. The correspond-
+
+ing plane strain solution for a rotating cylinder is found from these results through the usual simple
+change in elastic constants, by letting n / n/(1 À n).
+
+8.5 Simple plane contact problems
+
+As mentioned back in Sections 8.4.7 and 8.4.9, contact mechanics is the study of stress and deformation
+of two or more solid bodies that touch each other at one or more points. Such studies have very important
+engineering applications in wheel­rail contact, mechanical gears, bearings and other linkages, metal
+214 CHAPTER 8 Two-Dimensional Problem Solution
+
+working, tribology, etc. Because of this importance we now will look at the problem in more detail. In
+
+general, when two elastic solids are pressed together a contact surface is generated. Predicting details of
+
+the contact area can be very challenging as its behavior will depend on the geometries of the bodies and
+
+loadings, elastic moduli, and interfacial frictional characteristics. The general problem actually becomes
+
+nonlinear, since the size and shape of the contact surface depends on the stress solution to the problem.
+
+In this section we will explore a couple of simple contact problems involving frictionless indentation of
+
+an elastic half-space from rigid indenters of particular shape. Much of the theory needed to explore such
+
+problems basically comes from the Flamant solution previously presented in Sections 8.4.7 and 8.4.9.
+
+Hertz (1882) was the first to study these problems, and numerous other investigations of increasing
+
+complexity have been conducted since. The texts by Johnson (1985) and Jaeger (2005) are especially
+
+useful sources to view more details and recent work, while Asaro and Lubarda (2006) and Barber (2010)
+
+also provide further material on the topic. The handbook by Kachanov, Shafiro, and Tsukrov (2003)
+
+gives a concise set of solution results for many contact problems.
+
+The general class of problems to be presented is illustrated in Figure 8.39 and represents
+
+displacement-based contact. Such problems require specification of the displacement under the
+
+indenter as a boundary condition. Going back to the Flamant problem results in Section 8.4.7, the
+
+stresses were given by
+
+                                            sr  ¼  À2    ½X   cos  q   þ        Y   sin  q                                    (8.5.1)
+                                                     pr
+
+                                            sq ¼ srq ¼ 0
+
+where X and Y are the tangential and normal force components shown in Figure 8.19. The surface
+displacements (plane stress case) for the normal loading were given by relations (8.4.44) and (8.4.45)
+while the corresponding displacements for the tangential loading cases can be determined from Ex-
+ercise 8.37. Summarizing these results gives
+
+              Normal loading                                                             Tangential loading
+
+ur ðr; 0Þ  ¼  ur ðr ; pÞ  ¼  ÀY    ð1  À  nÞ                       ur  ðr;      0Þ  ¼    Àur  ðr;  pÞ  ¼  À2X   log  r  þ  B  (8.5.2)
+                               2E                                                                           pE
+
+uq ðr; 0Þ  ¼  Àuqðr;pÞ       ¼  ÀY     ½ð1  þ  nÞ  þ  2  log  r  uqðr;0Þ            ¼    uqðr;pÞ   ¼   Àð1  À nÞX    þ  A
+                                  pE                                                                         E
+
+where A and B are constants from the rigid-body motion terms.
+
+                                                         Rigid Indenter
+
+                                                         a             a                 x
+
+                                                                                uy
+
+                                                                             y
+FIGURE 8.39 Elastic Half-Space Subjected to a Rigid Indenter.
+                                            8.5 Simple plane contact problems 215
+
+We now wish to apply these results for a half-space that is subjected to a distributed surface
+
+displacement determined from the shape and frictional characteristics of the indenter (see Figure 8.39).
+
+Following the general superposition schemes used in Section 8.4.9 and Exercise 8.38, we will transfer
+
+to Cartesian coordinates and use Flamant solution results (8.5.2). Both the stress and displacement
+
+fields can then be determined by integral superposition using the Flamant solution as a Green's
+function. The shift to Cartesian coordinates requires writing the log r as sgn(x)logjxj. Thus, for the
+general case with both normal and shear distributions p(x) and t(x) over the free surface Àa x a,
+
+the surface displacements ux and uy can be expressed by
+
+       À1 À n     ðx            ða          !             2                          ða
+          2E                                             pE
+ux  ¼                 pðsÞds À pðsÞds            À                                        tðsÞlogjx À sjds þ a1
+
+                  Àa              x                                                   Àa
+
+             ða                                  ðx                                       ða         !           (8.5.3)
+
+uy  ¼  À2     Àa  pðsÞlogjx  À  sjds  À  1Àn                                         tðsÞds À tðsÞds þ a2
+         pE                               2E
+                                                         Àa                               x
+
+Note that we have separated the integration range to properly handle the sign switch inherent in
+ur and uq relations (8.5.2); see Johnson (1985) for details. The constants a1 and a2 correspond to
+undetermined rigid-body motion terms.
+
+    Restricting the problem to frictionless indenters, the shear loading distribution t(x) will vanish, and
+we eliminate the undetermined constants by differentiating (8.5.3) to determine the displacement
+gradients as
+
+                          dux ¼ À1 À n pðxÞ
+                          dx             E
+                                            ða                                                                   (8.5.4)
+                          duy        À2          pðsÞ
+                          dx    ¼      pE    Àa  xÀs                                 ds
+
+Since the integral in (8.5.4) is singular at x ¼ s, it is interpreted as the usual Cauchy Principal Value
+sense, i.e.
+
+       ða      pðsÞ   ds  ¼  lim     ð xÀ   pðsÞ         ds  þ                       ða   pðsÞ    !              (8.5.5)
+               xÀs                          xÀs                                           xÀs   ds
+        Àa                   /0       Àa                                              xþ
+
+Now if we consider a flat rigid indenter as shown in Figure 8.40, uy ¼ uyo ¼ constant, and thus (8.5.4)2
+gives the simple singular integral relation
+
+                                ða    pðsÞ  ds   ¼       0                                                       (8.5.6)
+                                      xÀs
+                                 Àa
+
+The solution to this equation for the normal load distribution has been given by Johnson (1985) as
+
+                             pðxÞ ¼ pffiffiffiPffiffiffiffiffiffiffiffiffiffiffiffi                              (8.5.7)
+                                      p a2 À x2
+
+where P is the total load applied by the rigid indenter. Note that contact load distribution is singular at
+the edges of the indenter x ¼ Æa.
+216 CHAPTER 8 Two-Dimensional Problem Solution
+
+                                                  Rigid Indenter
+
+                                                     a           a             x
+
+                                                                    uy
+
+                                                                            y
+FIGURE 8.40 Elastic Half-Space Subjected to a Flat Rigid Indenter.
+
+With the loading now determined, the surface displacements follow from relations (8.5.3)
+
+                       ux      ¼  À1 À n  P   sinÀ1ðx=aÞ;        x < jaj
+                                     pE
+
+                                  À2                 x2        1=2!                                                                        (8.5.8)
+                                    pE                 a2     1
+                       uy      ¼        log   x   þ        À                   þ  uyo;  x > jaj
+                                              a
+
+Note that for Poisson's ratio in the usual range À1 n 1=2, horizontal surface displacements under
+
+the indenter move toward the center. Realistically this motion would be opposed by friction, which was
+
+originally neglected.
+
+The individual stress components for this case follow from the results of Exercise 8.38
+
+sx   ¼  À2y  ða        pðsÞðx À sÞ2          ds  ¼   À2pP2y  ða                   ðx À sÞ2                                      i2  ds
+          p            h                 i2                         pffiffiffiffiffiffiffiffiffiffiffiffiffiffih              y2
+              Àa        ðx  À  sÞ2  þ  y2                     Àa      a2 À s2 ðx                                  À   sÞ2  þ
+
+sy   ¼  À2y3  ða       h       pðsÞ      i2   ds  ¼     À2pP2y3  ða                    1                                           i2  ds  (8.5.9)
+           p            ðx     sÞ2 þ   y2                               pffiffiffiffiffiffiffiffiffiffiffiffiffiffih             y2
+               Àa           À                                     Àa                                                     sÞ2  þ
+                                                                          a2 À s2 ðx À
+
+sxy  ¼  À2y2  ða          pðsÞðx    À sÞ      ds  ¼     À2pP2y2  ða                     ðx À sÞ                                    i2  ds
+           p           h                  i2                            pffiffiffiffiffiffiffiffiffiffiffiffiffiffih             y2
+               Àa       ðx À sÞ2                                  Àa      a2 À s2 ðx                                  À  sÞ2  þ
+                                    þ y2
+
+Analytical evaluation of these integrals appears to be formidable, and thus we employ numerical
+integration using MATLABÒ software (see code C.6 in Appendix C) to extract stress values. Results of
+
+the maximum shearing stress contours below the indenter are illustrated in Figure 8.41. Since the
+surface load distribution (8.5.7) is singular at x ¼ Æa, the stress is also unbounded at these points.
+These results should be compared with the photoelastic smax contours shown in Figure 8.28 for the flat
+punch loading. Comparisons with the other cases shown in this figure qualitatively illustrate differ-
+
+ences in stresses coming from different contact loading situations.
+             8.5 Simple plane contact problems 217
+
+p(x) = P
+         a2 - x2
+                                            x
+
+     y
+
+FIGURE 8.41 Maximum Shear Stress Distribution Under a Flat Rigid Indenter.
+
+Next we consider a similar frictionless contact problem but with a rigid cylindrical indenter, as
+
+shown in Figure 8.42. For this case the prescribed vertical surface displacement uy with respect to an
+arbitrary datum is proportional to Àx2=2R, and thus relation (8.5.4)2 can be written as
+
+ða   pðsÞ  ds  ¼  pE  x                                                     (8.5.10)
+     xÀs          2R
+ Àa
+
+FIGURE 8.42 Elastic Half-Space Subjected to a Cylindrical Rigid Indenter.
+218 CHAPTER 8 Two-Dimensional Problem Solution
+
+                                  p(x)  =  2P       a2 - x2
+                                            a2
+
+                           -a                                a                                                x
+
+                                                                    y
+FIGURE 8.43 Maximum Shear Stress Distribution Under a Circular Rigid Indenter.
+
+Johnson (1985) again gives the solution to this integral equation for the normal load distribution as
+
+                                   pðxÞ    ¼   2P   pffiffiffiffiffiffiffiffiffiffiffiffiffiffi                                                             (8.5.11)
+                                               pa2    a2 À x2
+
+where P is the total load applied by the indenter. This result is the classic elliptical distribution that
+vanishes at x ¼ Æa (see Figure 8.43). For this problem the contact semi-width a is related to the total
+applied load, and the expression for the plane stress case is given by
+
+                                           a2 ¼ 4PR                                                                                                         (8.5.12)
+                                                  pE
+
+With the contact load distribution now determined, the stresses in the elastic half-space can be
+
+determined employing the scheme previously used for the flat punch shown in equations (8.5.9). The
+
+individual stress components for this case can thus be expressed by
+
+sx   ¼  À2y  ða    pðsÞðx À sÞ2         ds  ¼  Àp42Pay2  ða     pffiffiffiffiffiffiffiffiffiffiffiffiffiffi                                   À    sÞ2  ds
+          p       h                                               a2 À s2ðx
+              Àa   ðx               i2                    Àa                                     h                                              i2
+                       À  sÞ2  þ  y2                                                              ðx  À  sÞ2  þ                               y2
+
+        À2y3  ða                                  À4pP2ay23  ða                                       pffiffiffiffiffiffiffiffiffiffiffiffiffiffi
+           p               pðsÞ                                                                          a2 À s2
+sy   ¼         Àa  h       sÞ2 þ    i2   ds    ¼              Àa                                 h                                                 i2   ds
+                    ðx            y2                                                              ðx                                             y2         (8.5.13)
+                        À                                                                             À  sÞ2  þ
+
+        À2y2  ða                                  À4pP2ay22  ða                                  pffiffiffiffiffiffiffiffiffiffiffiffiffiffi
+           p            pðsÞðx À sÞ                                                                   a2 À s2ðx À sÞ
+sxy  ¼         Àa  h                   i2  ds  ¼              Àa                                 h                                                 i2   ds
+                    ðx                                                                            ðx                                             y2
+                        À  sÞ2  þ  y2                                                                 À  sÞ2                                  þ
+                                                                                          Exercises 219
+
+As before, numerical methods (MATLABÒ) are used to evaluate these integrals, and maximum
+shearing stress contours below the indenter are illustrated in Figure 8.43. Differing from the previous
+flat punch case shown in Figure 8.41, the circular indenter produces no singular contact loading, and
+thus the half-space stresses are all bounded. These results can again be compared with the photoelastic
+smax contours shown in Figure 8.28 for the cylinder contact loading case.
+
+    Similar methods can be applied to solve the more general case where each of the two bodies in
+contact is treated as linear elastic. For such cases, classical Hertz theory assumes that at the contact point
+each nonconforming surface has a particular radius of curvature, thus allowing a similar representation
+for the surface displacements as used in the previous cylindrical indenter case. Each radius of curvature
+is assumed to be sufficiently large so that the Flamant half-space solution can be employed as before.
+More details on such contact problems can be found in references quoted at the beginning of this section.
+
+References
+
+American Society for Testing and Materials (ASTM) D 4123: Standard Test Method for Indirect Tension Test for
+    Resilient Modulus of Bituminous Mixtures, 1987.
+
+Asaro RJ, Lubarda VA: Mechanics of Solids and Materials, New York, 2006, Cambridge University Press.
+Barber JR: Elasticity, Dordrecht, The Netherlands, 2010, Springer.
+Churchill RV: Fourier Series and Boundary Value Problems, New York, 1963, McGraw-Hill.
+Hertz H: U¨ber die Beru¨hrung fester elastischer Ko¨rper, J.f.d. reine u. angewandte, Math, 92: 156­171, 1882. (For
+
+    English translation, see Miscellaneous Papers by H. Hertz, eds. Jones and Schott, Macmillan, London, 1896.)
+Jaeger J: New Solutions in Contact Mechanics, Southampton, UK, 2005, WIT Press.
+Johnson KL: Contact Mechanics, London, 1985, Cambridge University Press.
+Kachanov M, Shafiro B, Tsukrov I: Handbook of Elasticity Solutions, Dordrecht, The Netherlands, 2003, Kluwer
+
+    Academic Press.
+Kreyszig E: Advanced Engineering Mathematics, ed 8, New York, 2011, Wiley.
+Little RW: Elasticity, Englewood Cliffs, NJ, 1973, Prentice Hall.
+Michell JH: On the direct determination of stress in an elastic solid with application to the theory of plates, Proc
+
+    London Math Soc, 31:100­124, 1899.
+Neou CY: Direct method for determining Airy polynomial stress functions, J Appl Mech 24:387­390, 1957.
+Pickett G: Application of the Fourier method to the solution of certain boundary problems in the theory of
+
+    elasticity, J Appl Mech 11:176­182, 1944.
+Poulos HG, Davis EH: Elastic Solutions for Soil and Rock Mechanics, New York, 1974, Wiley.
+Tada H, Paris PC, Irwin GR: The Stress Analysis of Cracks Handbook, ed 3, New York, 2000, American Society of
+
+    Mechanical Engineers.
+Timoshenko SP, Goodier JN: Theory of Elasticity, New York, 1970, McGraw-Hill.
+
+EXERCISES
+
+   8.1 Explicitly show that the fourth-order polynomial Airy stress function
+                                              A40x4 þ A22x2y2 þ A04y4
+
+         will not satisfy the biharmonic equation unless 3A40 þ A22 þ 3A04 ¼ 0.
+220 CHAPTER 8 Two-Dimensional Problem Solution
+
+8.2 Show that the Airy function
+
+                                       3P           xy3       N y2
+                                       4c    xy     3c2       4c
+                                 f  ¼            À         þ
+
+solves the following cantilever beam problem, as shown in the following figure. As usual
+for such problems, boundary conditions at the ends (x ¼ 0 and L) should be formulated only
+in terms of the resultant force system, while at y ¼ Æc the exact pointwise specification
+should be used. For the case with N ¼ 0, compare the elasticity stress field with the cor-
+
+responding results from strength of materials theory. Answer:
+
+sx      ¼  À32Pcx3y              þ  N   ;  sy ¼ 0;     sxy  ¼  À3P        À  y2
+                                    2c                           4c    1     c2
+
+                x                                                                y
+2c
+                                                                                  P
+                                                                                           N
+
+                                           L
+
+8.3 Determine the displacement field for the beam problem in Exercise 8.2. To determine the
+      rigid-body motion terms, choose fixity conditions
+
+                       uðL;0Þ          ¼   vðL;0Þ   ¼  vvðL; 0Þ  ¼  0
+                                                          vx
+
+Note that with our approximate SainteVenant solution, we cannot ensure pointwise conditions
+all along the built-in end. Finally, for the special case with N ¼ 0, compare the elasticity
+
+displacement field with the corresponding results from mechanics of materials theory (see
+
+Appendix D). Answer :
+
+N ¼ 0:  velasticity ðx; 0Þ             ¼     P   Àx3   À  3L2x   þ  2L3Á  ¼  vMOM ðxÞ
+                                           4Ec3
+                                                                                        Exercises 221
+
+8.4 The solution to the illustrated two-dimensional cantilever beam problem is proposed using
+      the Airy stress function f ¼ C1x2 þ C2x2y þ C3y3 þ C4y5 þ C5x2y3, where Ci are constants.
+      First determine requirements on the constants so that f satisfies the governing equation. Next
+
+      find the values of the remaining constants by applying exact pointwise boundary conditions
+
+      on the top and bottom of the beam and integrated resultant boundary conditions on the ends
+      x ¼ 0 and x ¼ L.
+
+                                                     q                          y
+
+             x         c
+
+                       c
+
+                                                     L
+
+8.5 Verify that the Airy stress function
+
+                   f  ¼   s               þ  ly2  þ  ly3  À   xy2  À  xy3
+                          4          xy       c      c2        c      c2
+
+solves the problem of a cantilever beam loaded by uniform shear along its bottom edge
+as shown. Use pointwise boundary conditions on y ¼ Æc and only resultant effects at ends
+x ¼ 0 and l. Note, however, you should be able to show that sx vanishes at x ¼ l.
+
+                                                            l
+
+                   c
+                                                                           x
+
+                   c
+
+                                         s
+                   y
+
+8.6 The following stress function
+
+       f  ¼  C1xy  þ      x3       þ         x3y   þ       xy3  þ      x3y3  þ     xy5
+                       C2 6               C3 6          C4 6        C5 9        C6 20
+
+is proposed to solve the problem of a cantilever beam carrying uniformly varying loading as
+shown in the following figure. Explicitly verify that this stress function will satisfy all
+conditions on the problem and determine each of the constants Ci and the resulting stress
+field. Use resultant force boundary conditions at the beam ends. Answers:
+
+C1  ¼  À pc     ;  C2  ¼           Àp;       C3   ¼  À 3p ;     C4  ¼   3p ;    C5  ¼    3p
+         40L                         2L                4Lc             10Lc             8Lc3
+
+C6 ¼ À2Lpc3 ;      sx  ¼            pxy      À5x2  À    10y2  þ  6c2Á
+                                   20Lc3
+222 CHAPTER 8 Two-Dimensional Problem Solution
+
+                                                        (p/L)x                                y
+
+                    x          c
+
+                               c
+
+8.7 The cantilever beam shown in the figure is sLubjected to a distributed shear stress sox/l on the
+      upper face. The following Airy stress function is proposed to solve this problem
+
+           f ¼ c1y2 þ c2y3 þ c3y4 þ c4y5 þ c5x2 þ c6x2y þ c7x2y2 þ c8x2y3
+
+Determine the constants ci and find the stress distribution in the beam. Use resultant force
+boundary conditions at the ends. (Answer: c1 ¼ soc/12l, c2 ¼ so/20l, c3 ¼ Àso/24cl, .)
+
+                                                           ox/l                               y
+
+                    x          c
+
+                               c
+
+                                                           l
+
+8.8* A triangular plate of narrow rectangular cross-section and uniform thickness is loaded uni-
+
+formly along its top edge as shown in the following figure. Verify that the Airy stress function
+
+                    p cot a           h     x2                       Àx2     y2Áa             tanÀ1  yi
+                    À a cot                                                                          x
+     f  ¼  2ð1                    aÞ     À      tan     a  þ  xy  þ       þ                À
+
+solves this plane problem. For the particular case of a ¼ 30, explicitly calculate the normal
+
+and shear stress distribution over a typical cross-section AB and make comparison plots
+(MATLABÒ recommended) of your results with those from elementary strength of
+
+materials. Answer:
+
+                               y          xy      !                                        tanÀ1y          xy      !
+                               x          þ                                                      x         þ
+sx ¼ 2K    a  À     tanÀ1         À   x2      y2     ;  sy ¼ 2K      a  À  tan  a       À           þ  x2      y2
+
+sxy  ¼  À2K  x2     y2  y2  ;     K   ¼   2ð1  p cot a        aÞ
+                    þ                          À a cot
+
+                        p                                                            x
+                                                                  A
+
+                                                             B
+                                           L
+
+                        y
+                                                                                  Exercises 223
+
+8.9* Redo Exercise 8.8* using polar coordinates.
+
+8.10 A triangular plate of narrow rectangular cross-section and uniform thickness carries a uni-
+        formly varying loading along its top edge as shown. Verify that the Airy stress function
+
+                          f ¼ r3½a14 cos q þ b14 sin q þ a31 cos 3q þ b31 sin 3q
+       solves this plane problem.
+
+       p(x) = kx
+
+                          x
+
+                  r  
+
+                       ·
+
+                                         y
+
+8.11* For the pure beam bending problem solved in Example 8.2, calculate and plot the in-plane
+         displacement field given by relation (8.1.22)2. Use the vector distribution plotting scheme
+         illustrated in Appendix C, Example C.5. Your solution should look like the following figure.
+
+8.12* For the beam problem in Example 8.3, the boundary conditions required that the resultant
+         normal force vanish at each end (x ¼ Æl). Show, however, that the normal stress on each end
+         is not zero, and plot its distribution over Àc < y < c.
+
+8.13*  Explicitly determine the bending stress sx for the problem in Example 8.4. For the case l/c ¼ 3,
+       plot this stress distribution through the beam thickness at x ¼ l/2, and compare with strength of
+       materials theory. For long beams (l >> c), show that the elasticity results approach the strength
+
+       of materials predictions.
+
+8.14 Develop the general displacement solution (8.3.9) for the axisymmetric case.
+224 CHAPTER 8 Two-Dimensional Problem Solution
+
+8.15 Consider the axisymmetric problem of an annular disk with a fixed inner radius and loaded
+        with uniform shear stress s over the outer radius. Using the Airy stress function term a4q,
+        show that the stress and displacement solution for this problem is given by
+
+                  sr ¼ sq ¼ 0;       srq    ¼   s   r22
+                                                    r2
+                                                                    !
+
+                  ur ¼ 0;     uq  ¼  1  þ   n sr22       r    À  1
+                                        E                r12     r
+
+                                                            
+
+                                            r1
+
+                                                r2
+
+8.16 Under the conditions of polar axisymmetry, verify that the Navier equations (5.4.4) reduce to
+        relation (8.3.10). Refer to Example 1.5 to evaluate vector terms in (5.4.4) properly. Next
+        show that the general solution to this CauchyeEuler differential equation is given by
+        (8.3.11). Finally, use this solution to determine the stresses and show that they will not
+        contain the logarithmic terms given in the general solution (8.3.8).
+
+8.17 For the axisymmetric problem of Example 8.6, explicitly develop the displacement solution
+        given by relation (8.4.5).
+
+8.18 Consider the annular ring loaded with a sinusoidal distributed pressure as illustrated. Show
+
+that this problem can be solved using the Airy function
+
+f  ¼  a1  log  r  þ  a2r2  þ  Àa21r2    þ   a22r4        þ  a23rÀ2     þ     Á     2q
+                                                                          a24 cos
+
+                                     y
+
+                                                    p= posin2
+
+                                        r1                          x
+
+                                            r2
+                                                                                         Exercises 225
+
+8.19 Through a shrink-fit process, a rigid solid cylinder of radius r1 þ d is to be inserted into the
+        hollow cylinder of inner radius r1 and outer radius r2 (as shown in the following figure). This
+        process creates a displacement boundary condition ur(r1) ¼ d. The outer surface of the hollow
+        cylinder is to remain stress free. Assuming plane strain conditions, determine the resulting
+        stress field within the cylinder (r1 < r < r2).
+
+                                                                                                ur =
+
+                                                                                        r1
+
+                     r2
+
+8.20 A long composite cylinder is subjected to the external pressure loading as shown in the
+        following figure. Assuming idealized perfect bonding between the two materials, the normal
+        stress and displacement will be continuous across the interface r ¼ r1 (see Section 5.2).
+        Under these conditions, determine the stress and displacement fields in each material.
+
+                                                                              p
+
+       Material (1)                              Material (2)
+                     r1
+
+                     r2
+
+8.21*  Numerically generate and plot the fields of stress (sr, sq) and displacement (ur) within the
+       composite cylinder of Exercise 8.20 for the specific case with material (1) ¼ steel and
+       material (2) ¼ aluminum. Use Table 4.2 for elastic moduli values. Explore and discuss the
+       continuity issues for these field quantities at the interface r ¼ r1.
+
+8.22 Resolve Exercise 8.20 for the case where material (1) is rigid and material (2) is elastic with
+        modulus E and Poisson's ratio n.
+226 CHAPTER 8 Two-Dimensional Problem Solution
+
+8.23 For the case of a thin-walled tube under internal pressure, verify that the general solution for the
+
+hoop stress (8.4.3)2 will reduce to the strength of materials relation (see Appendix D, Section D.5)
+
+   sq  z  pro
+           t
+
+where t is the wall thickness and ro is the mean radius.
+
+8.24 Consider the cut-and-weld problem in which a small wedge of angle a is removed from an annular
+
+ring as shown in the figure. The ring is then to be joined back together (welded) at the cut section.
+
+This operation produces an axisymmetric stress field, but the problem will contain a cyclic
+
+tangential displacement condition uq (r,2p) À uq (r,0) ¼ ar. First using the general plane stress
+
+solution (8.3.9)2, drop the rigid-body motion terms and show that the constant a3 is given by
+
+   a3  ¼  aE
+          8p
+
+Next use the general solution form (8.3.8) with zero boundary tractions on the inner and outer
+radii of the ring and determine the constants a1 and a2 and complete the stress field solution.
+
+                                                             
+
+8.25 Using superposition of the stress field (8.4.15) given in Example 8.7, show that the problem
+        of equal biaxial tension loading on a stress-free hole as shown in the figure is given by
+        equations (8.4.9).
+
+                                                                             T
+
+T                                                         T
+
+          T
+                                         Exercises 227
+
+8.26*  Using superposition of the stress field (8.4.15), develop solution (8.4.18) for the equal but
+       opposite biaxial loading on a stress-free hole shown in Figure 8.15(a). Also justify that this
+       solution will solve the shear loading case shown in Figure 8.15(b). Construct a polar plot
+       (similar to Figure 8.13) of sq(a,q)/T for this case.
+
+8.27 An elastic circular plug of radius a with properties E1 and n1 is perfectly bonded and
+        embedded in an infinite elastic medium with properties E2 and n2. The composite is loaded
+        with a uniform far-field biaxial stress T as shown. Using the results from Exercise 8.20,
+
+        determine the stress and displacement solutions in each material. Explicitly explore the
+        stresses on the boundary of the plug (r ¼ a) and determine if any stress concentration will
+        exist.
+
+       T
+
+                Perfectly Bonded
+               Elastic Plug of Radius a
+          T
+
+8.28 An infinite elastic medium contains a perfectly bonded rigid plug and is loaded with uniform
+        far-field biaxial stress T as shown. Using the results from Exercise 8.22, determine the stress
+        and displacement solution. Explicitly explore the stresses on the boundary of the plug (r ¼ a)
+        and determine if any stress concentration will exist.
+228 CHAPTER 8 Two-Dimensional Problem Solution
+
+8.29 Show that the stress function
+
+   f  ¼  so  r2                     Âsin2  q  log  r  þ  q  sinq  cosq  À  sin2   Ã
+                                                                                 q
+         p
+
+gives the solution to the problem of an elastic half-space loaded by a uniformly distributed
+shear over the free surface (x 0), as shown in the figure. Identify locations where the
+stresses are singular.
+
+                                                                  
+
+x            
+
+                                           r
+
+                                                                                y
+
+8.30 Show that the Flamant solution given by equations (8.4.31) and (8.4.32) can also be used to
+        solve the more general wedge problem as shown.
+
+                                            y
+
+                                  r
+                    
+
+                                              
+                              
+X
+
+                                                                          x
+           Y
+                                                                                  Exercises 229
+
+8.31 Show that plane stress displacements for the Flamant problem in Section 8.4.7 under only
+        tangential force X are given by
+
+       ur  ¼  ð1  À nÞX  q  sinq  À  2X  log  r  cosq     þ  A  sinq  þ  B  cosq
+                  pE                 pE
+
+       uq  ¼  ð1  À nÞX  q  cosq  þ  2X  log  r     sinq  À  ð1  À 3nÞX  sinq
+                  pE                 pE                          pE
+
+              þ A cosq À B sinq þ Cr þ K
+
+8.32 Determine the stress field solution (8.4.47) for the problem of a half-space under a
+        concentrated surface moment as shown in Figure 8.23. It is recommended to use the su-
+        perposition and limiting process as illustrated in the figure. This solution can be formally
+        developed using either Cartesian or polar coordinate stress components. However, a simple
+        and elegant solution can be found by noting that the superposition and limiting process yields
+        the stress function solution fM ¼ Àdvf/vx, where f is the solution to the Flamant problem
+        shown in Figure 8.21.
+
+8.33 Show that the problem of a half-space carrying a concentrated surface moment (see
+        Figure 8.23) can also be solved using the Airy function form f ¼ a4q þ b24 sin 2q.
+
+8.34*  Consider an elastic half-space loaded over its entire free surface with a sinusoidal pressure as
+       shown. Using a portion of the general solution (8.2.6), show that an Airy stress function of the
+       form f ¼ cos bx½BeÀby þ DyeÀby will satisfy the appropriate boundary and far-field con-
+       ditions and thus solve this problem. Next determine the x-location where the horizontal shear
+       stress is a maximum and plot the distribution of this component versus depth into the me-
+       dium. Such solutions have been used in geomechanics problems to simulate seafloor loading
+       from surface water waves.
+
+                                                             p = pocos(x/ L)
+           x
+
+                                                 y
+230 CHAPTER 8 Two-Dimensional Problem Solution
+
+8.35 Working in polar coordinates, show that an Airy stress function of the form
+        f ¼ a2r2 þ a21r2 cos 2q (where a2 and a21 are constants) solves the illustrated problem of a
+
+        shear loaded wedge problem. Are there any points in the body that exhibit singular behavior?
+
+                       s
+
+                                ·           
+
+                       r
+                                                                   x
+
+                                            
+
+                          s
+
+8.36* For the problem of a half-space under uniform normal loading as shown in Figure 8.24, show
+         that the maximum shear stress can be expressed by
+
+                smax      ¼  p  sinðq1   À    q2Þ
+                             p
+
+        Plot the distribution of lines of constant maximum shear stress, and compare the results with
+        the photoelastic fringes shown in Figure 8.28. These results, along with several other loading
+        cases, have been given by Poulos and Davis (1974).
+
+8.37 Following a similar solution procedure as used in Section 8.4.9, show that the solution for a
+        half-space carrying a uniformly distributed shear loading t is given by
+
+sx   ¼   t  ½4  logðsinq1=sinq2Þ         À  cos2q2  þ  cos2q1Þ
+        2p
+
+sy   ¼   t  ½cos2q2    À  cos2q1Þ
+        2p
+
+sxy  ¼  Àt      ½2ðq2  À  q1Þ  þ  sin2q2      À  sin2q1
+          2p
+
+        x                          t
+
+                          a              a 1
+                2
+
+                          r2             r1
+
+                                      y
+                                                                                                                                                          Exercises 231
+
+8.38 Generalize the integral superposition methods used in the examples shown in Section 8.4.9
+        and Exercise 8.37. In particular, show that the stress solution for a half-space carrying general
+        normal and shear distributions p(x) and t(x) over the free surface Àa x a is given by
+
+sx   ¼  À2py  ða     pðsÞðx À sÞ2     ds  À     2  ða            tðsÞðx À sÞ3   ds
+                   ½ðx À sÞ2 þ y22              p              ½ðx À sÞ2 þ y22
+               Àa                                   Àa
+
+sy   ¼  À2y3  ða   ½ðx  À  pðsÞ       y22 ds    À  2y2  ða        tðsÞðx À sÞ
+           p               sÞ2 þ                    p          ½ðx À sÞ2 þ y22 ds
+               Àa                                        Àa
+
+sxy  ¼  À2y2  ða     pðsÞðx À sÞ      ds        À  2y  ða        tðsÞðx À sÞ2                                                                         ds
+           p       ½ðx À sÞ2 þ y22                 p           ½ðx À sÞ2 þ y22
+               Àa                                       Àa
+
+8.39 Using the formulation and boundary condition results of the thin notch crack problem shown
+        in Figure 8.29, explicitly develop the stress components given by relations (8.4.56) and
+        (8.4.57).
+
+8.40* Photoelastic studies of the stress distribution around the tip of a crack have produced the
+         isochromatic fringe pattern (opening mode I case) as shown in the figure. Using the solution
+         given in (8.4.57), show that maximum shear stresses for each mode case are given by
+
+     ðsmaxÞI  ¼    3pAffiffi sin  w;  ðsmaxÞII  ¼   pB ffiffi  qffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
+                   2r                              2r             ð1 þ 3 cos2 wÞ
+
+Next, plot contours of constant maximum shear stress for modes I and II. In plotting each case,
+normalize smax by the coefficient A or B. For the mode I case, theoretical contours should
+compare with the following photoelastic picture.
+
+                 (Courtesy of Dynamic Photomechanics
+                 Laboratory, University of Rhode Island)
+232 CHAPTER 8 Two-Dimensional Problem Solution
+
+8.41 Consider the crack problem shown for the antiplane strain case with u ¼ v ¼ 0, w ¼ w(x,y).
+        From Section 7.4, the governing equation for the unknown displacement component with
+        zero body force was given by Laplace's equation, which in polar coordinates reads
+
+                   V2w            ¼     v2w  þ  1  vw      þ  1    v2w  ¼  0
+                                        vr2     r  vr         r2   vq2
+
+       Use a separation of variables scheme with w ¼ rlf (q), where l is a parameter to be determined
+
+       and f (q) is expected to be an odd function. Show that using this solution form in the governing
+       equation gives the result w ¼ Arl sinlq, where A is a constant. Next determine the polar
+
+       coordinate stress components, and following similar methods as in Section 8.4.10, show that
+
+       the boundary condition of zero stress on the crack surfaces gives l ¼ n/2, where n ¼ 1, 3, 5, .
+
+       Finally, using the arguments of finite displacements but singular stresses at the crack tip, show
+
+       that 0 < l < 1 and thus conclude that the displacement and stress near r z 0 must be of the
+
+       form
+
+             w  ¼   pffiffi  sin  q  ;  szq  ¼  mpAffiffi  cos  q  ;  szr  ¼  mpAffiffi      q
+                   Ar                           2r              2             2r         sin
+                                  2
+                                                                                             2
+
+       Note that the order of stress singularity, O(rÀ1/2), is identical to our previous study.
+
+                                                   y
+
+                                                           r·
+                                                               
+                                                                    x
+
+8.42* For the antiplane stain crack problem solved in Exercise 8.41, plot contours of the
+         displacement and stress fields.
+
+8.43*  Using strength of materials theory (see Appendix D), the bending stress sq for curved beams is
+       given by sq ¼ ÀM(r À B)/[rA(R À B)], where A ¼ b À a, B ¼ (b À a)/log(b/a), R ¼ (a þ b)/2.
+       For the problem shown in Figure 8.30, compare and plot the strength of materials and elasticity
+       predictions for the cases of b/a ¼ 2 and 4. Follow the nondimensional plotting scheme used in
+
+       Figure 8.31.
+                                                                                         Exercises 233
+
+8.44 Show that the curved beam problem with given end loadings can be solved by superimposing
+        the solution from the Airy function f ¼ [Ar3 þ (B/r) þ Cr þ Dr log r] cosq with the pure
+        bending solution (8.4.61).
+                                                                                  T
+
+                                                                                      M
+
+                                                                           
+                                                                          r
+                                                           a
+                                                                       b
+
+8.45* For the disk under diametrical compression (Figure 8.35), plot the distribution of the two
+         normal stresses sx and sy along the horizontal diameter (y ¼ 0, ÀR < x < R).
+
+8.46*  The behavior of granular materials has often been studied using photoelastic models of circular
+       particles as shown in the following figure. This provides the full-field distribution of local
+       contact load transfer through the model assembly. Particles in such models are commonly
+       loaded through multiple contacts with neighboring grains, and the particular example particle
+       shown has four contact loads. Assuming the loadings are in-line and along two perpendicular
+       diameters, use superposition of the solution given in Example 8.10 to determine the stress field
+       within the model particle. Make a comparison plot of the distribution of normal stress along a
+       loaded diameter with the corresponding results from Example 8.10.
+
+          P
+
+       P     P
+
+          P
+
+       (Courtesy of Dynamic Photomechanics Laboratory, University of Rhode Island)
+234 CHAPTER 8 Two-Dimensional Problem Solution
+
+8.47 Consider an extension of Exercise 8.46 in which we wish to explore the stress distribution in a
+
+        circular disk under an increasing number of boundary loadings. First show that for case
+        (a) with four loadings, the center stresses are given by sx ¼ sy ¼ À4P=pD; sxy ¼ 0, where
+        D is the disk diameter. Next for case (b) with eight loadings, show that the center stresses
+        become sx ¼ sy ¼ À8P=pD; sxy ¼ 0. Hence conclude that for a general case with N
+        loadings (N ¼ 4, 8, 16, .), the center stresses can be expressed by
+        sx ¼ sy ¼ ÀNP=pD; sxy ¼ 0. Thus as N / N, the boundary loading becomes uniformly
+        distributed as shown in case (c), and center stresses are then given by sx ¼ sy ¼ Àp; sxy ¼ 0
+        where p ¼ NP=pD, which can be found from solution (8.4.3).
+
+                                                p
+
+   P                           P
+
+                            P     P
+
+P     PP                             P
+
+                            P     P
+
+                 P             P
+(a) Four Boundary Loadings
+                            (b) Eight Boundary Loadings (c) Distributed Boundary Loading
+
+8.48 Solve the rotating disk problem of Example 8.11 for the case of an annular disk with inner
+        radius a and outer radius b being stress free. Explicitly show that for the case b >> a, the
+        maximum stress is approximately twice that of the solid disk.
+
+8.49 Using relation (8.5.4)1 along with Hooke's law for plane stress, show that the surface stresses
+        under a frictionless indenter are given by the hydrostatic state sx ¼ sy ¼ ÀpðxÞ. This situ-
+        ation would tend to restrict the surface layer to deform plastically under such loading.
+
+8.50 The example MATLABÒ code C.6 numerically integrated the integrals in solution (8.5.9) for
+        the case of the flat rigid punch problem. Modify this example code to handle the case of the
+        cylindrical punch given by solution (8.5.13) and thus generate the smax contours shown in
+        Figure 8.43.
+

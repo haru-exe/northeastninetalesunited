@@ -1,0 +1,1435 @@
+Mathematical Preliminaries                                                          CHAPTER
+
+                                                                                    1
+
+Similar to other field theories such as fluid mechanics, heat conduction, and electromagnetics, the
+study and application of elasticity theory requires knowledge of several areas of applied mathematics.
+The theory is formulated in terms of a variety of variables including scalar, vector, and tensor fields,
+and this calls for the use of tensor notation along with tensor algebra and calculus. Through the use of
+particular principles from continuum mechanics, the theory is developed as a system of partial dif-
+ferential field equations that are to be solved in a region of space coinciding with the body under study.
+Solution techniques used on these field equations commonly employ Fourier methods, variational
+techniques, integral transforms, complex variables, potential theory, finite differences, and finite and
+boundary elements. Therefore, to develop proper formulation methods and solution techniques for
+elasticity problems, it is necessary to have an appropriate mathematical background. The purpose of
+this initial chapter is to provide a background primarily for the formulation part of our study. Addi-
+tional review of other mathematical topics related to problem solution technique is provided in later
+chapters where they are to be applied.
+
+1.1 Scalar, vector, matrix, and tensor definitions
+
+Elasticity theory is formulated in terms of many different types of variables that are either specified or
+sought at spatial points in the body under study. Some of these variables are scalar quantities, rep-
+resenting a single magnitude at each point in space. Common examples include the material density
+r and temperature T. Other variables of interest are vector quantities that are expressible in terms of
+components in a two- or three-dimensional coordinate system. Examples of vector variables are the
+displacement and rotation of material points in the elastic continuum. Formulations within the theory
+also require the need for matrix variables, which commonly require more than three components to
+quantify. Examples of such variables include stress and strain. As shown in subsequent chapters, a
+three-dimensional formulation requires nine components (only six are independent) to quantify the
+stress or strain at a point. For this case, the variable is normally expressed in a matrix format with three
+rows and three columns. To summarize this discussion, in a three-dimensional Cartesian coordinate
+system, scalar, vector, and matrix variables can thus be written as follows
+
+mass density scalar ¼ r
+
+displacement vector ¼ u ¼ ue1 þ ve2 þ we3
+                                                                  2              3
+                                                                     sx sxy sxz
+stress matrix ¼ ½s ¼ 4 syx sy syz 5
+
+                                                                     szx szy sz
+
+Elasticity. http://dx.doi.org/10.1016/B978-0-12-408136-9.00001-5                    3
+
+Copyright © 2014 Elsevier Inc. All rights reserved.
+4  CHAPTER 1 Mathematical Preliminaries
+
+where e1, e2, e3 are the usual unit basis vectors in the coordinate directions. Thus, scalars, vectors, and
+matrices are specified by one, three, and nine components respectively.
+
+    The formulation of elasticity problems not only involves these types of variables, but also
+incorporates additional quantities that require even more components to characterize. Because of this,
+most field theories such as elasticity make use of a tensor formalism using index notation. This enables
+efficient representation of all variables and governing equations using a single standardized scheme.
+The tensor concept is defined more precisely in a later section, but for now we can simply say that
+scalars, vectors, matrices, and other higher-order variables can all be represented by tensors of various
+orders. We now proceed to a discussion on the notational rules of order for the tensor formalism.
+Additional information on tensors and index notation can be found in many texts such as Goodbody
+(1982) or Chandrasekharaiah and Debnath (1994).
+
+1.2 Index notation
+
+Index notation is a shorthand scheme whereby a whole set of numbers (elements or components) is
+
+represented by a single symbol with subscripts. For example, the three numbers a1, a2, a3 are denoted
+
+by the symbol ai, where index i will normally have the range 1, 2, 3. In a similar fashion, aij represents
+
+the nine numbers a11, a12, a13, a21, a22, a23, a31, a32, a33. Although these representations can be written
+in any manner, it is common to use a scheme related to vector and matrix formats such that
+
+                                23            2  a11 a12 a13    3
+                                a1
+                    ai ¼ 4 a2 5; aij ¼ 4 a21 a22 a23 5
+                                                                                       (1.2.1)
+
+                                a3               a31 a32 a33
+
+In the matrix format, a1j represents the first row, while ai1 indicates the first column. Other columns and
+rows are indicated in similar fashion, and thus the first index represents the row, while the second index
+
+denotes the column.
+    In general a symbol aij.k with N distinct indices represents 3N distinct numbers. It should be
+
+apparent that ai and aj represent the same three numbers, and likewise aij and amn signify the same
+
+matrix. Addition, subtraction, multiplication, and equality of index symbols are defined in the normal
+
+fashion. For example, addition and subtraction are given by
+
+   2                a1 Æ b1  3                2  a11 Æ b11   a12 Æ b12              3
+                                                             a22 Æ b22  a13 Æ b13
+   ai Æ bi ¼ 4 a2 Æ b2 5; aij Æ bij ¼ 4 a21 Æ b21            a32 Æ b32  a23 Æ b23 5    (1.2.2)
+                                                                        a33 Æ b33
+                    a3 Æ b3                      a31 Æ b31
+
+and scalar multiplication is specified as
+
+                             23               2  la11 la12 la13    3
+                                la1
+                    lai ¼ 4 la2 5; laij ¼ 4 la21 la22 la23 5
+                                                                                       (1.2.3)
+
+                                la3              la31 la32 la33
+
+The multiplication of two symbols with different indices is called outer multiplication, and a simple
+example is given by
+
+                                     2           a1b2        3                         (1.2.4)
+                                        a1b1     a2b2  a1b3
+                                                 a3b2  a2b3 5
+                             aibj ¼ 4 a2b1             a3b3
+                                        a3b1
+                                                                                1.2 Index notation  5
+
+The previous operations obey usual commutative, associative, and distributive laws, for example
+
+           ai þ bi ¼ bi þ ai                                                                        (1.2.5)
+           aijbk ¼ bkaij
+           aiÀþ ðbiÁþ ciÀÞ ¼ ðÁai þ biÞ þ ci
+           ai bjkcl ¼ aibjk cl
+           aijðbk þ ckÞ ¼ aijbk þ aijck
+
+Note that the simple relations ai ¼ bi and aij ¼ bij imply that a1 ¼ b1, a2 ¼ b2, . and
+a11 ¼ b11, a12 ¼ b12, . However, relations of the form ai ¼ bj or aij ¼ bkl have ambiguous meaning
+because the distinct indices on each term are not the same, and these types of expressions are to be
+avoided in this notational scheme. In general, the distinct subscripts on all individual terms in an
+equation should match.
+
+    It is convenient to adopt the convention that if a subscript appears twice in the same term, then
+summation over that subscript from one to three is implied, for example
+
+         X3                                                                                         (1.2.6)
+  aii ¼ aii ¼ a11 þ a22 þ a33
+
+            i¼1
+
+         X3
+aijbj ¼ aijbj ¼ ai1b1 þ ai2b2 þ ai3b3
+
+            j¼1
+
+It should be apparent that aii ¼ ajj ¼ akk ¼ ., and therefore the repeated subscripts or indices are
+sometimes called dummy subscripts. Unspecified indices that are not repeated are called free or distinct
+subscripts. The summation convention may be suspended by underlining one of the repeated indices or
+by writing no sum. The use of three or more repeated indices in the same term (e.g., aiii or aiijbij) has
+ambiguous meaning and is to be avoided. On a given symbol, the process of setting two free indices
+equal is called contraction. For example, aii is obtained from aij by contraction on i and j. The
+operation of outer multiplication of two indexed symbols followed by contraction with respect to one
+index from each symbol generates an inner multiplication; for example, aijbjk is an inner product
+obtained from the outer product aijbmk by contraction on indices j and m.
+
+    A symbol aij.m.n.k is said to be symmetric with respect to index pair mn if
+
+                                     aij.m.n.k ¼ aij.n.m.k                                          (1.2.7)
+
+while it is antisymmetric or skewsymmetric if
+
+                                     aij.m.n.k ¼ Àaij.n.m.k                                         (1.2.8)
+
+Note that if aij.m.n.k is symmetric in mn while bpq.m.n.r is antisymmetric in mn, then the product
+is zero
+
+                                     aij.m.n.kbpq.m.n.r ¼ 0                                         (1.2.9)
+
+A useful identity may be written as
+
+aij  ¼  1  ðaij                      þ  ajiÞ  þ  1  ðaij  À  ajiÞ  ¼  aðijÞ  þ  a½ij                (1.2.10)
+        2                                        2
+
+The first term a(ij) ¼ 1/2(aij þ aji) is symmetric, while the second term a[ij] ¼ 1/2(aij À aji) is anti-
+symmetric, and thus an arbitrary symbol aij can be expressed as the sum of symmetric and
+6  CHAPTER 1 Mathematical Preliminaries
+
+antisymmetric pieces. Note that if aij is symmetric, it has only six independent components. On the
+other hand, if aij is antisymmetric, its diagonal terms aii (no sum on i) must be zero, and it has only
+three independent components. Since a[ij] has only three independent components, it can be related to
+a quantity with a single index, for example ai (see Exercise 1.15).
+
+EXAMPLE 1.1: INDEX NOTATION EXAMPLES
+
+The matrix aij and vector bi are specified by            3          23
+                                             2
+                                                120                    2
+
+                                          aij ¼ 4 0 4 3 5; bi ¼ 4 4 5
+
+                                                212                    0
+
+Determine the following quantities: aii, aijaij, aijajk, aijbj, aijbibj, bibi, bibj, a(ij), a[ij], and indicate
+
+whether they are a scalar, vector, or matrix.
+    Following the standard definitions given in Section 1.2
+
+   aii ¼ a11 þ a22 þ a33 ¼ 7 ðscalarÞ
+
+   aijaij ¼ a11a11 þ a12a12 þ a13a13 þ a21a21 þ a22a22 þ a23a23 þ a31a31 þ a32a32 þ a33a33
+
+          ¼ 1 þ 4 þ 0 þ 0 þ 16 þ 9 þ 4 þ 1 þ 4 ¼ 39 ðscalarÞ
+
+                                                2  1 10 6     3
+
+   aijajk ¼ ai1a1k þ ai2a2k þ ai3a3k ¼ 4 6 19 18 5 ðmatrixÞ
+
+                                                   6 10 7
+
+                                            23
+                                               10
+
+     aijbj ¼ ai1b1 þ ai2b2 þ ai3b3 ¼ 4 16 5 ðvectorÞ
+
+                                               8
+
+   aijbibj ¼ a11b1b1 þ a12b1b2 þ a13b1b3 þ a21b2b1 þ . ¼ 84 ðscalarÞ
+
+   bibi ¼ 2b1b1 þ b2b23þ b3b3 ¼ 4 þ 16 þ 0 ¼ 20 ðscalarÞ
+              48 0
+
+   bibj ¼ 4 8 16 0 5 ðmatrixÞ
+              00 0
+
+                                    2  1        3        2             32        1  3
+                                       0  2  0             1     0  2      1     4  1
+             1  À          Á     1  4  2  4  35       1  42      4  15 ¼ 41      2  2 5 ðmatrixÞ
+   aðijÞ  ¼  2   aij  þ  aji  ¼  2        1        þ             3                  2
+                                                      20
+                                             2                      2      1
+
+                                    2           3        2             32                3
+                                       1  2  0             1     0  2         0       1  À1
+             1À            Á     1     0  4  35       1  42      4                    0    1 5 ðmatrixÞ
+   a½ij   ¼  2 aij    À  aji  ¼  2  4  2  1        À             3  1 5 ¼ 4 À1      À1     0
+
+                                             2        20            2         1
+                                             1.3 Kronecker delta and alternating symbol               7
+
+1.3 Kronecker delta and alternating symbol
+
+A useful special symbol commonly used in index notational schemes is the Kronecker delta defined by
+
+                               8                                        2            3
+                               <                                          100
+         dij  ¼                :  1;    if   i ¼ j ðno  sumÞ       ¼ 40 1 05                          (1.3.1)
+                                  0;    if   isj
+                                                                          001
+
+Within usual matrix theory, it is observed that this symbol is simply the unit matrix. Note that the
+Kronecker delta is a symmetric symbol. Particularly useful properties of the Kronecker delta include
+the following
+
+                                        dij ¼ dji                                                     (1.3.2)
+                                        dii ¼ 3; dii ¼ 1
+                                        dijaj ¼ ai; dijai ¼ aj
+                                        dijajk ¼ aik; djkaik ¼ aij
+                                        dijaij ¼ aii; dijdij ¼ 3
+
+Another useful special symbol is the alternating or permutation symbol defined by
+
+              8
+              < þ1; if ijk is an even permutation of 1; 2; 3
+
+ijk      ¼    :                À1;      if ijk is an odd permutation of 1; 2; 3                       (1.3.3)
+                                 0;     otherwise
+
+Consequently, 123 ¼ 231 ¼ 312 ¼ 1, 321 ¼ 132 ¼ 213 ¼ À1, 112 ¼ 131 ¼ 222 ¼ . ¼ 0. Therefore,
+of the 27 possible terms for the alternating symbol, three are equal to þ1, three are equal to À1, and all
+
+others are 0. The alternating symbol is antisymmetric with respect to any pair of its indices.
+
+This particular symbol is useful in evaluating determinants and vector cross products, and the
+
+determinant of an array aij can be written in two equivalent forms
+                                                            
+   ÂÃ    ¼    aij              ¼        a11  a12      a13     ¼  ijk a1i a2j a3k  ¼  ijk ai1 aj2 ak3  (1.3.4)
+det aij                                 a21  a22      a23
+                                        a31  a32      a33
+
+where the first index expression represents the row expansion, while the second form is the column
+
+expansion. Using the property
+
+                                        ijk pqr  ¼     dip    diq  dir                                (1.3.5)
+                                                       djp    djq  djr
+                                                       dkp    dkq  dkr
+
+another form of the determinant of a matrix can be written as
+
+                                         ÂÃ      ¼  1  ijk pqr aip ajq akr                            (1.3.6)
+                                      det aij       6
+8  CHAPTER 1 Mathematical Preliminaries
+
+1.4 Coordinate transformations
+
+It is convenient and in fact necessary to express elasticity variables and field equations in several
+
+different coordinate systems (see Appendix A). This situation requires the development of particular
+
+transformation rules for scalar, vector, matrix, and higher-order variables. This concept is funda-
+
+mentally connected with the basic definitions of tensor variables and their related tensor transformation
+
+laws. We restrict our discussion to transformations only between Cartesian coordinate systems, and
+
+thus consider the two systems shown in Figure 1.1. The two Cartesian frames (x1, x2, x3) and ðx10 ; x20 ; x30 Þ
+differ only by orientation, and the unit basis vectors for each frame are {ei} ¼ {e1, e2, e3} and fei0g ¼
+fe10 ; e20 ; e30 g.
+    Let Qij denote the cosine of the angle between the xi0-axis and the xj-axis
+                                                          cosÀxi0;    Á
+                              Qij   ¼                               xj            (1.4.1)
+
+Using this definition, the basis vectors in the primed coordinate frame can be easily expressed in terms
+of those in the unprimed frame by the relations
+
+                      e01 ¼ Q11e1 þ Q12e2 þ Q13e3
+
+                      e20 ¼ Q21e1 þ Q22e2 þ Q23e3                                 (1.4.2)
+
+                      e03 ¼ Q31e1 þ Q32e2 þ Q33e3
+
+or in index notation
+
+                                   e0i ¼ Qijej                                    (1.4.3)
+
+                                       x3
+                      x3
+
+                                                      v
+
+                          e3       e3                                    x2
+                                       e2                                     x2
+
+                      e1                                  e2
+
+                                e1
+
+                                      x1
+                                                      x1
+
+FIGURE 1.1 Change of Cartesian Coordinate Frames.
+   1.4 Coordinate transformations                                                                      9
+
+Likewise, the opposite transformation can be written using the same format as        (1.4.4)
+                                                       ei ¼ Qjie0j
+
+Now an arbitrary vector v can be written in either of the two coordinate systems as
+
+                                           v ¼ v1e1 þ v2e2 þ v3e3 ¼ viei             (1.4.5)
+                                             ¼ v10 e01 þ v02e02 þ v03e03 ¼ v0iei0
+                                                                                     (1.4.6)
+Substituting form (1.4.4) into (1.4.5)1 gives                                        (1.4.7)
+                                                       v ¼ viQjiej0
+
+but from (1.4.5)2, v ¼ vj0e0j; and so we find that
+                                                       vi0 ¼ Qijvj
+
+In similar fashion, using (1.4.3) in (1.4.5)2 gives
+                                                       vi ¼ Qjivj0
+
+Relations (1.4.6) and (1.4.7) constitute the transformation laws for the Cartesian components of a
+vector under a change of rectangular Cartesian coordinate frame. It should be understood that under
+such transformations, the vector is unaltered (retaining original length and orientation), and only its
+components are changed. Consequently, if we know the components of a vector in one frame, relation
+(1.4.6) and/or relation (1.4.7) can be used to calculate components in any other frame.
+
+    The fact that transformations are being made only between orthogonal coordinate systems places
+some particular restrictions on the transformation or direction cosine matrix Qij. These can be
+determined by using (1.4.6) and (1.4.7) together to get
+
+vi ¼ Qjivj0 ¼ QjiQjkvk                                                               (1.4.8)
+
+From the properties of the Kronecker delta, this expression can be written as
+
+À                                                            Á
+dikvk ¼ QjiQjkvk or QjiQjk À dik vk ¼ 0
+
+and since this relation is true for all vectors vk, the expression in parentheses must be zero, giving the
+result
+
+QjiQjk ¼ dik                                                                         (1.4.9)
+
+In similar fashion, relations (1.4.6) and (1.4.7) can be used to eliminate vi (instead of v0i) to get
+
+QijQkj ¼ dik                                                                         (1.4.10)
+
+Relations (1.4.9) and (1.4.10) comprise the orthogonality conditions that Qij must satisfy. Taking the
+
+determinant of either relation gives another related result
+
+   ÂÃ                                                                                (1.4.11)
+det Qij ¼ Æ1
+
+Matrices that satisfy these relations are called orthogonal, and the transformations given by (1.4.6) and
+(1.4.7) are therefore referred to as orthogonal transformations.
+10 CHAPTER 1 Mathematical Preliminaries
+
+1.5 Cartesian tensors
+
+Scalars, vectors, matrices, and higher-order quantities can be represented by a general index notational
+scheme. Using this approach, all quantities may then be referred to as tensors of different orders. The
+previously presented transformation properties of a vector can be used to establish the general
+transformation properties of these tensors. Restricting the transformations to those only between
+Cartesian coordinate systems, the general set of transformation relations for various orders can be
+written as
+
+      a0 ¼ a; zero order ðscalarÞ                                                 (1.5.1)
+      a0i ¼ Qipap; first order ðvectorÞ
+     a0ij ¼ QipQjqapq; second order ðmatrixÞ
+    a0ijk ¼ QipQjpQkrapqr; third order
+   ai0jkl ¼ QipQjqQkrQlsapqrs; fourth order
+    «
+ai0jk.m ¼ QipQjqQkr / Qmtapqr.t; general order
+
+Note that, according to these definitions, a scalar is a zero-order tensor, a vector is a tensor of order one,
+and a matrix is a tensor of order two. Relations (1.5.1) then specify the transformation rules for the
+components of Cartesian tensors of any order under the rotation Qij. This transformation theory proves
+to be very valuable in determining the displacement, stress, and strain in different coordinate di-
+rections. Some tensors are of a special form in which their components remain the same under all
+transformations, and these are referred to as isotropic tensors. It can be easily verified (see Exercise
+1.8) that the Kronecker delta dij has such a property and is therefore a second-order isotropic tensor.
+The alternating symbol ijk is found to be the third-order isotropic form. The fourth-order case
+(Exercise 1.9) can be expressed in terms of products of Kronecker deltas, and this has important
+applications in formulating isotropic elastic constitutive relations in Section 4.2.
+
+    The distinction between the components and the tensor should be understood. Recall that a vector v
+can be expressed as
+
+                                           v ¼ v1e1 þ v2e2 þ v3e3 ¼ viei          (1.5.2)
+                                             ¼ v01e01 þ v02e02 þ v03e03 ¼ v0iei0
+
+In a similar fashion, a second-order tensor A can be written
+
+                       A ¼ A11e1e1 þ A12e1e2 þ A13e1e3                            (1.5.3)
+                             þ A21e2e1 þ A22e2e2 þ A23e2e3
+                             þ A31e3e1 þ A32e3e2 þ A33e3e3
+
+                         ¼ Aijeiej ¼ Ai0je0ie0j
+
+and similar schemes can be used to represent tensors of higher order. The representation used in
+equation (1.5.3) is commonly called dyadic notation, and some authors write the dyadic products eiej
+using a tensor product notation ei5ej. Additional information on dyadic notation can be found in
+Weatherburn (1948) and Chou and Pagano (1967).
+                                                                              1.5 Cartesian tensors 11
+
+    Relations (1.5.2) and (1.5.3) indicate that any tensor can be expressed in terms of components in
+any coordinate system, and it is only the components that change under coordinate transformation. For
+example, the state of stress at a point in an elastic solid depends on the problem geometry and applied
+loadings. As is shown later, these stress components are those of a second-order tensor and therefore
+obey transformation law (1.5.1)3. Although the components of the stress tensor change with choice of
+coordinates, the stress tensor (representing the state of stress) does not.
+
+    An important property of a tensor is that if we know its components in one coordinate system, we
+can find them in any other coordinate frame by using the appropriate transformation law. Because the
+components of Cartesian tensors are representable by indexed symbols, the operations of equality,
+addition, subtraction, multiplication, and so forth are defined in a manner consistent with the indicial
+notation procedures previously discussed. The terminology tensor without the adjective Cartesian
+usually refers to a more general scheme in which the coordinates are not necessarily rectangular
+Cartesian and the transformations between coordinates are not always orthogonal. Such general tensor
+theory is not discussed or used in this text.
+
+EXAMPLE 1.2: TRANSFORMATION EXAMPLES
+
+The components of a first- and second-order tensor in a particular coordinate frame are given by
+                                         23                   2            3
+                                         1                       103
+
+                           ai ¼ 4 4 5; aij ¼ 4 0 2 2 5
+
+                                         2                       324
+
+Determine the components of each tensor in a new coordinate system found through a rotation of
+60 (p/3 radians) about the x3-axis. Choose a counterclockwise rotation when viewing down the
+
+negative x3-axis (see Figure 1.2).
+    The original and primed coordinate systems shown in Figure 1.2 establish the angles between
+
+the various axes. The solution starts by determining the rotation matrix for this case
+                2 cos 60                                      3      2                              3
+         Qij ¼ 4 cos 150      cos 30         cos      90      5   ¼  4    p1=ffi2ffi  pffiffi     0
+                              cos 60         cos      90                À 3=2           3=2       05
+                                                                                       1=2
+                    cos 90 cos 90 cos 0
+                                                                           0          01
+
+The transformation for the vector quantity follows from equation (1.5.1)2                     pffiffi 3
+                           2                 pffiffi          32 3 2
+                                p1=ffi2ffi    3=2             0     1            1=2 þp2ffiffi 3
+         a0i  ¼  Qijaj  ¼  4  À 3=2          1=2              05  445      ¼  4  2 À 3=2          5
+
+                              0              01 2                                     2
+
+and the second-order tensor (matrix) transforms according to (1.5.1)3
+
+                       2     p1=ffi2ffi  pffiffi      0 32 1      0     3  32     p1=ffi2ffi   pffiffi     3T
+                           À 3=2           3=2        0 754 0     2     2  564  À 3=2            3=2     0
+ai0j  ¼  QipQjqapq  ¼  64                 1=2                                                   1=2      0 57
+
+                       20                   01                3 2 4 pffiffi 30                    01
+                                               pffiffi
+                           p7ffi=ffi 4             3=4            3=2 þpffiffi 3
+                    ¼ 64     3=4pffiffi           5=p4ffiffi      1 À 3 3=2       75
+
+                           3=2 þ 3          1 À 3 3=2                   4
+12 CHAPTER 1 Mathematical Preliminaries
+
+  where [ ]T indicates transpose (defined in Section 1.7). Although simple transformations can be
+  worked out by hand, for more general cases it is more convenient to use a computational scheme
+  to evaluate the necessary matrix multiplications required in the transformation laws (1.5.1).
+  MATLABÒ software is ideally suited to carry out such calculations, and an example program to
+  evaluate the transformation of second-order tensors is given in Example C.1 in Appendix C.
+
+1.6 Principal values and directions for symmetric second-order
+     tensors
+
+Considering the tensor transformation concept previously discussed, it should be apparent that there
+might exist particular coordinate systems in which the components of a tensor take on maximum or
+minimum values. This concept is easily visualized when we consider the components of a vector as
+shown in Figure 1.1. If we choose a particular coordinate system that has been rotated so that the
+x3-axis lies along the direction of the vector, then the vector will have components v ¼ {0, 0, jvj}. For
+this case, two of the components have been reduced to zero, while the remaining component becomes
+the largest possible (the total magnitude).
+
+    This situation is most useful for symmetric second-order tensors that eventually represent the stress
+and/or strain at a point in an elastic solid. The direction determined by the unit vector n is said to be a
+principal direction or eigenvector of the symmetric second-order tensor aij if there exists a parameter l
+such that
+
+aijnj ¼ lni                                                                       (1.6.1)
+
+     x3
+x3
+
+                                                          60    x2
+                                                                              x2
+                                x1
+FIGURE 1.2 Coordinate Transformation.                         x1
+       1.6 Principal values and directions for symmetric second-order tensors 13
+
+where l is called the principal value or eigenvalue of the tensor. Relation (1.6.1) can be
+
+rewritten as
+
+                                                À                Á
+                                                   aij À ldij nj ¼ 0
+
+and this expression is simply a homogeneous system of three linear algebraic equations in the un-
+
+knowns n1, n2, n3. The system possesses a nontrivial solution if and only if the determinant of its
+
+coefficient matrix vanishes
+
+                                                   Â                Ã
+                                                det aij À ldij ¼ 0
+
+Expanding the determinant produces a cubic equation in terms of l
+
+                                Â     À      Ã  ¼  Àl3        þ  Ial2  À  IIal   þ  IIIa   ¼  0              (1.6.2)
+                             det aij     ldij                                                                (1.6.3)
+
+where
+
+              Ia   ¼  aii ¼  aaj1j 1Àþaaij2a2ij Áþ¼a33aa1211  a12      þ    a22     a23    þ     a11  a13  
+              IIa  ¼  1À                                      a22           a32     a33          a31  a33
+                      2 aii
+
+                      ÂÃ
+              IIIa ¼ det aij
+
+The scalars Ia, IIa, and IIIa are called the fundamental invariants of the tensor aij, and relation (1.6.2) is
+known as the characteristic equation. As indicated by their name, the three invariants do not change
+value under coordinate transformation. The roots of the characteristic equation determine the allow-
+able values for l, and each of these may be back-substituted into relation (1.6.1) to solve for the
+associated principal direction n.
+
+    Under the condition that the components aij are real, it can be shown that all three roots l1, l2, l3
+of the cubic equation (1.6.2) must be real. Furthermore, if these roots are distinct, the principal di-
+rections associated with each principal value are orthogonal. Thus, we can conclude that every
+symmetric second-order tensor has at least three mutually perpendicular principal directions and at
+most three distinct principal values that are the roots of the characteristic equation. By denoting the
+principal directions n(1), n(2), n(3) corresponding to the principal values l1, l2, l3, three possibilities
+arise:
+
+1. All three principal values are distinct; the three corresponding principal directions are unique
+    (except for sense).
+
+2. Two principal values are equal (l1 s l2 ¼ l3); the principal direction n(1) is unique (except for
+    sense), and every direction perpendicular to n(1) is a principal direction associated with l2, l3.
+
+3. All three principal values are equal; every direction is principal, and the tensor is isotropic, as per
+    discussion in the previous section.
+
+Therefore, according to what we have presented, it is always possible to identify a right-handed
+Cartesian coordinate system such that each axis lies along the principal directions of any given
+14 CHAPTER 1 Mathematical Preliminaries
+
+symmetric second-order tensor. Such axes are called the principal axes of the tensor. For this case, the
+basis vectors are actually the unit principal directions {n(1), n(2), n(3)}, and it can be shown that with
+
+respect to principal axes the tensor reduces to the diagonal form
+
+                                              2  l1 0 0         3
+
+                            a0ij ¼ 4 0 l2 0 5                                                           (1.6.4)
+
+                                                 0 0 l3
+
+Note that the fundamental invariants defined by relations (1.6.3) can be expressed in terms of the
+principal values as
+
+                              Ia ¼ l1 þ l2 þ l3                                                         (1.6.5)
+                             IIa ¼ l1l2 þ l2l3 þ l3l1
+                            IIIa ¼ l1l2l3
+
+The eigenvalues have important extremal properties. If we arbitrarily rank the principal values such
+that l1 > l2 > l3, then l1 will be the largest of all possible diagonal elements, while l3 will be the
+smallest diagonal element possible. This theory is applied in elasticity as we seek the largest stress or
+
+strain components in an elastic solid.
+
+EXAMPLE 1.3: PRINCIPAL VALUE PROBLEM
+
+Determine the invariants and principal values and directions of the following symmetric second-
+
+order tensor                         2                        3
+                                        2               00
+                                                        3 45
+                               aij ¼ 4 0
+                                                        4 À3
+                                        0
+
+The invariants follow from relations (1.6.3)
+
+              Ia ¼ aii ¼ 2 þ 3 À 3 ¼ 2
+
+              IIa      ¼    2    0            þ    3    4    þ     2    0    ¼  6  À  25  À  6  ¼  À25
+                            0    3                 4  À3           0  À3
+
+              IIIa     ¼    2    0          0      ¼  2ðÀ    9  À  16Þ  ¼    À50
+                            0    3          4
+                            0    4        À3
+
+The characteristic equation then becomes
+
+                 Â     À      Ã  ¼            Àl3  þ    2l2  þ  25l   À    50  ¼   0
+              det aij     ldij
+                       2ÞÀl2                 Á
+              0ðl  À             À        25       ¼  0
+
+              rl1 ¼ 5; l2 ¼ 2; l3 ¼ À5
+
+Thus, for this case all principal values are distinct.
+        1.6 Principal values and directions for symmetric second-order tensors 15
+
+For the l1 ¼ 5 root, equation (1.6.1) gives the system
+
+                            À3nð11Þ ¼ 0
+
+                            À2nð21Þ þ 4nð31Þ ¼ 0
+
+                            4nð21Þ À 8nð31Þ ¼ 0
+                                                                            pffiffi
+which gives a normalized    solution n(1) ¼ Æ                  (2e2 þ e3)=    5. In sipmiffiffilar fashion, the other  two   prin-
+cipal directions are found  to be n(2) ¼ Æe1,                  n(3) ¼ Æ (e2  À 2e3)= 5. It is easily verified          that  these
+
+directions are mutually orthogonal. Figure 1.3 illustrates their directions with respect to the given
+
+coordinate system, and this establishes the right-handed principal coordinate axes ðx01; x02; x03Þ: For
+
+this case, the transformation matrix Qij defined by (1.4.1) becomes
+                            2                                     pffiffi pffiffi 3
+                               0 2= 5 1= 5
+                            Qij ¼ 4 1 0pffiffi                               0pffiffi 5
+                               0 1= 5 À2= 5
+
+Notice the eigenvectors actually form the rows of the Q matrix.
+
+Using this in the transformation law (1.5.1)3, the components of the given second-order tensor
+
+become                                                         2             3
+
+                                                                  500
+                            a0ij ¼ 4 0 2 0 5
+                                     0 0 À5
+
+This result then validates the general theory given by relation (1.6.4), indicating that the tensor
+
+should take on diagonal form with the principal values as the elements.
+    Only simple second-order tensors lead to a characteristic equation that is factorable, thus allow-
+
+ing solution by hand calculation. Most other cases normally develop a general cubic equation and a
+
+more complicated system to solve for the principal directions. Again, particular routines within the
+MATLABÒ package offer convenient tools to solve these more general problems. Example C.2 in
+
+Appendix C provides a simple code to determine the principal values and directions for symmetric
+
+second-order tensors.
+
+                                                                  x3
+
+                                                        n (2)     n (1)              x1
+                                          x1 x2                   n (3)                    x2
+FIGURE 1.3 Principal Axes for Example 1.3.
+                                                                        x3
+16 CHAPTER 1 Mathematical Preliminaries
+
+1.7 Vector, matrix, and tensor algebra
+
+Elasticity theory requires the use of many standard algebraic operations among vector, matrix, and
+tensor variables. These operations include dot and cross products of vectors and numerous matrix/
+tensor products. All of these operations can be expressed efficiently using compact tensor index no-
+tation. First, consider some particular vector products. Given two vectors a and b, with Cartesian
+components ai and bi, the scalar or dot product is defined by
+
+            a$b ¼ a1b1 þ a2b2 þ a3b3 ¼ aibi                                (1.7.1)
+
+Because all indices in this expression are repeated, the quantity must be a scalar, that is, a tensor of
+order zero. The magnitude of a vector can then be expressed as
+
+                  jaj ¼ ða$aÞ1=2 ¼ ðaiaiÞ1=2                               (1.7.2)
+
+The vector or cross product between two vectors a and b can be written as
+
+            a  Â  b  ¼     e1    e2  e3          ¼   ijk aj bk ei          (1.7.3)
+                           a1    a2  a3
+                           b1    b2  b3
+
+where ei are the unit basis vectors for the coordinate system. Note that the cross product gives a vector
+
+resultant whose components are ijkajbk. Another common vector product is the scalar triple product
+
+defined by
+
+            a$b  Â   c  ¼    a1  a2         a3    ¼  ijk ai bj ck          (1.7.4)
+                             b1  b2         b3
+                             c1  c2         c3
+
+Next consider some common matrix products. Using the usual direct notation for matrices and vectors,
+common products between a matrix A ¼ [A] with a vector a can be written as
+
+               Aa ¼ ½Afag ¼ Aijaj ¼ ajAij                                  (1.7.5)
+               aT A ¼ fagT ½A ¼ aiAij ¼ Aijai
+
+where aT denotes the transpose, and for a vector quantity this simply changes the column matrix (3 Â 1)
+into a row matrix (1 Â 3). Note that each of these products results in a vector resultant. These types of
+expressions generally involve various inner products within the index notational scheme and, as
+noted, once the summation index is properly specified, the order of listing the product terms does not
+change the result. We will encounter several different combinations of products between two matrices
+A and B
+
+                 AB ¼ ½A½B ¼ AijBjk
+
+                 ABT ¼ AijBkj
+
+                 AT B ¼ AjiBjk                                             (1.7.6)
+
+                 trðABÞ    Á¼¼AitjrBÀjAi T    Á   ¼  AijBij
+                   À                        B
+
+                 tr ABT
+                                                           1.8 Calculus of Cartesian tensors 17
+
+where AT indicates the transpose and trA is the trace of the matrix defined by
+
+                       ATij ¼ Aji                                                      (1.7.7)
+                       trA ¼ Aii ¼ A11 þ A22 þ A33
+
+Similar to vector products, once the summation index is properly specified, the results in (1.7.6) do not
+depend on the order of listing the product terms. Note that this does not imply that AB ¼ BA, which is
+certainly not true.
+
+1.8 Calculus of Cartesian tensors
+
+Most variables within elasticity theory are field variables, that is, functions depending on the spatial
+coordinates used to formulate the problem under study. For time-dependent problems, these variables
+could also have temporal variation. Thus, our scalar, vector, matrix, and general tensor variables are
+functions of the spatial coordinates (x1, x2, x3). Because many elasticity equations involve differential
+and integral operations, it is necessary to have an understanding of the calculus of Cartesian tensor
+fields. Further information on vector differential and integral calculus can be found in Hildebrand
+(1976) and Kreyszig (2010).
+
+    The field concept for tensor components can be expressed as
+
+                  a ¼ aðx1; x2; x3Þ ¼ aðxiÞ ¼ aðxÞ
+                  ai ¼ aiðx1; x2; x3Þ ¼ aiðxiÞ ¼ aiðxÞ
+                  aij ¼ aijðx1; x2; x3Þ ¼ aijðxiÞ ¼ aijðxÞ
+                  «
+
+It is convenient to introduce the comma notation for partial differentiation
+
+          a;i  ¼   v   a;       ai;  j  ¼         v   ai;  aij;k  ¼   v       aij;  /
+                  vxi                            vxj                 vxk
+
+It can be shown that if the differentiation index is distinct, the order of the tensor is increased by
+
+one. For example, the derivative operation on a vector ai, j produces a second-order tensor or matrix
+
+given by
+
+                                        2        va1 va1 va1         3
+
+                           ai;  j  ¼    6666646  vx1  vx2  vx3       5777777
+                                                 va2  va2  va2
+
+                                                 vx1  vx2  vx3
+                                                 va3  va3  va3
+
+                                                 vx1 vx2 vx3
+
+Using Cartesian coordinates (x, y, z), consider the directional derivative of a scalar field function f with
+respect to a direction s
+
+                       df ¼ vf dx þ vf dy þ vf dz
+                       ds vx ds vy ds vz ds
+18 CHAPTER 1 Mathematical Preliminaries
+
+Note that the unit vector in the direction of s can be written as
+
+             n  ¼  dx  e1  þ  dy  e2     þ  dz  e3
+                   ds         ds            ds
+
+Therefore, the directional derivative can be expressed as the following scalar product
+
+                       df  ¼  n$Vf                                                           (1.8.1)
+                       ds
+
+where Vf is called the gradient of the scalar function f and is defined by
+
+      Vf  ¼  grad   f  ¼     vf   þ   e2    vf  þ                  e3  vf                    (1.8.2)
+                           e1vx             vy                         vz
+
+and the symbolic vector operator V is called the del operator
+
+                       v          v             v
+          V ¼ e1vx þ e2 vy þ e3 vz                                                           (1.8.3)
+
+These and other useful operations can be expressed in Cartesian tensor notation. Given the scalar field
+f and vector field u, the following common differential operations can be written in index notation
+
+    Gradient of a Scalar Vf ¼ f;iei                                                          (1.8.4)
+    Gradient of a Vector Vu ¼ ui; jeiej
+  Laplacian of a Scalar V2f ¼ V$Vf ¼ f;ii
+Divergence of a Vector V$u ¼ ui;i
+
+      Curl of a Vector V Â u ¼ ijkuk; jei
+ Laplacian of a Vector V2u ¼ ui;kkei
+
+If f and j are scalar fields and u and v are vector fields, several useful identities exist
+
+VðfjÞ ¼ ðVfÞj þ fðVjÞ
+              ÀÁ ÀÁ
+
+72ðfjÞ ¼ 72f j þ f 72j þ 2Vf$Vj
+
+V$ðfuÞ ¼ Vf$u þ fðV$uÞ
+
+V Â ðfuÞ ¼ Vf Â u þ fðV Â uÞ
+
+V$ðu Â vÞ ¼ v$ðV Â uÞ À u$ðV Â vÞ                                                            (1.8.5)
+V Â Vf ¼ 0
+
+V$Vf ¼ 72f
+
+V$V Â u ¼ 0
+
+V Â ðV Â uÞ ¼ VðV$uÞ À 72u
+
+u  Â  ðV  Â  uÞ  ¼  1  Vðu$uÞ     À      u$Vu
+                    2
+
+Each of these identities can be easily justified by using index notation from definition relations (1.8.4).
+                                1.8 Calculus of Cartesian tensors 19
+
+EXAMPLE 1.4: SCALAR AND VECTOR FIELD EXAMPLES
+Scalar and vector field functions are given by f ¼ x2 À y2 and u ¼ 2xe1 þ 3yze2 þ xye3. Calculate
+the following expressions, Vf; V2f; V$u; Vu; V Â u:
+
+    Using the basic relations (1.8.4)
+
+                              Vf ¼ 2xe1 À 2ye2
+
+                             V2f ¼ 2 À 2 ¼ 0
+
+V$u ¼ 2 þ 3z þ 0 ¼ 2 þ 3z
+
+                    2  20 0     3
+
+   Vu ¼ ui; j ¼ 4 0 3z 3y 5
+
+                       yx 0
+
+V  Â  u  ¼     e1       e2    e3     ¼  ðx  À  3yÞe1                 À  ye2
+              v=vx     v=vy  v=vz
+                       3yz    xy
+               2x
+
+Using numerical methods, some of these variables can be conveniently computed and plotted in
+order to visualize the nature of the field distribution. For example, contours of f ¼ constant can
+easily be plotted using MATLABÒ software, and vector distributions of Vf can be shown as plots
+of vectors properly scaled in magnitude and orientation. Figure 1.4 shows these two types of plots,
+and it is observed that the vector field Vf is orthogonal to the f-contours, a result that is true in
+general for all scalar fields. Numerically generated plots such as these will prove to be useful in un-
+
+derstanding displacement, strain, and/or stress distributions found in the solution to a variety of
+
+problems in elasticity.
+
+                             y
+
+                                                                     x
+
+FIGURE 1.4 Contours of f [ Constant and Vector Distributions of Vf.
+20 CHAPTER 1 Mathematical Preliminaries
+
+Next consider some results from vector/tensor integral calculus. We simply list some theorems that
+have later use in the development of elasticity theory.
+
+1.8.1 Divergence or Gauss theorem
+
+Let S be a piecewise continuous surface bounding the region of space V. If a vector field u is continuous
+
+and has continuous first derivatives in V, then
+
+                             ðð                         ððð
+
+                                   u$n dS ¼ V$u dV                                     (1.8.6)
+
+                                S                            V
+
+where n is the outer unit normal vector to surface S. This result is also true for tensors of any order
+
+                      ðð                                ððð
+
+                            aij.knk dS ¼                         aij.k; k dV           (1.8.7)
+
+                          S                                    V
+
+1.8.2 Stokes theorem
+
+Let S be an open two-sided surface bounded by a piecewise continuous simple closed curve C. If u is
+
+continuous and has continuous first derivatives on S, then
+                          þ                      ðð
+
+                                 u$dr ¼ ðV Â uÞ$n dS                                   (1.8.8)
+
+                             C                       S
+
+where the positive sense for the line integral is for the region S to lie to the left as one traverses
+
+curve C and n is the unit normal vector to S. Again, this result is also valid for tensors of arbitrary
+
+order, and so
+
+                      þ                          ðð
+
+                             aij.kdxt ¼ rstaij.k;snr dS                                (1.8.9)
+
+                          C                             S
+
+It can be shown that both divergence and Stokes theorems can be generalized so that the dot product in
+(1.8.6) and/or (1.8.8) can be replaced with a cross product.
+
+1.8.3 Green's theorem in the plane
+
+Applying Stokes theorem to a planar domain S with the vector field selected as u ¼ fe1 þ ge2 gives the
+result
+
+                      ðð                                       ð
+                             vg À vf dxdy ¼ ðfdx þ gdyÞ
+                      S vx vy                                                          (1.8.10)
+
+                                                                C
+
+Further, special choices with either f ¼ 0 or g ¼ 0 imply
+
+               ðð       vg dxdy ¼  ð                       ðð  vf dxdy ¼  ð
+                      S vx                                   S vy
+                                    gnxds;                                      fnyds  (1.8.11)
+
+                                   C                                          C
+                                                                                  1.9 Orthogonal curvilinear coordinates 21
+
+1.8.4 Zero-value theorem
+
+Let fij.k be a continuous tensor field of any order defined in an arbitrary region V. If the integral of fij.k
+over V vanishes, then fij.k must vanish in V
+
+                                       ððð
+
+                            fij.kdV ¼ 0 0 fij.k ¼ 0 V                                                                                                                                  (1.8.12)
+
+                          V
+
+1.9 Orthogonal curvilinear coordinates
+
+Many applications in elasticity theory involve domains that have curved boundary surfaces, commonly
+including circular, cylindrical, and spherical surfaces. To formulate and develop solutions for such
+problems, it is necessary to use curvilinear coordinate systems. This requires redevelopment of some
+previous results in orthogonal curvilinear coordinates. Before pursuing these general steps, we review
+the two most common curvilinear systems, cylindrical and spherical coordinates. The cylindrical
+coordinate system shown in Figure 1.5 uses (r, q, z) coordinates to describe spatial geometry. Relations
+between the Cartesian and cylindrical systems are given by
+
+x1 ¼ r cos q; x2 ¼ r sin q; x3 ¼ z
+     qffiffiffiffiffiffiffiffiffiffiffiffiffiffi
+r ¼ x21 þ x22;                                                                        q ¼ tanÀ1 x2;         z ¼ x3                                                                     (1.9.1)
+                                                                                                  x1
+
+                                                                                  x3
+
+                                                                                  z
+                                                                                               êz
+                                                                                                         ê
+
+                                                                                  e3      êr
+
+                          e1                                                          e2                                                                               x2
+
+                                                                                
+
+                                                                                       r
+                                             x1
+
+FIGURE 1.5 Cylindrical Coordinate System.
+
+The spherical coordinate system is shown in Figure 1.6 and uses (R, f, q) coordinates to describe
+geometry. The relations between Cartesian and spherical coordinates are
+
+x1 ¼ R cos q sin f; x2 ¼ R sin q sin f; x3 ¼ R cos f
+     qffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
+R ¼ x12 þ x22 þ x23;                                                            f ¼ cosÀ1qffiffiffiffiffiffiffiffixffiffi3ffiffiffiffiffiffiffiffiffiffiffiffiffiffi;  q ¼ tanÀ1x2     (1.9.2)
+                                                                                               x21 þ x22 þ x32                                                                     x1
+22 CHAPTER 1 Mathematical Preliminaries
+
+                                                            x3
+
+                                                                            êR
+                                                                                 ê
+                                                      e3
+                                                                               ê
+
+                                                                R
+
+                                                                    e2               x2
+
+                            e1                            
+
+                                             x1
+FIGURE 1.6 Spherical Coordinate System.
+
+The unit basis vectors for each of these curvilinear systems are illustrated in Figures 1.5 and 1.6. These
+
+represent unit tangent vectors along each of the three orthogonal coordinate curves.
+
+Although primary use of curvilinear systems employs cylindrical and spherical coordinates, we
+
+briefly present a discussion valid for arbitrary coordinate systems. Consider the general case in which
+three orthogonal curvilinear coordinates are denoted by x1, x2, x3, while the Cartesian coordinates are
+defined by x1, x2, x3 (see Figure 1.7). We assume invertible coordinate transformations exist between
+
+these systems specified by
+
+                            xm ¼ xmÀx1; x2; x3Á; xm ¼ xmÀx1; x2; x3Á                      (1.9.3)
+
+In the curvilinear system, an arbitrary differential length in space can be expressed by  (1.9.4)
+                                    ðdsÞ2 ¼ Àh1dx1Á2 þ Àh2dx2Á2 þ Àh3dx3Á2
+
+where h1, h2, h3 are called scale factors that are in general non-negative functions of position. Let ek be
+the fixed Cartesian basis vectors and ^ek the curvilinear basis (see Figure 1.7). By using similar concepts
+from the transformations discussed in Section 1.4, the curvilinear basis can be expressed in terms of
+
+the Cartesian basis as
+
+                                                 ^e1  ¼   dxk   ek  ¼   1   vxk  ek
+                                                          ds1           h1  vx1
+
+                                                 ^e2  ¼   dxk   ek  ¼   1   vxk  ek       (1.9.5)
+                                                          ds2           h2  vx2
+
+                                                 ^e3  ¼   dxk   ek  ¼   1   vxk  ek
+                                                          ds3           h3  vx3
+                                                             1.9 Orthogonal curvilinear coordinates 23
+
+                                                             x3
+
+                                                                              3
+
+                                                                                ê3       2
+
+                                                                                 ê2
+
+                                                      e3                         ê1
+
+                                                                  e2                 1
+                                                                                                 x2
+
+                                                 e1
+
+                                             x1
+FIGURE 1.7 Curvilinear Coordinates.
+
+where we have used (1.9.4). By using the fact that ^ei$^ej ¼ dij; relation (1.9.5) gives
+
+                                                         ðh1Þ2    ¼  vxk   vxk
+                                                                     vx1   vx1
+
+                                                         ðh2Þ2    ¼  vxk   vxk                       (1.9.6)
+                                                                     vx2   vx2
+
+                                                         ðh3Þ2    ¼  vxk   vxk
+                                                                     vx3   vx3
+
+It follows from (1.9.5) that the quantity
+
+                                                 Qkr  ¼  1   vxk     ðno sum on rÞ                   (1.9.7)
+                                                         hr  vxr
+
+represents the transformation tensor giving the curvilinear basis in terms of the Cartesian basis. This
+concept is similar to the transformation tensor Qij defined by (1.4.1) that is used between Cartesian
+systems.
+
+    The physical components of a vector or tensor are simply the components in a local set of Cartesian
+axes tangent to the curvilinear coordinate curves at any point in space. Thus, by using transformation
+relation (1.9.7), the physical components of a tensor a in a general curvilinear system are given by
+
+                                                 a<ij.k>  ¼  Q    pi Q  q  /  Qsk apq.s              (1.9.8)
+                                                                        j
+
+where apq.s are the components in a fixed Cartesian frame. Note that the tensor can be expressed in
+either system as
+
+                                                      a ¼ aij.keiej / ek                             (1.9.9)
+                                                        ¼ a<ij.k>^ei^ej / ^ek
+24 CHAPTER 1 Mathematical Preliminaries
+
+Because many applications involve differentiation of tensors, we must consider the differentiation of the
+curvilinear basis vectors. The Cartesian basis system ek is fixed in orientation and therefore vek /vxi ¼
+vek / vxj ¼ 0. However, derivatives of the curvilinear basis do not in general vanish, and differentiation
+
+of relations (1.9.5) gives the following results
+
+v^em              ¼   À1       vhm  ^en   À   1   vhm  ^er ;     msnsr
+vxm                     hn     vxn            hr  vxr
+                                                                                                                         (1.9.10)
+v^em                  1    vhn
+vxn               ¼   hm   vxm    ^en;    msn; no sum on repeated indices
+
+Using these results, the derivative of any tensor can be evaluated. Consider the first derivative of a
+vector u
+
+                   v   u   ¼    v    ðu<m>^emÞ       ¼    vu<m>       ^em     þ  u<m>vv^exmn                             (1.9.11)
+                  vxn          vxn                          vxn
+
+The last term can be evaluated using (1.9.10), and thus the derivative of u can be expressed in terms of
+
+curvilinear components. Similar patterns follow for derivatives of higher-order tensors.
+
+All vector differential operators of gradient, divergence, curl, and so forth can be expressed in any
+
+general curvilinear system by using these techniques. For example, the vector differential operator
+
+previously defined in Cartesian coordinates in (1.8.3) is given by
+
+V                 ¼   ^e1  1    v    þ   ^e2  1    v   þ  ^e3    1     v   ¼     X    ^ei  1    v                        (1.9.12)
+                           h1  vx1            h2  vx2            h3   vx3                  hi  vxi
+                                                                                   i
+
+and this leads to the construction of the other common forms
+
+Gradient of a Scalar   Vf      ¼  ^e1h11  vf      þ  ^e2  1   vf      þ  ^e3  1   vf   ¼   X        ^ei  1   vf          (1.9.13)
+                                          vx1             h2  vx2             h3  vx3                    hi  vxi         (1.9.14)
+                                                                                             i                           (1.9.15)
+                                                                                      
+                           V$u      ¼       1        X        v h1h2h3           u<i>
+                                         h1h2h3
+Divergence of a Vector                                 i vxi hi
+
+                                                  Xv                              !
+                                                   i vxi
+Laplacian of a Scalar      V2f    ¼        1                     h1h2h3 vf
+                                        h1h2h3                    ðhiÞ2 vxi
+
+Curl of a Vector  V Â u ¼ X X X ijk                            v      ðu<k> hk Þ^ei                                      (1.9.16)
+                               i j k hjhk                     vxj
+
+Gradient of a Vector   Vu      ¼  X       X                      ^ej  þ  u<j>vv^xeij                                     (1.9.17)
+                                                  ^ei vu<j>
+                                    i       j     hi vxi
+
+                                          X ^ei v         !      X X ^ek                                 u<j>vvx^ekj !!
+                                           i hi vxi               j k hk
+Laplacian of a Vector V2u ¼                                   :                       vu<j>    ^ej  þ                    (1.9.18)
+                                                                                       vxk
+
+It should be noted that these forms are significantly different from those previously given in relations
+(1.8.4) for Cartesian coordinates. Curvilinear systems add additional terms not found in rectangular
+                                                                1.9 Orthogonal curvilinear coordinates 25
+
+coordinates. Other operations on higher-order tensors can be developed in a similar fashion (see
+Malvern, 1969, app. II). Specific transformation relations and field equations in cylindrical and
+spherical coordinate systems are given in Appendices A and B. Further discussion of these results is
+taken up in later chapters.
+
+EXAMPLE 1.5: POLAR COORDINATES
+Consider the two-dimensional case of a polar coordinate system as shown in Figure 1.8. The dif-
+ferential length relation (1.9.4) for this case can be written as
+
+                                             ðdsÞ2 ¼ ðdrÞ2 þ ðrdqÞ2
+
+and thus h1 ¼ 1 and h2 ¼ r. By using relations (1.9.5) or simply by using the geometry shown in
+Figure 1.8
+
+                                                ^er ¼ cos qe1 þ sin qe2                                      (1.9.19)
+                                                ^eq ¼ À sin qe1 þ cos qe2
+
+and so
+
+                                   v^er   ¼   ^eq;     v^eq   ¼  À^er ;   v^er ¼ v^eq ¼ 0                    (1.9.20)
+                                   vq                  vq                 vr vr
+
+The basic vector differential operations then follow to be
+
+        V  ¼  ^er  v   þ  ^eq   1v
+                   vr           r vq
+
+        Vf  ¼  ^er    vf  þ ^eq    1 vf
+                      vr           r vq
+
+        V$u   ¼    1  v   ðrur  Þ  þ   1  vuq
+                   r  vr               r  vq
+                                  
+        V2f   ¼    1  v     r  vf      þ  1     v2f                                                          (1.9.21)
+                   r  vr       vr         r2    vq2
+
+                       1  v                  1    vur  
+                       r  vr                 r    vq
+        VÂu¼                   ðruq    Þ  À              ^ez
+
+               vur                 vuq                1  vur                        1  vuq           
+               vr                  vr                 r  vq                         r  vq
+        Vu  ¼         ^er^er   þ          ^er^eq  þ              À  uq   ^eq^er  þ            À  ur  ^eq^eq
+
+                                   2   vuq        ur                         2   vur      uq  
+                                   r2  vq         r2                         r2  vq       r2
+        V2u ¼         V2ur     À             À           ^er þ   V2uq     þ            À      ^eq
+
+where u ¼ ur^er þ uq^eq, ^ez ¼ ^er Â ^eq. Notice that the Laplacian of a vector does not simply pass
+through and operate on each of the individual components as in the Cartesian case. Additional terms
+are generated because of the curvature of the particular coordinate system. Similar relations can be
+developed for cylindrical and spherical coordinate systems (see Exercises 1.17 and 1.18).
+26 CHAPTER 1 Mathematical Preliminaries
+
+                                     x2
+
+                                            ê
+                                                            êr
+
+                                         r
+
+e2                                          
+       e1                                                x1
+
+FIGURE 1.8 Polar Coordinate System.
+
+The material reviewed in this chapter is used in many places for formulation development of elasticity
+theory. Throughout the text, notation uses scalar, vector, and tensor formats depending on the
+appropriateness to the topic under discussion. Most of the general formulation procedures in Chapters
+2­5 use tensor index notation, while later chapters commonly use vector and scalar notation. Addi-
+tional review of mathematical procedures for problem solution is supplied in chapter locations where
+they are applied.
+
+References
+
+Chandrasekharaiah DS, Debnath L: Continuum Mechanics, Boston, 1994, Academic Press.
+Chou PC, Pagano NJ: ElasticitydTensor, Dyadic and Engineering Approaches, Princeton, NJ, 1967, D. Van
+
+    Nostrand.
+Goodbody AM: Cartesian Tensors: With Applications to Mechanics, Fluid Mechanics and Elasticity, New York,
+
+    1982, Ellis Horwood.
+Hildebrand FB: Advanced Calculus for Applications, ed 2, Englewood Cliffs, NJ, 1976, Prentice Hall.
+Kreyszig E: Advanced Engineering Mathematics, ed 10, New York, 2010, John Wiley.
+Malvern LE: Introduction to the Mechanics of a Continuous Medium, Englewood Cliffs, NJ, 1969, Prentice Hall.
+Weatherburn CE: Advanced Vector Analysis, LaSalle, IL, 1948, Open Court.
+
+EXERCISES
+
+   1.1 For the given matrix/vector pairs, compute the following quantities: aii, aijaij, aijajk, aijbj,
+         aijbibj, bibj, bibi. For each case, point out whether the result is a scalar, vector or matrix. Note
+         that aijbj is actually the matrix product [a]{b}, while aijajk is the product [a][a].
+                                                                       Exercises 27
+
+                2        3            23                    2  120  3  23
+                   111                1                                           2
+ðaÞ aij ¼ 4 0 4 2 5; bi ¼ 4 0 5           ðbÞ aij ¼ 4 0 2 1 5; bi ¼ 4 1 5
+
+                   011                2                        042                1
+
+                2  111   3            23                    2       3  23
+                                      1                        100                1
+
+ðcÞ aij ¼ 4 1 0 2 5; bi ¼ 4 1 5           ðdÞ aij ¼ 4 0 2 1 5; bi ¼ 4 0 5
+
+                   014                0                        030                1
+
+1.2 Use the decomposition result (1.2.10) to express aij from Exercise 1.1 in terms of the sum of
+      symmetric and antisymmetric matrices. Verify that a(ij) and a[ij] satisfy the conditions given
+      in the last paragraph of Section 1.2.
+
+1.3 If aij is symmetric and bij is antisymmetric, prove in general that the product aijbij is zero.
+      Verify this result for the specific case by using the symmetric and antisymmetric terms from
+      Exercise 1.2.
+
+1.4 Explicitly verify the following properties of the Kronecker delta
+
+                                                   dijaj ¼ ai
+                                                   dijajk ¼ aik
+
+1.5 Formally expand the expression (1.3.4) for the determinant and justify that either index
+      notation form yields a result that matches the traditional form for det[aij].
+
+1.6 Determine the components of the vector bi and matrix aij given in Exercise 1.1 in a new
+      coordinate system found through a rotation of 45 (p/4 radians) about the x1-axis. The
+      rotation direction follows the positive sense presented in Example 1.2.
+
+1.7 Consider the two-dimensional coordinate transformation shown in Figure 1.7. Through the
+
+counterclockwise rotation q, a new polar coordinate system is created. Show that the
+
+transformation matrix for this case is given by          !
+
+                              Qij ¼        cos q  sin q
+                                         Àsin q   cos q
+
+         b1  !           a11  a21  !
+         b2              a12  a22
+If bi ¼         ; aij ¼               are the components of a first- and second-order tensor in the
+
+x1, x2 system, calculate their components in the rotated polar coordinate system.
+
+1.8 Show that the second-order tensor adij, where a is an arbitrary constant, retains its form under
+      any transformation Qij. This form is then an isotropic second-order tensor.
+
+1.9 The most general form of a fourth-order isotropic tensor can be expressed by
+
+                              adijdkl þ bdikdjl þ gdildjk
+
+where a, b, and g are arbitrary constants. Verify that this form remains the same under the
+general transformation given by (1.5.1)5.
+
+1.10 For the fourth-order isotropic tensor given in Exercise 1.9, show that if b ¼ g, then the tensor
+        will have the following symmetry Cijkl ¼ Cklij.
+28 CHAPTER 1 Mathematical Preliminaries
+
+1.11 Show that the fundamental invariants can be expressed in terms of the principal values as
+        given by relations (1.6.5).
+
+1.12 Determine the invariants, and principal values and directions of the following matrices. Use
+        the determined principal directions to establish a principal coordinate system, and following
+        the procedures in Example 1.3, formally transform (rotate) the given matrix into the principal
+        system to arrive at the appropriate diagonal form.
+
+    2                 3                                2               3
+      À1 1          0                                    À2 1        0
+                    0 57 ðAnswer : li ¼ À2; 0; 1Þ                    0 57 ðAnswer : li ¼ À3; À1; 0Þ
+ðaÞ 46 1 À1                                        ðbÞ 64 1 À2
+        00          1                                      00        0
+
+           2          3                                2               3
+             À1 1   0                                      6 À3      0
+                    0 57 ðAnswer : li ¼ À2; 0; 0Þ                    0 75 ðAnswer : li ¼ 3; 6; 9Þ
+       ðcÞ 46 1 À1                                 ðdÞ 64À3 6
+               00   0                                      00        6
+
+1.13*  A second-order symmetric tensor field is given by
+ 1.14
+                           2  2x1 x1 0                    3
+
+                           aij ¼ 4 x1 À6x12 0 5
+
+                              0                    0 5x1
+
+       Using MATLABÒ (or similar software), investigate the nature of the variation of the principal
+
+       values and directions over the interval 1 x1 2. Formally plot the variation of the absolute
+       value of each principal value over the range 1 x1 2.
+
+       Calculate the quantities V$u; V Â u; V2u; Vu; trðVuÞ for the following Cartesian vector
+       fields:
+       (a) u ¼ x1e1 þ x1x2e2 þ 2x1x2x3e3
+
+        (b) u ¼ x12e1 þ 2x1x2e2 þ x33e3
+        (c) u ¼ x22e1 þ 2x2x3e2 þ 4x21e3
+
+1.15 The dual vector ai of an antisymmetric second-order tensor aij is defined by ai ¼ À1/2ijkajk.
+        Show that this expression can be inverted to get ajk ¼ Àijkai.
+
+1.16 Using index notation, explicitly verify the vector identities:
+        (a) (1.8.5)1,2,3
+
+       (b) (1.8.5)4,5,6,7
+
+        (c) (1.8.5)8,9,10
+
+1.17 Extend the results found in Example 1.5, and determine the forms of Vf ; V$u; V2f ; and V Â u
+        for a three-dimensional cylindrical coordinate system (see Figure 1.5).
+                                                                                     Exercises 29
+
+1.18 For the spherical coordinate system (R, f, q) in Figure 1.6, show that
+
+                        h1 ¼ 1; h2 ¼ R; h3 ¼ R sin f
+
+and the standard vector operations are given by
+
+Vf   ¼  ^eR  vf  þ ^ef  1 vf  þ ^eq   R   1     vf
+             vR         R vf             sin  f vq
+
+V$u  ¼  1    v   ÀR2uRÁ   þ   R  1    f  vÀ            Á  R   1     vuq
+        R2   vR                  sin          sin  fuf       sin  f vq
+
+                                         vf
+
+V2f  ¼  1                 þ      1                           þ        1 v2f
+        R2   v R2 vf          R2sin      v            vf          R2sin2f vq2
+             vR vR                    f vf sin      f
+                                                      vf
+
+                1         v                   vuf  !               1      vuR     1  v            !
+             R sin f      vf                  vq                  sin     vq      R  vR
+V Â u ¼ ^eR                   ðsin  fuqÞ   À          þ ^ef  R         f       À         ðRuq  Þ
+
+                 1        ÀÁ          vuR  !
+                 R     v   Ruf        vf
+        þ ^eq         vR         À
+

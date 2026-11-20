@@ -1,0 +1,1204 @@
+Strain Energy and Related                                                                                     CHAPTER
+Principles
+                                                                                                              6
+
+Before proceeding to the solution of specific elasticity problems, we wish to explore the associated
+concepts of work and energy. Boundary tractions and body forces will do work on an elastic solid, and
+this work will be stored inside the material in the form of strain energy. For the elastic case, removal of
+these loadings results in complete recovery of the stored energy within the body. Development of strain
+energy concepts can yield new and useful information not found by other methods. This study also
+leads to some new energy methods or principles that provide additional techniques to solve elasticity
+problems. In some sense these methods may be thought of as replacements of particular field equations
+that have been previously derived. For problems in structural mechanics involving rods, beams, plates,
+and shells, energy methods have proved to be very useful in developing the governing equations and
+associated boundary conditions. These schemes have also provided a method to generate approximate
+solutions to elasticity problems. More recently, particular energy and variational techniques have been
+used extensively in the development of finite and boundary element analysis. Our presentation here
+will only be a brief study on this extensive subject, and the interested reader is recommended to review
+Langhaar (1962), Washizu (1968), Reddy (1984), Mura and Koya (1992), or Fung and Tong (2001) for
+additional details and applications.
+
+6.1 Strain energy
+
+As mentioned, the work done by surface and body forces on an elastic solid is stored inside the body in
+the form of strain energy. For an idealized elastic body, this stored energy is completely recoverable
+when the solid is returned to its original unstrained configuration. In order to quantify this behavior, we
+now wish to determine the strain energy in terms of the resulting stress and strain fields within the
+elastic solid. Consider first the simple uniform uniaxial deformation case with no body forces, as
+shown in Figure 6.1. The cubical element of dimensions dx, dy, dz is under the action of a uniform
+normal stress s in the x direction as shown.
+
+    During this deformation process, we assume that the stress increases slowly from zero to sx, such
+that inertia effects can be neglected. The strain energy stored is equal to the net work done on the
+element, and this is given by the following equation
+
+       ðsx                  vu                                           ðsx              ðsx     
+                   sd u         dx dydz                                                        sd vu
+dU  ¼                    þ  vx                                        À       sdudydz  ¼       vx     dxdydz  (6.1.1)
+
+       0                                                                 0                0
+
+Using the strain displacement relations and Hooke's law
+
+                                                                  vu  ¼  ex  ¼  sx
+                                                                  vx            E
+
+Elasticity. http://dx.doi.org/10.1016/B978-0-12-408136-9.00006-4                                              119
+Copyright © 2014 Elsevier Inc. All rights reserved.
+120 CHAPTER 6 Strain Energy and Related Principles
+
+                                                           u     +  u    dx
+                                                                    x
+
+          y                                                                                     
+
+             dy
+
+                                                 dz
+                                    dx
+
+                                               u
+
+                                                 x
+
+                                  z
+FIGURE 6.1 Deformation Under Uniform Uniaxial Stress.
+
+and thus (6.1.1) can be reduced to
+
+                                       ðsx      ds                  sx2
+                                                   dxdydz
+                                dU  ¼        s             ¼        2E   dxdydz                           (6.1.2)
+                                          0E
+
+The strain energy per unit volume, or strain energy density, is specified by
+
+                                                U ¼ dU                                                    (6.1.3)
+                                                      dxdydz                                              (6.1.4)
+
+and thus for this case we find
+
+                                       U  ¼  s2x  ¼  Ee2x  ¼     1  sxex
+                                             2E       2          2
+
+This result can be interpreted from the stress­strain curve shown in Figure 6.2. Because the material is
+linear elastic, the strain energy for the uniaxial case is simply the shaded area under the stress­strain
+curve.
+
+    We next investigate the strain energy caused by the action of uniform shear stress. Choosing the
+same cubical element as previously analyzed, consider the case under uniform sxy and syx loading, as
+shown in Figure 6.3. Following similar analyses, the strain energy is found to be
+
+                                                                                                
+       1                        vv        1               vu                 1         vu þ vv
+dU  ¼  2  sxydydz                  dx  þ  2  syx  dxdz       dy          ¼   2  sxy    vy vx      dxdydz  (6.1.5)
+
+                                vx                        vy
+
+and thus the strain energy density can be expressed by
+
+                                    U  ¼  1  sxygxy    ¼   sx2y  ¼  mgx2y                                 (6.1.6)
+                                          2                2m         2
+                                                                           6.1 Strain energy 121
+
+                               
+                               x
+
+                                                                                    U
+
+                                                                      e
+                                                    ex
+
+FIGURE 6.2 Strain Energy for Uniaxial Deformation.
+
+Results from the previous two cases (6.1.4) and (6.1.6) indicate that the strain energy is not a linear
+function of the stresses or strains, and thus the principle of superposition cannot be directly applied to
+develop the strain energy for a multidimensional state of stress. However, from conservation of energy,
+the work done does not depend on the order of loading application, but only on the final magnitudes of
+
+                                                          y
+
+u dy
+y
+
+                                   yx
+
+                                                                        xy
+                               dy
+
+                               dx                                                 x
+
+                                                                            v dx
+                                                                            x
+
+FIGURE 6.3 Shear Deformation.
+122 CHAPTER 6 Strain Energy and Related Principles
+
+the stresses and strains. This concept then allows normal and shear loadings to be applied one at a time
+and produces an additive total strain energy for a general three-dimensional state of stress and strain, as
+follows
+
+              U     ¼  1  À      þ    syey     þ  szez    þ  sxygxy  þ      syzgyz  þ          Á   ¼     1  sijeij    (6.1.7)
+                       2   sxex                                                         szxgzx           2
+
+Although the preceding results were developed for the case of uniform stress with no body forces, it
+
+can be shown (see Exercise 6.1) that identical results are found if body forces are included and the
+
+stresses are allowed to vary continuously. The total strain energy stored in an elastic solid occupying a
+
+region V is then given by the integral over the domain
+
+                                                          ððð
+
+                                                  UT ¼            Udxdydz                                             (6.1.8)
+
+                                                                 V
+
+Using Hooke's law, the stresses can be eliminated from relation (6.1.7) and the strain energy can be
+expressed solely in terms of strain. For the isotropic case, this result becomes
+
+              UðeÞ     ¼  1  lejjekk  þ   meijeij
+                          2
+                                                                                                                      (6.1.9)
+                       1   À                   ezÁ2     m ex2                       1           1           1  gz2x
+                    ¼  2  l ex  þ     ey  þ          þ           þ  e2y  þ  e2z  þ  2  gx2y  þ  2  g2yz  þ  2
+
+Likewise, the strains can be eliminated and the strain energy can be written in terms of stress
+
+              UðsÞ  ¼  1þn   sijsij   À    n   sjjskk
+                        2E                2E
+                                                                                                                      (6.1.10)
+                       1þn    sx2                                              2sz2x       nÀ                   szÁ2
+                    ¼   2E            þ   s2y  þ  sz2  þ  2sx2y  þ  2sy2z   þ          À  2E sx    þ     sy  þ
+
+After reviewing the various developed forms in terms of the stresses or strains, it is observed that
+the strain energy is a positive definite quadratic form with the property
+
+                                                            U!0                                                       (6.1.11)
+
+for all values of sij and eij, with equality only for the case with sij ¼ 0 or eij ¼ 0. Actually, relation
+(6.1.11) is valid for all elastic materials, including both isotropic and anisotropic solids.
+
+For the uniaxial deformation case, by using relation (6.1.4) note that the derivative of the strain
+
+energy in terms of strain yields
+
+                                      vUðeÞ       ¼     v   Ee2x         ¼  Eex  ¼  sx
+                                       vex             vex     2
+
+and likewise
+
+                                          vUðsÞ      ¼   v   sx2         ¼  sx   ¼  ex
+                                           vsx          vsx    2E           E
+                                                                                 6.1 Strain energy 123
+
+These specific uniaxial results can be generalized (see Exercise 6.4) for the three-dimensional case,
+giving the relations
+
+                                    sij  ¼  vUðeÞ;   eij  ¼   vUðsÞ                             (6.1.12)
+                                             veij              vsij
+
+These results are again true for all elastic materials (isotropic and anisotropic); see Langhaar (1962) or
+Boresi and Chang (2000) for a general derivation. Thus, the strain energy function can be interpreted as
+playing a fundamental constitutive role in establishing general stress­strain relations for elastic ma-
+terials. Such an approach in which the stresses are derivable from a strain energy function, that is,
+relation (6.1.12), is referred to as hyperelasticity. Note that this approach does not necessarily require
+that the relations between stress and strain be linear, and thus this scheme is commonly used in the
+development of constitutive relations for nonlinear elastic solids. Only linear relations given by
+Hooke's law (4.2.1) are incorporated in the text.
+
+    Using equations (6.1.12), the following symmetry relations can be developed (Exercise 6.6)
+
+                                               vsij ¼ vskl                                      (6.1.13)
+                                               vekl veij
+                                               veij ¼ vekl
+                                               vskl vsij
+
+Going back to the general constitutive form sij ¼ Cijklekl, relations (6.1.13) can be used to develop the
+additional symmetry relations
+
+                                               Cijkl ¼ Cklij                                    (6.1.14)
+
+Using constitutive form (4.2.2), result (6.1.14) implies that Cij ¼ Cji, and thus there are only 21
+independent elastic constants for general anisotropic elastic materials.
+
+    The strain energy in an elastic solid may be decomposed into two parts, one associated with
+volumetric change Uv and the other caused by distortional (change in shape) deformation Ud
+
+                                               U ¼ Uv þ Ud                                      (6.1.15)
+
+The development of this decomposition is accomplished by using the definitions of spherical and
+deviatoric strain and stress tensors presented previously in Sections 2.5 and 3.5. For isotropic mate-
+rials, the spherical stress produces only volumetric deformation, while the deviatoric stress causes only
+distortional changes. The volumetric strain energy is found by considering the spherical or hydrostatic
+components of stress and strain
+
+       Uv   ¼  1  s~ij  e~ij  ¼  1  sjjekk  ¼  1  À 2n        ¼    1  À 2nÀ   þ  sy    þ  szÁ2  (6.1.16)
+               2                 6                6E sjjskk           6E sx
+
+The distortional strain energy results from the deviatoric components or can be easily determined
+using relations (6.1.10), (6.1.15), and (6.1.16) to get
+
+Ud  ¼   1   h     À     syÞ2     þ  ðsy  À  szÞ2  þ  ðsz  À  sxÞ2  þ          þ  s2yz  þ     i  (6.1.17)
+       12m   ðsx                                                      6 s2xy              s2zx
+124 CHAPTER 6 Strain Energy and Related Principles
+
+Particular failure theories of solids incorporate the strain energy of distortion by proposing that material
+failure or yielding will initiate when Ud reaches a critical value. It can be shown that the distortional strain
+energy is related to the octahedral shear stress previously discussed in Section 3.5 (see Exercise 6.10).
+
+6.2 Uniqueness of the elasticity boundary-value problem
+
+Although it would seem that the question of uniqueness of the elasticity boundary-value problem
+
+should have been covered in Chapter 5, the proof normally makes use of strain energy concepts and
+
+is therefore presented here. Consider the general mixed boundary-value problem in which tractions
+
+are specified   over   the  tbwoounddiafrfyereSnt tasnodludtiisopnlsacfesmðij1eÞn; tesðij1aÞr;e  prescribed over      ethðij2eÞ ; reumði 2ÞagintiongthpearstamSue.
+Assume that     there  are                                                                       uði1Þg and fsðij2Þ;
+
+problem with identical body forces and boundary conditions. Next define the difference solution
+
+                                          sij ¼ sðij1Þ À sðij2Þ
+
+                                          eij ¼ eðij1Þ À eðij2Þ                                                       (6.2.1)
+
+                                                    ui ¼ uði1Þ À uði2Þ
+
+Because the solutions sðij1Þ and sðij2Þ have the same body force, the difference solution must satisfy
+the equilibrium equation
+
+                                                      sij; j ¼ 0                                                      (6.2.2)
+
+Likewise, the boundary conditions satisfied by the difference solution are given by
+
+                                          Tin ¼ sijnj ¼ 0 on St                                                       (6.2.3)
+                                          ui ¼ 0 on Su
+
+Starting  with  the  definitioðn  of  strainðenergy,  we  mðay  write
+                                                                 À
+                                                                                                 Á
+                            2 UdV ¼ sijeijdV ¼ sij ui; j À uij dV
+                                      ðV                  Vð À Á                                    ð
+                            V
+
+                                      ¼ sijui; jdV ¼              sijui ; jdV À                         sij; juidV    (6.2.4)
+
+                                      ðV                  ðV                                           V
+
+                                      ¼ sijnjuidS À sij; juidV
+
+                                      S                   V
+
+where we have used the fact that sijuij ¼ 0 (symmetric times antisymmetric ¼ 0) and have utilized the
+divergence theorem to convert the volume integral into a surface integral. Incorporating relations
+(6.2.2) and (6.2.3) and noting that the total suðrface S ¼ St þ Su, (6.2.4) gives the result
+
+                                          2 UdV ¼ 0                                                                   (6.2.5)
+
+                                             V
+
+Relation (6.2.5) implies that U must vanish in the region V, and since the strain energy is a positive
+
+definite quadratic form, the associated strains and stresses also vanish; that is, eij ¼ sij ¼ 0. If the strain
+
+field vanishes, then the corresponding displacements ui can be at most rigid-body motion. However, if
+ui ¼ 0 on Su, then the displacement field must vanish everywhere. Thus, we have shown that
+sðij1Þ ¼ sðij2Þ; eðij1Þ ¼ eðij2Þ; uið1Þ ¼ uið2Þ and therefore the problem solution is unique. Note that if tractions
+are prescribed over the entire boundary, then uið1Þ and uði2Þ may differ by rigid-body motion.
+                                                    6.3 Bounds on the elastic constants 125
+
+6.3 Bounds on the elastic constants
+
+Strain energy concepts allow us to generate particular bounds on elastic constants. For the isotropic
+case, consider the following three stress states previously investigated in Section 4.3 (see
+Figure 4.2).
+
+6.3.1 Uniaxial tension
+
+Uniform uniaxial deformation in the x direction is given by the stress state
+
+                                                 2  s00  3
+
+                               sij ¼ 4 0 0 0 5                                (6.3.1)
+
+                                                    000
+
+For this case, the strain energy reduces to
+
+                           U ¼ 1 þ n s2 À n s2 ¼ s2                           (6.3.2)
+                                             2E     2E 2E
+
+Because the strain energy is positive definite, relation (6.3.2) implies that the modulus of elasticity
+must be positive
+
+                                                 E>0                          (6.3.3)
+
+6.3.2 Simple shear
+
+Consider next the case of uniform simple shear defined by the stress tensor
+
+                                                 2  0s0  3
+
+                               sij ¼ 4 s 0 0 5                                (6.3.4)
+                                                                              (6.3.5)
+                                                    000
+
+The strain energy becomes
+
+                           U ¼ 1 þ n À2s2Á ¼ s2 ð1 þ nÞ
+                                             2E       E
+
+Again, invoking the positive definite property of the strain energy and using the previous result
+of E > 0 gives
+
+                               1 þ v > 00v > À1                               (6.3.6)
+
+6.3.3 Hydrostatic compression
+
+The final example is chosen as uniform hydrostatic compression specified by
+
+                                             2   Àp 0 0     3
+
+                           sij ¼ 4 0 Àp 0 5                                   (6.3.7)
+
+                                                 0 0 Àp
+126 CHAPTER 6 Strain Energy and Related Principles
+
+Note that hydrostatic tension could also be used for this example. Evaluating the strain energy yields
+
+           U ¼ 1 þ n 3p2 À n ðÀ 3pÞ2 ¼ 3p2 ð1 À 2nÞ                                     (6.3.8)
+                           2E       2E                   2E
+
+Using the positive definite property with E > 0 gives the result                        (6.3.9)
+                                                 1 À 2n > 0 0 n < 1
+                                                                        2
+
+Combining relations (6.3.6) and (6.3.9) places the following bounds on Poisson's ratio
+
+                                 À1 < n < 1                                             (6.3.10)
+                                              2
+
+Using relations between the elastic constants given in Table 4.1, the previous results also imply that
+
+                                 k > 0; m > 0                                           (6.3.11)
+
+Experimental evidence indicates that most real materials have positive values of Poisson's ratio, and
+thus 0 < n < 1/2. This further implies that l > 0. Bounds on elastic moduli for the anisotropic case are
+more involved and are discussed in Chapter 11.
+
+6.4 Related integral theorems
+
+Within the context of linear elasticity, several integral relations based on work and energy can be
+developed. We now wish to investigate three particular results referred to as Clapeyron's theorem,
+Betti's reciprocal theorem, and Somigliana's identity.
+
+6.4.1 Clapeyron's theorem
+
+The strain energy of an elastic solid in static equilibrium is equal to one-half the work done by the
+
+external body forces Fi and surface tractions Tin
+
+                           ð        ð                 ð
+
+                           2 UdV ¼ TinuidS þ FiuidV                                     (6.4.1)
+
+                           V           S              V
+
+The proof of this theorem follows directly from results in relation (6.2.4).
+
+6.4.2 Betti/Rayleigh reciprocal theorem
+
+If an elastic body is subject to two body and surface force systems, then the work done by the first
+system of forces {T(1), F(1)} acting through the displacements u(2) of the second system is equal to the
+work done by the second system of forces {T(2), F(2)} acting through the displacements u(1) of the first
+
+system
+
+        ð                  ð                       ð                       ð
+
+           Tið1Þuði2ÞdS þ Fið1Þuði2ÞdV ¼ Tið2Þuði1ÞdS þ Fið2Þuði1ÞdV                    (6.4.2)
+
+        S                     V                    S                       V
+
+The proof of this theorem starts by using the result from (6.2.4)
+
+           ð                     ð                       ð
+
+              sðij1Þeðij2ÞdV ¼ Tið1Þuði2ÞdS þ Fið1Þuði2ÞdV
+           V                        S                       V
+                                                                  6.4 Related integral theorems 127
+
+Interchanging states (1) and (2) gives
+
+ð                                             ð                      ð
+
+V  sðij2Þeðij1ÞdV ¼ Tið2Þuið1ÞdS þ Fið2Þuði1ÞdV
+                                              S                        V
+
+Now sðij1Þeðij2Þ ¼ Cijkleðk1l Þeðij2Þ ¼ Cklijeðk1l Þeðij2Þ ¼ Cklijeðij2Þeðk1l Þ ¼ sðk2l Þeðk1l Þ; therefore  (6.4.3)
+                                                  sðij1Þeðij2Þ ¼ sðij2Þeðij1Þ
+
+Combining these results proves the theorem. The reciprocal theorem can yield useful applications by
+special selection of the two systems. One such application follows.
+
+6.4.3 Integral formulation of elasticitydSomigliana's identity
+
+Using the reciprocal theorem (6.4.2), select the first system to be the desired solution to a particular
+problem {T, F, u}. The second system is chosen as the fundamental solution to the elasticity equations,
+and this corresponds to the solution of the displacement field at point x produced by a unit concentrated
+body force e located at point x. The fundamental solution is actually related to Kelvin's problem
+(concentrated force in an infinite domain) and is solved in Examples 13.1, 15.3, and 15.4. Using this
+concept, the displacement may be expressed as
+
+                                        uði2ÞðxÞ ¼ Gijðx; xÞejðxÞ                                            (6.4.4)
+
+where Gij represents the displacement Green's function to the elasticity equations. This function has
+been previously developed, and forms for both two- and three-dimensional domains have been given
+(Banerjee and Butterfield, 1981). The three-dimensional isotropic case, for example, is given by
+
+Gijðx;  xÞ                           ¼         1    À   nÞr  Â    À  4nÞdij  þ  r;ir;  Ã                     (6.4.5)
+                                        16pmð1                ð3
+                                                                                       j
+
+where ri ¼ xi À xi and r ¼ jrj. The stresses and tractions associated with this fundamental solution
+follow from the basic field equations and can be written in the form
+
+                                     sðij2Þ ¼ Tijkðx; xÞekðxÞ
+
+                                     Tið2Þ ¼ Tijkðx; xÞnjekÀðxÞ                                              (6.4.6)
+
+   Tijkðx; xÞ ¼ lGlk; ldij þ m Gik; j þ Gjk;i                                   Á
+
+After some manipulation using these results in the reciprocal theorem (6.4.2) gives
+
+ðÂ                                                                   Ãð
+cujðxÞ ¼ TiðxÞGijðx; xÞ À uiTikjðx; xÞnk dS þ FiGijðx; xÞdV                                                  (6.4.7)
+
+S                                                                               V
+
+where the coefficient c is given by
+
+                                              8
+                                              >><>
+                                        c  ¼  :>>>  1;  x  in V
+                                                        x  on S
+                                                    1;  x  outside  V
+                                                    2
+                                                    0;
+128 CHAPTER 6 Strain Energy and Related Principles
+
+Relation (6.4.7) is known as Somigliana's identity and represents an integral statement of the elasticity
+problem. This result is used in the development of boundary integral equation (BIE) methods in
+elasticity and leads to the computational technique of boundary element methods (BEM). A brief
+presentation of this numerical method is given in Chapter 16.
+
+6.5 Principle of virtual work
+
+Based on work and energy principles, several additional solution methods can be developed. These
+
+represent alternatives to the analytical methods based on differential equations outlined in Section
+
+5.7. The principle of virtual work provides the foundation for many of these methods, and thus we
+
+begin our study by establishing this principle. The virtual displacement of a material point is a
+
+fictitious displacement such that the forces acting on the point remain unchanged. The work done by
+
+these forces during the virtual displacement is called the virtual work. For an object in static
+
+equilibrium, the virtual work is zero because the resultant force vanishes on every portion of an
+
+equilibrated body. The converse is also true that if the virtual work is zero, then the material point
+
+must be in equilibrium.
+
+    Let us introduce the following notational scheme. The virtual displacements of an elastic solid
+are denoted by dui ¼ {du, dv, dw}, and the corresponding virtual strains are then expressible as
+deij ¼ 1/2(dui, j þ duj,i). Consider the standard elasticity boundary-value problem of a solid in equilibrium
+under the action of surface tractions over the boundary St with displacement conditions over the
+remaining boundary Su (see Figure 5.1). Now imagine that the body undergoes a virtual displacement dui
+from its equilibrium configuration. The virtual displacement is arbitrary except that it must not violate
+the kinematic displacement boundary condition, and thus dui ¼ 0 on Su.
+
+    The virtual work done by the surface and body forces can be written as
+
+                               ð              ð
+
+                         dW ¼ TinduidS þ FiduidV                               (6.5.1)
+
+                                   St            V
+
+Now, because the virtual displacement vanishes on Su, the integration domain of the first integral can
+be changed to S. Following standard procedures, this surface integral can be changed to a volume
+
+integral and combined with the body force term. These steps are summarized as
+
+                         ð                ð
+
+                         dW ¼ TinduidS þ FiduidV
+                         ðS               Vð
+
+                         ¼ sijnjduidS þ FiduidV
+
+                         ðS À          Á      Vð
+
+                         ¼ sijdui ; jdV þ FiduidV
+                               V                 V
+                         ð                             ð                       (6.5.2)
+                                À                  Á
+                         ¼ sij; jdui þ sijdui; j dV þ FiduidV
+
+                         ðV À                       Á  ðV
+
+                         ¼ À Fidui þ sijdeij dV þ FiduidV
+
+                         ðV                               V
+
+                         ¼ sijdeijdV
+
+                               V
+                                                                             6.5 Principle of virtual work 129
+
+Now the last line in relation (6.5.2) is actually the virtual strain energy within the solid
+
+ð     ðÀ                                                                                                 Á
+
+   sijdeijdV ¼ sxdex þ sydey þ szdez þ sxydgxy þ syzdgyz þ szxdgzx dV                                       (6.5.3)
+
+V     V
+
+Notice that the virtual strain energy does not contain the factor of 1/2 found in the general expression
+(6.1.7). This fact occurs because the stresses are constant during the virtual displacement.
+
+    Under the assumption of the existence of a strain energy function expressed in terms of the strains
+
+                                                 sij      ¼     vUðeÞ                                       (6.5.4)
+                                                                 veij
+
+and thus relation (6.5.3) can be written as
+                               ð                    ð                            ð
+                                                          vU
+                                   sijdeijdV ¼            veij deijdV        ¼d   UdV                       (6.5.5)
+
+                                  V                    V                         V
+
+Because the external forces are unchanged during the virtual displacements and the region V is fixed,
+
+the operator d can be placed before the integrals in (6.5.1). Combining this with relation (6.5.5) allows
+
+(6.5.2) to be written as ð        ð                       ð            !
+
+   d UdV À TinuidS À FiuidV ¼ dðUT À WÞ ¼ 0                                                                 (6.5.6)
+
+      V                                 St                V
+
+This is one of the statements of the principle of virtual work for an elastic solid. The quantity (UT À W)
+actually represents the total potential energy of the elastic solid, and thus relation (6.5.6) states that the
+
+change in potential energy during a virtual displacement from equilibrium is zero. It should be noted
+
+that this principle is valid for all elastic materials including both linear and nonlinear stress­strain
+
+behavior. The principle of virtual work provides a convenient method for deriving equilibrium
+
+equations and associated boundary conditions for various special theories of elastic bodies, including
+
+rods, beams, plates, and shells. Several such examples are given by Reismann and Pawlik (1980). In
+
+fact, even the continuum equations previously developed can be re-established using this method.
+
+To illustrate the process of using the principle of virtual work to re-derive the basic equilibrium
+
+equations and related boundary conditions for the general elasticity problem, we can start with
+
+relations (6.5.1) and (6.5.2) to write
+
+                            ð                    ð                     ð
+
+                                  sijdeijdV À TinduidS À FiduidV ¼ 0                                        (6.5.7)
+
+                               V                    S                     V
+
+The integrand of the first term can be reduced as
+
+   sijdeij                  ¼  1     À        þ      Á    ¼     sijdui; j  ¼  ÀÁ           À  sij; jdui
+                               2  sij dui; j     duj;i                         sijdui ; j
+
+and thus (6.5.7) can be expressed as
+
+   ð ÂÀ Á                                        Ã              ð                ð
+
+      sijdui ; j À sij; jdui dV À                                  TinduidS À FiduidV         ¼  0
+
+   ðV À                             Á            ð        ÀTin  SÁ                  V                       (6.5.8)
+       sij; j                  þ Fi duidV     þ
+                                                                À sijnj duidS ¼ 0
+
+   V                                                   S
+130 CHAPTER 6 Strain Energy and Related Principles
+
+                                                                      ð
+
+where we have used the divergence theorem to convert the volume integral ðsijduiÞ; jdV to a surface
+                                                                         V
+integral over S. For arbitrary dui, relation (6.5.8) is satisfied if
+
+                                    sij; j þ Fi ¼ 0 V
+
+                                    and either                              (6.5.9)
+
+                                    dui ¼ 0 Su or Tin ¼ sijnj St
+
+Conditions on Su are commonly referred to as essential boundary conditions while those on St are
+called natural boundary conditions. Thus, we have demonstrated that the principle of virtual work can
+be used to generate equilibrium equations and associated boundary conditions for the general elasticity
+problem.
+
+6.6 Principles of minimum potential and complementary energy
+
+We now wish to use the results of the previous section to develop principles of minimum potential and
+complementary energy. Denoting the potential energy by P ¼ UT À W, the virtual work statement
+indicated that the variation in potential energy from an equilibrium configuration was zero. Another
+way this is commonly stated is that potential energy is stationary in an equilibrium configuration. Such
+a condition implies that the potential energy will take on a local extremum (maximum or minimum)
+value for this configuration. It can be shown (proof given by Sokolnikoff, 1956; or Reismann and
+Pawlik, 1980) that the potential energy has a local minimum in the equilibrium configuration, and this
+leads to the following principle:
+
+Principle of Minimum Potential Energy: Of all displacements satisfying the given boundary condi-
+tions of an elastic solid, those that satisfy the equilibrium equations make the potential energy a local
+minimum.
+
+An additional minimum principle can be developed by reversing the nature of the variation. Consider
+
+the variation of the stresses while holding the displacements constant. Let sij be the actual stresses that
+
+satisfy the equilibrium equations and boundary conditions. Now consider a system of stress variations
+
+or virtual stresses dsij that also satisfies the stress boundary conditions (with dTin ¼ dsijnj on St) and
+equilibrium equations with body force dFi. In contrast to the previous development, we now investigate
+
+the complementary virtual work
+
+                                    ð                  ð
+
+                                    dWc ¼ uidTindS þ uidFidV                (6.6.1)
+
+                                    S                  V
+
+Employing the usual reduction steps as given in relations (6.5.2), the complementary virtual work
+
+statement is found to reduce to
+
+ð                                      ð                  ð
+
+                                    uidTindS þ uidFidV ¼ eijdsijdV          (6.6.2)
+
+                                 S        V               V
+
+and the integral on the right-hand side is referred to as the complementary virtual strain energy.
+    Introducing the complementary strain energy density function U c, which is taken as a function of
+
+the stresses
+
+                                       eij   ¼  vUcðsÞ                      (6.6.3)
+                                                  vsij
+6.6 Principles of minimum potential and complementary energy 131
+
+Using this result, the right-hand side of (6.6.2) can be expressed as
+
+                              ð             ¼  ð vUc      dsijdV  ¼     ð                              (6.6.4)
+                                                V vsij                 d UcdV
+                                 eijdsijdV
+                                                                          V
+                               V
+
+Because the displacements do not vary and the region V is fixed, the operator d can be placed before the
+
+integrals in (6.6.1). Combining this with relation (6.6.4) allows (6.6.2) to be written as
+
+      ð                          ð                   ð              !     dÀUTc     WcÁ
+                                         uiTindS À
+   d     U cdVÀ                                           uiFidV       ¼         À       ¼  0          (6.6.5)
+
+      V                              St                V
+
+and thus the variation in total complementary energy Pc ¼ UTc À W c is also zero in an equilibrium
+configuration. As before, it can be shown that this extremum in the complementary energy corresponds
+
+to a local minimum, thus leading to the following principle:
+
+Principle of Minimum Complementary Energy: Of all elastic stress states satisfying the given
+boundary conditions, those that satisfy the equilibrium equations make the complementary energy
+a local minimum.
+
+Each of the previously developed minimum principles used general constitutive relations, either
+
+(6.5.4) or (6.6.3), and thus both principles are valid for all elastic materials regardless of whether the
+
+stress­strain law is linear or nonlinear. Fundamentally, the strain energy is expressed in terms of strain,
+
+while the complementary energy is functionally written in terms of stress. As shown in Figure 6.2,
+
+the strain energy for uniaxial deformation is equal to the area under the stress­strain curve, and thus
+dU ¼ sde. On the other hand, the complementary energy may be expressed by dU c ¼ eds, and thus U c
+
+will be the area above the uniaxial stress­strain curve, as shown in Figure 6.4. For the uniaxial case
+
+with linear elastic behavior
+
+         Uc                   ¼  sxex    À  U  ¼  sx2  À  s2x  ¼  sx2  ¼  1  sxex  ¼  U                (6.6.6)
+                                                  E       2E      2E      2
+
+                                                               
+
+                              dUc=e
+
+x                                                         x
+
+         Uc                                                               Uc
+                             dU=e                                             U
+
+           U
+
+                                        e                                                           e
+                           ex                                                          ex
+
+      (Linear Elastic, U = Uc)                                    (Nonlinear Elastic, U Uc)
+
+FIGURE 6.4 Strain and Complementary Energy for Linear and Nonlinear Elastic Materials.
+132 CHAPTER 6 Strain Energy and Related Principles
+
+This result is true for all deformations, and thus for linear elastic materials the complementary energy
+
+is equal to the strain energy. Note also for this case
+
+                               vUc  ¼          v   s2x          ¼  sx  ¼  ex                     (6.6.7)
+                               vsx            vsx    2E            E
+
+which verifies the general relation (6.6.3). For the nonlinear elastic case, as shown in Figure 6.4, it is
+apparent that the strain energy and complementary energy will not be the same; that is, U c s U.
+However, using the fact that U c ¼ sxex À U, it follows that
+
+                               vUc  ¼         ex  þ   sx  vex   À  vU   vex
+                               vsx                        vsx      vex  vsx
+                                                                                                 (6.6.8)
+                                                          vex      sxvvsexx
+                                    ¼         ex  þ  sx   vsx   À            ¼  ex
+
+which again verifies the general relation (6.6.3) for the nonlinear case.
+    Additional related principles can be developed, including Castigiliano's theorems and a mixed
+
+formulation called Reissner's principle (see Reismann and Pawlik, 1980 or Fung and Tong, 2001).
+
+EXAMPLE 6.1: EULEReBERNOULLI BEAM THEORY
+
+In order to demonstrate the utility of energy principles, consider an application dealing with the
+
+bending of an elastic beam, as shown in Figure 6.5. The external distributed loading q will induce
+
+internal bending moments M and shear forces V at each section of the beam. According to classical
+
+EulereBernoulli theory, the bending stress sx and momentecurvature and momenteshear relations
+
+are given by
+
+                     sx     ¼  À  My       ;      M   ¼   EI  d2w  ;    V ¼ dM                   (6.6.9)
+                                   I                          dx2             dx
+where I ¼ Ð ÐAy2dA is the area moment of inertia of the cross-section about the neutral axis, and w is
+
+the beam deflection (positive in y direction).
+
+                     y                             q
+
+              Mo(0)                                                                      Mo(l )
+                                                                                             x
+                     Vo(0)                                l
+                                                                                    Vo(l )
+
+FIGURE 6.5 Euler­Bernoulli Beam Geometry.
+
+Considering only the strain energy caused by the bending stresses
+
+                            U  ¼    s2x       ¼   M2y2       ¼  E2dd2xw2 2y2
+                                    2E            2EI2
+6.6 Principles of minimum potential and complementary energy 133
+
+and thus the total strain energy in a beam of length l is
+
+                         ðl      ð  ðAE2dd2xw2 2y2dA!dx           ðl  EId2w2
+                                                                      2 dx2 dx
+                  UT ¼                                       ¼     0                           (6.6.10)
+
+                              0
+
+    Now the work done by the external forces (tractions) includes contributions from the distributed
+loading q and the loadings at the ends x ¼ 0 and l
+
+                                       ðl             Vow   À     dw!l                         (6.6.11)
+                                 W ¼ qwdx À                    Mo dx 0
+
+                                            0
+
+Therefore, the total potential energy for this beam case is given by
+
+                    ðl                 EId2w2         À     !     þ   Vo    w  À     dw!l      (6.6.12)
+                                       2 dx2             qw dx                    Mo dx 0
+P ¼ UT À W ¼
+
+                             0
+
+The first variation of this quantity must vanish
+
+         ðl       EId2w2            À     !     þ  d  Vow   À     dw!l
+dP ¼ d            2 dx2                qw dx                   Mo dx 0
+
+               0
+
+   ðl             EId2w2            À     !     þ     Vodw  À     ddw!l                        (6.6.13)
+¼d                2 dx2                qw dx                   Mo dx 0
+
+      0
+
+¼  EI             ðl    d2w d2dw    dx  À   ðl  qdwdx  þ    Vodw      À     ddw!l  ¼     0
+   2                  2 dx2 dx2                                          Mo dx 0
+                   0                         0
+
+Now the first integral term can be integrated by parts twice to get
+
+ðl                d4w  À                þ   ddw    ðM  À   MoÞ    À   dwðV  À      !l    ¼  0  (6.6.14)
+    EI            dx4     q dwdx             dx                                VoÞ
+
+ 0                                                                                    0
+
+The integral and boundary terms must all vanish, thus implying
+
+                          ðl           d4w  À             ¼    0
+                              EI       dx4      q dwdx
+
+                           0
+
+                          V ¼ Vo or dw ¼ 0; x ¼ 0; l                                           (6.6.15)
+
+                                            
+                                                dw
+                          M ¼ Mo or d           dx     ¼ 0;       x ¼ 0; l
+134 CHAPTER 6 Strain Energy and Related Principles
+
+    For this integral to vanish for all variations dw, the fundamental lemma in the calculus of var-
+iations implies that the integrand must be zero, giving
+
+                                        EI  d4w  À  q  ¼  0                                 (6.6.16)
+                                            dx4
+
+    This result is simply the differential equilibrium equation for the beam, and thus the stationary
+value for the potential energy leads directly to the governing equilibrium equation in terms of
+displacement and the associated boundary conditions. Of course, this entire formulation is based
+on the simplifying assumptions found in EulereBernoulli beam theory, and resulting solutions
+would not match with the more exact theory of elasticity results.
+
+6.7 Rayleigh­Ritz method
+
+The previous beam example indicates a correspondence between the governing differential equation(s)
+
+and a variational problem of minimizing the potential energy of the system. Such a correspondence
+
+exists for many other types of problems in structural mechanics and elasticity. For problems of
+
+complicated shape or loading geometry, the solution to the governing differential equation cannot be
+
+found by analytical methods. For such cases, approximate solution schemes have been developed
+
+based on the variational form of the problem. Several such approximate schemes have been con-
+
+structed, and one of the more important techniques is the Rayleigh­Ritz method.
+
+This particular technique is based on the idea of constructing a series of trial approximating
+
+functions that satisfy the boundary conditions but not the differential equation(s). For the
+
+elasticity displacement formulation (Section 5.4), this concept would express the displacements
+
+in the form
+
+                                                                  PN
+             u ¼ uo þ a1u1 þ a2u2 þ a3u3 þ . ¼ uo þ ajuj
+
+                                                                                    j¼1
+
+                                                                 PN                         (6.7.1)
+             v ¼ vo þ b1v1 þ b2v2 þ b3v3 þ . ¼ vo þ bjvj
+
+                                                                                   j¼1
+
+                                                                     PN
+             w ¼ wo þ c1w1 þ c2w2 þ c3w3 þ . ¼ wo þ cjwj
+
+                                                                                       j¼1
+
+where the functions uo, vo, wo are chosen to satisfy any nonhomogeneous displacement boundary
+
+conditions and uj, vj, wj satisfy the corresponding homogeneous boundary conditions. Note that these
+
+forms are not required to satisfy the traction boundary conditions. Normally, these trial functions are
+
+chosen from some combination of elementary functions such as polynomial, trigonometric, or
+
+hyperbolic forms. The unknown constant coefficients aj, bj, cj are to be determined so as to minimize
+
+the potential energy of the problem, thus approximately satisfying the variational formulation of the
+
+problem under study. Using this type of approximation, the total potential energy will thus be a
+
+function of these unknown coefficients
+
+                                            À             Á
+                                        P ¼ P aj; bj; cj                                    (6.7.2)
+                                                                       6.7 Rayleigh­Ritz method 135
+
+and the minimizing condition can be expressed as a series of expressions
+
+                              vP ¼ 0; vP ¼ 0; vP ¼ 0                                                   (6.7.3)
+                              vaj            vbj               vcj
+
+This set forms a system of 3N algebraic equations that can be solved to obtain the parameters aj, bj, cj.
+Under suitable conditions on the choice of trial functions (completeness property), the approximation
+will improve as the number of included terms is increased.
+
+    Commonly, this technique is applied to a reduced elasticity problem involving only one or two
+components of displacement typically found in rods, beams, plates, and shells. Once the approximate
+displacement solution is obtained, the strains and stresses can be calculated from the appropriate field
+equations. However, since the strains and stresses are derivable through differentiation, the accuracy
+in these variables will in general not be as good as that obtained for the displacements themselves
+(see Exercises 6.16 and 6.17). In order to demonstrate the Ritz technique, consider again the
+Euler­Bernoulli beam problem from Example 6.1.
+
+EXAMPLE 6.2: RAYLEIGHeRITZ SOLUTION OF A SIMPLY SUPPORTED
+EULEReBERNOULLI BEAM
+Consider a simply supported Euler-Bernoulli beam of length l carrying a uniform loading qo. This
+one-dimensional problem has displacement boundary conditions
+
+                                        w ¼ 0 at x ¼ 0; l                                              (6.7.4)
+
+and tractions or moment conditions
+
+                                    EI  d2w    ¼   0  at  x  ¼  0;  l                                  (6.7.5)
+                                        dx2
+
+The Ritz approximation for this problem is of the form
+
+                                                    XN                                                 (6.7.6)
+                                       w ¼ wo þ cjwj
+
+                                                        j¼1
+
+    With no nonhomogeneous boundary conditions, wo ¼ 0. For this example, we choose a polyno-
+mial form for the trial solution. An appropriate choice that satisfies the homogeneous conditions
+(6.7.4) is wj ¼ x j(l À x). Note this form does not satisfy the traction conditions (6.7.5). Using
+the previously developed relation for the potential energy (6.6.12), we get
+
+      ðl     EId2w2    À          !
+P¼           2 dx2            qow dx
+
+          0
+
+   ðl  "                                                       jÀ1Ã!2                             #    (6.7.7)
+        EI                                                                                      xÞ dx
+¼            XN     Â  jð     À  1Þlx  jÀ2  À  jð     þ   1Þx          À      XN        jðl  À
+                  cj
+   02                      j                       j                      qo       cjx
+
+             j¼1                                                              j¼1
+136 CHAPTER 6 Strain Energy and Related Principles
+
+Retaining only a two-term approximation (N ¼ 2), the coefficients are found to be
+
+c1  ¼  qol2                                        ;  c2 ¼ 0
+       24EI
+
+and this gives the following approximate solution
+
+w ¼ qol2 xðl À xÞ                                                                  (6.7.8)
+      24EI
+
+Note that the approximate solution predicts a parabolic displacement distribution, while the
+
+exact solution to this problem is given by the cubic relation
+
+w ¼ qox Àl3 þ x3 À 2lx2Á                                                           (6.7.9)
+      24EI
+
+    Actually, for this special case, the exact solution can be obtained from a Ritz scheme by
+including polynomials of degree three.
+
+Other similar approximate techniques have been developed based on variational principles of com-
+plementary energy or the Reissner mixed formulation. A more generalized approximating scheme
+called the weighted residual method includes Ritz and several other techniques within the general
+approach. Although these approximate variational methods offer the potential to solve complex
+problems of engineering interest, they suffer a very important drawback involved with the selection of
+the approximating functions. Apart from the general properties the functions are required to satisfy,
+there exists no systematic procedure of constructing them. The selection process becomes more
+difficult when the domain is geometrically complex and/or the boundary conditions are complicated.
+Thus, these schemes have had limited success in solving such complicated problems. However,
+because these methods can easily provide approximate solutions over domains of simple shape with
+predetermined boundary conditions, they are ideally suited for finite element techniques, whereby a
+geometrically complex domain is divided into subdomains of simple geometry. Over each subdomain
+or element the governing differential equation may be formulated using variational methods, and the
+approximation functions can then be systematically generated for each typical element (Reddy, 2006).
+More details on these techniques are given in Chapter 16.
+
+References
+
+Banerjee PK, Butterfield R: Boundary Element Methods in Engineering Science, London, 1981, McGraw-Hill (UK).
+Boresi AP, Chang KP: Elasticity in Engineering Mechanics, New York, 2000, Wiley.
+Fung YC, Tong P: Classical and Computational Solid Mechanics, Singapore, 2001, World Scientific.
+Langhaar HL: Energy Methods in Applied Mechanics, New York, 1962, Wiley.
+Mura T, Koya T: Variational Methods in Mechanics, New York, 1992, Oxford University Press.
+Reddy JN: Energy and Variational Methods in Applied Mechanics, New York, 1984, Wiley.
+Reddy JN: An Introduction to the Finite Element Method, New York, 2006, McGraw-Hill.
+Reismann H, Pawlik PS: Elasticity Theory and Applications, New York, 1980, Wiley.
+Sokolnikoff IS: Mathematical Theory of Elasticity, New York, 1956, McGraw-Hill.
+Washizu K: Variational Methods in Elasticity and Plasticity, New York, 1968, Pergamon Press.
+                                                                         Exercises 137
+
+EXERCISES
+
+6.1 The uniaxial deformation case as shown in Figure 6.1 was used to determine the strain energy
+      under uniform stress with zero body force. Determine this strain energy for the case in which
+      the stress varies continuously as a function of x and also include the effect of a body force Fx.
+      Neglecting higher-order terms, show that the result is the same as previously given by (6.1.4).
+
+6.2 Since the strain energy has physical meaning that is independent of the choice of coordinate
+
+axes, it must be invariant to all coordinate transformations. Because U is a quadratic form in
+
+the strains or stresses, it cannot depend on the third invariants IIIe or I3, and so it must depend
+only on the first two invariants of the strain or stress tensors. Show that the strain energy can be
+
+written in the following forms                   
+
+               U¼                    1lþm          Ie2 À 2mIIe
+                                     2
+
+                                ¼  1    ÀI12  À  2ð1   þ         Á
+                                   2E                        nÞI2
+
+6.3 Starting with the general expression (6.1.7), explicitly develop forms (6.1.9) and (6.1.10) for
+      the strain energy density.
+
+6.4 Differentiate the general three-dimensional isotropic strain energy form (6.1.9) to show that
+
+                                        sij  ¼   vUðeÞ
+                                                  veij
+
+6.5 For the isotropic case, express the strain energy function in terms of the principal strains, and
+      then by direct differentiation show that
+
+           s1  ¼                vU   ;  s2    ¼  vU       ;  s3  ¼  vU
+                                ve1              ve2                ve3
+
+6.6 Using equations (6.1.12), develop the symmetry relations (6.1.13), and use these to prove the
+      symmetry in the elasticity tensor Cijkl ¼ Cklij .
+
+6.7 For the general anisotropic case assuming that Cijkl ¼ Cklij, show that sij ¼ vUðeÞ=veij.
+
+6.8 Verify the decomposition of the strain energy into volumetric and deviatoric parts as given by
+      equations (6.1.16) and (6.1.17).
+
+6.9 Starting with relations (6.1.16) and (6.1.17), show that the volumetric and distortional strain
+      energies can be expressed in terms of the invariants of the stress matrix as
+
+                                   Uv ¼ 1 À6E2nI12
+
+                                Ud      ¼    1   ÀI12  À     Á
+                                             6m           3I2
+
+Results from Exercise 6.8 may be helpful.
+138 CHAPTER 6 Strain Energy and Related Principles
+
+6.10 Show that the distortional strain energy given by (6.1.17) is related to the octahedral shear
+
+stress (3.5.4)2 by the relation
+
+                                 Ud  ¼ 31þn    s2oct  ¼   3   s2oct
+                                        2E                4m
+
+Results from Exercise 3.5 may be helpful.
+
+6.11 A two-dimensional state of plane stress in the x,y-plane is defined by the stress matrix
+                                            2             3
+                                               sx sxy 0
+                                     sij ¼ 4 sxy sy 0 5
+
+                                               0 00
+
+Determine the strain energy density for this case in terms of these nonzero stress components.
+
+6.12 The stress field for a beam of length 2l and depth 2c under end bending moments M (see
+        Figure 8.2) is given by
+
+                      sx  ¼  À  3M   y;  sy ¼ sz ¼ sxy ¼ syz ¼ szx ¼ 0
+                                2c3
+
+Determine the strain energy density and show that the total strain energy in the beam is given by
+
+                                        UT  ¼  3M2l  ¼  M2l
+                                               2Ec3     EI
+
+where I is the section moment of inertia. Assume unit thickness in the z-direction.
+
+6.13 The stress field for the torsion of a rod of circular cross-section is given by
+
+                             sx ¼ sy ¼ sz ¼ sxy ¼ 0; sxz ¼ Àmay; syz ¼ max
+
+        where a is a constant and the z-axis coincides with the axis of the rod. Evaluate the strain
+        energy density for this case, and determine the total strain energy in a rod with section radius
+        R and length L .
+
+6.14 From Chapter 9 using the Saint-Venant formulation, the stress field for the torsion of rod of
+        general cross-section R can be expressed by
+
+                                                          vf           vf
+sx ¼ sy ¼ sz ¼ sxy ¼ 0 ; sxz ¼ vy ; syz ¼ Àvx
+
+where f ¼ fðx; yÞ is the Prandtl stress function. Show that the total strain energy in a bar of
+
+length L is given by
+
+                                       ðð   vf2      þ  vf2!
+                             U¼ L                                dxdy
+                                 2m R vx                  vy
+
+Next show that the total potential energy per unit length can be expressed by
+
+                          ðð &       1   vf2      vf2!                '
+                                                                 2af dxdy
+                      P¼        R 2m vx        þ      vy      À
+                                                                                          Exercises 139
+
+6.15 Using the reciprocal theorem, choose the first state as uði1Þ ¼ Axi; Fið1Þ ¼ 0; Tið1Þ ¼ 3kAni,
+
+      and take the second state as ui, Fi, Ti to show that the change in volume of the body is given by
+                                   ð                 &ð        ð
+                                                 1                        )
+                                                 3k
+                       DV ¼            eiidV  ¼          FixidV þ TixidS
+
+                                      V              V            S
+
+      where A is an arbitrary constant and k is the bulk modulus.
+
+6.16  Rework  Example  6.2  using  the  trigonometric    Ritz  approximation  wj  ¼  sin  jpx  .  Develop  a
+                                                                                           l
+
+        two-term approximate solution, and compare it with the displacement solution developed in
+        the text. Also compare each of these approximations with the exact solution (6.7.9) at midspan
+        x ¼ l/2.
+
+6.17 Using the bending formulae (6.6.9), compare the maximum bending stresses from the cases
+        presented in Example 6.2 and Exercise 6.16. Numerically compare these results with the exact
+        solution; see (6.7.9) at midspan x ¼ l/2.
+

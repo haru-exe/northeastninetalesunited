@@ -1,0 +1,1142 @@
+Deformation: Displacements                                        CHAPTER
+and Strains
+                                                                  2
+
+We begin development of the basic field equations of elasticity theory by first investigating the
+kinematics of material deformation. As a result of applied loadings, elastic solids will change
+shape or deform, and these deformations can be quantified by knowing the displacements of
+material points in the body. The continuum hypothesis establishes a displacement field at all points
+within the elastic solid. Using appropriate geometry, particular measures of deformation can be
+constructed leading to the development of the strain tensor. As expected, the strain components are
+related to the displacement field. The purpose of this chapter is to introduce the basic definitions of
+displacement and strain, establish relations between these two field quantities, and finally inves-
+tigate requirements to ensure single-valued, continuous displacement fields. As appropriate for
+linear elasticity, these kinematical results are developed under the conditions of small deformation
+theory. Developments in this chapter lead to two fundamental sets of field equations: the
+strain­displacement relations and the compatibility equations. Further field equation development,
+including internal force and stress distribution, equilibrium, and elastic constitutive behavior,
+occurs in subsequent chapters.
+
+2.1 General deformations
+
+Under the application of external loading, elastic solids deform. A simple two-dimensional cantilever
+beam example is shown in Figure 2.1. The undeformed configuration is taken with the rectangular
+beam in the vertical position, and the end loading displaces material points to the deformed shape as
+shown. As is typical in most problems, the deformation varies from point to point and is thus said to be
+nonhomogeneous. A superimposed square mesh is shown in the two configurations, and this indicates
+how elements within the material deform locally. It is apparent that elements within the mesh undergo
+extensional and shearing deformation. An elastic solid is said to be deformed or strained when the
+relative displacements between points in the body are changed. This is in contrast to rigid-body motion
+where the distance between points remains the same.
+
+    In order to quantify deformation, consider the general example shown in Figure 2.2. In the
+undeformed configuration, we identify two neighboring material points Po and P connected with
+the relative position vector r as shown. Through a general deformation, these points are mapped to
+locations Po0 and P0 in the deformed configuration. For finite or large deformation theory, the unde-
+formed and deformed configurations can be significantly different, and a distinction between these two
+configurations must be maintained leading to Lagrangian and Eulerian descriptions; see, for example,
+Malvern (1969) or Chandrasekharaiah and Debnath (1994). However, since we are developing linear
+elasticity, which uses only small deformation theory, the distinction between undeformed and
+deformed configurations can be dropped.
+
+Elasticity. http://dx.doi.org/10.1016/B978-0-12-408136-9.00002-7  31
+Copyright © 2014 Elsevier Inc. All rights reserved.
+32 CHAPTER 2 Deformation: Displacements and Strains
+
+                                               (Undeformed)      (Deformed)
+FIGURE 2.1 Two-Dimensional Deformation Example.
+
+    Using Cartesian coordinates, define the displacement vectors of points Po and P to be uo and u
+
+respectively. Since P and Po are neighboring points, we can use a Taylor series expansion around point
+Po to express the components of u as
+
+u             ¼  uo  þ  vu                                   rx  þ  vu  ry  þ  vu  rz
+                        vx                                          vy         vz
+
+v             ¼  vo  þ  vv                                   rx  þ  vv  ry  þ  vv  rz        (2.1.1)
+                        vx                                          vy         vz
+
+w             ¼  wo  þ  vw                                   rx  þ  vw  ry  þ  vw      rz
+                        vx                                          vy         vz
+
+where u, v, w are the Cartesian components of the displacement vector.
+
+            P                                                                             P
+   r                                                                             r
+                                                                               Po
+Po
+
+(Undeformed)                                                            (Deformed)
+
+FIGURE 2.2 General Deformation Between Two Neighboring Points.
+                                                                   2.1 General deformations 33
+
+    Note that the higher-order terms of the expansion have been dropped since the components of r are
+small. The change in the relative position vector r can be written as
+
+                         6r ¼ r0 À r ¼ u À uo                                           (2.1.2)
+
+and using (2.1.1) gives
+
+                         Drx  ¼    vu       rx  þ  vu   ry  þ  vu  rz
+                                   vx              vy          vz
+
+                         Dry  ¼    vv       rx  þ  vv   ry  þ  vv  rz                   (2.1.3)
+                                   vx              vy          vz
+
+                         Drz  ¼    vw       rx  þ  vw      ry  þ  vw        rz
+                                   vx              vy             vz
+
+or in index notation
+
+                                   Dri ¼ ui; jrj                                        (2.1.4)
+
+The tensor ui, j is called the displacement gradient tensor, and may be written out as
+
+                                   2 vu vu vu 3
+
+                         ui; j  ¼  6666646  vx     vy          vz  5777777              (2.1.5)
+                                            vv     vy          vv
+
+                                            vx     vy          vz
+                                            vw     vw          vw
+
+                                            vx vy vz
+
+From relation (1.2.10), this tensor can be decomposed into symmetric and antisymmetric
+parts as
+
+                                ui; j ¼ eij þ uij                                       (2.1.6)
+
+where
+
+                              eij  ¼        1  À        þ     Á
+                                            2   ui; j      uj; i
+
+                                            1   À             Á                         (2.1.7)
+                                            2    ui; j     uj; i
+                              uij  ¼                    À
+
+The tensor eij is called the strain tensor, while uij is referred to as the rotation tensor. Relations (2.1.4)
+and (2.1.6) thus imply that for small deformation theory, the change in the relative position vector
+
+between neighboring points can be expressed in terms of a sum of strain and rotation components.
+Combining relations (2.1.2), (2.1.4), and (2.1.6), and choosing ri ¼ dxi, we can also write the general
+result in the form
+
+                         ui ¼ uio þ eijdxj þ uijdxj                                     (2.1.8)
+34 CHAPTER 2 Deformation: Displacements and Strains
+
+Because we are considering a general displacement field, these results include both strain deformation
+
+and rigid-body motion. Recall from Exercise 1.15 that a dual vector ui can be associated with the
+
+rotation tensor such that ui ¼ À1/2ijkujk. Using this definition, it is found that
+
+               1    vu3 À vu2  
+               2    vx2 vx3
+u1  ¼  u32  ¼
+
+               1    vu1 À vu3  
+               2    vx3 vx1
+u2  ¼  u13  ¼                                                                                    (2.1.9)
+
+               1    vu2 À vu1  
+               2    vx1 vx2
+u3  ¼  u21  ¼
+
+which can be expressed collectively in vector format as u ¼ ð1=2ÞðV Â uÞ: As is shown in the next
+section, these components represent rigid-body rotation of material elements about the coordinate
+axes. These general results indicate that the strain deformation is related to the strain tensor eij, which
+in turn is related to the displacement gradients. We next pursue a more geometric approach and
+determine specific connections between the strain tensor components and geometric deformation of
+material elements.
+
+2.2 Geometric construction of small deformation theory
+
+Although the previous section developed general relations for small deformation theory, we now wish
+to establish a more geometrical interpretation of these results. Typically, elasticity variables and
+equations are field quantities defined at each point in the material continuum. However, particular field
+equations are often developed by first investigating the behavior of infinitesimal elements (with co-
+ordinate boundaries), and then a limiting process is invoked that allows the element to shrink to a point.
+Thus, consider the common deformational behavior of a rectangular element as shown in Figure 2.3.
+The usual types of motion include rigid-body rotation and extensional and shearing deformations as
+
+                                       (Undeformed Element) (Rigid-Body Rotation)
+
+                             (Horizontal Extension) (Vertical Extension) (Shearing Deformation)
+FIGURE 2.3 Typical Deformations of a Rectangular Element.
+          2.2 Geometric construction of small deformation theory 35
+
+illustrated. Rigid-body motion does not contribute to the strain field, and thus also does not affect the
+stresses. We therefore focus our study primarily on the extensional and shearing deformation.
+
+    Figure 2.4 illustrates the two-dimensional deformation of a rectangular element with original
+dimensions dx by dy. After deformation, the element takes a parallelogram form as shown in the
+dotted outline. The displacements of various corner reference points are indicated in the figure.
+Reference point A is taken at location (x,y), and the displacement components of this point are thus
+u(x,y) and v(x,y). The corresponding displacements of point B are u(x þ dx,y) and v(x þ dx,y), and the
+displacements of the other corner points are defined in an analogous manner. According to
+small deformation theory, u(x þ dx,y) z u(x,y) þ (vu/vx)dx, with similar expansions for all
+other terms.
+
+    The normal or extensional strain component in a direction n is defined as the change in length per
+unit length of fibers oriented in the n-direction. Normal strain is positive if fibers increase in length
+and negative if the fiber is shortened. In Figure 2.4, the normal strain in the x-direction can thus be
+defined by
+
+                                                                                                                                                                                           x  ¼   A0B0 À     AB
+                                                                                                                                                                                                      AB
+
+From the geometry in Figure 2.4
+
+A0B0  ¼ sffiffiffiffidffiffixffiffiffiffiþffiffiffiffivffiffiffiuffiffiffidffiffixffiffiffiffiffiffi2ffiffiffiþffiffiffiffiffiffiffiffivffiffiffivffiffiffidffiffixffiffiffiffiffiffi2ffi  ¼  s1ffiffiffiffiþffiffiffiffiffi2ffiffiffivffiffiuffiffiffiffiþffiffiffiffiffiffiffiffivffiffiuffiffiffiffiffiffi2ffiffiffiþffiffiffiffiffiffiffiffiffivffiffivffiffiffiffiffiffi2ffi dx  z       þ       dx
+                                                                                                                                                                                                                                                                                                                                                                                           1     vu
+
+      vx                         vx                                                                                                                                                                       vx vx               vx                                                                                                                                                                 vx
+
+where, consistent with small deformation theory, we have dropped the higher-order terms. Using these
+results and the fact that AB ¼ dx, the normal strain in the x-direction reduces to
+
+                                                                                                                                                                                                  x  ¼  vu                                                                                                                                                                                            (2.2.1)
+                                                                                                                                                                                                        vx
+
+                                                                                                                                                                                           u  dy                           D
+                                                                                                                                                                                           y
+
+                                                                                                                                                                                                          C
+
+          v(x,y+dy)                                                                                                                                                                           
+
+      y   C                                                                                                                                                                                   D                         B
+                                                                                                                                                                                                       A             
+
+                dy                                                                                                                                                                                                                v dx
+      v(x,y)                                                                                                                                                                                                                      x
+
+          A                          dx                                                                                                                                                       B           u(x+dx,y)
+
+                                     u(x,y)
+
+                                                                         x
+FIGURE 2.4 Two-Dimensional Geometric Strain Deformation.
+36 CHAPTER 2 Deformation: Displacements and Strains
+
+In similar fashion, the normal strain in the y-direction becomes
+
+                                        y   ¼   vv                                       (2.2.2)
+                                                vy
+
+A second type of strain is shearing deformation, which involves angle changes (see Figure 2.3). Shear
+strain is defined as the change in angle between two originally orthogonal directions in the continuum
+material. This definition is actually referred to as the engineering shear strain. Theory of elasticity
+applications generally use a tensor formalism that requires a shear strain definition corresponding to
+one-half the angle change between orthogonal axes; see previous relation (2.1.7)1. Measured in
+radians, shear strain is positive if the right angle between the positive directions of the two axes
+decreases. Thus, the sign of the shear strain depends on the coordinate system. In Figure 2.4, the
+engineering shear strain with respect to the x- and y-directions can be defined as
+
+                       gxy   ¼   p   À   :C0A0B0    ¼   a    þ  b
+                                 2
+
+For small deformations, a z tan a and b z tan b, and the shear strain can then be expressed as
+
+              gxy   ¼        vv  dx      þ      vu  dy       ¼  vu  þ  vv                (2.2.3)
+                             vx  vu             vy  vv          vy     vx
+                        dx   þ       dx     dy          dy
+                                 dx             þ   vy
+
+where we have again neglected higher-order terms in the displacement gradients. Note that each
+derivative term is positive if lines AB and AC rotate inward as shown in the figure. By simple inter-
+change of x and y and u and v, it is apparent that gxy ¼ gyx.
+
+    By considering similar behaviors in the y-z and x-z planes, these results can be easily extended to
+the general three-dimensional case, giving the results
+
+           x  ¼   vu;   y    ¼   vv;     z  ¼   vw
+                  vx             vy             vz
+                                                                                         (2.2.4)
+                  vu     vv;               vv     vw;              vw       vu
+        gxy   ¼   vy  þ  vx      gyz  ¼    vz  þ  vy    gzx     ¼  vx    þ  vz
+
+Thus, we define three normal and three shearing strain components, leading to a total of six independent
+
+components that completely describe small deformation theory. This set of equations is normally
+
+referred to as the strain­displacement relations. However, these results are written in terms of the
+
+engineering strain components, and tensorial elasticity theory prefers to use the strain tensor eij defined
+by (2.1.7)1. This represents only a minor change because the normal strains are identical and shearing
+strains differ by a factor of one-half; for example, e11 ¼ ex ¼ x and e12 ¼ exy ¼ 1/2gxy, and so forth.
+
+    Therefore, using the strain tensor eij, the strain­displacement relations can be expressed in
+component form as
+
+ex   ¼  vu;   ey   ¼   vv;   ez  ¼    vw
+        vx             vy             vz
+                                                                                         (2.2.5)
+        1    vu     vv                1     vv      vw                1    vw      vu
+exy  ¼  2    vy  þ  vx    ;  eyz  ¼   2     vz  þ   vy    ;  ezx   ¼  2    vx   þ  vz
+2.2 Geometric construction of small deformation theory 37
+
+Using the more compact tensor notation, these relations are written as
+
+          eij   ¼                                1   À       þ     Á            (2.2.6)
+                                                 2    ui; j     uj; i
+
+while in direct vector/matrix notation the form reads
+
+                1                                h           ðVuÞT  i
+                                                  Vu
+          e  ¼  2                                     þ                         (2.2.7)
+
+where e is the strain matrix, Vu is the displacement gradient matrix, and ðVuÞT is its transpose.
+
+The strain is a symmetric second-order tensor (eij ¼ eji) and is commonly written in matrix format
+
+                                                 2   ex exy exz        3
+
+      e ¼ ½e ¼ 4 exy ey eyz 5                                                   (2.2.8)
+
+                                                     exz eyz ez
+
+Before we conclude this geometric presentation, consider the rigid-body rotation of our two-
+
+dimensional element in the x-y plane, as shown in Figure 2.5. If the element is rotated through a
+
+small rigid-body angular displacement about the z-axis, using the bottom element edge, the rotation
+angle is determined as vv/vx, while using the left edge, the angle is given by Àvu/vy. These two
+expressions are of course the same; that is, vv/vx ¼ Àvu/vy and note that this would imply exy ¼ 0. The
+rotation can then be expressed as uz ¼ [(vv/vx) À (vu/vy)]/2, which matches with the expression given
+earlier in (2.1.9)3. The other components of rotation follow in an analogous manner.
+
+    Relations for the constant rotation uz can be integrated to give the result
+
+               uÃ ¼ uo À uzy                                                    (2.2.9)
+               vÃ ¼ vo þ uzx
+
+where uo and vo are arbitrary constant translations in the x- and y-directions. This result then specifies
+the general form of the displacement field for two-dimensional rigid-body motion. We can easily
+
+-  u  y
+   y
+
+      dy
+
+                                                                          v
+
+                                                 dx                       x
+
+                                                                             x
+
+FIGURE 2.5 Two-Dimensional Rigid-Body Rotation.
+38 CHAPTER 2 Deformation: Displacements and Strains
+
+verify that the displacement field given by (2.2.9) yields zero strain. For the three-dimensional case,
+the most general form of rigid-body displacement can be expressed as
+
+                                      uÃ ¼ uo À uzy þ uyz                                     (2.2.10)
+                                      vÃ ¼ vo À uxz þ uzx
+                                      wÃ ¼ wo À uyx þ uxy
+
+As shown later, integrating the strain­displacement relations to determine the displacement field
+produces arbitrary constants and functions of integration, which are equivalent to rigid-body motion
+terms of the form given by (2.2.9) or (2.2.10). Thus, it is important to recognize such terms because
+we normally want to drop them from the analysis since they do not contribute to the strain or stress
+fields.
+
+EXAMPLE 2.1: STRAIN AND ROTATION EXAMPLES
+
+Determine the displacement gradient, strain, and rotation tensors for the following displacement
+field: u ¼ Ax2y, v ¼ Byz, w ¼ Cxz3, where A, B, and C are arbitrary constants. Also calculate the
+dual rotation vector u ¼ ð1=2ÞðV Â uÞ:
+
+        2  2Axy Ax2                  3
+                                0
+ui;j ¼ 664 0           Bz       By 775
+
+           Cz3 0 3Cxz2
+
+                                2    2Axy Ax2=2 Cz3=2         3
+
+eij  ¼  1À         þ     Á  ¼   646 Ax2=2      Bz     By=2 577
+        2 ui; j       uj;i
+
+                                     Cz3=2 By=2 3Cxz2
+                                2                                   3
+                                      0        Ax2=2 ÀCz3=2
+           À             Á      466                        By=2 775
+uij  ¼  1   ui; j  À  uj;i  ¼        ÀAx2=2        0
+        2
+
+                                     Cz3=2 ÀBy=2 0
+                                                      
+u    ¼  1  ðV  Â   uÞ  ¼   1     e1       e2    e3      ¼  1  À        À  Cz3e2  À  Ax2e3  Á
+        2                  2    v=vx     v=vy  v=vz        2   ÀBye1
+                                Ax2y     Byz   Cxz3
+                                                                             2.3 Strain transformation 39
+
+2.3 Strain transformation
+
+Because the strains are components of a second-order tensor, the transformation theory discussed in
+Section 1.5 can be applied. Transformation relation (1.5.1)3 is applicable for second-order tensors, and
+applying this to the strain gives
+
+                                                   ei0j ¼ QipQjqepq                                    (2.3.1)
+
+where the rotation matrix Qij ¼ cosðxi0; xjÞ: Thus, given the strain in one coordinate system, we can
+determine the new components in any other rotated system. For the general three-dimensional case,
+
+define the rotation matrix as
+
+                                                      2   l1 m1 n1        3
+
+                                           Qij ¼ 4 l2 m2 n2 5                                          (2.3.2)
+
+                                                          l3 m3 n3
+
+Using this notational scheme, the specific transformation relations from equation (2.3.1)
+become
+
+e0x  ¼  exl12  þ  eym12  þ  ezn21  þ   À           þ  eyzm1n1     þ            Á
+                                      2 exyl1m1                        ezxn1l1
+
+ey0  ¼  exl22  þ  eym22  þ  ezn22  þ   À           þ  eyzm2n2     þ            Á
+                                      2 exyl2m2                        ezxn2l2
+
+ez0  ¼  exl23  þ  eym23  þ  ezn23  þ   À           þ  eyzm3n3     þ            Á
+                                      2 exyl3m3                        ezxn3l3
+
+ex0 y ¼ exl1l2 þ eym1m2 þ ezn1n2 þ exyðl1m2 þ m1l2Þ þ eyzðm1n2 þ n1m2Þ þ ezxðn1l2 þ l1n2Þ
+
+e0yz ¼ exl2l3 þ eym2m3 þ ezn2n3 þ exyðl2m3 þ m2l3Þ þ eyzðm2n3 þ n2m3Þ þ ezxðn2l3 þ l2n3Þ
+
+e0zx ¼ exl3l1 þ eym3m1 þ ezn3n1 þ exyðl3m1 þ m3l1Þ þ eyzðm3n1 þ n3m1Þ þ ezxðn3l1 þ l3n1Þ
+                                                                                                             (2.3.3)
+
+For the two-dimensional case shown in Figure 2.6, the transformation matrix can be expressed as
+
+                                                   2  cos q sin q 0          3
+
+                                           Qij ¼ 4 Àsin q cos q 0 5                                    (2.3.4)
+
+                                                          00 1
+
+Under this transformation, the in-plane strain components transform according to
+
+                  ex0 ¼ ex cos2 q þ ey sin2 q þ 2exy sin q cos q
+
+                  ey0 ¼ ex sin2 q þ ey cos2 q À 2exy sin q cos q                                       (2.3.5)
+
+                  e0xy   ¼  Àex    sin  q  cos  q  þ  ey  sin  q  cos  q  þ  exyÀcos2  q  À  sin2   Á
+                                                                                                   q
+40 CHAPTER 2 Deformation: Displacements and Strains
+
+                  y
+y
+
+                                                                             x
+
+                                                                                 
+                                                                                                               x
+
+FIGURE 2.6 Two-Dimensional Rotational Transformation.
+
+which is commonly rewritten in terms of the double angle
+
+                       ex0  ¼ ex  þ ey þ ex À ey        cos 2q þ exy     sin 2q
+                                  2               2
+
+                       e0y  ¼ ex  þ ey À ex À ey        cos 2q À exy     sin 2q                                   (2.3.6)
+                                  2               2
+
+ex0 y                       ¼ ey À ex    sin 2q þ exy cos 2q
+                                  2
+
+Transformation relations (2.3.6) can be directly applied to establish transformations between
+Cartesian and polar coordinate systems (see Exercise 2.6). Additional applications of these results
+can be found when dealing with experimental strain gage measurement systems. For example,
+standard experimental methods using a rosette strain gage allow the determination of extensional
+strains in three different directions on the surface of a structure. Using this type of data, relation
+(2.3.6)1 can be repeatedly used to establish three independent equations that can be solved for the
+state of strain (ex,ey,exy) at the surface point under study (see Exercise 2.7).
+
+    Both two- and three-dimensional transformation equations can be easily incorporated in MATLABÒ
+to provide numerical solutions to problems of interest. Such examples are given in Exercises 2.8 and 2.9.
+
+2.4 Principal strains
+
+From the previous discussion in Section 1.6, it follows that because the strain is a symmetric second-
+
+order tensor, we can identify and determine its principal axes and values. According to this theory, for
+
+any given strain tensor we can establish the principal value problem and solve the characteristic
+
+equation to explicitly determine the principal values and directions. The general characteristic
+
+equation for the strain tensor can be written as
+
+   Â                        À         Ã  ¼  Àe3      þ  w1e2  À  w2e  þ  w3  ¼   0                                (2.4.1)
+det eij                           edij
+                                                                           2.6 Strain compatibility 41
+
+where e is the principal strain and the fundamental invariants of the strain tensor can be expressed in
+terms of the three principal strains e1, e2, e3 as
+
+w1 ¼ e1 þ e2 þ e3
+
+w2 ¼ e1e2 þ e2e3 þ e3e1                                                               (2.4.2)
+
+w3 ¼ e1e2e3
+
+The first invariant w1 ¼ w is normally called the cubical dilatation, because it is related to the change
+
+in volume of material elements (see Exercise 2.11).
+
+The strain matrix in the principal coordinate system takes the special diagonal form
+
+                                                   2  e1 0 0            3
+
+eij ¼ 4 0 e2 0 5                                                                      (2.4.3)
+
+                                                      0 0 e3
+
+Notice that for this principal coordinate system, the deformation does not produce any shearing and
+thus is only extensional. Therefore, a rectangular element oriented along principal axes of strain will
+retain its orthogonal shape and undergo only extensional deformation of its sides.
+
+2.5 Spherical and deviatoric strains
+
+In particular applications it is convenient to decompose the strain tensor into two parts called spherical
+and deviatoric strain tensors. The spherical strain is defined by
+
+e~ij                                         ¼     1          ¼  1                    (2.5.1)
+                                                   3 ekkdij      3 wdij
+
+while the deviatoric strain is specified as
+
+                                             e^ij  ¼  eij  À  1                       (2.5.2)
+                                                              3 ekkdij
+
+Note that the total strain is then simply the sum
+
+                                                   eij ¼ e~ij þ e^ij                  (2.5.3)
+
+The spherical strain represents only volumetric deformation and is an isotropic tensor, being the same
+in all coordinate systems (as per the discussion in Section 1.5). The deviatoric strain tensor then ac-
+counts for changes in shape of material elements. It can be shown that the principal directions of the
+deviatoric strain are the same as those of the strain tensor.
+
+2.6 Strain compatibility
+
+We now investigate in more detail the nature of the strain­displacement relations (2.2.5), and this will lead
+to the development of some additional relations necessary to ensure continuous, single-valued displace-
+ment field solutions. Relations (2.2.5), or the index notation form (2.2.6), represent six equations for the six
+strain components in terms of three displacements. If we specify continuous, single-valued displacements
+42 CHAPTER 2 Deformation: Displacements and Strains
+
+u, v, w, then through differentiation the resulting strain field will be equally well behaved. However, the
+converse is not necessarily true; given the six strain components, integration of the strain­displacement
+relations (2.2.5) does not necessarily produce continuous, single-valued displacements. This should not
+be totally surprising since we are trying to solve six equations for only three unknown displacement
+components. In order to ensure continuous, single-valued displacements, the strains must satisfy addi-
+tional relations called integrability or compatibility equations.
+
+    Before we proceed with the mathematics to develop these equations, it is instructive to consider a
+geometric interpretation of this concept. A two-dimensional example is shown in Figure 2.7 whereby
+an elastic solid is first divided into a series of elements in case (a). For simple visualization, consider
+only four such elements. In the undeformed configuration shown in case (b), these elements of course
+fit together perfectly. Next, let us arbitrarily specify the strain of each of the four elements and attempt
+to reconstruct the solid. For case (c), the elements have been carefully strained, taking into consid-
+eration neighboring elements so that the system fits together yielding continuous, single-valued dis-
+placements. However, for case (d), the elements have been individually deformed without any concern
+for neighboring deformations. It is observed for this case that the system will not fit together without
+voids and gaps, and this situation produces a discontinuous displacement field. So, we again conclude
+that the strain components must be somehow related to yield continuous, single-valued displacements.
+We now pursue these particular relations.
+
+                                                             1  2
+
+                                                             3  4
+
+(a) Discretized Elastic Solid  (b) Undeformed Configuration
+
+1  2                                                         1     2
+
+3  4                                                         3     4
+
+(c) Deformed Configuration     (d) Deformed Configuration
+    Continuous Displacements       Discontinuous Displacements
+
+FIGURE 2.7 Physical Interpretation of Strain Compatibility.
+                                                                 2.6 Strain compatibility 43
+
+The process to develop these equations is based on eliminating the displacements from the
+
+strain­displacement relations. Working in index notation, we start by differentiating (2.2.6) twice with
+
+respect to xk and xl
+
+                            eij; kl  ¼  1  À         þ       Á
+                                        2   ui; jkl     uj;ikl
+
+Through simple interchange of subscripts, we can generate the following additional relations
+
+                            ekl;ij   ¼  1  À         þ       Á
+                                        2   uk;lij      ul;kij
+
+                            ejl;ik   ¼  1À           þ       Á
+                                        2 uj;lik        ul; jik
+
+                            eik; jl  ¼  1  À         þ       Á
+                                        2   ui;kjl      uk;ijl
+
+Working under the assumption of continuous displacements, we can interchange the order of differ-
+entiation on u, and the displacements can be eliminated from the preceding set to get
+
+                      eij;kl þ ekl;ij À eik; jl À ejl;ik ¼ 0                                  (2.6.1)
+
+These are called the Saint-Venant compatibility equations. Although the system would lead to 81
+individual equations, most are either simple identities or repetitions, and only six are meaningful.
+These six relations may be determined by letting k ¼ l, and in scalar notation they become
+
+                      v2ex  þ  v2ey     ¼  2 v2exy
+                      vy2      vx2           vxvy
+
+                      v2ey  þ  v2ez     ¼  2  v2eyz
+                      vz2      vy2            vyvz
+
+                      v2ez  þ  v2ex     ¼  2  v2ezx
+                      vx2      vz2            vzvx
+                                                                                              (2.6.2)
+                      v2ex     v     À veyz þ vezx þ vexy
+                            ¼
+                      vyvz vx vx vy vz
+
+                      v2ey                                       
+                               v     À vezx þ vexy þ veyz
+                            ¼
+                      vzvx vy vy vz vx
+
+                      v2ez  ¼  v                              
+                                      À vexy  þ veyz þ vezx
+                      vxvy vz vz vx vy
+
+It can be shown that these six equations are not all independent. Exercise 2.15 illustrates that certain
+differential relations exist between these compatibility equations, and Exercise 2.16 shows that the six
+equations can be reduced to three independent fourth-order relations. Although there has been some
+discussion in the literature about trying to reduce the number of equations in (2.6.2), almost all
+applications simply use the entire set of six equations.
+44 CHAPTER 2 Deformation: Displacements and Strains
+
+                                                                                        P
+                                                                                                      uP
+
+                                                                       C
+
+                                    Po                uo
+
+FIGURE 2.8 Continuity of Displacements.
+
+In the development of the compatibility relations, we assumed that the displacements were
+
+continuous, and thus the resulting equations (2.6.2) are actually only a necessary condition. In order to
+
+show that they are also sufficient, consider two arbitrary points P and Po in an elastic solid, as shown in
+
+Figure 2.8. Without loss in generality, the origin may be placed at point Po.
+    The displacements of points P and Po are denoted by uip and uio, and the displacement of point P can
+
+be expressed as
+
+                                                              ð                            ð     vui
+                                                                                                 vxj
+                                         u   p  ¼     uoi  þ       dui ¼ uio þ                        dxj                      (2.6.3)
+                                             i
+                                                                  C                           C
+
+where C is any continuous curve connecting points Po and P. Using relation (2.1.6) for the
+displacement gradient, (2.6.3) becomes
+
+                                                                     ð      À                 Á
+
+                                                   u  p  ¼   uoi  þ            eij þ uij dxj                                   (2.6.4)
+                                                      i
+                                                                         C
+
+Integrating the last term by parts gives
+
+                                             ð                                       ð
+
+                                                   uijdxj    ¼    u  p   x  p     À        xj uij;k dxk                        (2.6.5)
+                                                                     ij     j
+                                                C                                       C
+
+where  u  p   is  the  rotation  tensor  at  point       P.  Using       relation          (2.1.7)2
+          ij
+
+                       uij;k     ¼  1  À        À         Á     ¼  1À             À         Á    þ    1  À        À       Á
+                                    2   ui; jk        uj;ik        2 ui; jk             uj;ik         2   uk; ji     uk; ji
+
+                                    1   v    À                Á          1   v    À                   Á                        (2.6.6)
+                                    2  vxj    ui;k         uk;i          2  vxi    uj; k
+                                 ¼                    þ            À                       þ     uk;  j  ¼  eik;  j  À  ejk;i
+
+Substituting results (2.6.5) and (2.6.6) into (2.6.4) yields
+
+                                                                                     ð
+
+                                                u  p  ¼    uio  þ  uiPj     x  P  þ        Uik dxk                             (2.6.7)
+                                                   i                           j
+                                                                                        C
+
+where Uik ¼ eik À xj(eik, j À ejk,i).
+                               2.6 Strain compatibility 45
+
+Now if the displacements are to be continuous, single-valued functions, the line integral appearing
+
+in (2.6.7) must be the same for any curve C; that is, the integral must be independent of the path of
+
+integration. This implies that the integrand must be an exact differential, so that the value of the in-
+
+tegral depends only on the end points. Invoking Stokes theorem, we can show that if the region is
+
+simply connected (definition of the term simply connected is postponed for the moment), a necessary
+
+and sufficient condition for the integral to be path independent is for Uik,l ¼ Uil,k. Using this result
+
+yields
+
+                  À  ÁÀ  Á  À                                     ÁÀ                                          Á
+        eik;l À djl eik; j À ejk;i À xj eik; jl À ejk;il ¼ eil;k À djk eil; j À ejl;i À xj eil; jk À eji; ik
+
+which reduces to
+
+                     À      Á
+                     xj eik; jl À ejk;il À eil; jk þ ejl; ik ¼ 0
+
+Because this equation must be true for all values of xj, the terms in parentheses must vanish, and
+after some index renaming this gives the identical result previously stated by the compatibility
+relations (2.6.1)
+
+                     eij; kl þ ekl; ij À eik; jl À ejl; ik ¼ 0
+
+Thus, relations (2.6.1) or (2.6.2) are the necessary and sufficient conditions for continuous, single-
+valued displacements in simply connected regions.
+
+    Now let us get back to the term simply connected. This concept is related to the topology or
+geometry of the region under study. There are several places in elasticity theory where the con-
+nectivity of the region fundamentally affects the formulation and solution method. The term simply
+connected refers to regions of space for which all simple closed curves drawn in the region can be
+continuously shrunk to a point without going outside the region. Domains not having this property
+are called multiply connected. Several examples of such regions are illustrated in Figure 2.9.
+A general simply connected two-dimensional region is shown in case (a), and clearly this case allows
+any contour within the region to be shrunk to a point without going out of the domain. However, if
+we create a hole in the region as shown in case (b), a closed contour surrounding the hole cannot be
+shrunk to a point without going into the hole and thus outside of the region. For two-dimensional
+regions, the presence of one or more holes makes the region multiply connected. Note that by
+introducing a cut between the outer and inner boundaries in case (b), a new region is created that is
+now simply connected. Thus, multiply connected regions can be made simply connected by intro-
+ducing one or more cuts between appropriate boundaries. Case (c) illustrates a simply connected
+three-dimensional example of a solid circular cylinder. If a spherical cavity is placed inside this
+cylinder as shown in case (d), the region is still simply connected because any closed contour can
+still be shrunk to a point by sliding around the interior cavity. However, if the cylinder has a through
+hole as shown in case (e), then an interior contour encircling the axial through hole cannot be
+reduced to a point without going into the hole and outside the body. Thus, case (e) is an example of
+the multiply connected three-dimensional region.
+
+    It was found that the compatibility equations are necessary and sufficient conditions for contin-
+uous, single-valued displacements only for simply connected regions. Thus for multiply connected
+domains, relations (2.6.1) or (2.6.2) provide only necessary but not sufficient conditions. For this case,
+further relations can be developed and imposed on the problem, and these are found through the
+introduction of cuts within the region to make it simply connected as per our earlier discussion. For the
+two-dimensional case shown in Figure 2.9(b), this process will lead to a relation commonly called a
+46 CHAPTER 2 Deformation: Displacements and Strains
+
+(a) Two-Dimensional                                     (b) Two-Dimensional
+    Simply Connected                                        Multiply Connected
+
+(c) Three-Dimensional (d) Three-Dimensional                          (e) Three-Dimensional
+                                                                         Multiply Connected
+Simply Connected                             Simply Connected
+
+FIGURE 2.9 Examples of Domain Connectivity.
+
+Cesa`ro integral taken around any closed irreducible curve enclosing the internal cavity. Thus, for
+multiply connected domains, strain compatibility is guaranteed if compatibility relations (2.6.2) are
+satisfied and all Cesa`ro integrals vanish. Details on this topic are given by Fung (1965), Fung and Tong
+(2001), or Asaro and Lubarda (2006).
+
+    Although the compatibility relations guarantee (under appropriate conditions) continuous dis-
+placements, they do not ensure uniqueness of the displacement field. At the end of Section 2.2 we
+mentioned that, through integration of the strain­displacement relations, the displacements can be
+determined only up to an arbitrary rigid-body motion. In some elasticity problems (e.g., thermal stress,
+crack problems, and dislocation modeling), it is necessary to use multivalued displacement fields to
+properly model the problem. Chapters 10, 12, and 15 contain a few examples of such problems, and a
+specific case is given in Exercise 2.18.
+
+2.7 Curvilinear cylindrical and spherical coordinates
+
+The solution to many problems in elasticity requires the use of curvilinear cylindrical and spherical
+
+coordinates. It is therefore necessary to have the field equations expressed in terms of such coordinate
+
+systems. We now pursue the development of the strain­displacement relations in cylindrical and
+
+spherical coordinates. Starting with form (2.2.7)
+
+                                             1     h       ðVuÞT  i
+                                                    Vu
+                  e  ¼                       2  ¼       þ
+                  2.7 Curvilinear cylindrical and spherical coordinates 47
+
+the desired curvilinear relations can be determined using the appropriate forms for the displacement
+gradient term Vu:
+
+    The cylindrical coordinate system previously defined in Figure 1.5 establishes new components for
+the displacement vector and strain tensor
+
+                             u ¼ urer þ uqeq þ uzez
+
+                                   2  er erq erz           3
+
+                             e ¼ 646 erq eq eqz 757                                    (2.7.1)
+
+                                      erz eqz ez
+
+Notice that the symmetry of the strain tensor is preserved in this orthogonal curvilinear system. Using
+results (1.9.17) and (1.9.10), the derivative operation in cylindrical coordinates can be expressed by
+
+Vu  ¼  vur  er er  þ  vuq  er eq   þ  vuz   er ez
+       vr             vr              vr
+                                                             
+       þ1      vur                       1              vuq              1  vuz
+          r    vq   À    uq  eqer     þ  r  ur     þ    vq      eqeq  þ  r  vq   eqez  (2.7.2)
+
+       þ  vur  ezer   þ  vuq   ezeq   þ  vuz    ez  ez
+          vz             vz              vz
+
+Placing this result into the strain­displacement form (2.2.7) gives the desired relations in cylindrical
+
+coordinates. The individual scalar equations are given by
+
+                      vur ;           1             vuq                vuz
+                      vr              r             vq                 vz
+             er    ¼           eq  ¼        ur  þ            ;  ez  ¼
+
+                      1    1 vur þ vuq À uq         
+                      2    r vq vr r
+             erq   ¼
+
+                                                                                       (2.7.3)
+
+             eqz   ¼  1    vuq þ 1 vuz
+                      2    vz r vq
+
+                      1    vur þ vuz     
+                      2    vz vr
+             ezr   ¼
+
+For spherical coordinates defined by Figure 1.6, the displacement vector and strain tensor can be
+written as
+
+                         u ¼ uReR þ ufef þ uqeq                                        (2.7.4)
+                              2 eR eRf eRq 3
+
+                         e ¼ 46 eRf ef efq 57
+
+                                 eRq efq eq
+48 CHAPTER 2 Deformation: Displacements and Strains
+
+Following identical procedures as used for the cylindrical equation development, the strain­
+
+displacement relations for spherical coordinates become
+
+                   vuR;           1                      vuf  
+                   vR             R                      vf
+           eR   ¼          ef  ¼            uR  þ
+
+                      1        vuq                                       
+                      sin      vq
+           eq   ¼  R       f         þ      sin  fuR        þ  cos  fuf
+
+                   1    1 vuR þ vuf À uf                 
+                   2    R vf vR R
+           eRf  ¼                                                             (2.7.5)
+
+                   1       1      vuf          vuq                    
+                   2R    sin      vq           vf
+           efq  ¼              f            þ            À  cot  fuq
+
+                   1       1 vuR þ vuq À uq                     
+                   2    R sin f vq vR R
+           eqR  ¼
+
+We can observe that these relations in curvilinear systems contain additional terms that do not include
+derivatives of individual displacement components. For example, in spherical coordinates a simple
+uniform radial displacement uR gives rise to transverse extensional strains ef ¼ eq ¼ uR/R. This
+deformation can be simulated by blowing up a spherical balloon and observing the separation of points
+on the balloon's surface. Such terms were not found in the Cartesian forms given by (2.2.5), and their
+appearance is thus related to the curvature of the spatial coordinate system. A more physical inter-
+pretation can be found by redeveloping these equations using the geometric procedures of Section 2.2
+on an appropriate differential element. A two-dimensional polar coordinate example of this technique
+is given in Exercise 2.19. Clearly, the curvilinear forms (2.7.3) and (2.7.5) appear more complicated
+than the corresponding Cartesian relations. However, for particular problems, the curvilinear relations,
+when combined with other field equations, allow analytical solutions to be developed that could not be
+found using a Cartesian formulation. Many examples of this are demonstrated in later chapters.
+Appendix A lists the complete set of elasticity field equations in cylindrical and spherical coordinates.
+
+References
+
+Asaro R, Lubarda V: Mechanics of Solids and Materials, New York, 2006, Cambridge University Press.
+Chandrasekharaiah DS, Debnath L: Continuum Mechanics, Boston, 1994, Academic Press.
+Fung YC: Foundations of Solid Mechanics, Englewood Cliffs, NJ, 1965, Prentice Hall.
+Fung YC, Tong P: Classical and Computational Solid Mechanics, Singapore, 2001, World Scientific.
+Malvern LE: Introduction to the Mechanics of a Continuous Medium, Englewood Cliffs, NJ, 1969, Prentice Hall.
+
+EXERCISES
+
+2.1 Determine the strain and rotation tensors eij and uij for the following displacement fields:
+                               ðaÞ u ¼ Axy; v ¼ Bxz2; w ¼ CÀx2 þ y2Á
+
+           ðbÞ  u  ¼  Ax2;     v ¼ Bxy; w           w¼¼CxCyÀzx2       þ  z2Á
+           ðcÞ  u  ¼  Ayz3;     v ¼ Bxy2;
+
+where A, B, and C are arbitrary constants.
+                                                                                       Exercises 49
+
+2.2 A two-dimensional displacement field is given by u ¼ k(x2 þ y2), v ¼ k(2x À y), w ¼ 0,
+      where k is a constant. Determine and plot the deformed shape of a differential rectangular
+      element originally located with its left bottom corner at the origin as shown. Finally, calculate
+      the rotation component uz.
+
+                                                        y
+
+                            dy
+
+                                                                      x
+                                            dx
+
+2.3 A two-dimensional problem of a rectangular bar stretched by uniform end loadings results in
+
+the following constant strain field   2                   3
+
+                                           C1 0 0
+                                eij ¼ 4 0 ÀC2 0 5
+
+                                            0 00
+
+where C1 and C2 are constants. Assuming the field depends only on x and y, integrate the
+strainedisplacement relations to determine the displacement components and identify any
+
+rigid-body motion terms.
+
+2.4 A three-dimensional elasticity problem of a uniform bar stretched under its own weight gives
+
+the following strain field            2                   3
+
+                                            Az 0 0
+                                eij ¼ 4 0 Az 0 5
+
+                                            0 0 Bz
+
+where A and B are constants. Integrate the strainedisplacement relations to determine the
+displacement components and identify all rigid-body motion terms.
+
+2.5 Explicitly verify that the general rigid-body motion displacement field given by (2.2.10)
+      yields zero strains. Next, assuming that all strains vanish, formally integrate relations (2.2.5)
+      to develop the general form (2.2.10).
+
+2.6 For polar coordinates defined by Figure 1.8, show that the transformation relations can be
+
+used to determine the normal and shear strain components er, eq, and erq in terms of the
+corresponding Cartesian components
+
+er   ¼                      ex  þ ey  þ ex  À ey  cos  2q þ exy          sin  2q
+                                2           2
+
+eq   ¼                      ex  þ ey  À ex  À ey  cos 2q À exy           sin  2q
+                                2           2
+
+erq  ¼                      ey  À ex  sin  2q þ exy  cos  2q
+                                2
+50 CHAPTER 2 Deformation: Displacements and Strains
+
+2.7 A rosette strain gage is an electromechanical device that can measure relative surface
+      elongations in three directions. Bonding such a device to the surface of a structure allows
+      determination of elongational strains in particular directions. A schematic of one such gage is
+      shown in the following figure, and the output of the device will provide data on the strains
+      along the gage arms a, b, and c. During one application, it is found that ea ¼ 0.001,
+      eb ¼ 0.002, and ec ¼ 0.004. Using the two-dimensional strain transformation relations,
+      calculate the surface strain components ex, ey, and exy.
+
+                                                                                 b
+
+      60                                                  60
+                                                                                    a
+y  c
+
+                 x
+
+2.8Ã A two-dimensional strain field is found to be given by ex ¼ 0.002, ey ¼ À0.004, and exy ¼ 0.001.
+        Incorporating the transformation relations (2.3.6) into a MATLABÒ code, calculate and plot
+
+the new strain components in a rotated coordinate system as a function of the rotation angle q.
+
+Determine the particular angles at which the new components take on maximum values.
+
+2.9Ã A three-dimensional strain field is specified by  3
+      2
+            1 À2 0
+      eij ¼ 4 À2 À4 0 5Â10À3
+
+            0 05
+
+Determine information on the strains in the shaded plane in the following figure that makes equal
+angles with the x- and z-axes as shown. Use MATLABÒ to calculate and plot the normal and in-
+
+plane shear strain along line AB (in the plane) as a function of angle q in the interval 0 q p/2.
+
+              y
+
+                                                       B
+
+         A                                                x
+
+                 
+
+          45
+
+   z
+                                                      Exercises 51
+
+2.10Ã  Using MATLABÒ, determine the principal values and directions of the following state of
+
+       strain             2          3
+
+                             2 À2 0
+                  eij ¼ 4 À2 À4 1 5Â10À3
+
+                             0 16
+
+2.11 A rectangular parallelepiped with original volume Vo is oriented such that its edges are
+        parallel to the principal directions of strain as shown in the following figure. For small strains,
+        show that the dilatation is given by
+
+               w  ¼  ekk  ¼  change in volume  ¼  DV
+                              original volume     Vo
+
+                          2
+
+                                                                                                   1
+
+                                                 3
+
+2.12 Determine the spherical and deviatoric strain tensors for the strain field given in Exercise
+        2.10. Justify that the first invariant or dilatation of the deviatoric strain tensor is zero. In light
+        of the results from Exercise 2.11, what does the vanishing of the dilatation imply?
+
+2.13 Using scalar methods, differentiate the individual strainedisplacement relations for ex, ey,
+        and exy, and independently develop the first compatibility equation of set (2.6.2).
+
+2.14 Using relation (1.3.5), show that the compatibility relations (2.6.1) with l ¼ k can be
+        expressed by hij ¼ ikljmpelp,km ¼ 0, which can also be written in vector notation as
+        V Â e Â V ¼ 0:
+
+2.15 In light of Exercise 2.14, the compatibility equations (2.6.2) can be expressed as hij ¼
+        ikljmpelp,km ¼ 0, where hij is sometimes referred to as the incompatibility tensor (Asaro and
+        Lubarda, 2006). It is observed that hij is symmetric, but its components are not independent
+        from one another. Since the divergence of a curl vanishes, show that they are related through
+        the differential Bianchi relations hij, j ¼ 0, which can be expanded to
+                                             h11;1 þ h12;2 þ h13;3 ¼ 0
+                                             h21;1 þ h22;2 þ h23;3 ¼ 0
+                                             h31;1 þ h32;2 þ h33;3 ¼ 0
+        Thus we see again that the six compatibility relations are not all independent.
+52 CHAPTER 2 Deformation: Displacements and Strains
+
+2.16 Show that the six compatibility equations (2.6.2) may also be represented by the three
+
+independent fourth-order equations
+
+                          v4ex   ¼    v3                    þ vezx           
+                         vy2vz2     vxvyvz      À veyz          vy   þ vexy
+
+                                                    vx                   vz
+
+                          v4ey   ¼    v3                    þ vexy          
+                         vz2vx2     vxvyvz      À vezx          vz   þ veyz
+
+                                                    vy                   vx
+
+                          v4ez   ¼    v3                    þ veyz          
+                         vx2vy2     vxvyvz      À vexy          vx   þ vezx
+
+                                                    vz                   vy
+
+2.17 Show that the following strain field
+                    ex ¼ Ay3; ey ¼ Ax3; exy ¼ Bxyðx þ yÞ; ez ¼ exz ¼ eyz ¼ 0
+
+        gives continuous, single-valued displacements in a simply connected region only if the
+        constants are related by A ¼ 2B/3.
+
+2.18 In order to model dislocations in elastic solids, multivalued displacement fields are necessary.
+        As shown later in Chapter 15, for the particular case of a screw dislocation the displacements
+        are given by
+
+                                u ¼ v ¼ 0; w ¼ b tanÀ1 y
+                                                       2p               x
+
+where b is a constant called the Burgers vector. Show that the strains resulting from these
+displacements are given by
+
+           ex ¼ ey ¼ ez ¼ exy ¼ 0;        exz  ¼    Àb      x2  y  y2;     eyz  ¼  b   x2  x  y2
+                                                      4p        þ                  4p      þ
+
+Although we would expect for such a case that the compatibility relations would not be
+satisfied, verify that these strains are in fact compatible. This is an example of a case in
+which the compatibility relations are necessary but not sufficient to guarantee single-valued
+displacements.
+
+2.19 Consider the plane deformation of the differential element ABCD defined by polar
+
+coordinates r, q as shown in the following figure. Using the geometric methods outlined
+
+in Section 2.2, investigate the changes in line lengths and angles associated with
+the deformation to a configuration A0B0C0D0, and develop the strainedisplacement
+
+relations                                                                                  
+
+           er  ¼  vur ;  eq  ¼   1    ur  þ  vuq    ;  erq  ¼   1  1 vur þ vuq À uq
+                  vr             r           vq                 2  r vq vr r
+                                                                            Exercises 53
+
+                                            D
+
+                               D
+                   C
+
+                                                                         B
+
+                C
+
+                                            A
+
+                   rd                           B
+
+                                            dr
+
+         d             A
+
+2.20 Using the results from Exercise 2.19, determine the two-dimensional strains er, eq, erq for the
+        following displacement fields:
+
+ðaÞ  ur  ¼  A;  uq ¼ B cos q
+            r
+
+ðbÞ ur ¼ Ar2; uq ¼ Br sin q
+
+ðcÞ ur ¼ A sin q þ B cos q; uq ¼ A cos q À B sin q þ Cr
+
+where A, B, and C are arbitrary constants.
+

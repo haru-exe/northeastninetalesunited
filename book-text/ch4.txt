@@ -1,0 +1,718 @@
+Material BehaviordLinear Elastic                                  CHAPTER
+Solids
+                                                                  4
+
+The previous two chapters establish elasticity field equations related to the kinematics of small
+deformation theory and the equilibrium of the associated internal stress field. Based on these physical
+concepts, six strain­displacement relations (2.2.5), six compatibility equations (2.6.2), and three
+equilibrium equations (3.7.5) were developed for the general three-dimensional case. Because moment
+equilibrium simply results in symmetry of the stress tensor, it is not normally included as a separate
+field equation set. Also, recall that the compatibility equations actually represent only three inde-
+pendent relations, and these equations are needed only to ensure that a given strain field will produce
+single-valued continuous displacements. Because the displacements are included in the general
+problem formulation, the solution normally gives continuous displacements, and the compatibility
+equations are not formally needed for the general system. Thus, excluding the compatibility relations,
+it is found that we have now developed nine field equations. The unknowns in these equations include
+three displacement components, six components of strain, and six stress components, yielding a total
+of 15 unknowns. Thus, the nine equations are not sufficient to solve for the 15 unknowns, and addi-
+tional field equations are needed. This result should not be surprising since up to this point in our
+development we have not considered the material response.
+
+    We now wish to complete our general formulation by specializing to a particular material model
+that provides reasonable characterization of materials under small deformations. The model we will
+use is that of a linear elastic material, a name that categorizes the entire theory. This chapter presents
+the basics of the elastic model specializing the formulation for isotropic materials. Thermoelastic
+relations are briefly presented for later use in Chapter 12. Related theory for anisotropic media is
+developed in Chapter 11, and nonhomogeneous materials are examined in Chapter 14.
+
+4.1 Material characterization
+
+Relations that characterize the physical properties of materials are called constitutive equations. Because
+of the endless variety of materials and loadings, the study and development of constitutive equations is
+perhaps one of the most interesting and challenging fields in mechanics. Although continuum me-
+chanics theory has established some principles for systematic development of constitutive equations
+(Malvern, 1969), many constitutive laws have been developed through empirical relations based on
+experimental evidence. Our interest here is limited to a special class of solid materials with loadings
+resulting from mechanical or thermal effects. The mechanical behavior of solids is normally defined
+by constitutive stress­strain relations. Commonly, these relations express the stress as a function of
+the strain, strain rate, strain history, temperature, and material properties. We choose a rather simple
+material model called the elastic solid that does not include rate or history effects. The model may be
+described as a deformable continuum that recovers its original configuration when the loadings causing
+the deformation are removed. Furthermore, we restrict the constitutive stress­strain law to be linear,
+
+Elasticity. http://dx.doi.org/10.1016/B978-0-12-408136-9.00004-0  81
+Copyright © 2014 Elsevier Inc. All rights reserved.
+82 CHAPTER 4 Material BehaviordLinear Elastic Solids
+
+thus leading to a linear elastic solid. Although these assumptions greatly simplify the model, linear
+elasticity predictions have shown good agreement with experimental data and have provided useful
+methods to conduct stress analysis. Many structural materials including metals, plastics, ceramics,
+wood, rock, concrete, and so forth exhibit linear elastic behavior under small deformations.
+
+    As mentioned, experimental testing is commonly employed in order to characterize the mechanical
+behavior of real materials. One such technique is the simple tension test in which a specially prepared
+cylindrical or flat stock sample is loaded axially in a testing machine. Strain is determined by the
+change in length between prescribed reference marks on the sample and is usually measured by a clip
+gage. Load data collected from a load cell is divided by the cross-sectional area in the test section to
+calculate the stress. Axial stress­strain data is recorded and plotted using standard experimental
+techniques. Typical qualitative data for three types of structural metals (mild steel, aluminum, cast
+iron) is shown in Figure 4.1. It is observed that each material exhibits an initial stress­strain response
+for small deformation that is approximately linear. This is followed by a change to nonlinear behavior
+that can lead to large deformation, finally ending with sample failure.
+
+    For each material the initial linear response ends at a point normally referred to as the proportional
+limit. Another observation in this initial region is that if the loading is removed, the sample returns to its
+original shape and the strain disappears. This characteristic is the primary descriptor of elastic behavior.
+However, at some point on the stress­strain curve unloading does not bring the sample back to zero strain
+and some permanent plastic deformation results. The point at which this nonelastic behavior begins is
+called the elastic limit. Although some materials exhibit different elastic and proportional limits, many
+times these values are taken to be approximately the same. Another demarcation on the stress­strain
+curve is referred to as the yield point, defined by the location where large plastic deformation begins.
+
+    Because mild steel and aluminum are ductile materials, their stress­strain response indicates extensive
+plastic deformation, and during this period the sample dimensions will be changing. In particular the
+sample's cross-sectional area undergoes significant reduction, and the stress calculation using division by
+the original area will now be in error. This accounts for the reduction in the stress at large strain. If we were
+to calculate the load divided by the true area, the true stress would continue to increase until failure.
+
+                              
+
+                                         **
+                  *
+
+                                                 Steel
+
+                                               Cast Iron
+
+                                             Aluminum
+
+                                                                                          
+
+FIGURE 4.1 Typical Uniaxial Stress­Strain Curves for Three Structural Metals.
+                                        4.2 Linear elastic materialsdHooke's law 83
+
+On the other hand, cast iron is known to be a brittle material, and thus its stress­strain response does not
+show large plastic deformation. For this material, very little nonelastic or nonlinear behavior is observed.
+It is therefore concluded from this and many other studies that a large variety of real materials exhibit
+linear elastic behavior under small deformations. This would lead to a linear constitutive model for the
+one-dimensional axial loading case given by the relation s ¼ E, where E is the slope of the uniaxial
+stress­strain curve. We now use this simple concept to develop the general three-dimensional forms of
+the linear elastic constitutive model.
+
+4.2 Linear elastic materialsdHooke's law
+
+Based on observations from the previous section, to construct a general three-dimensional constitutive
+law for linear elastic materials, we assume that each stress component is linearly related to each strain
+component
+
+sx ¼ C11ex þ C12ey þ C13ez þ 2C14exy þ 2C15eyz þ 2C16ezx                                    (4.2.1)
+sy ¼ C21ex þ C22ey þ C23ez þ 2C24exy þ 2C25eyz þ 2C26ezx
+sz ¼ C31ex þ C32ey þ C33ez þ 2C34exy þ 2C35eyz þ 2C36ezx
+sxy ¼ C41ex þ C42ey þ C43ez þ 2C44exy þ 2C45eyz þ 2C46ezx
+syz ¼ C51ex þ C52ey þ C53ez þ 2C54exy þ 2C55eyz þ 2C56ezx
+szx ¼ C61ex þ C62ey þ C63ez þ 2C64exy þ 2C65eyz þ 2C66ezx
+
+where the coefficients Cij are material parameters and the factors of 2 arise because of the symmetry of
+
+the strain. Note that this relation could also be expressed by writing the strains as a linear function of
+
+the stress components. These relations can be cast into a matrix format as
+
+2 32                               C11 C12 : : : C16       32 3
+         sx                                                                  ex
+6666466       7577777     6666664                          7777775  6666664        7777775
+         sy            ¼           C21  :  :::          :                     ey            (4.2.2)
+         sz                         :   :  :::          :                     ez
+         sxy                        :   :  :::          :                    2exy
+         syz                        :   :  :::          :                    2eyz
+
+         szx                       C61 : : : : C66 2ezx
+
+Relations (4.2.1) can also be expressed in standard tensor notation by writing
+
+                                        sij ¼ Cijklekl                                      (4.2.3)
+
+where Cijkl is a fourth-order elasticity tensor whose components include all the material parameters
+necessary to characterize the material. Based on the symmetry of the stress and strain tensors, the
+elasticity tensor must have the following properties (see Exercise 4.2)
+
+                                        Cijkl ¼ Cjikl                                       (4.2.4)
+                                        Cijkl ¼ Cijlk
+
+In general, the fourth-order tensor Cijkl has 81 components. However, relations (4.2.4) reduce the number
+of independent components to 36, and this provides the required match with form (4.2.1) or (4.2.2). Later
+in Chapter 6 we introduce the concept of strain energy, and this leads to the relation Cijkl ¼ Cklij or
+84 CHAPTER 4 Material BehaviordLinear Elastic Solids
+
+equivalently Cij ¼ Cji, which provides further reduction to 21 independent elastic components.
+The components of Cijkl or equivalently Cij are called elastic moduli and have units of stress (force/area).
+In order to continue further, we must address the issues of material homogeneity and isotropy.
+
+    If the material is homogeneous, the elastic behavior does not vary spatially, and thus all elastic
+moduli are constant. For this case, the elasticity formulation is straightforward, leading to the
+development of many analytical solutions to problems of engineering interest. A homogeneous
+assumption is an appropriate model for most structural applications, and thus we primarily choose this
+particular case for subsequent formulation and problem solution. However, there are a couple of
+important nonhomogeneous applications that warrant further discussion.
+
+    Studies in geomechanics have found that the material behavior of soil and rock commonly depends
+on distance below the earth's surface. In order to simulate particular geomechanics problems,
+researchers have used nonhomogeneous elastic models applied to semi-infinite domains. Typical
+applications have involved modeling the response of a semi-infinite soil mass under surface or sub-
+surface loadings with variation in elastic moduli with depth (see the review by Poulos and Davis,
+1974). Another more recent application involves the behavior of functionally graded materials
+(FGMs) (see Erdogan, 1995; Parameswaran and Shukla, 1999, 2002). FGMs are a new class of
+engineered materials developed with spatially varying properties to suit particular applications. The
+graded composition of such materials is commonly established and controlled using powder metal-
+lurgy, chemical vapor deposition, or centrifugal casting. Typical analytical studies of these materials
+have assumed linear, exponential, and power-law variation in elastic moduli of the form
+
+CijðxÞ ¼ Ciojð1 þ axÞ                                 (4.2.5)
+CijðxÞ ¼ Ciojeax
+CijðxÞ ¼ Ciojx a
+
+where Cioj and a are prescribed constants and x is the spatial coordinate. Further details on the
+formulation and solution of nonhomogeneous elasticity problems are given in Chapter 14.
+
+    Similar to homogeneity, another fundamental material property is isotropy. This property has to do
+with differences in material moduli with respect to orientation. For example, many materials including
+crystalline minerals, wood, and fiber-reinforced composites have different elastic moduli in different
+directions. Materials such as these are said to be anisotropic. Note that for most real anisotropic
+materials there exist particular directions where the properties are the same. These directions indicate
+material symmetries. However, for many engineering materials (most structural metals and many
+plastics), the orientation of crystalline and grain microstructure is distributed randomly so that
+macroscopic elastic properties are found to be essentially the same in all directions. Such materials
+with complete symmetry are called isotropic. As expected, an anisotropic model complicates the
+formulation and solution of problems. We therefore postpone development of such solutions until
+Chapter 11 and continue our current development under the assumption of isotropic material behavior.
+
+    The tensorial form (4.2.3) provides a convenient way to establish the desired isotropic stress­strain
+relations. If we assume isotropic behavior, the elasticity tensor must be the same under all rotations of
+the coordinate system. Using the basic transformation properties from relation (1.5.1)5, the fourth-
+order elasticity tensor must satisfy
+
+Cijkl ¼ QimQjnQkpQlqCmnpq
+                                           4.2 Linear elastic materialsdHooke's law 85
+
+It can be shown (Chandrasekharaiah and Debnath, 1994) that the most general form that satisfies this
+isotropy condition is given by
+
+Cijkl ¼ adijdkl þ bdikdjl þ gdildjk                                                           (4.2.6)
+
+where a,b, and g are arbitrary constants. Verification of the isotropic property of form (4.2.6) is given
+as Exercise 1.9. Using the general form (4.2.6) in the stress­strain relation (4.2.3) gives
+
+                                      sij ¼ lekkdij þ 2meij                                   (4.2.7)
+
+where we have relabeled particular constants using l and m. The elastic constant l is called Lame´'s
+
+constant, and m is referred to as the shear modulus or modulus of rigidity. Some texts use the notation G
+
+for the shear modulus. Equation (4.2.7) can be written out in individual scalar equations as
+
+                                          À                 Á
+sx ¼ lÀex þ ey þ ezÁ þ 2mex
+sy ¼ lÀex þ ey þ ezÁ þ 2mey
+sz ¼ l ex þ ey þ ez þ 2mez
+                                                                                              (4.2.8)
+sxy ¼ 2mexy
+
+syz ¼ 2meyz
+
+szx ¼ 2mezx
+
+Relations (4.2.7) or (4.2.8) are called the generalized Hooke's law for linear isotropic elastic solids.
+They are named after Robert Hooke, who in 1678 first proposed that the deformation of an elastic
+structure is proportional to the applied force. Notice the significant simplicity of the isotropic form
+when compared to the general stress­strain law originally given by (4.2.1). It should be noted that only
+two independent elastic constants are needed to describe the behavior of isotropic materials. As shown
+in Chapter 11, additional numbers of elastic moduli are needed in the corresponding relations for
+anisotropic materials.
+
+    Stress­strain relations (4.2.7) or (4.2.8) may be inverted to express the strain in terms of the stress.
+In order to do this it is convenient to use the index notation form (4.2.7) and set the two free indices the
+same (contraction process) to get
+
+                                        skk ¼ ð3l þ 2mÞekk                                    (4.2.9)
+
+This relation can be solved for ekk and substituted back into (4.2.7) to get
+
+                                      1                  l               
+                                      2m                 þ
+eij                                ¼         sij  À  3l     2m  skk dij
+
+which is more commonly written as
+
+                                   eij  ¼  1  þ   n     À  n  skk dij                         (4.2.10)
+                                              E    sij     E
+
+where E ¼ m(3l þ 2m)/(l þ m) and is called the modulus of elasticity or Young's modulus, and
+n ¼ l/[2(l þ m)] is referred to as Poisson's ratio. The index notation relation (4.2.10) may be written
+out in component (scalar) form, giving the six equations
+86 CHAPTER 4 Material BehaviordLinear Elastic Solids
+
+                  ex   ¼  1  Â                         À   À    þ    ÁÃ
+                          E   sx                          n sy     sz
+
+                  ey   ¼  1  Â                         À  nðsz  þ      Ã
+                          E   sy                                   sxÞ
+
+                  ez   ¼  1  Â                         À   À    þ    ÁÃ
+                          E   sz                          n sx     sy
+
+                          1  þ  n                              1                                 (4.2.11)
+                             E   sxy                           2m
+                  exy  ¼                                    ¼      sxy
+
+                  eyz  ¼  1  þ  n                      syz  ¼  1   syz
+                             E                                 2m
+
+                  ezx  ¼  1  þ  n szx                       ¼  1   szx
+                             E                                 2m
+
+Constitutive form (4.2.10) or (4.2.11) again illustrates that only two elastic constants are needed to
+formulate Hooke's law for isotropic materials. By using any of the isotropic forms of Hooke's law, it can
+be shown that the principal axes of stress coincide with the principal axes of strain (see Exercise 4.7).
+This result also holds for some but not all anisotropic materials.
+
+4.3 Physical meaning of elastic moduli
+
+For the isotropic case, the previously defined elastic moduli have simple physical meaning. These can
+be determined through investigation of particular states of stress commonly realized in laboratory
+materials testing as shown in Figure 4.2.
+
+
+
+                          
+
+                                  
+
+                                                                          p
+
+(Simple Tension)       (Pure Shear)                                                           p
+                                                                           p
+                                                                   (Hydrostatic Compression)
+
+FIGURE 4.2 Special Characterization States of Stress.
+                                         4.3 Physical meaning of elastic moduli 87
+
+4.3.1 Simple tension
+
+Consider the simple tension test as discussed previously with a sample subjected to tension in the x
+
+direction (see Figure 4.2). The state of stress is closely represented by the one-dimensional field
+
+                                         2         s00   3
+
+                           sij ¼ 4 0 0 0 5
+
+                                                   000
+
+Using this in relation (4.2.10) gives a corresponding strain field
+
+                              2s                                  3
+
+                              646666  E              0      0     777775
+                                      0            Àn s
+                      eij  ¼                               0
+                                                     E   Àn
+                                      0              0      E  s
+
+Therefore, E ¼ s/ex and is simply the slope of the stress­strain curve, while n ¼ Àey /ex ¼ Àez /ex is
+minus the ratio of the transverse strain to the axial strain. Standard measurement systems can easily
+collect axial stress and transverse and axial strain data, and thus through this one type of test both
+elastic constants can be determined for materials of interest.
+
+4.3.2 Pure shear
+
+If a thin-walled cylinder is subjected to torsional loading (as shown in Figure 4.2), the state of stress on
+
+the surface of the cylindrical sample is given by
+
+                                         2         0s0   3
+
+                           sij ¼ 4 s 0 0 5
+
+                                                   000
+
+Again, by using Hooke's law, the corresponding strain field becomes
+
+                              2          0 s=2m 0                 3
+
+                      eij ¼ 4 s=2m 0 0 5
+
+                                         0 00
+
+and thus the shear modulus is given by m ¼ s / 2exy ¼ s / gxy , and this modulus is simply the slope of
+the shear stress­shear strain curve.
+
+4.3.3 Hydrostatic compression (or tension)
+
+The final example is associated with the uniform compression (or tension) loading of a cubical
+
+specimen, as previously shown in Figure 4.2. This type of test would be realizable if the sample was
+
+placed in a high-pressure compression chamber. The state of stress for this case is given by
+
+                           2  Àp 0 0                     3
+
+                      sij ¼ 4 0 Àp 0 5 ¼ Àpdij
+
+                              0 0 Àp
+88 CHAPTER 4 Material BehaviordLinear Elastic Solids
+
+This is an isotropic state of stress and the strains follow from Hooke's law
+
+             2           1  À 2n                                 3
+             4666666        E
+                      À           p       0            0         7777577
+                            0        À 1 À 2n p
+eij  ¼                                                 0
+                                          E            À
+                            0             0      À  1     2n  p
+
+                                                       E
+
+The dilatation that represents the change in material volume (see Exercise 2.11) is thus given by
+w ¼ ekk ¼ À3(1 À 2n)p/E, which can be written as
+
+                                     p ¼ Àkw                                  (4.3.1)
+
+where k ¼ E / [3(1 À 2n)] is called the bulk modulus of elasticity. This additional elastic constant
+represents the ratio of pressure to the dilatation, which could be referred to as the volumetric stiffness
+of the material. Notice that as Poisson's ratio approaches 0.5, the bulk modulus becomes unbounded;
+the material does not undergo any volumetric deformation and hence is incompressible.
+
+    Our discussion of elastic moduli for isotropic materials has led to the definition of five constants
+l, m, E, n, and k. However, keep in mind that only two of these are needed to characterize the material.
+Although we have developed a few relationships between various moduli, many other such relations
+can also be found. In fact, it can be shown that all five elastic constants are interrelated, and if any two
+are given, the remaining three can be determined by using simple formulae. Results of these relations
+are conveniently summarized in Table 4.1. This table should be marked for future reference, because it
+will prove to be useful for calculations throughout the text.
+
+    Typical nominal values of elastic constants for particular engineering materials are given in
+Table 4.2. These moduli represent average values, and some variation will occur for specific materials.
+Further information and restrictions on elastic moduli require strain energy concepts, which are
+developed in Chapter 6.
+
+    Before concluding this section, we wish to discuss the forms of Hooke's law in curvilinear
+coordinates. Previous chapters have mentioned that cylindrical and spherical coordinates (see Figures
+1.5 and 1.6) are used in many applications for problem solution. Figures 3.10 and 3.11 defined the
+stress components in each curvilinear system. In regard to these figures, it follows that the orthogonal
+curvilinear coordinate directions can be obtained from a base Cartesian system through a simple
+rotation of the coordinate frame. For isotropic materials, the elasticity tensor Cijkl is the same in all
+coordinate frames, and thus the structure of Hooke's law remains the same in any orthogonal curvi-
+linear system. Therefore, form (4.2.8) can be expressed in cylindrical and spherical coordinates as
+
+sr ¼ lðer þ eq þ ezÞ þ 2mer sR ¼ lðeR þ ef þ eqÞ þ 2meR
+
+sq ¼ lðer þ eq þ ezÞ þ 2meq sf ¼ lðeR þ ef þ eqÞ þ 2mef
+
+sz ¼ lðer þ eq þ ezÞ þ 2mez sq ¼ lðeR þ ef þ eqÞ þ 2meq                       (4.3.2)
+
+srq ¼ 2merq                          sRf ¼ 2meRf
+
+sqz ¼ 2meqz                          sfq ¼ 2mefq
+
+szr ¼ 2mezr                          sqR ¼ 2meqR
+                                                                                                                       4.3 Physical meaning of elastic moduli 89
+
+Table 4.1 Relations Among Elastic Constants
+
+          E                                                                                                    n             k                m                              l
+                                                                                                                             E
+E,n       E                                                                                                    n        3ð1 À 2nÞ             E                              En
+                                                                                                                             k            2ð1 þ nÞ                   ð1 þ nÞð1 À 2nÞ
+E,k       E                                                                                                    3k À E
+                                                                                                                 6k         mE              3kE                        3kð3k À EÞ
+                                                                                                                       3ð3m À EÞ          9k À E                          9k À E
+E,m       E                                                                                                E À 2m
+                                                                                                             2m        E þ 3l þ R             m                         mðE À 2mÞ
+                                                                                                                             6                                            3m À E
+E,l       E                                                                                                    2l            k            E À 3l þ R
+                                                                                                                                                4                             l
+
+                                                                                                           E þlþR                         3kð1 À 2nÞ
+                                                                                                                                           2ð1 þ nÞ
+n,k       3k(1 À 2n)                                                                                           n                                                      3kn
+                                                                                                                                                m                    1þn
+n,m       2m(1 þ n)                                                                                            n               2mð1 þ nÞ
+                                                                                                                               3ð1 À 2nÞ                              2mn
+                                                                                                                                                                     1 À 2n
+                                                                                                                               lð1 þ nÞ
+n,l       lð1 þ nÞð1 À 2nÞ                                                                                     n                   3n     lð1 À 2nÞ                     l
+                                                                                                                                    k         2n
+          n                                                                                                3k À 2m
+                                                                                                           6k þ 2m                  k          m
+k,m       9km                                                                                                                                                        k  À  2  m
+                                                                                                               l                3l þ 2m                                    3
+          3k þ m                                                                                            3k À l                  3
+
+k,l       9kðk À lÞ                                                                                            l                          3  ðk     À  lÞ               l
+                                                                                                           2ðl þ mÞ                       2
+          3k À l
+
+m,l       mð3l þ 2mÞ                                                                                                                                m                   l
+
+          lþm
+
+     pffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffiffi
+R ¼ E2 þ 9l2 þ 2El
+
+Table 4.2 Typical Values of Elastic Moduli for Common Engineering Materials
+
+          E(GPa)                                                                                        n              m(GPa)             l(GPa)           k(GPa)    a(10À6/C)
+
+Aluminum   68.9                                                                                         0.34           25.7                54.6             71.8         25.5
+Concrete   27.6                                                                                         0.20           11.5                  7.7            15.3         11
+Copper     89.6                                                                                         0.34           33.4                                 93.3         18
+Glass      68.9                                                                                         0.25           27.6                71               45.9
+Nylon      28.3                                                                                         0.40           10.1                27.6             47.2          8.8
+Rubber                                                                                                  0.499                                                          102
+Steel        0.0019                                                                                     0.29            0.654 Â 10À3         4.04             0.326    200
+          207                                                                                                          80.2                  0.326         164
+                                                                                                                                          111                            13.5
+90 CHAPTER 4 Material BehaviordLinear Elastic Solids
+
+The complete set of elasticity field equations in each of these coordinate systems is given in
+Appendix A.
+
+4.4 Thermoelastic constitutive relations
+
+It is well known that a temperature change in an unrestrained elastic solid produces deformation. Thus,
+a general strain field results from both mechanical and thermal effects. Within the context of linear
+small deformation theory, the total strain can be decomposed into the sum of mechanical and thermal
+components as
+
+                 eij ¼ eðijMÞ þ eðijTÞ                                         (4.4.1)
+
+If To is taken as the reference temperature and T as an arbitrary temperature, the thermal strains in an
+unrestrained solid can be written in the linear constitutive form
+
+              eðijTÞ ¼ aijðT À ToÞ                                             (4.4.2)
+
+where aij is the coefficient of thermal expansion tensor. Notice that it is the temperature difference that
+creates thermal strain. If the material is taken as isotropic, then aij must be an isotropic second-order
+tensor, and (4.4.2) simplifies to
+
+              eðijTÞ ¼ aðT À ToÞdij                                            (4.4.3)
+
+where a is a material constant called the coefficient of thermal expansion. Table 4.2 provides typical
+values of this constant for some common materials. Notice that for isotropic materials, no shear strains
+are created by temperature change. By using (4.4.1), this result can be combined with the mechanical
+relation (4.2.10) to give
+
+eij  ¼  1  þ  n  sij  À  n  skk dij  þ    aðT  À  ToÞdij                       (4.4.4)
+           E             E
+
+The corresponding results for the stress in terms of strain can be written as
+
+        sij ¼ Cijklekl À bijðT À ToÞ                                           (4.4.5)
+
+where bij is a second-order tensor containing thermoelastic moduli. This result is sometimes referred to
+as the Duhamel­Neumann thermoelastic constitutive law. The isotropic case can be found by simply
+inverting relation (4.4.4) to get
+
+sij ¼ lekkdij þ 2meij À ð3l þ 2mÞaðT À ToÞdij                                  (4.4.6)
+
+Thermoelastic solutions are developed in Chapter 12, and the current study will now continue under
+the assumption of isothermal conditions.
+
+    Having developed the necessary six constitutive relations, the elasticity field equation system is
+now complete with 15 equations (strain­displacement, equilibrium, Hooke's law) for 15 unknowns
+(displacements, strains, stresses). Obviously, further simplification is necessary in order to solve
+specific problems of engineering interest, and these processes are the subject of the next chapter.
+                                                                                                           Exercises 91
+
+References
+
+Chandrasekharaiah DS, Debnath L: Continuum Mechanics, Boston, 1994, Academic Press.
+Erdogan F: Fracture mechanics of functionally graded materials, Composites Engng 5:753­770, 1995.
+Malvern LE: Introduction to the Mechanics of a Continuous Medium, Englewood Cliffs, NJ, 1969, Prentice Hall.
+Parameswaran V, Shukla A: Crack-tip stress fields for dynamic fracture in functionally gradient materials, Mech
+
+    Mater 31:579­596, 1999.
+Parameswaran V, Shukla A: Asymptotic stress fields for stationary cracks along the gradient in functionally graded
+
+    materials, J Appl Mech 69:240­243, 2002.
+Poulos HG, Davis EH: Elastic Solutions for Soil and Rock Mechanics, New York, 1974, John Wiley.
+
+EXERCISES
+
+4.1 Show that the components of the Cij matrix in equation (4.2.2) are related to the components
+
+of Cijkl by the relation                                                                          3
+                           2
+                                    C1111   C1122      C1133        C1112       C1123     C1131
+                           6646666          C2222      C2233        C2212       C2223             7777757
+                   Cij  ¼           C2211   C3322      C3333        C3312       C3323     C2231
+                                    C3311   C1222      C1233        C1212       C1223     C3331
+                                    C1211   C2322      C2333        C2312       C2323     C1231
+                                    C2311                                                 C2331
+
+                                    C3111 C3122 C3133 C3112 C3123 C3131
+
+4.2 Explicitly justify the symmetry relations (4.2.4). Note that the first relation follows directly
+
+from the symmetry of the stress, while the second condition requires a simple expansion into
+
+the  form  sij  ¼  1  (Cijkl  þ     Cijlk)elk  to   arrive  at   the  required  conclusion.
+                   2
+
+4.3 Substituting the general isotropic fourth-order form (4.2.6) into (4.2.3), explicitly develop the
+
+stressestrain relation (4.2.7).
+
+4.4 For isotropic materials, show that the fourth-order elasticity tensor can be expressed in the
+
+following forms                                À                    Á
+
+                Cijkl ¼ ldij dkl þ m dil djk þ dik djl
+
+                Cijkl   ¼      À       djk  þ  dik    Á  þ       À    2         dkl
+                              m dil                 djl      k        3  m dij
+
+                Cijkl   ¼     ð1    þ   Ev   À    2nÞ  dij  dkl  þ      E     À      djk  þ  dik    Á
+                                       nÞð1                         2ð1 þ  nÞ dil                 djl
+
+4.5 Following the steps outlined in the text, invert the form of Hooke's law given by (4.2.7) and
+      develop form (4.2.10). Explicitly show that E ¼ m(3l þ 2m)/(l þ m) and n ¼ l/[2(l þ m)].
+
+4.6 Using the results of Exercise 4.5, show that m ¼ E/[2(1 þ n)] and l ¼ En/[(1 þ n)(1 À 2n)].
+92 CHAPTER 4 Material BehaviordLinear Elastic Solids
+
+4.7 For isotropic materials show that the principal axes of strain coincide with the principal axes
+      of stress. Further, show that the principal stresses can be expressed in terms of the principal
+      strains as si ¼ 2mei þ lekk .
+
+4.8 A rosette strain gage (see Exercise 2.7) is mounted on the surface of a stress-free elastic solid
+      at point O as shown in the following figure. The three gage readings give surface extensional
+      strains ea ¼ 300 Â 10À6, eb ¼ 400 Â 10À6, ec ¼ 100 Â 10À6. Assuming that the material is
+      steel with nominal properties given by Table 4.2, determine all stress components at O for the
+      given coordinate system.
+
+                                                                z
+
+                                             O           c
+
+                                                      b          30o y
+
+                                     x            a         30o
+
+4.9 The displacements in an elastic material are given by
+
+u¼À          À       À  n2Á  xy;  v  ¼  Mð1  þ    nÞny2  þ    À  þ    n2Á        À  l2;  w¼0
+           M1                                               M1               x2
+
+                EI                           2EI                 2EI                4
+
+where M, E, I, and l are constant parameters. Determine the corresponding strain and stress
+fields and show that this problem represents the pure bending of a rectangular beam in the
+x,y plane.
+
+4.10 If the elastic constants E, k, and m are required to be positive, show that Poisson's ratio must
+        satisfy the inequality À1 < n < 21. For most real materials it has been found that 0 < n < 12.
+        Show that this more restrictive inequality in this problem implies that l > 0.
+
+4.11 Under the condition that E is positive and bounded, determine the elastic moduli l, m, and k
+        for the special cases of Poisson's ratio: n ¼ 0, 14; 21. Discuss the special circumstances for the
+        case with n ¼ 21.
+
+4.12 Consider the case of incompressible elastic materials. For such materials, there will be a
+
+constraint on all deformations such that the change in volume must be zero, thus implying
+
+(see Exercise 2.11) that ekk ¼ 0. First show that, under this constraint, Poisson's ratio will
+
+become  1  and  the  bulk  modulus      and  Lame´'s  constant   will   become      unbounded.  Next  show
+        2
+that the usual form of Hooke's law sij ¼ lekkdij þ 2meij will now contain an indeterminate
+
+term. For such cases, Hooke's law is commonly rewritten in the form sij ¼ Àpdij þ 2meij,
+
+where p is referred to as the hydrostatic pressure, which cannot be determined directly from
+                                                                         Exercises 93
+
+        the strain field but is normally found by solving the boundary-value problem. Finally justify
+        that p ¼ skk=3.
+
+4.13 Consider the three deformation cases of simple tension, pure shear, and hydrostatic
+        compression as discussed in Section 4.3. Using the nominal values from Table 4.2, calculate
+        the resulting strains in each of these cases for:
+
+       (a) Aluminum: with loadings (s ¼ 150 MPa, s ¼ 75 MPa, p ¼ 500 MPa)
+
+       (b) Steel: with loadings (s ¼ 300 MPa, s ¼ 150 MPa, p ¼ 500 MPa)
+
+       (c) Rubber: with loadings (s ¼ 15 MPa, s ¼ 7 MPa, p ¼ 500 MPa)
+
+       Note that for aluminum and steel, these tensile and shear loadings are close to the yield
+       values of the material.
+
+4.14 Show that Hooke's law for an isotropic material may be expressed in terms of spherical and
+        deviatoric tensors by the two relations
+
+                                              s~ij ¼ 3ke~ij; s^ij ¼ 2me^ij
+
+ 4.15  A sample is subjected to a test under plane stress conditions (specified by sz ¼ szx ¼ szy ¼ 0)
+4.16Ã  using a special loading frame that maintains an in-plane loading constraint sx ¼ 2sy .
+       Determine the slope of the stressestrain response sx vs. ex for this sample.
+
+       Using cylindrical coordinates, we wish to determine and compare the uniaxial stresse
+       strain response of both an unconfined and confined isotropic homogeneous elastic
+       cylindrical sample as shown. For both cases we will assume that the shear stresses and
+       strains will vanish. For the unconfined sample, the stresses sr ¼ sq ¼ 0, while for the
+       confined sample, the strains er ¼ eq ¼ 0. Using Hooke's law in cylindrical coordinates
+       (A.8), show that the uniaxial response for the unconfined case is given by the expected
+       relation sz ¼ Eez, while the corresponding relation for the confined situation is
+       sz ¼ EÃez; where EÃ ¼ ½ð1 À nÞE= ð1 þ nÞð1 À 2nÞ. Finally make a plot of EÃ/E versus
+       n over the range 0 n 0.5 and discuss the results.
+
+                z             z
+
+       r = = 0                            er = e = 0
+
+                        z           z
+                (Unconfined)  (Confined)
+94 CHAPTER 4 Material BehaviordLinear Elastic Solids
+
+4.17 A rectangular steel plate (thickness 4 mm) is subjected to a uniform biaxial stress field as
+        shown in the following figure. Assuming all fields are uniform, determine changes in the
+        dimensions of the plate under this loading.
+
+                                                                30 MPa
+
+                 200 mm                y                              20 MPa
+                                                   x
+
+                                     300 mm
+
+4.18 Redo Exercise 4.17 for the case where the vertical loading is 50 MPa in tension and the
+        horizontal loading is 50 MPa in compression.
+
+4.19 Consider the one-dimensional thermoelastic problem of a uniform bar constrained in the
+        axial x direction but allowed to expand freely in the y and z directions, as shown in the
+        following figure. Taking the reference temperature to be zero, show that the only nonzero
+        stress and strain components are given by
+                                               sx ¼ ÀEaT
+                                               ey ¼ ez ¼ að1 þ vÞT
+
+                                                                             y
+
+                                                                                                              x
+
+4.20 Verify that Hooke's law for isotropic thermoelastic materials can be expressed in the form
+
+sx   ¼  ð1  þ    E     À  2nÞ  Â    À  nÞex  þ   À    þ    ÁÃ  À   1  E  2n  aðT  À  ToÞ
+               nÞð1             ð1              n ey     ez           À
+
+sy   ¼  ð1  þ    E     À  2nÞ  Â    À  nÞey  þ  nðez  þ     Ã  À   1  E      aðT  À  ToÞ
+               nÞð1             ð1                       exÞ          À 2n
+
+sz   ¼  ð1  þ    E     À  2nÞ  Â    À  nÞez  þ   À    þ    ÁÃ  À   1  E      aðT  À  ToÞ
+               nÞð1             ð1              n ex     ey           À 2n
+
+sxy  ¼  1  E  n  exy;  syz  ¼  1  E  n eyz;  szx  ¼   1  E  n ezx
+           þ                      þ                      þ
+
