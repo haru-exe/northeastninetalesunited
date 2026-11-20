@@ -1,0 +1,601 @@
+<title>Elasticity Midsem Notes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: one calm reading column (~74ch) of colour-coded study blocks; each chapter carries a tag colour. */
+:root{
+  --bg:#f5f6fa; --surface:#ffffff; --fg:#1b2130; --muted:#586174; --line:#dce1ea; --soft:#eceff5;
+  --accent:#3552c8; --on-tag:#ffffff;
+  --def:#2456c4; --def-bg:#edf2ff;
+  --sym:#0a776b; --sym-bg:#e6f5f2;
+  --eq:#6247c4;  --eq-bg:#f3f0fd;
+  --ex:#2c7a39;  --ex-bg:#ebf6ed;
+  --turn:#a02d7c; --turn-bg:#fbeef6;
+  --key:#95600a; --key-bg:#fcf3df;
+  --warn:#bf3329; --warn-bg:#fdecea;
+  --ahead:#44587a; --ahead-bg:#eef2f8;
+  --ch1:#5466c8; --ch2:#1d8676; --ch3:#c45f27; --ch4:#a54478;
+  --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --font-head:"Space Grotesk","IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1319; --surface:#161b24; --fg:#e3e7ef; --muted:#9ba5b5; --line:#2a3240; --soft:#1d2430;
+    --accent:#93a8ff; --on-tag:#0f1319;
+    --def:#93b2ff; --def-bg:#16213a;
+    --sym:#5ccfbf; --sym-bg:#0e2926;
+    --eq:#bba8ff;  --eq-bg:#1f1a38;
+    --ex:#86d493;  --ex-bg:#12271a;
+    --turn:#f191cd; --turn-bg:#321528;
+    --key:#efc261; --key-bg:#2a2110;
+    --warn:#ff9087; --warn-bg:#361816;
+    --ahead:#aebcd6; --ahead-bg:#19202d;
+    --ch1:#93a0f2; --ch2:#4fc4b0; --ch3:#f29d63; --ch4:#e384b5;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+    --bg:#0f1319; --surface:#161b24; --fg:#e3e7ef; --muted:#9ba5b5; --line:#2a3240; --soft:#1d2430;
+    --accent:#93a8ff; --on-tag:#0f1319;
+    --def:#93b2ff; --def-bg:#16213a;
+    --sym:#5ccfbf; --sym-bg:#0e2926;
+    --eq:#bba8ff;  --eq-bg:#1f1a38;
+    --ex:#86d493;  --ex-bg:#12271a;
+    --turn:#f191cd; --turn-bg:#321528;
+    --key:#efc261; --key-bg:#2a2110;
+    --warn:#ff9087; --warn-bg:#361816;
+    --ahead:#aebcd6; --ahead-bg:#19202d;
+    --ch1:#93a0f2; --ch2:#4fc4b0; --ch3:#f29d63; --ch4:#e384b5;
+    color-scheme:dark;
+}
+
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:17px;line-height:1.66;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.page{max-width:880px;margin:0 auto;padding-block:34px 96px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{font-family:var(--font-head);line-height:1.22;text-wrap:balance;margin:0;color:var(--fg)}
+p{margin:0 0 .75em}
+p:last-child{margin-bottom:0}
+ul,ol{margin:.4em 0 .8em;padding-left:1.3em}
+li{margin:.2em 0}
+a{color:var(--accent);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+strong{font-weight:600}
+code,.mono{font-family:var(--font-mono);font-size:.88em}
+
+/* Maths */
+.katex{font-size:1.07em}
+.katex-display{margin:.55em 0;overflow-x:auto;overflow-y:hidden;padding:.25em 0}
+.math-status{border:1px solid var(--line);background:var(--soft);border-radius:10px;padding:10px 14px;margin-bottom:18px;color:var(--muted)}
+
+/* Masthead */
+.masthead{display:grid;gap:12px;padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
+.masthead h1{font-size:clamp(1.9rem,4.6vw,2.7rem);font-weight:700;letter-spacing:-.012em}
+.lede{color:var(--muted);max-width:68ch;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chip{font-family:var(--font-mono);font-size:.73rem;line-height:1.5;padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);white-space:nowrap}
+.chip b{font-weight:500;color:var(--fg)}
+
+/* Panels */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:22px}
+.panel-title{font-size:1.12rem;font-weight:600;margin-bottom:6px}
+.panel-note{color:var(--muted);font-size:.93rem;margin-bottom:14px}
+
+/* Colour key */
+.key-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.key-grid{grid-template-columns:minmax(0,1fr)}}
+.sample{border-radius:10px;padding:10px 12px;border:1px solid var(--line);font-size:.9rem;line-height:1.5;min-width:0}
+.sample .tag{margin-bottom:4px}
+.flow{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-top:14px;font-size:.9rem;color:var(--muted)}
+.flow .arrow{color:var(--muted)}
+
+/* Contents */
+.toc-group{margin:14px 0 4px;font-family:var(--font-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.toc-group:first-of-type{margin-top:4px}
+ol.toc{list-style:none;padding:0;margin:0;display:grid;gap:2px}
+ol.toc li{margin:0}
+.toc-link{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;padding:10px;border-radius:10px;text-decoration:none;color:inherit}
+.toc-link:hover{background:var(--soft)}
+.toc-title{font-weight:600;line-height:1.35}
+.toc-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+.toc-thread{color:var(--muted);font-size:.92rem;margin-top:5px;line-height:1.5}
+.tnum{width:36px;height:36px;border-radius:9px;display:grid;place-items:center;font-family:var(--font-head);font-weight:700;font-size:1rem;color:var(--on-tag);background:var(--ch1);flex:none}
+.c1{background:var(--ch1)} .c2{background:var(--ch2)} .c3{background:var(--ch3)} .c4{background:var(--ch4)}
+.st{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--surface)}
+.st.written{color:var(--ex);border-color:color-mix(in srgb,var(--ex) 45%,transparent)}
+.st.revised{color:var(--eq);border-color:color-mix(in srgb,var(--eq) 45%,transparent)}
+.weight{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.04em;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.weight i{font-style:normal;letter-spacing:1px;color:var(--fg)}
+
+/* Collapsible panels */
+details.fold{background:var(--surface);border:1px solid var(--line);border-radius:14px;margin-bottom:16px}
+details.fold>summary{cursor:pointer;list-style:none;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--font-head);font-weight:600;font-size:1.06rem}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"+";font-family:var(--font-mono);font-weight:400;color:var(--muted);font-size:1.2rem}
+details.fold[open]>summary::after{content:"\2013"}
+details.fold>summary small{font-family:var(--font-body);font-weight:400;color:var(--muted);font-size:.85rem;margin-left:auto;margin-right:8px}
+.fold-body{padding:0 20px 20px}
+.fold-body h3{font-size:1rem;margin:18px 0 6px}
+.fold-body h3:first-child{margin-top:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;margin:8px 0 14px}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:500}
+td.empty{color:var(--muted);font-style:italic}
+
+/* Writer's log */
+.log dl{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;margin:0}
+.log dt{font-weight:600;margin-top:10px}
+.log dd{margin:0;color:var(--fg)}
+details.plan{border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--bg)}
+details.plan>summary{cursor:pointer;padding:9px 14px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center}
+details.plan>summary::-webkit-details-marker{display:none}
+details.plan>summary .tnum{width:26px;height:26px;font-size:.82rem;border-radius:7px}
+.plan-body{padding:2px 16px 14px;font-size:.95rem}
+.plan-body h4{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:12px 0 4px;font-weight:500}
+.plan-body ol,.plan-body ul{margin:.2em 0 .4em}
+.status-list{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.status-list li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;margin:0}
+
+/* Topic sections (filled in by the writers) */
+section.topic{margin-top:60px;scroll-margin-top:16px}
+.topic-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}
+.topic-head .tnum{width:46px;height:46px;font-size:1.25rem;border-radius:12px}
+.topic-head h2{font-size:clamp(1.42rem,3.3vw,1.9rem);font-weight:700}
+.topic-head .eyebrow{margin-bottom:4px}
+h3.concept{font-size:1.22rem;font-weight:600;margin:38px 0 10px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+h3.concept .cnum{font-family:var(--font-mono);font-size:.82rem;font-weight:500;color:var(--muted)}
+.topic h4{font-size:1.02rem;font-weight:600;margin:20px 0 6px}
+dfn{font-style:normal;font-weight:600;color:var(--def)}
+.sym-i{color:var(--sym);font-weight:500}
+
+.box{border:1px solid var(--line);border-radius:12px;padding:14px 16px 12px;margin:16px 0;background:var(--surface);min-width:0}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:2px 9px;border-radius:999px;margin-bottom:8px;color:var(--muted);background:var(--soft)}
+.box.def,.sample.def{background:var(--def-bg);border-color:color-mix(in srgb,var(--def) 28%,transparent)}
+.def .tag{color:var(--def);background:color-mix(in srgb,var(--def) 13%,transparent)}
+.box.sym,.sample.sym{background:var(--sym-bg);border-color:color-mix(in srgb,var(--sym) 28%,transparent)}
+.sym .tag{color:var(--sym);background:color-mix(in srgb,var(--sym) 13%,transparent)}
+.sample.eq{background:var(--eq-bg);border-color:color-mix(in srgb,var(--eq) 28%,transparent)}
+.eq .tag{color:var(--eq);background:color-mix(in srgb,var(--eq) 13%,transparent)}
+.box.ex,.sample.ex{background:var(--ex-bg);border-color:color-mix(in srgb,var(--ex) 28%,transparent)}
+.ex .tag{color:var(--ex);background:color-mix(in srgb,var(--ex) 13%,transparent)}
+.box.turn,.sample.turn{background:var(--turn-bg);border-color:color-mix(in srgb,var(--turn) 28%,transparent)}
+.turn .tag{color:var(--turn);background:color-mix(in srgb,var(--turn) 13%,transparent)}
+.box.key,.sample.key{background:var(--key-bg);border-color:color-mix(in srgb,var(--key) 32%,transparent)}
+.key .tag{color:var(--key);background:color-mix(in srgb,var(--key) 14%,transparent)}
+.box.mistake,.sample.mistake{background:var(--warn-bg);border-color:color-mix(in srgb,var(--warn) 32%,transparent)}
+.mistake .tag{color:var(--warn);background:color-mix(in srgb,var(--warn) 13%,transparent)}
+.box.ahead,.sample.ahead{background:var(--ahead-bg);border-style:dashed;border-color:color-mix(in srgb,var(--ahead) 45%,transparent)}
+.ahead .tag{color:var(--ahead);background:color-mix(in srgb,var(--ahead) 14%,transparent)}
+.box.recap,.sample.recap{background:var(--soft);border-color:var(--line)}
+
+.eqblock{background:var(--eq-bg);border:1px solid color-mix(in srgb,var(--eq) 22%,transparent);border-radius:10px;padding:4px 14px;margin:12px 0;display:flex;flex-wrap:wrap;align-items:center;column-gap:14px}
+.eqblock .math{flex:1 1 260px;min-width:0;overflow-x:auto}
+.eqblock .eqref{font-family:var(--font-mono);font-size:.76rem;color:var(--eq);white-space:nowrap;margin-left:auto}
+.box .eqblock{background:color-mix(in srgb,var(--eq-bg) 70%,var(--surface))}
+
+ol.steps{counter-reset:step;list-style:none;padding:0;margin:10px 0;display:grid;gap:12px}
+ol.steps>li{counter-increment:step;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;margin:0}
+ol.steps>li::before{content:counter(step);font-family:var(--font-mono);font-size:.76rem;color:var(--ex);border:1px solid color-mix(in srgb,var(--ex) 45%,transparent);border-radius:999px;width:24px;height:24px;display:grid;place-items:center;margin-top:3px}
+ol.steps>li>div{min-width:0}
+.why{color:var(--muted);font-size:.93rem}
+.why::before{content:"Why: ";font-weight:600;color:var(--fg)}
+.given{font-size:.95rem}
+
+.box.turn details{margin-top:10px;border-top:1px dashed color-mix(in srgb,var(--turn) 35%,transparent);padding-top:8px}
+.box.turn summary{cursor:pointer;font-weight:600;color:var(--turn)}
+.box.turn details[open] summary{margin-bottom:6px}
+
+.box.ahead ul.links{list-style:none;padding:0;margin:6px 0 0;display:grid;gap:12px}
+.box.ahead ul.links li{margin:0}
+.where{display:inline-block;font-family:var(--font-mono);font-size:.76rem;color:var(--ahead);margin-bottom:2px}
+p.next{margin-top:22px;padding-top:12px;border-top:1px solid var(--line);color:var(--muted)}
+p.inwords{background:var(--soft);border-radius:8px;padding:8px 12px}
+p.inwords::before{content:"In words: ";font-weight:600}
+.fig{margin:14px 0;color:var(--fg)}
+.fig svg{display:block;max-width:100%;height:auto;margin:0 auto}
+.fig figcaption{font-size:.86rem;color:var(--muted);text-align:center;margin-top:6px}
+.placeholder{margin-top:28px;padding:18px 20px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);text-align:left}
+</style>
+<style id="katex-css">/*KATEX_CSS*/</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof window.renderMathInElement !== "function") {
+    var s = document.getElementById("math-status");
+    if (s) { s.hidden = false; }
+    return;
+  }
+  window.renderMathInElement(document.body, {
+    delimiters: [
+      {left: "$$", right: "$$", display: true},
+      {left: "\\[", right: "\\]", display: true},
+      {left: "$", right: "$", display: false},
+      {left: "\\(", right: "\\)", display: false}
+    ],
+    ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code", "option"],
+    throwOnError: false,
+    strict: "ignore"
+  });
+});
+</script>
+
+<main class="page">
+<p class="math-status" id="math-status" hidden>The maths renderer did not load, so equations below show as LaTeX source. Reload the page to try again.</p>
+
+<header class="masthead">
+  <p class="eyebrow">Sadd, <em>Elasticity</em>, 3rd ed. (2014) · Midsem: Chapters 1–4</p>
+  <h1>Elasticity Midsem Notes</h1>
+  <p class="lede">Nine topics, written as a board walkthrough: each idea is explained, shown working on a problem from the book, then handed to you as one book exercise to solve. Topics from Chapters 2–4 end by showing where the idea is used again in your later syllabus (Chapters 5–8).</p>
+  <ul class="chips">
+    <li class="chip"><b>Style</b> board walkthrough</li>
+    <li class="chip"><b>Syllabus</b> Ch 1 · §2.1–2.6 · §3.1–3.4, 3.7 · Ch 4</li>
+    <li class="chip"><b>Status</b> outline, awaiting approval</li>
+  </ul>
+</header>
+
+<section class="panel" aria-labelledby="key-title">
+  <h2 class="panel-title" id="key-title">Colour key</h2>
+  <p class="panel-note">Each kind of content keeps the same colour in every topic, so you can scan for it during revision. Red is used only for common mistakes.</p>
+  <div class="key-grid">
+    <div class="sample def"><span class="tag">Definition</span><br>A term defined for the first time, e.g. the <dfn>strain tensor</dfn> $e_{ij}$.</div>
+    <div class="sample sym"><span class="tag">Symbols</span><br>Every symbol a topic uses, with meaning and units, e.g. $\mu$: shear modulus, $\mathrm{N\,m^{-2}}$.</div>
+    <div class="sample eq"><span class="tag">Equation</span><br>Displayed equations carry the book's number, e.g. $T_i^{n} = \sigma_{ji}n_j$ (3.2.6).</div>
+    <div class="sample ex"><span class="tag">Worked example</span><br>A problem from the book solved step by step, each step with its reason.</div>
+    <div class="sample turn"><span class="tag">Your turn</span><br>One book exercise per concept, with a hint and a hidden answer.</div>
+    <div class="sample key"><span class="tag">Key results</span><br>What to memorise from the topic: your formula sheet.</div>
+    <div class="sample mistake"><span class="tag">Common mistake</span><br>Errors students really make, such as $\gamma_{xy}$ vs $e_{xy}=\tfrac12\gamma_{xy}$.</div>
+    <div class="sample ahead"><span class="tag">Looking ahead · Ch 5–8</span><br>Where the idea is used again in your later syllabus, and how.</div>
+    <div class="sample recap"><span class="tag">Recap</span><br>Where we are, and the results from earlier topics this one needs.</div>
+  </div>
+  <div class="flow" aria-label="Order of each concept block">
+    <span>Every concept runs in the same order:</span>
+    <span class="chip">Explain</span><span class="arrow">→</span>
+    <span class="chip">Book example</span><span class="arrow">→</span>
+    <span class="chip">Your turn</span>
+  </div>
+</section>
+
+<section class="panel" aria-labelledby="toc-title">
+  <h2 class="panel-title" id="toc-title">Contents</h2>
+  <p class="panel-note">Exam weights are estimates: no past papers were given, so they follow how much later material rests on each topic. Writers A, B and C are the three Sonnet writing sessions.</p>
+
+  <p class="toc-group">Chapter 1 · Mathematical preliminaries</p>
+  <ol class="toc">
+    <li><a class="toc-link" href="#t1"><span class="tnum c1">1</span><span class="toc-main"><span class="toc-title">Index notation, Kronecker delta and the permutation symbol</span><span class="toc-meta"><span class="chip">§1.1–1.3, 1.7</span><span class="weight">weight <i>●●○</i> medium</span><span class="chip">Writer A</span><span class="st">planned</span></span><span class="toc-thread">Gives you the language: every equation in Chapters 2–4 is written with free and dummy indices, $\delta_{ij}$ and $\epsilon_{ijk}$.</span></span></a></li>
+    <li><a class="toc-link" href="#t2"><span class="tnum c1">2</span><span class="toc-main"><span class="toc-title">Coordinate transformations, Cartesian tensors and principal values</span><span class="toc-meta"><span class="chip">§1.4–1.6</span><span class="weight">weight <i>●●●</i> high</span><span class="chip">Writer A</span><span class="st">planned</span></span><span class="toc-thread">Rotates the axes. The transformation law and the principal-value method come back as strain transformation (Topic 5) and principal stresses (Topic 8).</span></span></a></li>
+    <li><a class="toc-link" href="#t3"><span class="tnum c1">3</span><span class="toc-main"><span class="toc-title">Tensor calculus and curvilinear coordinates</span><span class="toc-meta"><span class="chip">§1.8–1.9</span><span class="weight">weight <i>●●○</i> medium</span><span class="chip">Writer A</span><span class="st">planned</span></span><span class="toc-thread">Lets tensors vary through the body: gradient, divergence, curl and the divergence theorem turn point-by-point physics into field equations (Topics 4 and 8).</span></span></a></li>
+  </ol>
+
+  <p class="toc-group">Chapter 2 · Deformation: displacements and strains</p>
+  <ol class="toc" start="4">
+    <li><a class="toc-link" href="#t4"><span class="tnum c2">4</span><span class="toc-main"><span class="toc-title">Displacements, strain and rotation</span><span class="toc-meta"><span class="chip">§2.1–2.2</span><span class="weight">weight <i>●●●</i> high</span><span class="chip">Writer B</span><span class="st">planned</span></span><span class="toc-thread">Starts the physics: from the displacement field we extract strain (change of shape) and rotation (rigid spin).</span></span></a></li>
+    <li><a class="toc-link" href="#t5"><span class="tnum c2">5</span><span class="toc-main"><span class="toc-title">Strain transformation, principal strains, spherical and deviatoric strain</span><span class="toc-meta"><span class="chip">§2.3–2.5</span><span class="weight">weight <i>●●●</i> high</span><span class="chip">Writer B</span><span class="st">planned</span></span><span class="toc-thread">Topic 2's method applied to strain: rotate the axes, find the axes of pure stretch, and split strain into volume change and shape change.</span></span></a></li>
+    <li><a class="toc-link" href="#t6"><span class="tnum c2">6</span><span class="toc-main"><span class="toc-title">Strain compatibility</span><span class="toc-meta"><span class="chip">§2.6</span><span class="weight">weight <i>●●○</i> medium</span><span class="chip">Writer B</span><span class="st">planned</span></span><span class="toc-thread">The reverse of Topic 4: when do six given strains come from one continuous, single-valued displacement field?</span></span></a></li>
+  </ol>
+
+  <p class="toc-group">Chapter 3 · Stress and equilibrium</p>
+  <ol class="toc" start="7">
+    <li><a class="toc-link" href="#t7"><span class="tnum c3">7</span><span class="toc-main"><span class="toc-title">Traction, the stress tensor and stress transformation</span><span class="toc-meta"><span class="chip">§3.1–3.3</span><span class="weight">weight <i>●●●</i> high</span><span class="chip">Writer C</span><span class="st">planned</span></span><span class="toc-thread">From deformation to force: the traction on any cut through a point is fixed by the nine components of stress.</span></span></a></li>
+    <li><a class="toc-link" href="#t8"><span class="tnum c3">8</span><span class="toc-main"><span class="toc-title">Principal stresses and the equilibrium equations</span><span class="toc-meta"><span class="chip">§3.4, 3.7</span><span class="weight">weight <i>●●●</i> high</span><span class="chip">Writer C</span><span class="st">planned</span></span><span class="toc-thread">The extreme stresses at a point, and the differential equations every stress field must satisfy to be in equilibrium.</span></span></a></li>
+  </ol>
+
+  <p class="toc-group">Chapter 4 · Material behaviour: linear elastic solids</p>
+  <ol class="toc" start="9">
+    <li><a class="toc-link" href="#t9"><span class="tnum c4">9</span><span class="toc-main"><span class="toc-title">Hooke's law: isotropic linear elastic materials</span><span class="toc-meta"><span class="chip">§4.1–4.4</span><span class="weight">weight <i>●●●</i> high</span><span class="chip">Writer C</span><span class="st">planned</span></span><span class="toc-thread">Closes the system: Hooke's law links stress (Topics 7–8) to strain (Topics 4–6), giving 15 equations for 15 unknowns, the starting point of Chapter 5.</span></span></a></li>
+  </ol>
+</section>
+
+<details class="fold" id="symbols">
+  <summary>Symbols and results so far <small>your formula sheet</small></summary>
+  <div class="fold-body">
+    <h3>Symbols</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Symbol</th><th>Meaning</th><th>Units</th><th>Topic</th></tr></thead>
+        <tbody id="symbol-rows">
+          <tr><td class="empty" colspan="4">No entries yet. Rows are added as each topic is written.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Key results</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Equation</th><th>Name</th><th>Book ref.</th><th>Topic</th></tr></thead>
+        <tbody id="result-rows">
+          <tr><td class="empty" colspan="4">No entries yet. Rows are added as each topic is written.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</details>
+
+<details class="fold log" id="log">
+  <summary>Writer's log <small>setup, rules and the plan for every topic</small></summary>
+  <div class="fold-body">
+    <h3>Setup</h3>
+    <dl>
+      <dt>Course</dt><dd>Elasticity, midsem. Textbook: M. H. Sadd, <em>Elasticity: Theory, Applications, and Numerics</em>, 3rd ed., Elsevier, 2014.</dd>
+      <dt>Midsem scope</dt><dd>Chapter 1 (all), §2.1–2.6, §3.1–3.4 and §3.7, Chapter 4 (all).</dd>
+      <dt>Later syllabus (for the "Looking ahead" boxes)</dt><dd>§5.1–5.6; §6.1–6.3, 6.5, 6.6; Chapter 7; §8.1, 8.3, 8.4, 8.5. Chapter 1 topics are not linked forward, by request.</dd>
+      <dt>Materials given</dt><dd>Chapter PDFs <span class="mono">Chapter-1</span> to <span class="mono">Chapter-8 …_2014_Elasticity.pdf</span> in the course folder.</dd>
+      <dt>Missing</dt><dd>Lecture slides, past papers and the exam date.</dd>
+      <dt>Assumptions</dt><dd>Chapters 1 and 4 are examined in full. Question difficulty matches the book's worked examples and end-of-chapter exercises, as you said. Exercises marked for MATLAB are done by hand or calculator where that is reasonable. Where the book has no worked example for a concept (Chapter 2 has one, §3.1–3.4 and 3.7 have one, Chapter 4 has none), the worked example is a book exercise solved in full and labelled as such.</dd>
+    </dl>
+
+    <h3>Style</h3>
+    <p>Board walkthrough: intuition first, then the precise statement, then every algebraic step with the reason for each step. Your rule for every concept: explain it, show a good example from the book, then give one exercise to solve.</p>
+
+    <h3>Notation rules (Sadd's)</h3>
+    <ul>
+      <li>Indices $i,j,k,\dots$ run over $1,2,3$; a repeated index is summed; a comma means a partial derivative, $u_{i,j}=\partial u_i/\partial x_j$. Coordinates $x_1,x_2,x_3$ are also written $x,y,z$.</li>
+      <li>Displacement $u_i=(u,v,w)$. Strain tensor $e_{ij}$ with components $e_x,e_y,e_z,e_{xy},e_{yz},e_{zx}$; engineering shear strain $\gamma_{xy}=2e_{xy}$. Rotation tensor $\omega_{ij}$, rotation vector $\omega_i$.</li>
+      <li>Stress $\sigma_{ij}$ with components $\sigma_x,\sigma_y,\sigma_z,\sigma_{xy},\sigma_{yz},\sigma_{zx}$ (Sadd writes shear stress as $\sigma_{xy}$, not $\tau_{xy}$). Traction $\mathbf{T}^{n}$ or $T_i^{n}$; body force per unit volume $F_i$.</li>
+      <li>Rotation of axes: $Q_{ij}=\cos(x_i',x_j)$; primes mark components in the rotated axes.</li>
+      <li>Invariants: $I_a, II_a, III_a$ for a general tensor $a_{ij}$; $\vartheta_1,\vartheta_2,\vartheta_3$ for strain, with dilatation $\vartheta=e_{kk}$; $I_1,I_2,I_3$ for stress. Principal stresses ranked $\sigma_1\ge\sigma_2\ge\sigma_3$.</li>
+      <li>Spherical parts carry a tilde, $\tilde e_{ij}$; deviatoric parts a hat, $\hat e_{ij}$.</li>
+      <li>Elastic constants $\lambda$ (Lamé), $\mu$ (shear modulus, some texts write $G$), $E$, $\nu$, $k$ (bulk modulus); elasticity tensor $C_{ijkl}$; thermal expansion $\alpha$, temperature change $T-T_0$. Note: $\lambda$ also names an eigenvalue in Topic 2; each topic says which it means.</li>
+      <li>Signs: normal stress and normal strain are positive in tension or extension; a shear stress is positive when it acts on a positive face in a positive direction; shear strain is positive when the right angle between the positive axes decreases.</li>
+      <li>Units: stress in $\mathrm{Pa}=\mathrm{N\,m^{-2}}$ (usually $\mathrm{MPa}$ or $\mathrm{GPa}$); strain is dimensionless, often quoted in units of $10^{-6}$.</li>
+    </ul>
+
+    <h3>Past-paper analysis</h3>
+    <p>No past papers given. Question types are taken from the book's examples and exercises: index-notation evaluation and proofs; rotating vectors and tensors; principal values and directions; strains and rotations from a displacement field; integrating strains back to displacements; strain rosettes; compatibility checks; traction on an oblique plane; principal and maximum shear stresses; checking equilibrium; Hooke's law calculations.</p>
+
+    <h3>Section plans</h3>
+
+    <details class="plan"><summary><span class="tnum c1">1</span>Index notation, Kronecker delta and the permutation symbol</summary><div class="plan-body">
+      <h4>Covers</h4><p>§1.1, 1.2, 1.3, 1.7 (Ch 1 PDF pp. 1–5 and 14; exercises pp. 24–25). Weight: medium (estimate). Writer A.</p>
+      <h4>Ideas, in teaching order</h4>
+      <ol>
+        <li>Scalars, vectors and matrices as tensors of order 0, 1, 2; index notation; free and dummy indices; the summation convention and its rules (an index at most twice per term, free indices match across terms); contraction; outer and inner products. Definitions, no derivation.</li>
+        <li>Symmetric and antisymmetric parts $a_{(ij)}$, $a_{[ij]}$ and the split (1.2.10); a symmetric times an antisymmetric symbol sums to zero (1.2.9), proof shown (examinable).</li>
+        <li>$\delta_{ij}$ and its substitution rule (1.3.2); $\epsilon_{ijk}$ (1.3.3); determinants (1.3.4); the $\epsilon$–$\delta$ identity (1.3.5) and its contracted form $\epsilon_{ijk}\epsilon_{imn}=\delta_{jm}\delta_{kn}-\delta_{jn}\delta_{km}$, derived (examinable); dot, cross and triple products and matrix products in index form (1.7.1)–(1.7.7).</li>
+      </ol>
+      <h4>Concept blocks: explain → book example → your turn</h4>
+      <ul>
+        <li>A (idea 1): Example 1.1, first part ($a_{ii}$, $a_{ij}a_{ij}$, $a_{ij}a_{jk}$, $a_{ij}b_j$, $a_{ij}b_ib_j$, $b_ib_i$, $b_ib_j$) → Exercise 1.1(b).</li>
+        <li>B (idea 2): Example 1.1, second part ($a_{(ij)}$, $a_{[ij]}$) → Exercise 1.2 with the matrix of Exercise 1.1(b).</li>
+        <li>C (idea 3): Exercise 1.15 solved in full (dual vector, inverted with the $\epsilon$–$\delta$ identity; the book has no worked example here) → Exercise 1.5.</li>
+      </ul>
+      <h4>Needs from earlier</h4><p>Nothing; this is the first topic.</p>
+      <h4>Thread</h4><p>Sets up the language of every later equation; the dual vector of Exercise 1.15 becomes the rotation vector in Topic 4.</p>
+      <h4>Looking ahead</h4><p>Not linked to Chapters 5–8 (Chapter 1 is excluded by request). "What comes next" points to Topic 2.</p>
+    </div></details>
+
+    <details class="plan"><summary><span class="tnum c1">2</span>Coordinate transformations, Cartesian tensors and principal values</summary><div class="plan-body">
+      <h4>Covers</h4><p>§1.4–1.6 (Ch 1 PDF pp. 6–13; exercises pp. 25–26). Weight: high (estimate): this is the method behind strain transformation, stress transformation and principal stresses. Writer A.</p>
+      <h4>Ideas, in teaching order</h4>
+      <ol>
+        <li>$Q_{ij}=\cos(x_i',x_j)$; $\mathbf e_i'=Q_{ij}\mathbf e_j$; $v_i'=Q_{ij}v_j$ and $v_i=Q_{ji}v_j'$, derived; orthogonality $Q_{ik}Q_{jk}=Q_{ki}Q_{kj}=\delta_{ij}$ and $\det Q=\pm1$, derived.</li>
+        <li>Transformation laws for tensors of any order (1.5.1); a tensor versus its components; dyadic form (1.5.3); isotropic tensors: $\delta_{ij}$ (proved), $\epsilon_{ijk}$, and the fourth-order form $\alpha\delta_{ij}\delta_{kl}+\beta\delta_{ik}\delta_{jl}+\gamma\delta_{il}\delta_{jk}$ (stated; Topic 9 needs it).</li>
+        <li>Principal values and directions: $a_{ij}n_j=\lambda n_i$; $\det(a_{ij}-\lambda\delta_{ij})=0$; $-\lambda^3+I_a\lambda^2-II_a\lambda+III_a=0$; invariants (1.6.3) and (1.6.5); the three root cases; principal axes and the diagonal form (1.6.4); rows of $Q$ are the eigenvectors; extremal property.</li>
+      </ol>
+      <h4>Concept blocks</h4>
+      <ul>
+        <li>A (ideas 1–2): Example 1.2 (60° about $x_3$, vector and matrix) → Exercise 1.6 (45° about $x_1$, data of Exercise 1.1(b)).</li>
+        <li>B (isotropic tensors): Exercise 1.8 solved in full → Exercise 1.9.</li>
+        <li>C (idea 3): Example 1.3 ($\lambda=5,2,-5$) → Exercise 1.12(d) (the book gives $\lambda=3,6,9$).</li>
+      </ul>
+      <h4>Needs from earlier</h4><p>Topic 1: $\delta_{ij}$, $\epsilon_{ijk}$, determinants, matrix products in index form.</p>
+      <h4>Thread</h4><p>Rotate the axes, then find the axes in which a symmetric tensor is diagonal.</p>
+      <h4>Looking ahead</h4><p>Not linked to Chapters 5–8 (Chapter 1 excluded). "What comes next" points to Topic 3, and notes that Topics 5, 7 and 8 reuse these laws word for word.</p>
+    </div></details>
+
+    <details class="plan"><summary><span class="tnum c1">3</span>Tensor calculus and curvilinear coordinates</summary><div class="plan-body">
+      <h4>Covers</h4><p>§1.8–1.9 (Ch 1 PDF pp. 15–23; exercises pp. 26–27). Weight: medium (estimate). Writer A.</p>
+      <h4>Ideas, in teaching order</h4>
+      <ol>
+        <li>Fields; comma notation $a_{i,j}$ (a free derivative index raises the order); directional derivative $df/ds=\mathbf n\cdot\nabla f$; gradient, divergence, curl and Laplacian (1.8.4); identities (1.8.5) proved in index notation.</li>
+        <li>Integral theorems: divergence (1.8.6)–(1.8.7), Stokes (1.8.8)–(1.8.9), Green (1.8.10)–(1.8.11), zero-value (1.8.12). Stated with their meaning, not derived; the topic says where Topic 8 uses them.</li>
+        <li>Orthogonal curvilinear coordinates: cylindrical and spherical (1.9.1)–(1.9.2); scale factors (1.9.4), (1.9.6); unit basis (1.9.5); derivatives of the basis (1.9.10); general $\nabla$, $\nabla f$, $\nabla\cdot\mathbf u$, $\nabla^2 f$, $\nabla\times\mathbf u$ (1.9.12)–(1.9.16) stated; the polar case worked in full.</li>
+      </ol>
+      <h4>Concept blocks</h4>
+      <ul>
+        <li>A (idea 1): Example 1.4 → Exercise 1.14(a).</li>
+        <li>B (identities): Exercise 1.16 solved for (1.8.5)<sub>3</sub> and (1.8.5)<sub>6</sub> → Exercise 1.16 for (1.8.5)<sub>8</sub> and (1.8.5)<sub>9</sub>.</li>
+        <li>C (idea 3): Example 1.5 (polar coordinates) → Exercise 1.17 (cylindrical).</li>
+      </ul>
+      <h4>Needs from earlier</h4><p>Topic 1 (index rules, the $\epsilon$–$\delta$ identity); Topic 2 (a rotation matrix, reused for the curvilinear basis).</p>
+      <h4>Thread</h4><p>Lets tensors vary from point to point and differentiates and integrates them.</p>
+      <h4>Looking ahead</h4><p>Not linked to Chapters 5–8 (Chapter 1 excluded). "What comes next" points to Topic 4 (differentiating the displacement field) and Topic 8 (the divergence theorem gives equilibrium).</p>
+    </div></details>
+
+    <details class="plan"><summary><span class="tnum c2">4</span>Displacements, strain and rotation</summary><div class="plan-body">
+      <h4>Covers</h4><p>§2.1–2.2 (Ch 2 PDF pp. 1–8; exercises pp. 18–19). Weight: high (estimate). Writer B.</p>
+      <h4>Ideas, in teaching order</h4>
+      <ol>
+        <li>Displacement field; Taylor expansion to $\Delta r_i=u_{i,j}r_j$; split $u_{i,j}=e_{ij}+\omega_{ij}$ (2.1.6)–(2.1.7); rotation vector $\omega_i=\tfrac12\epsilon_{ijk}u_{k,j}$, i.e. $\boldsymbol\omega=\tfrac12\nabla\times\mathbf u$ (2.1.9). Derived.</li>
+        <li>Geometric meaning: $e_x=\partial u/\partial x$ from Fig. 2.4, with the small-deformation step explained; engineering shear strain $\gamma_{xy}=\partial u/\partial y+\partial v/\partial x$; $e_{xy}=\tfrac12\gamma_{xy}$; sign conventions; the six relations (2.2.5)–(2.2.6); strain matrix (2.2.8). Derived.</li>
+        <li>Rigid-body motion: rotation $\omega_z$ (Fig. 2.5); rigid displacement fields (2.2.9)–(2.2.10) give zero strain; integrating strains recovers displacements only up to a rigid-body motion, with the step-by-step procedure.</li>
+      </ol>
+      <h4>Concept blocks</h4>
+      <ul>
+        <li>A (ideas 1–2): Example 2.1 → Exercise 2.2 (strains, deformed shape of the element, $\omega_z$).</li>
+        <li>B (idea 3): Exercise 2.3 solved in full (integrate a constant strain field and pick out the rigid-body terms) → Exercise 2.4 (bar under its own weight).</li>
+      </ul>
+      <h4>Needs from earlier</h4><p>Topic 1 (symmetric/antisymmetric split, dual vector); Topic 3 (comma derivative, curl).</p>
+      <h4>Thread</h4><p>From the displacement field we extract strain (change of shape) and rotation (rigid spin).</p>
+      <h4>Looking ahead (Ch 5–8)</h4>
+      <ul>
+        <li>§5.1: (5.1.1) is one of the 15 field equations. §5.4: putting $e_{ij}=\tfrac12(u_{i,j}+u_{j,i})$ into Hooke's law gives (5.4.1), and equilibrium then gives Navier's equations (5.4.3).</li>
+        <li>§5.3 and §6.2: displacements found by integrating strains are fixed only up to a rigid-body motion; with tractions given everywhere, the solution is unique up to a rigid-body motion.</li>
+        <li>§7.1 plane strain ($u(x,y)$, $v(x,y)$, $w=0$ gives $e_z=e_{xz}=e_{yz}=0$, (7.1.2)); §7.2 (7.2.3); §7.4 antiplane strain (7.4.2); §7.6 polar strain–displacement relations (7.6.1).</li>
+        <li>§8.1 Example 8.1: the beam's displacements are found by exactly the Exercise 2.3 procedure: functions $f(y)$, $g(x)$, rigid-body constants fixed by "fixity conditions". Also Example 8.2 and the displacements of Example 8.6.</li>
+        <li>§6.1 strain energy uses $\gamma_{xy}$ in scalar form (a factor-of-2 trap); §6.5 virtual strains $\delta e_{ij}=\tfrac12(\delta u_{i,j}+\delta u_{j,i})$.</li>
+      </ul>
+    </div></details>
+
+    <details class="plan"><summary><span class="tnum c2">5</span>Strain transformation, principal strains, spherical and deviatoric strain</summary><div class="plan-body">
+      <h4>Covers</h4><p>§2.3–2.5 (Ch 2 PDF pp. 9–11; exercises pp. 19–21). Weight: high (estimate). Writer B.</p>
+      <h4>Ideas, in teaching order</h4>
+      <ol>
+        <li>$e_{ij}'=Q_{ip}Q_{jq}e_{pq}$ (2.3.1), with $Q$ written in $l,m,n$ (2.3.2)–(2.3.3) stated; 2D rotation (2.3.4)–(2.3.5) and the double-angle form (2.3.6) derived; polar components (result of Exercise 2.6); strain rosettes.</li>
+        <li>Principal strains: characteristic equation (2.4.1); invariants $\vartheta_1,\vartheta_2,\vartheta_3$ (2.4.2); diagonal form (2.4.3), no shear on principal axes; dilatation $\vartheta=e_{kk}=\Delta V/V_0$ (Exercise 2.11), derived.</li>
+        <li>Spherical $\tilde e_{ij}=\tfrac13e_{kk}\delta_{ij}$ and deviatoric $\hat e_{ij}=e_{ij}-\tfrac13e_{kk}\delta_{ij}$ (2.5.1)–(2.5.3); volume change versus shape change; $\hat e_{kk}=0$; same principal directions.</li>
+      </ol>
+      <h4>Concept blocks</h4>
+      <ul>
+        <li>A (idea 1): Exercise 2.7 solved in full (rosette; arm angles from the figure) → Exercise 2.8 by hand (angles and values of the largest $e_x'$ and $e_{xy}'$; no MATLAB).</li>
+        <li>B (idea 2): principal strains of the Exercise 2.9 strain tensor, solved in full (block-diagonal, so the cubic factors into $5\times10^{-3}$ and $\tfrac12(-3\pm\sqrt{41})\times10^{-3}$) → Exercise 2.10 with a calculator.</li>
+        <li>C (idea 3): Exercise 2.12 solved in full (spherical and deviatoric parts of the Exercise 2.10 strain) → the same split for the Exercise 2.9 strain, checking $\hat e_{kk}=0$.</li>
+      </ul>
+      <h4>Needs from earlier</h4><p>Topic 2 (transformation law, principal-value method); Topic 4 (strain tensor, $e_{xy}=\tfrac12\gamma_{xy}$).</p>
+      <h4>Thread</h4><p>Rotate the strain axes, find the axes of pure stretch, split volume change from shape change.</p>
+      <h4>Looking ahead (Ch 5–8)</h4>
+      <ul>
+        <li>Exercise 2.6 → §7.6 (7.6.1) and Exercise 7.16 (polar strain–displacement relations by transformation) → the polar solutions of §8.3–8.4.</li>
+        <li>Dilatation $\vartheta=e_{kk}=\nabla\cdot\mathbf u$ appears in Hooke's law and in Navier's equations (5.4.4), $\mu\nabla^2\mathbf u+(\lambda+\mu)\nabla(\nabla\cdot\mathbf u)+\mathbf F=\mathbf 0$.</li>
+        <li>Spherical/deviatoric split → Exercise 4.14 ($\tilde\sigma_{ij}=3k\tilde e_{ij}$, $\hat\sigma_{ij}=2\mu\hat e_{ij}$) → volumetric and distortional strain energy, §6.1 (6.1.15)–(6.1.17).</li>
+        <li>Principal strains → principal axes of stress and strain coincide (Exercise 4.7) → strain energy in principal strains (Exercise 6.5).</li>
+      </ul>
+    </div></details>
+
+    <details class="plan"><summary><span class="tnum c2">6</span>Strain compatibility</summary><div class="plan-body">
+      <h4>Covers</h4><p>§2.6 (Ch 2 PDF pp. 11–16; exercises pp. 21–23). Weight: medium (estimate). Writer B.</p>
+      <h4>Ideas, in teaching order</h4>
+      <ol>
+        <li>Why compatibility is needed: six strain–displacement equations for three displacements; the picture of Fig. 2.7.</li>
+        <li>Saint-Venant equations (2.6.1) derived in index form; of 81, six are meaningful (set $k=l$); the six scalar equations (2.6.2); only three are independent (stated).</li>
+        <li>Sufficiency: necessary and sufficient in simply connected regions (proof outlined, not examinable in full); simply versus multiply connected (Fig. 2.9), cuts, Cesàro integrals (named only); compatible strains can still give multivalued displacements in a multiply connected body.</li>
+      </ol>
+      <h4>Concept blocks</h4>
+      <ul>
+        <li>A (ideas 1–2): Exercise 2.17 solved in full (gives $A=2B/3$) → Exercise 2.13 (derive the first equation of (2.6.2) by differentiating the scalar relations).</li>
+        <li>B (idea 3): Exercise 2.18, first half, solved in full (screw dislocation: the strains from $w$, and the jump of $b$ in $w$ once around the $z$-axis) → Exercise 2.18, second half (show these strains satisfy all six compatibility equations, so compatibility alone cannot rule out the jump).</li>
+      </ul>
+      <h4>Needs from earlier</h4><p>Topic 4 (strain–displacement relations, rigid-body motion); Topic 3 (comma derivatives, Stokes theorem); Topic 1 (relabelling dummy indices).</p>
+      <h4>Thread</h4><p>The reverse of Topic 4: when do six strains come from one displacement field?</p>
+      <h4>Looking ahead (Ch 5–8)</h4>
+      <ul>
+        <li>§5.1 (5.1.2): compatibility is set aside in the displacement formulation (it holds automatically) but is essential in the stress formulation: with Hooke's law it becomes the Beltrami–Michell equations (5.3.3)–(5.3.4).</li>
+        <li>§7.1–7.2: one compatibility equation in 2D, (7.1.6)/(7.2.6), written in stress as (7.1.7)/(7.2.7); with the Airy function it becomes the biharmonic equation $\nabla^4\phi=0$ (7.5.6), and (7.6.8) in polar form.</li>
+        <li>§8.1: a polynomial Airy function must satisfy the biharmonic equation, which ties its coefficients together (8.1.6), e.g. $3A_{40}+A_{22}+3A_{04}=0$.</li>
+        <li>Multiply connected bodies: the remark in §7.5 (stresses independent of elastic constants only for simply connected regions under tractions); §8.3–8.4 drop solution terms that give multivalued displacements (why Example 8.6 keeps no log terms).</li>
+      </ul>
+    </div></details>
+
+    <details class="plan"><summary><span class="tnum c3">7</span>Traction, the stress tensor and stress transformation</summary><div class="plan-body">
+      <h4>Covers</h4><p>§3.1–3.3 (Ch 3 PDF pp. 1–7; exercises pp. 20–21). Weight: high (estimate). Writer C.</p>
+      <h4>Ideas, in teaching order</h4>
+      <ol>
+        <li>Body forces $F_i$ (per unit volume) and surface forces; traction $\mathbf T^{n}=\lim_{\Delta A\to0}\Delta\mathbf F/\Delta A$ (3.2.1), which depends on the point and on the normal; $\mathbf T^{n}(\mathbf n)=-\mathbf T^{n}(-\mathbf n)$.</li>
+        <li>Stress components on coordinate faces (3.2.2)–(3.2.3) and the sign convention; Cauchy's relation $T_i^{n}=\sigma_{ji}n_j$ (3.2.5)–(3.2.6) derived from the pyramid element; traction versus stress; normal and shear parts $N=\mathbf T^{n}\cdot\mathbf n$, $S=(|\mathbf T^{n}|^2-N^2)^{1/2}$ (3.4.4).</li>
+        <li>Transformation $\sigma_{ij}'=Q_{ip}Q_{jq}\sigma_{pq}$ (3.3.1)–(3.3.3); 2D (3.3.4) and double-angle (3.3.5) derived; polar components (Exercise 3.3).</li>
+      </ol>
+      <h4>Concept blocks</h4>
+      <ul>
+        <li>A (ideas 1–2): Example 3.1, traction part ($\mathbf n=(0,1,1)/\sqrt2$), extended with $N$ and $S$ → Exercise 3.1 (biaxial plate, oblique plane).</li>
+        <li>B (idea 3): Exercise 3.3 solved in full (Cartesian to polar) → Exercise 3.4 (polar to Cartesian).</li>
+      </ul>
+      <h4>Needs from earlier</h4><p>Topic 2 ($Q_{ij}$, second-order transformation law); Topic 1; Topic 5 (the same 2D algebra, for strain).</p>
+      <h4>Thread</h4><p>From deformation to force: the traction on any cut is fixed by nine stress components.</p>
+      <h4>Looking ahead (Ch 5–8)</h4>
+      <ul>
+        <li>§5.2: traction boundary conditions $T_i^{n}=\sigma_{ji}n_j=f_i$ (5.2.1); on coordinate surfaces they reduce to stress components (Fig. 5.3); the inclined face of the tapered beam (Fig. 5.4); interface conditions; 2D form (7.1.9); antiplane form (7.4.7).</li>
+        <li>§5.6 Saint-Venant's principle replaces pointwise tractions by resultants; §8.1 end conditions $\int\sigma_x\,dy$, $\int\sigma_x y\,dy$, $\int\sigma_{xy}\,dy$ in (8.1.7), (8.1.15), (8.1.24).</li>
+        <li>Body forces in Navier's equations (5.4.3), Beltrami–Michell (5.3.3), the Airy potential $V$ (7.5.1)–(7.5.3), and the rotating disk, Example 8.11.</li>
+        <li>Exercise 3.3 → polar Airy relations (7.6.7) (Exercise 7.21); §8.4 turns far-field Cartesian loads into polar boundary values (Example 8.7, hole in a plate); Flamant problem §8.4.7; contact §8.5.</li>
+        <li>§6.2 and §6.5: $T_i^{n}=\sigma_{ij}n_j$ turns surface work into a volume integral.</li>
+      </ul>
+    </div></details>
+
+    <details class="plan"><summary><span class="tnum c3">8</span>Principal stresses and the equilibrium equations</summary><div class="plan-body">
+      <h4>Covers</h4><p>§3.4 and §3.7 (Ch 3 PDF pp. 7–10 and 15–17; exercises pp. 20–26). Weight: high (estimate). Writer C.</p>
+      <h4>Ideas, in teaching order</h4>
+      <ol>
+        <li>Principal stresses: $\sigma_{ij}n_j=\sigma n_i$; characteristic equation (3.4.1); invariants (3.4.2); diagonal form (3.4.3); in-plane principal stresses and maximum shear for plane stress (result of Exercise 3.5, derived from the characteristic equation).</li>
+        <li>Normal and shear stress on any plane, in principal axes (3.4.5)–(3.4.7); Mohr's circles (3.4.10); $S_{\max}=\tfrac12|\sigma_1-\sigma_3|$, on the plane bisecting the $\sigma_1$ and $\sigma_3$ directions (result of Exercise 3.13).</li>
+        <li>Equilibrium: $\int_S T_i^{n}\,dS+\int_V F_i\,dV=0$, then Cauchy's relation, the divergence theorem and the zero-value theorem give $\sigma_{ji,j}+F_i=0$ (derived); the moment balance gives $\epsilon_{ijk}\sigma_{jk}=0$, so $\sigma_{ij}=\sigma_{ji}$ (derived); scalar forms (3.7.5); 2D forms.</li>
+      </ol>
+      <h4>Concept blocks</h4>
+      <ul>
+        <li>A (ideas 1–2): Example 3.1, principal-stress part ($I_1=3$, $I_2=-6$, $I_3=-8$; $\sigma=4,1,-2$; directions; $S_{\max}=3$) → Exercise 3.8 (principal stresses in a cantilever).</li>
+        <li>B (idea 3): Exercise 3.25 solved in full (bar under its own weight, $\sigma_x=\rho g(l-x)$) → Exercise 3.22 (an Airy stress function satisfies equilibrium).</li>
+      </ul>
+      <h4>Needs from earlier</h4><p>Topic 2 (principal-value method); Topic 3 (divergence and zero-value theorems); Topic 7 (traction, Cauchy's relation); Topic 1 (symmetric times antisymmetric is zero).</p>
+      <h4>Thread</h4><p>The extreme stresses at a point, and the differential equations every stress field must satisfy.</p>
+      <h4>Looking ahead (Ch 5–8)</h4>
+      <ul>
+        <li>§5.1 (5.1.3): equilibrium is a field equation; §5.4 Navier's equations are equilibrium written in displacements (5.4.3); §5.3 Beltrami–Michell uses $\sigma_{ij,j}=-F_i$. (Example 5.1, in §5.7 just past your syllabus, solves the Exercise 3.25 bar in three dimensions.)</li>
+        <li>§6.2 uniqueness uses $\sigma_{ij,j}=0$ with the divergence theorem; §6.5 virtual work gives back $\sigma_{ij,j}+F_i=0$ and the natural boundary conditions (6.5.9).</li>
+        <li>§7.1–7.2: 2D equilibrium (7.1.4)/(7.2.4); §7.5 the Airy function is built to satisfy it (Exercise 3.22 → (7.5.3)); polar equilibrium (7.6.3) comes from Exercise 3.23.</li>
+        <li>§8.1–8.4: principal and maximum shear stresses interpret the solutions (stress concentration factor 3 at a hole, Example 8.7; maximum-shear fringes, Fig. 8.28; Exercise 3.11, Flamant).</li>
+        <li>Symmetry $\sigma_{ij}=\sigma_{ji}$ → the minor symmetry of $C_{ijkl}$ in Topic 9.</li>
+      </ul>
+    </div></details>
+
+    <details class="plan"><summary><span class="tnum c4">9</span>Hooke's law: isotropic linear elastic materials</summary><div class="plan-body">
+      <h4>Covers</h4><p>§4.1–4.4 (Ch 4 PDF pp. 1–10; exercises pp. 11–14). Weight: high (estimate). Writer C.</p>
+      <h4>Ideas, in teaching order</h4>
+      <ol>
+        <li>Material characterization (tension test, proportional and elastic limits, $\sigma=Ee$); generalized Hooke's law $\sigma_{ij}=C_{ijkl}e_{kl}$ (4.2.3); 81 constants reduce to 36 by the symmetries (4.2.4) (Exercise 4.2), then to 21 by strain energy (stated); homogeneous versus nonhomogeneous; isotropic versus anisotropic.</li>
+        <li>Isotropy: $C_{ijkl}=\alpha\delta_{ij}\delta_{kl}+\beta\delta_{ik}\delta_{jl}+\gamma\delta_{il}\delta_{jk}$ gives $\sigma_{ij}=\lambda e_{kk}\delta_{ij}+2\mu e_{ij}$ (4.2.7) (Exercise 4.3), derived; scalar form (4.2.8); inversion by contraction (4.2.9) → (4.2.10), with $E=\mu(3\lambda+2\mu)/(\lambda+\mu)$ and $\nu=\lambda/[2(\lambda+\mu)]$, derived; scalar form (4.2.11).</li>
+        <li>Meaning of the moduli: simple tension ($E$, $\nu$), pure shear ($\mu$), hydrostatic pressure ($k=E/[3(1-2\nu)]$, $p=-k\vartheta$, (4.3.1)); the Table 4.1 relations students need ($\mu=E/[2(1+\nu)]$, $\lambda=E\nu/[(1+\nu)(1-2\nu)]$, $k=\lambda+\tfrac23\mu$); $\nu\to\tfrac12$ is incompressible; Table 4.2 values; the same form in cylindrical and spherical coordinates (4.3.2).</li>
+        <li>Thermoelasticity: $e_{ij}=e_{ij}^{(M)}+\alpha(T-T_0)\delta_{ij}$; (4.4.4) and (4.4.6); no thermal shear strain in an isotropic solid.</li>
+      </ol>
+      <h4>Concept blocks</h4>
+      <ul>
+        <li>A (ideas 1–2): Exercise 4.5 solved in full (invert (4.2.7), find $E$ and $\nu$), with Exercise 4.6 as its last step → Exercise 4.9 (displacements to strains to stresses: pure bending).</li>
+        <li>B (idea 3): Exercise 4.17 solved in full (steel plate, changes in dimensions) → Exercise 4.8 (rosette on steel, all stress components).</li>
+        <li>C (idea 4): Exercise 4.19 solved in full ($\sigma_x=-E\alpha T$, $e_y=e_z=\alpha(1+\nu)T$) → Exercise 4.20.</li>
+      </ul>
+      <h4>Needs from earlier</h4><p>Topic 2 (fourth-order isotropic tensor); Topic 4 (strain tensor); Topic 5 (dilatation, rosettes, spherical/deviatoric parts); Topics 7–8 (stress tensor and its symmetry).</p>
+      <h4>Thread</h4><p>Closes the system: 15 equations for 15 unknowns.</p>
+      <h4>Looking ahead (Ch 5–8)</h4>
+      <ul>
+        <li>§5.1 (5.1.4) completes 15 equations for 15 unknowns (5.1.5); §5.4 (5.4.1) $\sigma_{ij}=\lambda u_{k,k}\delta_{ij}+\mu(u_{i,j}+u_{j,i})$ leads to Navier's equations; §5.3 the inverse law inside compatibility gives Beltrami–Michell; §5.5 superposition works because every equation, Hooke's law included, is linear.</li>
+        <li>§6.1 $U=\tfrac12\sigma_{ij}e_{ij}$ becomes $U(e)=\tfrac12\lambda e_{jj}e_{kk}+\mu e_{ij}e_{ij}$ (6.1.9) and $U(\sigma)$ (6.1.10); $C_{ijkl}=C_{klij}$ leaves 21 constants (6.1.14); §6.3 the three tests of §4.3 give $E\gt0$, $-1\lt\nu\lt\tfrac12$, $k\gt0$, $\mu\gt0$ (compare Exercises 4.10–4.11).</li>
+        <li>§7.1 plane strain (7.1.3) with $\sigma_z=\nu(\sigma_x+\sigma_y)$; §7.2 plane stress (7.2.2) with $e_z=-\tfrac{\nu}{E}(\sigma_x+\sigma_y)$; Table 7.1 swaps $E\to E/(1-\nu^2)$, $\nu\to\nu/(1-\nu)$; §7.3 $\lambda^*=2\lambda\mu/(\lambda+2\mu)$; §7.6 (7.6.2) is (4.3.2) in polar form; §7.4 $\sigma_{xz}=\mu\,\partial w/\partial x$.</li>
+        <li>§8.1 Example 8.1: strains from Hooke's law (8.1.11), then integrated as in Topic 4; Example 8.6 displacements depend on $E$ and $\nu$; §8.5 contact uses the plane-strain modulus.</li>
+        <li>§4.4 thermoelasticity is used in Chapter 12, which is outside your syllabus.</li>
+      </ul>
+    </div></details>
+
+    <h3>House standard</h3>
+    <p>Set before writing, because the three writers work in parallel (normally it is set after Topic 1 is accepted; revise it once you have read Topic 1). Every idea opens with 2–4 sentences of intuition before any symbols. Every derivation changes one thing per line and says why. Every worked example has 5–12 numbered steps, each with its reason. Every concept block ends with exactly one "Your turn" book exercise, with a hint and a hidden answer showing the key steps. Every symbol is defined in the topic where it is first used.</p>
+
+    <h3>Standing feedback</h3>
+    <ol>
+      <li>No Docs: a web page whose maths renders properly inside paragraphs.</li>
+      <li>Good, eye-friendly colours; everything must render.</li>
+      <li>Midsem focus: understand the concepts and apply them to the book's examples and exercises.</li>
+      <li>For every concept: explain it, show a good example from the book, give one exercise to solve.</li>
+      <li>At most 9 topics; three Sonnet writers each write one third.</li>
+      <li>Each writer shows how its topics are used in the later syllabus (§5.1–5.6; §6.1–6.3, 6.5, 6.6; Ch 7; §8.1, 8.3, 8.4, 8.5). Chapter 1 is left out of this.</li>
+      <li>The coordinator asks each writer for its writing plan, reviews it, then tells it to proceed.</li>
+      <li>The coordinator checks the writing from a student's point of view before publishing.</li>
+    </ol>
+
+    <h3>Coordination</h3>
+    <ol>
+      <li>Brief each writer: its three plans, the notation rules, the house standard and the HTML building blocks of this page.</li>
+      <li>Each writer reads its book pages and returns a writing plan without writing; the coordinator corrects it and tells it to proceed.</li>
+      <li>Each writer delivers its topics as HTML; the coordinator reads every topic as a student would (undefined symbols, skipped steps, unclear wording, wrong numbers), gets fixes made, inserts the topics, fills the symbols and results tables, and publishes.</li>
+    </ol>
+
+    <h3>Status</h3>
+    <ul class="status-list">
+      <li><span class="tnum c1" style="width:24px;height:24px;font-size:.78rem;border-radius:7px">1</span><span>Planned. Writer A.</span></li>
+      <li><span class="tnum c1" style="width:24px;height:24px;font-size:.78rem;border-radius:7px">2</span><span>Planned. Writer A.</span></li>
+      <li><span class="tnum c1" style="width:24px;height:24px;font-size:.78rem;border-radius:7px">3</span><span>Planned. Writer A.</span></li>
+      <li><span class="tnum c2" style="width:24px;height:24px;font-size:.78rem;border-radius:7px">4</span><span>Planned. Writer B.</span></li>
+      <li><span class="tnum c2" style="width:24px;height:24px;font-size:.78rem;border-radius:7px">5</span><span>Planned. Writer B.</span></li>
+      <li><span class="tnum c2" style="width:24px;height:24px;font-size:.78rem;border-radius:7px">6</span><span>Planned. Writer B.</span></li>
+      <li><span class="tnum c3" style="width:24px;height:24px;font-size:.78rem;border-radius:7px">7</span><span>Planned. Writer C.</span></li>
+      <li><span class="tnum c3" style="width:24px;height:24px;font-size:.78rem;border-radius:7px">8</span><span>Planned. Writer C.</span></li>
+      <li><span class="tnum c4" style="width:24px;height:24px;font-size:.78rem;border-radius:7px">9</span><span>Planned. Writer C.</span></li>
+    </ul>
+  </div>
+</details>
+
+<p class="placeholder" id="empty-note">The nine topics will appear here, in order, once the outline is approved and the writers finish.</p>
+<div id="next-section-goes-here"></div>
+</main>

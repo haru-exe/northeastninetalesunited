@@ -1,0 +1,121 @@
+<!--
+  TEMPLATE FRAGMENT: copy this structure for every topic. Replace N, the chapter class (c1 to c4), and all text.
+  Keep the class names exactly. Delete these comments in your real fragment.
+  One file per topic: notes-build/fragments/tN.html, containing ONLY this <section> element.
+-->
+<section class="topic" id="tN">
+  <header class="topic-head">
+    <span class="tnum c2">N</span>
+    <div>
+      <p class="eyebrow">Chapter 2 · §2.1–2.2 · Exam weight: high (estimate)</p>
+      <h2>Displacements, strain and rotation</h2>
+    </div>
+  </header>
+
+  <div class="box recap">
+    <span class="tag">Where we are</span>
+    <p>Two or three sentences: what the previous topic established, the question it left open, and how this topic answers it.</p>
+  </div>
+
+  <div class="box recap">
+    <span class="tag">What you need from earlier</span>
+    <p>From Topic 1, the split of any matrix into symmetric and antisymmetric parts (restate it in full, do not just cite it):</p>
+    <div class="eqblock"><div class="math">$$a_{ij} = \tfrac12\left(a_{ij}+a_{ji}\right) + \tfrac12\left(a_{ij}-a_{ji}\right)$$</div><span class="eqref">(1.2.10) · Topic 1</span></div>
+  </div>
+
+  <div class="box sym">
+    <span class="tag">Symbols in this topic</span>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Symbol</th><th>Meaning</th><th>Units</th></tr></thead>
+        <tbody>
+          <tr><td>$u_i = (u, v, w)$</td><td>displacement of a material point</td><td>$\mathrm{m}$</td></tr>
+          <tr><td>$e_{ij}$</td><td>small-strain tensor</td><td>dimensionless</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3 class="concept"><span class="cnum">NA</span>Concept title (A, B, C label the concepts; never use "4.1" style, which clashes with book section numbers)</h3>
+
+  <h4>The picture</h4>
+  <p>Two to four sentences of intuition before any symbols. Define every term where it first appears:</p>
+  <div class="box def">
+    <span class="tag">Definition</span>
+    <p>The <dfn>normal strain</dfn> in a direction is the change in length per unit original length of a fibre in that direction.</p>
+  </div>
+
+  <h4>Deriving it</h4>
+  <p>Each line changes one thing, and the text says what changed and why.</p>
+  <div class="eqblock"><div class="math">$$e_{ij} = \tfrac12\left(u_{i,j} + u_{j,i}\right)$$</div><span class="eqref">(2.2.6)</span></div>
+  <p class="inwords">One plain sentence on what the result says. (The label "In words:" is added automatically.)</p>
+
+  <div class="box ex">
+    <span class="tag">Worked example · Book Example 2.1</span>
+    <!-- When the book has no worked example, write: Worked example · Book Exercise 2.3, solved -->
+    <p class="given"><strong>Problem.</strong> State the problem in full with all data, so the student never needs the book open.</p>
+    <ol class="steps">
+      <li><div>
+        <p>What is done in this step.</p>
+        <div class="eqblock"><div class="math">$$u_{i,j} = \begin{bmatrix} 2Axy & Ax^2 & 0 \\ 0 & Bz & By \\ Cz^3 & 0 & 3Cxz^2 \end{bmatrix}$$</div></div>
+        <p class="why">The reason for the step. (The label "Why:" is added automatically.)</p>
+      </div></li>
+      <li><div>
+        <p>Next step, restating any equation used before substituting into it.</p>
+        <p class="why">Reason.</p>
+      </div></li>
+    </ol>
+    <p><strong>Check.</strong> A plausibility check where one applies (units, symmetry, a special case).</p>
+  </div>
+
+  <div class="box turn">
+    <span class="tag">Your turn · Book Exercise 2.2</span>
+    <p>The exercise statement in full, with all data and any figure described in words, so it can be done without the book.</p>
+    <details><summary>Hint</summary><p>Which result to start from, and the first move.</p></details>
+    <details><summary>Answer and key steps</summary>
+      <ol class="steps">
+        <li><div><p>Every step present, with brief reasons.</p></div></li>
+      </ol>
+      <p><strong>Final answer.</strong> The result, exact form first, then decimals where useful.</p>
+    </details>
+  </div>
+
+  <!-- Repeat the concept block (h3.concept, explanation, box ex, box turn) for concepts B, C. -->
+
+  <div class="box mistake">
+    <span class="tag">Common mistake</span>
+    <p>Only mistakes students really make. Show the wrong version and the right version.</p>
+  </div>
+
+  <div class="box key">
+    <span class="tag">Key results</span>
+    <ul>
+      <li>$e_{ij} = \tfrac12\left(u_{i,j}+u_{j,i}\right)$ (2.2.6): strain from displacement.</li>
+    </ul>
+  </div>
+
+  <!-- Writers B and C only (Topics 4 to 9). Writer A (Chapter 1) leaves this box out. -->
+  <div class="box ahead">
+    <span class="tag">Looking ahead · Ch 5–8</span>
+    <ul class="links">
+      <li>
+        <span class="where">§5.4 · Navier's equations · eq. (5.4.1)–(5.4.3)</span>
+        <p>Two or three concrete sentences: how this topic's result is used there and why understanding it now makes that section easier. You may show the one later equation it produces, checked against the PDF page.</p>
+      </li>
+    </ul>
+  </div>
+
+  <p class="next"><strong>What comes next.</strong> One sentence: which later topic uses these results, and for what.</p>
+</section>
+
+<!--
+  OPTIONAL simple diagram (only when a problem depends on geometry, at most two per topic):
+  <figure class="fig">
+    <svg viewBox="0 0 320 200" width="320" role="img" aria-label="Short description">
+      <line x1="40" y1="160" x2="280" y2="160" stroke="currentColor" stroke-width="1.5"/>
+      <text x="284" y="164" font-size="13" fill="currentColor">x</text>
+    </svg>
+    <figcaption>Caption in plain words.</figcaption>
+  </figure>
+  Use only stroke="currentColor" / fill="currentColor" or fill="none". No $...$ inside SVG; plain letters only.
+-->
